@@ -277,7 +277,7 @@
           <!-- 1. Gráfico de Faturamento Mensal (Linha de Receita e Despesa) -->
           <div>
             <div class="flex items-center justify-between mb-3">
-              <h2 class="text-xl font-light text-white/90">Faturamento Mensal (2024)</h2>
+              <h2 class="text-xl font-light text-white/90">Faturamento Mensal (2026)</h2>
               <div class="flex items-center gap-4 text-xs">
                 <span class="flex items-center gap-1.5 font-normal text-white/80">
                   <span class="w-2.5 h-2.5 rounded-full bg-[#0063B1]"></span> Receitas
@@ -461,7 +461,7 @@
         <div class="lg:col-span-2 bg-[#1A1D24] border border-white/10 rounded-2xl p-6 flex flex-col justify-between">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
             <div>
-              <h3 class="text-xl font-light text-white">Faturamento Mensal (2024)</h3>
+              <h3 class="text-xl font-light text-white">Faturamento Mensal (2026)</h3>
               <p class="text-xs text-slate-400 mt-0.5">Clique em qualquer mês para alternar a projeção dinâmica</p>
             </div>
             <div class="flex items-center gap-4 text-xs">
@@ -484,7 +484,7 @@
             <div class="flex flex-wrap items-center justify-between gap-2 pb-2.5 border-b border-white/5">
               <div class="flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-[#0063B1] animate-pulse"></span>
-                <span id="proj-month-name" class="text-sm font-semibold text-white uppercase tracking-wider">Outubro 2024</span>
+                <span id="proj-month-name" class="text-sm font-semibold text-white uppercase tracking-wider">Outubro 2026</span>
                 <span id="proj-month-status" class="text-[10px] font-semibold text-[#72A824] bg-[#72A824]/10 border border-[#72A824]/20 px-2 py-0.5 rounded-full">+14.5% proj.</span>
               </div>
               <span class="text-xs text-slate-400">Projeção estimada de fechamento</span>
@@ -2510,7 +2510,7 @@
       const netEl = document.getElementById('proj-net-val');
       const goalEl = document.getElementById('proj-goal-val');
 
-      if (nameEl) nameEl.textContent = `${item.full} 2024`;
+      if (nameEl) nameEl.textContent = `${item.full} 2026`;
       if (incomeEl) incomeEl.textContent = `R$ ${(item.receita * 1000).toLocaleString('pt-BR')}`;
       if (expenseEl) expenseEl.textContent = `R$ ${(item.despesa * 1000).toLocaleString('pt-BR')}`;
       

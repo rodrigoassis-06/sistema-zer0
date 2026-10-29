@@ -1,0 +1,22 @@
+# Ambientes Virtuais
+.venv/
+backend/.venv/
+venv/
+env/
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Banco de dados temporários e logs
+*.db-journal
+*.sqlite3-journal
+*.log
+
+# Arquivos temporários e backups
+*.bak
+.DS_Store
+Thumbs.db

@@ -1,0 +1,2696 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema 0 — Iniciar</title>
+  
+  <!-- Fontes de Alta Legibilidade e Acessibilidade (FS Me / Lexend / Atkinson Hyperlegible) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Chart.js para os gráficos -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"FS Me"', '"Lexend"', '"Atkinson Hyperlegible"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            'tile-blue': '#0063B1',
+            'tile-teal': '#00897B',
+            'tile-green': '#008A3E',
+            'tile-lime': '#72A824',
+            'tile-orange': '#E66A00',
+            'tile-red': '#D11F25',
+            'tile-magenta': '#C3168A',
+            'tile-purple': '#5C3BAA',
+            'start': '#000000',
+            'flyout': '#0C0C0C',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --start: #000000;
+    }
+
+    body {
+      font-family: "FS Me", "Lexend", "Atkinson Hyperlegible", system-ui, sans-serif;
+      user-select: none;
+    }
+
+    .start-bg {
+      background-color: #000000;
+      background-attachment: fixed;
+    }
+
+    .tile {
+      position: relative;
+      overflow: hidden;
+      color: inherit;
+      border-radius: 14px;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+      cursor: pointer;
+    }
+    .tile:hover {
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.45);
+    }
+    .tile:active {
+      transform: perspective(600px) rotateX(4deg) scale(0.97);
+    }
+
+    @keyframes tile-flip {
+      0%, 45% { transform: translateY(0); }
+      50%, 95% { transform: translateY(-50%); }
+      100% { transform: translateY(0); }
+    }
+    .live-flip {
+      animation: tile-flip 10s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+    }
+
+    @keyframes metro-enter {
+      from { opacity: 0; transform: translateX(60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .metro-enter {
+      animation: metro-enter 420ms cubic-bezier(0.1, 0.9, 0.2, 1) both;
+    }
+
+    /* Custom scrollbar for horizontal metro layout */
+    ::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.15);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .metro-label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.85;
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+    }
+    .metro-input {
+      display: block;
+      width: 100%;
+      border: 2px solid transparent;
+      background-color: #ffffff;
+      padding: 0.5rem 0.75rem;
+      color: #0f172a;
+      outline: none;
+      transition: border-color 150ms ease;
+    }
+    .metro-input:focus {
+      border-color: #0063B1;
+    }
+    .metro-btn {
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 150ms ease;
+    }
+
+  </style>
+</head>
+<body class="bg-black text-white min-h-screen overflow-x-hidden selection:bg-purple-500 selection:text-white">
+
+  <!-- ================= TELA INICIAR (METRO START) ================= -->
+  <div id="start-screen" class="hidden start-bg min-h-screen flex flex-col justify-between p-8 md:p-14">
+    <div>
+      <!-- Header do Start -->
+      <header class="flex items-start justify-end">
+        <button onclick="handleUserHeaderClick()" class="flex items-center gap-3 text-right hover:opacity-90 transition-opacity">
+          <span>
+            <span id="header-user-name" class="block text-xl md:text-2xl font-light">Entrar</span>
+            <span id="header-user-sub" class="block text-xs md:text-sm opacity-70">Sistema 0 · Starter Base</span>
+          </span>
+          <span id="header-user-avatar" class="flex items-center justify-center text-white/90 hover:text-white transition-colors">
+            <i data-lucide="log-in" class="w-6 h-6"></i>
+          </span>
+        </button>
+      </header>
+
+      <!-- Grade de Blocos Dinâmicos (Metro Tiles) -->
+      <div class="mt-12 flex gap-12 overflow-x-auto pb-8">
+        
+        <!-- SEÇÃO: Visão Geral -->
+        <section class="shrink-0">
+          <h2 class="mb-3 text-xl font-light text-white/90">Visão geral</h2>
+          <div class="grid auto-rows-[65px] grid-cols-[repeat(6,65px)] gap-2 md:auto-rows-[74px] md:grid-cols-[repeat(6,74px)]">
+            
+            <!-- Tile Agenda de hoje (Wide - com flip dinâmico) -->
+            <button onclick="openApp('appointments')" style="animation-delay: 0ms;" class="tile metro-enter col-span-4 row-span-2 bg-tile-blue p-3 text-left">
+              <div class="h-[200%] live-flip">
+                <!-- Face 1 -->
+                <div class="flex h-1/2 flex-col justify-center gap-0.5">
+                  <span id="tile-appt-count" class="text-5xl md:text-6xl font-light">5</span>
+                  <span id="tile-appt-status-text" class="text-xs md:text-sm opacity-80">2 confirmados · 2 pendentes</span>
+                </div>
+                <!-- Face 2 -->
+                <div class="flex h-1/2 flex-col justify-center">
+                  <span class="text-[10px] md:text-xs uppercase tracking-wider opacity-70">Próximo</span>
+                  <span id="tile-appt-next-title" class="text-xl md:text-2xl font-light truncate">10:30 · Carla Mendes</span>
+                  <span id="tile-appt-next-sub" class="text-xs md:text-sm opacity-80 truncate">Limpeza de pele</span>
+                </div>
+              </div>
+              <span class="absolute bottom-2 left-3 text-xs md:text-sm">Agenda de hoje</span>
+            </button>
+
+            <!-- Tile Novo (+) -->
+            <button onclick="openAppointmentDialog()" style="animation-delay: 60ms;" class="tile metro-enter col-span-2 row-span-2 bg-white text-slate-900 p-3 text-left hover:opacity-95 transition-all">
+              <div class="flex h-full items-center justify-center">
+                <i data-lucide="plus" class="h-10 w-10 text-slate-900"></i>
+              </div>
+              <span class="absolute bottom-2 left-3 text-xs md:text-sm font-medium text-slate-900">Novo</span>
+            </button>
+
+            <!-- Tile Receitas (mês) -->
+            <button onclick="openApp('financial', 'receita')" style="animation-delay: 120ms;" class="tile metro-enter col-span-2 row-span-2 bg-[#1A1D24] border border-white/10 text-white p-3 text-left flex flex-col justify-between hover:border-white/25 transition-all">
+              <i data-lucide="trending-up" class="h-6 w-6 text-[#72A824]"></i>
+              <div>
+                <p id="tile-income-paid" class="text-lg md:text-xl font-light text-white">R$ 3.670,00</p>
+                <p id="tile-income-pending" class="text-[10px] md:text-xs truncate text-slate-400">a receber R$ 180,00</p>
+              </div>
+              <span class="text-xs md:text-sm font-normal text-white/90">Receitas (mês)</span>
+            </button>
+
+            <!-- Tile Despesas (mês) -->
+            <button onclick="openApp('financial', 'despesa')" style="animation-delay: 180ms;" class="tile metro-enter col-span-2 row-span-2 bg-[#1A1D24] border border-white/10 text-white p-3 text-left flex flex-col justify-between hover:border-white/25 transition-all">
+              <i data-lucide="trending-down" class="h-6 w-6 text-[#D11F25]"></i>
+              <div>
+                <p id="tile-expense-paid" class="text-lg md:text-xl font-light text-white">R$ 1.800,00</p>
+                <p id="tile-expense-pending" class="text-[10px] md:text-xs truncate text-slate-400">a pagar R$ 420,00</p>
+              </div>
+              <span class="text-xs md:text-sm font-normal text-white/90">Despesas (mês)</span>
+            </button>
+
+            <!-- Tile Saldo -->
+            <button onclick="openApp('dashboard')" style="animation-delay: 240ms;" class="tile metro-enter col-span-2 row-span-2 bg-[#1A1D24] border border-white/10 text-white p-3 text-left flex flex-col justify-between hover:border-white/25 transition-all">
+              <i data-lucide="scale" class="h-6 w-6 text-white/90"></i>
+              <div>
+                <p id="tile-net-realized" class="text-lg md:text-xl font-light text-white">R$ 1.870,00</p>
+                <p id="tile-net-projected" class="text-[10px] md:text-xs truncate text-slate-400">proj. R$ 1.630,00</p>
+              </div>
+              <span class="text-xs md:text-sm font-normal text-white/90">Saldo</span>
+            </button>
+
+          </div>
+        </section>
+
+        <!-- SEÇÃO: Aplicativos -->
+        <section class="shrink-0">
+          <h2 class="mb-3 text-xl font-light text-white/90">Aplicativos</h2>
+          <div class="grid auto-rows-[65px] grid-cols-[repeat(4,65px)] gap-2 md:auto-rows-[74px] md:grid-cols-[repeat(4,74px)]">
+            
+            <!-- Tile Clientes (Wide - com flip dinâmico) -->
+            <button onclick="openApp('customers')" style="animation-delay: 300ms;" class="tile metro-enter col-span-4 row-span-2 bg-[#6C757D] text-white p-3 text-left">
+              <div class="h-[200%] live-flip">
+                <div class="flex h-1/2 items-center gap-4">
+                  <i data-lucide="users" class="h-10 w-10 md:h-12 md:w-12 text-white"></i>
+                  <span id="tile-customers-count" class="text-4xl md:text-5xl font-light text-white">4</span>
+                </div>
+                <div id="tile-customers-preview" class="flex h-1/2 flex-col justify-center text-white">
+                  <span class="text-base md:text-lg font-light truncate">Ana Souza</span>
+                  <span class="text-base md:text-lg font-light truncate">Bruno Lima</span>
+                  <span class="text-base md:text-lg font-light truncate">Carla Mendes</span>
+                </div>
+              </div>
+              <span class="absolute bottom-2 left-3 text-xs md:text-sm text-white">Clientes</span>
+            </button>
+
+            <!-- Tile Serviços -->
+            <button onclick="openApp('services')" style="animation-delay: 360ms;" class="tile metro-enter col-span-2 row-span-2 bg-[#1A1D24] border border-white/10 text-white p-3 text-left hover:border-white/25 transition-all">
+              <div class="flex h-full items-center justify-center">
+                <i data-lucide="tags" class="h-10 w-10 text-white"></i>
+              </div>
+              <span class="absolute bottom-2 left-3 text-xs md:text-sm font-normal text-white/90">Serviços</span>
+            </button>
+
+            <!-- Tile Financeiro -->
+            <button onclick="openApp('financial')" style="animation-delay: 420ms;" class="tile metro-enter col-span-2 row-span-2 bg-tile-lime p-3 text-left">
+              <div class="flex h-full items-center justify-center">
+                <i data-lucide="wallet" class="h-10 w-10"></i>
+              </div>
+              <span class="absolute bottom-2 left-3 text-xs md:text-sm">Financeiro</span>
+            </button>
+
+            <!-- Tile Dashboard -->
+            <button onclick="openApp('dashboard')" style="animation-delay: 480ms;" class="tile metro-enter col-span-4 row-span-2 bg-white text-slate-900 p-3 text-left hover:opacity-95 transition-all">
+              <div class="flex h-full items-center justify-center">
+                <i data-lucide="layout-dashboard" class="h-10 w-10 md:h-12 md:w-12 text-slate-900"></i>
+              </div>
+              <span class="absolute bottom-2 left-3 text-xs md:text-sm font-medium text-slate-900">Dashboard</span>
+            </button>
+
+          </div>
+        </section>
+
+        <!-- SEÇÃO: Faturamento Mensal & Pedidos Recentes (Encaixado diretamente no tema preto, sem fundo branco) -->
+        <section class="shrink-0 w-[580px] lg:w-[680px] pb-6">
+          
+          <!-- 1. Gráfico de Faturamento Mensal (Linha de Receita e Despesa) -->
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h2 class="text-xl font-light text-white/90">Faturamento Mensal (2024)</h2>
+              <div class="flex items-center gap-4 text-xs">
+                <span class="flex items-center gap-1.5 font-normal text-white/80">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#0063B1]"></span> Receitas
+                </span>
+                <span class="flex items-center gap-1.5 font-normal text-white/80">
+                  <span class="w-2.5 h-2.5 rounded-full bg-white"></span> Despesas
+                </span>
+              </div>
+            </div>
+
+            <!-- Canvas do Gráfico -->
+            <div class="h-60 w-full relative" style="min-height: 240px;">
+              <canvas id="chart-faturamento"></canvas>
+            </div>
+          </div>
+
+          <!-- 2. Tabela de Pedidos Recentes -->
+          <div class="mt-8">
+            <div class="flex items-center justify-between mb-3 border-b border-white/10 pb-2">
+              <h3 class="text-lg font-light text-white/90">Pedidos Recentes</h3>
+              <button onclick="openApp('financial')" class="text-xs text-tile-blue hover:underline font-normal">Ver todos &rarr;</button>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="min-w-full text-xs">
+                <thead>
+                  <tr class="text-left text-white/40 uppercase tracking-wider border-b border-white/10 font-normal">
+                    <th class="pb-2.5 font-medium">ID</th>
+                    <th class="pb-2.5 font-medium">Cliente</th>
+                    <th class="pb-2.5 font-medium">Data</th>
+                    <th class="pb-2.5 font-medium">Valor</th>
+                    <th class="pb-2.5 font-medium">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-white/5 text-white/80">
+                  <tr class="hover:bg-white/5 transition-colors">
+                    <td class="py-3 font-medium text-white/50">#1234</td>
+                    <td class="py-3 font-medium text-white">Alice Silva</td>
+                    <td class="py-3 text-white/70">24 Mai</td>
+                    <td class="py-3 font-medium text-white">R$ 250,50</td>
+                    <td class="py-3">
+                      <span class="text-[#72A824] text-xs font-semibold">Pago</span>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-white/5 transition-colors">
+                    <td class="py-3 font-medium text-white/50">#1233</td>
+                    <td class="py-3 font-medium text-white">Bruno Costa</td>
+                    <td class="py-3 text-white/70">24 Mai</td>
+                    <td class="py-3 font-medium text-white">R$ 115,00</td>
+                    <td class="py-3">
+                      <span class="text-white text-xs font-semibold">Pendente</span>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-white/5 transition-colors">
+                    <td class="py-3 font-medium text-white/50">#1232</td>
+                    <td class="py-3 font-medium text-white">Carla Lima</td>
+                    <td class="py-3 text-white/70">23 Mai</td>
+                    <td class="py-3 font-medium text-white">R$ 420,80</td>
+                    <td class="py-3">
+                      <span class="text-white text-xs font-semibold">Enviado</span>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-white/5 transition-colors">
+                    <td class="py-3 font-medium text-white/50">#1231</td>
+                    <td class="py-3 font-medium text-white">Diego Souza</td>
+                    <td class="py-3 text-white/70">23 Mai</td>
+                    <td class="py-3 font-medium text-white">R$ 180,00</td>
+                    <td class="py-3">
+                      <span class="text-[#72A824] text-xs font-semibold">Pago</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= TELA DO APLICATIVO (METRO APP VIEW) ================= -->
+  <div id="app-view" class="hidden min-h-screen bg-white text-slate-900 px-8 md:px-20 pt-10 pb-28 metro-enter">
+    
+    <!-- Top Bar com Seta Voltar -->
+    <div class="flex items-center gap-4">
+      <button id="btn-app-back" onclick="handleBackClick()" aria-label="Voltar" class="flex items-center justify-center text-slate-900 hover:opacity-60 transition-opacity p-1">
+        <i data-lucide="arrow-left" class="h-8 w-8 stroke-[1.75]"></i>
+      </button>
+      <h1 id="app-view-title" class="text-4xl md:text-5xl font-light lowercase">visão geral</h1>
+      
+      <div id="app-view-actions" class="ml-auto flex items-center gap-2">
+        <button id="btn-action-appointment" onclick="openAppointmentDialog()" class="flex items-center gap-2 bg-tile-blue hover:opacity-90 px-4 py-2 text-white font-normal transition-opacity shadow-sm rounded-lg">
+          <i data-lucide="plus" class="h-4 w-4"></i> Novo agendamento
+        </button>
+        <button id="btn-action-transaction" onclick="openTransactionDialog()" class="hidden flex items-center gap-2 bg-tile-blue hover:opacity-90 px-4 py-2 text-white font-normal transition-opacity shadow-sm rounded-lg">
+          <i data-lucide="plus" class="h-4 w-4"></i> Novo lançamento
+        </button>
+        <button id="btn-action-customer" onclick="openCustomerDialog()" class="hidden flex items-center gap-2 bg-tile-blue hover:opacity-90 px-4 py-2 text-white font-normal transition-opacity shadow-sm rounded-lg">
+          <i data-lucide="plus" class="h-4 w-4"></i> Novo cadastro
+        </button>
+        <button id="btn-action-service" onclick="openServiceDialog()" class="hidden flex items-center gap-2 bg-tile-blue hover:opacity-90 px-4 py-2 text-white font-normal transition-opacity shadow-sm rounded-lg">
+          <i data-lucide="plus" class="h-4 w-4"></i> Novo cadastro
+        </button>
+      </div>
+    </div>
+
+    <!-- Bloco de KPIs legado (oculto) -->
+    <div id="app-dashboard-kpis" class="hidden"></div>
+
+    <!-- ================= SEÇÃO INTEGRADA DE DASHBOARD COMPLETO (ANEXO) ================= -->
+    <div id="dashboard-view-section" class="hidden mt-8 space-y-6">
+      
+      <!-- 1. Linha de 4 Cards de Métricas com Sparklines -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <!-- Card 1: Faturamento -->
+        <div class="bg-[#1A1D24] border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-white/20 transition-all">
+          <div class="flex items-center justify-between">
+            <span class="text-xs uppercase tracking-wider text-slate-400 font-medium">Faturamento</span>
+            <span class="text-[11px] font-semibold text-[#72A824] bg-[#72A824]/10 border border-[#72A824]/20 px-2 py-0.5 rounded-full">+8.5%</span>
+          </div>
+          <div class="mt-3">
+            <span id="dash-card-fat-val" class="text-2xl md:text-3xl font-light text-white tracking-tight">R$ 128.450</span>
+          </div>
+          <div class="h-12 w-full mt-3">
+            <canvas id="sparkline-faturamento"></canvas>
+          </div>
+        </div>
+
+        <!-- Card 2: Pedidos -->
+        <div class="bg-[#1A1D24] border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-white/20 transition-all">
+          <div class="flex items-center justify-between">
+            <span class="text-xs uppercase tracking-wider text-slate-400 font-medium">Pedidos</span>
+            <span class="text-[11px] font-semibold text-[#72A824] bg-[#72A824]/10 border border-[#72A824]/20 px-2 py-0.5 rounded-full">+12%</span>
+          </div>
+          <div class="mt-3">
+            <span id="dash-card-ped-val" class="text-2xl md:text-3xl font-light text-white tracking-tight">1.284</span>
+          </div>
+          <div class="h-12 w-full mt-3">
+            <canvas id="sparkline-pedidos"></canvas>
+          </div>
+        </div>
+
+        <!-- Card 3: Ticket médio -->
+        <div class="bg-[#1A1D24] border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-white/20 transition-all">
+          <div class="flex items-center justify-between">
+            <span class="text-xs uppercase tracking-wider text-slate-400 font-medium">Ticket médio</span>
+            <span class="text-[11px] font-semibold text-[#D11F25] bg-[#D11F25]/10 border border-[#D11F25]/20 px-2 py-0.5 rounded-full">-2.1%</span>
+          </div>
+          <div class="mt-3">
+            <span id="dash-card-ticket-val" class="text-2xl md:text-3xl font-light text-white tracking-tight">R$ 100,04</span>
+          </div>
+          <div class="h-12 w-full mt-3">
+            <canvas id="sparkline-ticket"></canvas>
+          </div>
+        </div>
+
+        <!-- Card 4: Novos clientes -->
+        <div class="bg-[#1A1D24] border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-white/20 transition-all">
+          <div class="flex items-center justify-between">
+            <span class="text-xs uppercase tracking-wider text-slate-400 font-medium">Novos clientes</span>
+            <span class="text-[11px] font-semibold text-[#72A824] bg-[#72A824]/10 border border-[#72A824]/20 px-2 py-0.5 rounded-full">+15%</span>
+          </div>
+          <div class="mt-3">
+            <span id="dash-card-cli-val" class="text-2xl md:text-3xl font-light text-white tracking-tight">312</span>
+          </div>
+          <div class="h-12 w-full mt-3">
+            <canvas id="sparkline-clientes"></canvas>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 2. Linha de Gráficos: Faturamento Mensal (Spline) + Vendas por Canal (Donut) -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Gráfico de Faturamento Mensal com Interação e Projeção (2/3 da largura) -->
+        <div class="lg:col-span-2 bg-[#1A1D24] border border-white/10 rounded-2xl p-6 flex flex-col justify-between">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+            <div>
+              <h3 class="text-xl font-light text-white">Faturamento Mensal (2024)</h3>
+              <p class="text-xs text-slate-400 mt-0.5">Clique em qualquer mês para alternar a projeção dinâmica</p>
+            </div>
+            <div class="flex items-center gap-4 text-xs">
+              <span class="flex items-center gap-1.5 font-normal text-white">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#0063B1]"></span> Receitas
+              </span>
+              <span class="flex items-center gap-1.5 font-normal text-white">
+                <span class="w-2.5 h-2.5 rounded-full bg-white"></span> Despesas
+              </span>
+            </div>
+          </div>
+
+          <!-- Barra de Navegação Rápida entre os Meses -->
+          <div id="dash-month-selector" class="flex items-center gap-1 overflow-x-auto py-1 mb-3 scrollbar-none">
+            <!-- Gerado via JavaScript -->
+          </div>
+
+          <!-- Painel Interativo de Projeção do Mês Selecionado -->
+          <div id="dash-month-projection-box" class="bg-black/40 border border-white/10 rounded-xl p-3.5 mb-3 transition-all duration-300">
+            <div class="flex flex-wrap items-center justify-between gap-2 pb-2.5 border-b border-white/5">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-[#0063B1] animate-pulse"></span>
+                <span id="proj-month-name" class="text-sm font-semibold text-white uppercase tracking-wider">Outubro 2024</span>
+                <span id="proj-month-status" class="text-[10px] font-semibold text-[#72A824] bg-[#72A824]/10 border border-[#72A824]/20 px-2 py-0.5 rounded-full">+14.5% proj.</span>
+              </div>
+              <span class="text-xs text-slate-400">Projeção estimada de fechamento</span>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2.5 text-center sm:text-left">
+              <div>
+                <span class="text-[10px] uppercase tracking-wider text-slate-400 font-medium block">Receita Prevista</span>
+                <span id="proj-income-val" class="text-lg md:text-xl font-semibold text-[#0063B1]">R$ 105.000</span>
+              </div>
+              <div>
+                <span class="text-[10px] uppercase tracking-wider text-slate-400 font-medium block">Despesa Prevista</span>
+                <span id="proj-expense-val" class="text-lg md:text-xl font-semibold text-white">R$ 100.000</span>
+              </div>
+              <div>
+                <span class="text-[10px] uppercase tracking-wider text-slate-400 font-medium block">Saldo Projetado</span>
+                <span id="proj-net-val" class="text-lg md:text-xl font-semibold text-[#72A824]">+ R$ 5.000</span>
+              </div>
+              <div>
+                <span class="text-[10px] uppercase tracking-wider text-slate-400 font-medium block">Meta Atingida</span>
+                <span id="proj-goal-val" class="text-lg md:text-xl font-semibold text-[#38BDF8]">94.2%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="h-64 w-full relative">
+            <canvas id="chart-dash-main-faturamento"></canvas>
+          </div>
+        </div>
+
+        <!-- Gráfico Donut de Vendas por Canal (1/3 da largura) -->
+        <div class="bg-[#1A1D24] border border-white/10 rounded-2xl p-6 flex flex-col justify-between">
+          <div class="mb-2">
+            <h3 class="text-xl font-light text-white">Vendas por Canal</h3>
+            <p class="text-xs text-slate-400 mt-0.5">Distribuição das origens de venda</p>
+          </div>
+          <div class="h-56 w-full relative flex items-center justify-center my-1">
+            <canvas id="chart-dash-canal"></canvas>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-xs pt-3 border-t border-white/10">
+            <span class="flex items-center gap-1.5 text-slate-300">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#0063B1]"></span> Directo 40%
+            </span>
+            <span class="flex items-center gap-1.5 text-slate-300">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#5C3BAA]"></span> Social 25%
+            </span>
+            <span class="flex items-center gap-1.5 text-slate-300">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#38BDF8]"></span> Email 20%
+            </span>
+            <span class="flex items-center gap-1.5 text-slate-300">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#72A824]"></span> Orgânico 15%
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 3. Tabela de Pedidos Recentes -->
+      <div class="bg-[#1A1D24] border border-white/10 rounded-2xl p-6">
+        <div class="flex items-center justify-between mb-4 border-b border-white/10 pb-3">
+          <div>
+            <h3 class="text-xl font-light text-white">Pedidos Recentes</h3>
+            <p class="text-xs text-slate-400 mt-0.5">Últimos atendimentos e pagamentos processados</p>
+          </div>
+          <button onclick="openApp('financial')" class="text-xs text-tile-blue hover:underline font-normal flex items-center gap-1">
+            Ver todos &rarr;
+          </button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-xs">
+            <thead>
+              <tr class="text-left text-white/40 uppercase tracking-wider border-b border-white/10 font-medium">
+                <th class="pb-3 pr-6 font-semibold">ID</th>
+                <th class="pb-3 pr-6 font-semibold">Cliente</th>
+                <th class="pb-3 pr-6 font-semibold">Data</th>
+                <th class="pb-3 pr-6 font-semibold">Valor</th>
+                <th class="pb-3 pr-6 font-semibold">Status</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 text-white/80">
+              <tr class="hover:bg-white/5 transition-colors">
+                <td class="py-3.5 pr-6 font-medium text-white/50">#1234</td>
+                <td class="py-3.5 pr-6 font-medium text-white">Alice Silva</td>
+                <td class="py-3.5 pr-6 text-white/70">24 Mai</td>
+                <td class="py-3.5 pr-6 font-semibold text-white">R$ 250,50</td>
+                <td class="py-3.5 pr-6"><span class="text-[#72A824] font-semibold text-xs">Pago</span></td>
+              </tr>
+              <tr class="hover:bg-white/5 transition-colors">
+                <td class="py-3.5 pr-6 font-medium text-white/50">#1233</td>
+                <td class="py-3.5 pr-6 font-medium text-white">Bruno Costa</td>
+                <td class="py-3.5 pr-6 text-white/70">24 Mai</td>
+                <td class="py-3.5 pr-6 font-semibold text-white">R$ 115,00</td>
+                <td class="py-3.5 pr-6"><span class="text-white font-semibold text-xs">Pendente</span></td>
+              </tr>
+              <tr class="hover:bg-white/5 transition-colors">
+                <td class="py-3.5 pr-6 font-medium text-white/50">#1232</td>
+                <td class="py-3.5 pr-6 font-medium text-white">Carla Lima</td>
+                <td class="py-3.5 pr-6 text-white/70">23 Mai</td>
+                <td class="py-3.5 pr-6 font-semibold text-white">R$ 420,80</td>
+                <td class="py-3.5 pr-6"><span class="text-white font-semibold text-xs">Enviado</span></td>
+              </tr>
+              <tr class="hover:bg-white/5 transition-colors">
+                <td class="py-3.5 pr-6 font-medium text-white/50">#1231</td>
+                <td class="py-3.5 pr-6 font-medium text-white">Diego Souza</td>
+                <td class="py-3.5 pr-6 text-white/70">23 Mai</td>
+                <td class="py-3.5 pr-6 font-semibold text-white">R$ 180,00</td>
+                <td class="py-3.5 pr-6"><span class="text-[#72A824] font-semibold text-xs">Pago</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SEÇÃO 1: FORMATO DE AGENDA / CALENDÁRIO MENSAL -->
+    <div id="appointments-calendar-section" class="hidden mt-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+        <div>
+          <h2 id="calendar-month-title" class="text-3xl font-light capitalize text-slate-900">outubro 2026</h2>
+          <p class="text-xs text-slate-500 mt-1">Clique em qualquer dia para abrir a agenda detalhada de atendimentos.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="changeCalendarMonth(-1)" title="Mês anterior" class="px-3 py-1.5 border border-slate-300 hover:bg-slate-50 text-slate-700 text-sm flex items-center gap-1 transition-colors">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
+          </button>
+          <button onclick="resetCalendarToToday()" class="px-3 py-1.5 border border-slate-300 hover:bg-slate-50 text-slate-700 text-sm font-medium transition-colors">
+            Hoje
+          </button>
+          <button onclick="changeCalendarMonth(1)" title="Próximo mês" class="px-3 py-1.5 border border-slate-300 hover:bg-slate-50 text-slate-700 text-sm flex items-center gap-1 transition-colors">
+            Próximo <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Cabeçalho dos dias da semana -->
+      <div class="grid grid-cols-7 mt-4 border-b-2 border-slate-900 text-center text-xs font-semibold uppercase text-slate-600 pb-2">
+        <span>Dom</span>
+        <span>Seg</span>
+        <span>Ter</span>
+        <span>Qua</span>
+        <span>Qui</span>
+        <span>Sex</span>
+        <span>Sáb</span>
+      </div>
+
+      <!-- Grade dos dias do mês -->
+      <div id="appointments-calendar-grid" class="grid grid-cols-7 gap-1 mt-1">
+        <!-- Renderizado dinamicamente via JS -->
+      </div>
+    </div>
+
+    <!-- SEÇÃO 2: TABELA DE REGISTROS / ATENDIMENTOS DO DIA -->
+    <div id="app-table-section">
+      <!-- Título da Tabela -->
+      <div class="mt-10 flex items-center justify-between border-b border-slate-200 pb-2">
+        <div>
+          <h2 id="app-table-title" class="text-2xl font-light">Agenda e Atendimentos</h2>
+          <span id="app-table-subtitle" class="text-xs text-slate-500 block"></span>
+        </div>
+        <div class="flex items-center gap-4">
+          <button id="btn-back-to-calendar" onclick="backToCalendar()" class="hidden text-xs text-tile-blue hover:underline flex items-center gap-1 font-medium">
+            <i data-lucide="calendar" class="w-3.5 h-3.5"></i> Ver Calendário Completo
+          </button>
+          <div id="financial-filter-tabs" class="hidden flex items-center gap-1">
+            <button onclick="setFinancialFilter(null)" id="btn-filter-all" class="px-3 py-1.5 border border-slate-300 text-slate-700 hover:bg-slate-50 transition-colors text-xs font-normal">Todos</button>
+            <button onclick="setFinancialFilter('receita')" id="btn-filter-income" class="px-3 py-1.5 border border-slate-300 text-slate-700 hover:bg-slate-50 transition-colors text-xs font-normal">Receitas</button>
+            <button onclick="setFinancialFilter('despesa')" id="btn-filter-expense" class="px-3 py-1.5 border border-slate-300 text-slate-700 hover:bg-slate-50 transition-colors text-xs font-normal">Despesas</button>
+          </div>
+          <button onclick="refreshCurrentApp()" class="text-xs text-slate-500 hover:text-slate-800 flex items-center gap-1">
+            <i data-lucide="rotate-cw" class="w-3.5 h-3.5"></i> Atualizar
+          </button>
+        </div>
+      </div>
+
+      <!-- Tabela Estilo Metro -->
+      <div class="mt-4 overflow-x-auto">
+        <table class="min-w-full text-sm">
+          <thead id="app-table-head">
+            <!-- Dinâmico -->
+          </thead>
+          <tbody id="app-table-body" class="divide-y divide-slate-100">
+            <!-- Dinâmico -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ================= TELA DE LOGIN E CADASTRO (SPLIT AZUL) ================= -->
+  <div id="auth-screen" class="min-h-screen w-full bg-black text-white font-sans flex items-center justify-center">
+    <div class="w-full min-h-screen grid grid-cols-1 md:grid-cols-[1fr_1.1fr]">
+      
+      <!-- Lado Esquerdo: Marca e Boas-Vindas em Azul Metro -->
+      <div class="flex flex-col justify-between bg-tile-blue p-8 sm:p-12 md:p-16 text-white min-h-[320px] md:min-h-screen">
+        <span class="text-base font-semibold tracking-wide">Sistema 0</span>
+        
+        <div class="my-auto py-10">
+          <p class="text-xs font-semibold tracking-[0.25em] uppercase opacity-75 mb-3">BEM-VINDO</p>
+          <h2 class="text-4xl sm:text-5xl lg:text-6xl font-light leading-tight">
+            Sua agenda,<br />clientes e finanças.
+          </h2>
+        </div>
+
+        <span class="text-xs opacity-70">Starter Base</span>
+      </div>
+
+      <!-- Lado Direito: Formulário de Autenticação em Fundo Preto -->
+      <div class="flex items-center justify-center bg-black p-8 sm:p-12 md:p-16">
+        <div class="w-full max-w-md mx-auto">
+          
+          <h2 id="auth-title" class="text-3xl sm:text-4xl font-light text-white mb-8 tracking-tight">
+            Autenticação
+          </h2>
+
+          <div id="auth-error-msg" class="hidden mb-6 p-3 bg-tile-red text-white text-xs font-medium"></div>
+
+          <form id="form-auth-split" onsubmit="handleAuthSubmit(event)" class="space-y-5">
+            
+            <!-- Campo Nome Completo (Apenas no Cadastro) -->
+            <div id="auth-group-name" class="hidden">
+              <label class="block text-xs uppercase tracking-wider text-white/90 mb-1.5 font-medium">
+                NOME COMPLETO
+              </label>
+              <input id="auth-field-name" type="text" placeholder="Ex: Ana Souza" class="block w-full border border-transparent bg-white px-4 py-3 text-slate-900 outline-none focus:border-tile-blue text-sm transition-colors rounded-lg">
+            </div>
+
+            <!-- Campo E-mail -->
+            <div>
+              <label class="block text-xs uppercase tracking-wider text-white/90 mb-1.5 font-medium">
+                E-MAIL
+              </label>
+              <input id="auth-field-email" type="email" value="admin@demo.com" required class="block w-full border border-transparent bg-white px-4 py-3 text-slate-900 outline-none focus:border-tile-blue text-sm transition-colors rounded-lg">
+            </div>
+
+            <!-- Campo Senha -->
+            <div>
+              <label class="block text-xs uppercase tracking-wider text-white/90 mb-1.5 font-medium">
+                SENHA
+              </label>
+              <input id="auth-field-password" type="password" value="admin123" required class="block w-full border border-transparent bg-white px-4 py-3 text-slate-900 outline-none focus:border-tile-blue text-sm transition-colors rounded-lg">
+            </div>
+
+            <!-- Campo Confirmar Senha (Apenas no Cadastro) -->
+            <div id="auth-group-confirm" class="hidden">
+              <label class="block text-xs uppercase tracking-wider text-white/90 mb-1.5 font-medium">
+                CONFIRMAR SENHA
+              </label>
+              <input id="auth-field-confirm" type="password" value="admin123" class="block w-full border border-transparent bg-white px-4 py-3 text-slate-900 outline-none focus:border-tile-blue text-sm transition-colors rounded-lg">
+            </div>
+
+            <!-- Barra de Ações: Link de Alternância + Botões Entrar / Cancelar -->
+            <div class="pt-3 flex flex-wrap items-center justify-between gap-4">
+              <button type="button" onclick="toggleAuthMode()" class="text-xs text-white/90 font-normal hover:underline underline-offset-4 cursor-pointer">
+                <span id="auth-mode-link-text">Não tem conta? Cadastre-se</span>
+              </button>
+
+              <div class="flex items-center gap-2">
+                <button type="submit" id="auth-submit-btn" class="bg-white hover:bg-slate-100 text-tile-blue font-medium px-6 py-2.5 text-sm transition-colors shadow rounded-lg">
+                  Entrar
+                </button>
+                <button type="button" onclick="handleAuthCancel()" class="border border-white hover:bg-white/10 text-white font-medium px-6 py-2.5 text-sm transition-colors rounded-lg">
+                  Cancelar
+                </button>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+    <!-- ================= MODAL DE NOVO AGENDAMENTO (FORMATO ANEXO) ================= -->
+  <div id="modal-appointment" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm px-4">
+    <div class="w-full max-w-lg bg-black text-white p-8 md:p-10 rounded-2xl shadow-2xl border border-white/10">
+      <div class="flex items-center justify-between mb-8">
+        <h3 class="text-3xl md:text-4xl font-normal text-white tracking-tight">Novo agendamento</h3>
+        <button type="button" onclick="closeAppointmentDialog()" class="text-slate-400 hover:text-white transition-colors">
+          <i data-lucide="x" class="h-6 w-6"></i>
+        </button>
+      </div>
+
+      <div id="appt-error" class="hidden mb-6 p-3 bg-tile-red text-white text-sm rounded-lg"></div>
+
+      <form id="form-appt" onsubmit="handleCreateAppointment(event)" class="space-y-5">
+        <div>
+          <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">CLIENTE</label>
+          <select id="appt-customer-select" required class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">SERVIÇO</label>
+          <select id="appt-service-select" required class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">DATA E INÍCIO</label>
+          <input id="appt-start-time" type="datetime-local" required class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">OBSERVAÇÕES</label>
+          <input id="appt-notes" type="text" placeholder="Ex: Cliente prefere atendimento matutino" class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-6">
+          <button type="submit" class="bg-white text-tile-blue hover:bg-slate-100 font-semibold px-6 py-2.5 rounded-lg transition-colors text-sm">
+            Agendar
+          </button>
+          <button type="button" onclick="closeAppointmentDialog()" class="border border-white bg-transparent text-white hover:bg-white/10 font-semibold px-6 py-2.5 rounded-lg transition-colors text-sm">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- ================= MODAL DE NOVO LANÇAMENTO (FORMATO ANEXO) ================= -->
+  <div id="modal-transaction" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm px-4">
+    <div class="w-full max-w-lg bg-black text-white p-8 md:p-10 rounded-2xl shadow-2xl border border-white/10">
+      <div class="flex items-center justify-between mb-8">
+        <h3 id="modal-trx-title" class="text-3xl md:text-4xl font-normal text-white tracking-tight">Novo lançamento</h3>
+        <button type="button" onclick="closeTransactionDialog()" class="text-slate-400 hover:text-white transition-colors">
+          <i data-lucide="x" class="h-6 w-6"></i>
+        </button>
+      </div>
+
+      <div id="trx-error" class="hidden mb-6 p-3 bg-tile-red text-white text-sm rounded-lg"></div>
+
+      <form id="form-trx" onsubmit="handleCreateTransaction(event)" class="space-y-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">TIPO</label>
+            <select id="trx-type" required onchange="handleTrxTypeChange()" class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+              <option value="receita">Receita</option>
+              <option value="despesa">Despesa</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">VALOR (R$)</label>
+            <input id="trx-amount" type="number" step="0.01" min="0.01" placeholder="150,00" required class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">CATEGORIA / DESCRIÇÃO</label>
+          <input id="trx-category" type="text" placeholder="Ex: Consultoria, Aluguel, Produtos..." required class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">DATA DE VENCIMENTO</label>
+            <input id="trx-due-date" type="date" required class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">FORMA DE PAGAMENTO</label>
+            <select id="trx-method" class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+              <option value="PIX">PIX</option>
+              <option value="Cartão">Cartão</option>
+              <option value="Boleto">Boleto</option>
+              <option value="Dinheiro">Dinheiro</option>
+              <option value="Transferência">Transferência</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">STATUS</label>
+          <select id="trx-status" class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+            <option value="pago">Pago / Recebido</option>
+            <option value="pendente">Pendente / A pagar / A receber</option>
+          </select>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-6">
+          <button type="submit" class="bg-white text-tile-blue hover:bg-slate-100 font-semibold px-6 py-2.5 rounded-lg transition-colors text-sm">
+            Salvar
+          </button>
+          <button type="button" onclick="closeTransactionDialog()" class="border border-white bg-transparent text-white hover:bg-white/10 font-semibold px-6 py-2.5 rounded-lg transition-colors text-sm">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+    <!-- ================= MODAL DE NOVO CLIENTE (FORMATO ANEXO) ================= -->
+  <div id="modal-customer" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm px-4">
+    <div class="w-full max-w-lg bg-black text-white p-8 md:p-10 rounded-2xl shadow-2xl border border-white/10">
+      <div class="flex items-center justify-between mb-8">
+        <h3 class="text-3xl md:text-4xl font-normal text-white tracking-tight">Novo Cliente</h3>
+        <button type="button" onclick="closeCustomerDialog()" class="text-slate-400 hover:text-white transition-colors">
+          <i data-lucide="x" class="h-6 w-6"></i>
+        </button>
+      </div>
+
+      <div id="customer-error" class="hidden mb-6 p-3 bg-tile-red text-white text-sm rounded-lg"></div>
+
+      <form id="form-customer" onsubmit="handleCreateCustomer(event)" class="space-y-5">
+        <div>
+          <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">NOME COMPLETO</label>
+          <input id="cust-name" type="text" placeholder="Ex: Maria Oliveira" required class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">TELEFONE / WHATSAPP</label>
+            <input id="cust-phone" type="tel" placeholder="(11) 98888-7777" class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">E-MAIL</label>
+            <input id="cust-email" type="email" placeholder="cliente@email.com" class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">OBSERVAÇÕES</label>
+          <input id="cust-notes" type="text" placeholder="Ex: Preferência por atendimento matutino" class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-6">
+          <button type="submit" class="bg-white text-tile-blue hover:bg-slate-100 font-semibold px-6 py-2.5 rounded-lg transition-colors text-sm">
+            Cadastrar
+          </button>
+          <button type="button" onclick="closeCustomerDialog()" class="border border-white bg-transparent text-white hover:bg-white/10 font-semibold px-6 py-2.5 rounded-lg transition-colors text-sm">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL DE NOVO SERVIÇO (FORMATO ANEXO) ================= -->
+  <div id="modal-service" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm px-4">
+    <div class="w-full max-w-lg bg-black text-white p-8 md:p-10 rounded-2xl shadow-2xl border border-white/10">
+      <div class="flex items-center justify-between mb-8">
+        <h3 class="text-3xl md:text-4xl font-normal text-white tracking-tight">Novo Serviço</h3>
+        <button type="button" onclick="closeServiceDialog()" class="text-slate-400 hover:text-white transition-colors">
+          <i data-lucide="x" class="h-6 w-6"></i>
+        </button>
+      </div>
+
+      <div id="service-error" class="hidden mb-6 p-3 bg-tile-red text-white text-sm rounded-lg"></div>
+
+      <form id="form-service" onsubmit="handleCreateService(event)" class="space-y-5">
+        <div>
+          <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">NOME DO SERVIÇO</label>
+          <input id="srv-name" type="text" placeholder="Ex: Limpeza de Pele Profunda" required class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">PREÇO (R$)</label>
+            <input id="srv-price" type="number" step="0.01" min="0" placeholder="150,00" required class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">DURAÇÃO (MINUTOS)</label>
+            <input id="srv-duration" type="number" step="5" min="5" placeholder="45" value="45" required class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">DESCRIÇÃO</label>
+          <input id="srv-desc" type="text" placeholder="Ex: Procedimento com máscara e hidratação" class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-6">
+          <button type="submit" class="bg-white text-tile-blue hover:bg-slate-100 font-semibold px-6 py-2.5 rounded-lg transition-colors text-sm">
+            Cadastrar
+          </button>
+          <button type="button" onclick="closeServiceDialog()" class="border border-white bg-transparent text-white hover:bg-white/10 font-semibold px-6 py-2.5 rounded-lg transition-colors text-sm">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= LÓGICA E ESTADO DA APLICAÇÃO ================= -->
+  <script>
+    const API_BASE = '/api/v1';
+    let token = localStorage.getItem('s0_token');
+    let currentUser = null;
+    let currentApp = null;
+    let financialFilter = null; // 'receita', 'despesa', ou null (todos)
+
+    // Estado do Calendário de Agendamentos
+    let calendarYear = new Date().getFullYear();
+    let calendarMonth = new Date().getMonth();
+    let selectedDayDate = null; // Ex: '2026-10-29'
+
+    // Dados Mock de Fallback (do Lovable)
+    let appointments = [
+      { id: 1, date: "2026-10-29", time: "14:00", customer: "Carlos Eduardo Silva", service: "Consultoria / Atendimento Geral", duration: 45, price: 150, status: "confirmado" },
+      { id: 2, date: "2026-10-29", time: "16:00", customer: "Mariana Souza Lima",  service: "Procedimento Especializado",    duration: 60, price: 250, status: "pendente" },
+      { id: 3, date: "2026-10-29", time: "09:00", customer: "Ana Souza",           service: "Corte de cabelo",               duration: 45, price: 70,  status: "concluido" },
+      { id: 4, date: "2026-10-29", time: "10:30", customer: "Carla Mendes",        service: "Limpeza de pele",               duration: 75, price: 180, status: "confirmado" },
+      { id: 5, date: "2026-10-30", time: "10:00", customer: "Diego Rocha",         service: "Manicure",                      duration: 40, price: 45,  status: "confirmado" },
+      { id: 6, date: "2026-10-30", time: "15:00", customer: "Bruno Lima",          service: "Massagem relaxante",            duration: 60, price: 150, status: "pendente" },
+      { id: 7, date: "2026-10-24", time: "11:00", customer: "Ana Souza",           service: "Limpeza de pele",               duration: 75, price: 180, status: "concluido" },
+    ];
+
+    let customers = [
+      { id: 1, name: "Ana Souza",    phone: "(11) 98877-1122", email: "ana@email.com",   notes: "Prefere manhã" },
+      { id: 2, name: "Bruno Lima",   phone: "(11) 97766-3344", email: "bruno@email.com", notes: "" },
+      { id: 3, name: "Carla Mendes", phone: "(21) 99654-7788", email: "carla@email.com", notes: "Alergia a látex" },
+      { id: 4, name: "Diego Rocha",  phone: "(31) 98123-4455", email: "diego@email.com", notes: "" },
+    ];
+
+    let services = [
+      { id: 1, name: "Corte de cabelo",    description: "Corte masculino ou feminino", duration: 45, price: 70 },
+      { id: 2, name: "Manicure",           description: "Mãos completas",              duration: 40, price: 45 },
+      { id: 3, name: "Massagem relaxante", description: "Sessão corporal",             duration: 60, price: 150 },
+      { id: 4, name: "Limpeza de pele",    description: "Facial profunda",             duration: 75, price: 180 },
+    ];
+
+    let financial = [
+      { id: 1, type: "receita", category: "Atendimento · Corte",           due: "29/10", method: "PIX",    status: "pago",     value: 70 },
+      { id: 2, type: "receita", category: "Atendimento · Limpeza de pele", due: "29/10", method: "Cartão", status: "pendente", value: 180 },
+      { id: 3, type: "despesa", category: "Aluguel da sala",               due: "05/10", method: "Boleto", status: "pago",     value: 1800 },
+      { id: 4, type: "despesa", category: "Produtos de beleza",            due: "30/10", method: "PIX",    status: "pendente", value: 420 },
+      { id: 5, type: "receita", category: "Pacote mensal · Massagem",      due: "15/10", method: "PIX",    status: "pago",     value: 3600 },
+    ];
+
+    const brl = (v) => Number(v || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+    // Status colors badge estilo Metro (como na captura do usuário)
+    const statusBadges = {
+      'confirmado': 'bg-[#5C3BAA] text-white',
+      'CONFIRMED': 'bg-[#5C3BAA] text-white',
+      'pendente': 'bg-[#5C3BAA] text-white',
+      'PENDING': 'bg-[#5C3BAA] text-white',
+      'concluido': 'bg-tile-blue text-white',
+      'COMPLETED': 'bg-tile-blue text-white',
+      'cancelado': 'bg-tile-red text-white',
+      'CANCELLED': 'bg-tile-red text-white',
+      'pago': 'bg-tile-green text-white',
+      'PAID': 'bg-tile-green text-white'
+    };
+
+    function renderStatusBadge(status) {
+      const cls = statusBadges[status] || 'bg-tile-purple text-white';
+      return `<span class="${cls} px-2 py-0.5 text-xs uppercase tracking-wide inline-block">${status}</span>`;
+    }
+
+    // Requisição genérica autenticada com fallback suave
+    async function apiFetch(endpoint, options = {}) {
+      const headers = options.headers || {};
+      if (token) headers['Authorization'] = `Bearer ${token}`;
+      headers['Content-Type'] = 'application/json';
+
+      try {
+        const res = await fetch(`${API_BASE}${endpoint}`, { ...options, headers });
+        if (res.status === 401) {
+          logout();
+          throw new Error('Sessão expirada. Faça login novamente.');
+        }
+        return res;
+      } catch (err) {
+        throw err;
+      }
+    }
+
+    // Atualiza dia da semana no bloco de Dashboard
+    function updateWeekdayTile() {
+      const now = new Date();
+      const weekdayEl = document.getElementById('tile-current-weekday');
+      if (weekdayEl) weekdayEl.textContent = now.toLocaleDateString('pt-BR', { weekday: 'long' });
+    }
+    updateWeekdayTile();
+
+    // Atualização dos Blocos do Start (Visão Geral & Métricas)
+    function updateStartTiles() {
+      // Agenda
+      const confirmed = appointments.filter(a => a.status === 'confirmado' || a.status === 'CONFIRMED').length;
+      const pending = appointments.filter(a => a.status === 'pendente' || a.status === 'PENDING').length;
+      document.getElementById('tile-appt-count').textContent = appointments.length;
+      document.getElementById('tile-appt-status-text').textContent = `${confirmed} confirmados · ${pending} pendentes`;
+
+      const next = appointments.find(a => a.status !== 'concluido' && a.status !== 'COMPLETED');
+      if (next) {
+        document.getElementById('tile-appt-next-title').textContent = `${next.time} · ${next.customer}`;
+        document.getElementById('tile-appt-next-sub').textContent = next.service;
+      }
+
+      // Financeiro
+      const inc = financial.filter(f => f.type === 'receita' || f.type === 'INCOME');
+      const exp = financial.filter(f => f.type === 'despesa' || f.type === 'EXPENSE');
+      
+      const sumVal = (arr) => arr.reduce((s, x) => s + Number(x.value || x.amount || 0), 0);
+      const incPaid = sumVal(inc.filter(f => f.status === 'pago' || f.status === 'PAID'));
+      const incPend = sumVal(inc.filter(f => f.status === 'pendente' || f.status === 'PENDING'));
+      const expPaid = sumVal(exp.filter(f => f.status === 'pago' || f.status === 'PAID'));
+      const expPend = sumVal(exp.filter(f => f.status === 'pendente' || f.status === 'PENDING'));
+
+      document.getElementById('tile-income-paid').textContent = brl(incPaid);
+      document.getElementById('tile-income-pending').textContent = `a receber ${brl(incPend)}`;
+
+      document.getElementById('tile-expense-paid').textContent = brl(expPaid);
+      document.getElementById('tile-expense-pending').textContent = `a pagar ${brl(expPend)}`;
+
+      const netReal = incPaid - expPaid;
+      const netProj = netReal + incPend - expPend;
+      document.getElementById('tile-net-realized').textContent = brl(netReal);
+      document.getElementById('tile-net-projected').textContent = `proj. ${brl(netProj)}`;
+
+      // Clientes
+      document.getElementById('tile-customers-count').textContent = customers.length;
+      const custPreview = document.getElementById('tile-customers-preview');
+      custPreview.innerHTML = customers.slice(0, 3).map(c => `<span class="text-base md:text-lg font-light truncate">${c.name}</span>`).join('');
+
+      // KPIs do Dashboard interno
+      document.getElementById('kpi-dash-appts').textContent = appointments.length;
+      document.getElementById('kpi-dash-income').textContent = brl(incPaid);
+      document.getElementById('kpi-dash-expense').textContent = brl(expPaid);
+      document.getElementById('kpi-dash-net').textContent = brl(netReal);
+    }
+
+    // Sincronização com a API FastAPI real
+    async function syncWithBackend() {
+      if (!token) return;
+      try {
+        // Obter usuário logado
+        const meRes = await apiFetch('/auth/me');
+        if (meRes.ok) {
+          currentUser = await meRes.json();
+          document.getElementById('header-user-name').textContent = currentUser.name;
+          document.getElementById('header-user-sub').textContent = `${currentUser.tenant?.name || 'Studio'} · sair`;
+          document.getElementById('header-user-avatar').innerHTML = '<i data-lucide="user" class="w-6 h-6"></i>';
+        }
+
+        // Buscar clientes
+        const cRes = await apiFetch('/customers/');
+        if (cRes.ok) {
+          const list = await cRes.json();
+          if (list.length > 0) customers = list;
+        }
+
+        // Buscar serviços
+        const sRes = await apiFetch('/services/');
+        if (sRes.ok) {
+          const list = await sRes.json();
+          if (list.length > 0) services = list;
+        }
+
+        // Buscar agendamentos
+        const aRes = await apiFetch('/appointments/');
+        if (aRes.ok) {
+          const list = await aRes.json();
+          if (list.length > 0) {
+            appointments = list.map(a => {
+              const dt = new Date(a.start_time);
+              const datePart = a.start_time ? a.start_time.split('T')[0] : '';
+              return {
+                id: a.id,
+                date: datePart,
+                time: dt.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+                customer: a.customer?.name || 'Cliente',
+                service: a.service?.name || 'Serviço',
+                duration: a.service?.duration_minutes || 0,
+                price: a.service?.price || 0,
+                status: a.status.toLowerCase()
+              };
+            });
+          }
+        }
+
+        // Buscar financeiro
+        const fRes = await apiFetch('/financial/transactions');
+        if (fRes.ok) {
+          const list = await fRes.json();
+          if (list.length > 0) {
+            financial = list.map(t => ({
+              id: t.id,
+              type: t.type === 'INCOME' ? 'receita' : 'despesa',
+              category: t.category,
+              due: new Date(t.due_date + 'T00:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }),
+              method: t.payment_method || '-',
+              status: t.status === 'PAID' ? 'pago' : 'pendente',
+              value: Number(t.amount)
+            }));
+          }
+        }
+
+        updateStartTiles();
+        lucide.createIcons();
+      } catch (err) {
+        console.warn('Backend offline ou erro ao sincronizar:', err);
+      }
+    }
+
+    // Controle do Botão Voltar (Volta ao Calendário ou à Tela Iniciar)
+    function handleBackClick() {
+      if (currentApp === 'appointments' && selectedDayDate !== null) {
+        backToCalendar();
+      } else {
+        closeApp();
+      }
+    }
+
+    // Renderiza a Grade do Calendário Mensal
+    function renderCalendar() {
+      const grid = document.getElementById('appointments-calendar-grid');
+      const title = document.getElementById('calendar-month-title');
+      if (!grid || !title) return;
+
+      const monthNames = [
+        'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
+        'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
+      ];
+      title.textContent = `${monthNames[calendarMonth]} ${calendarYear}`;
+
+      const firstDay = new Date(calendarYear, calendarMonth, 1).getDay(); // 0 = Dom
+      const totalDays = new Date(calendarYear, calendarMonth + 1, 0).getDate();
+      const prevTotalDays = new Date(calendarYear, calendarMonth, 0).getDate();
+
+      const today = new Date();
+      const todayY = today.getFullYear();
+      const todayM = today.getMonth();
+      const todayD = today.getDate();
+      const todayStr = `${todayY}-${String(todayM + 1).padStart(2, '0')}-${String(todayD).padStart(2, '0')}`;
+
+      let html = '';
+
+      // Dias residuais do mês anterior
+      for (let i = firstDay - 1; i >= 0; i--) {
+        const d = prevTotalDays - i;
+        html += `<div class="min-h-[85px] md:min-h-[105px] p-2 bg-slate-50 border border-slate-100 text-slate-300 cursor-not-allowed select-none"><span class="text-xs">${d}</span></div>`;
+      }
+
+      // Dias do mês atual
+      for (let d = 1; d <= totalDays; d++) {
+        const dStr = String(d).padStart(2, '0');
+        const mStr = String(calendarMonth + 1).padStart(2, '0');
+        const dateIso = `${calendarYear}-${mStr}-${dStr}`;
+
+        const isToday = (dateIso === todayStr);
+        const dayAppts = appointments.filter(a => a.date === dateIso);
+        const count = dayAppts.length;
+
+        let badges = '';
+        if (count > 0) {
+          badges = `
+            <div class="mt-1 flex flex-col gap-1 w-full overflow-hidden">
+              <span class="inline-block bg-[#0063B1] text-white text-[11px] px-1.5 py-0.5 font-medium truncate">
+                ${count} agendamento${count > 1 ? 's' : ''}
+              </span>
+              <span class="text-[11px] text-slate-600 truncate hidden sm:block">
+                ${dayAppts[0].time} · ${dayAppts[0].customer}
+              </span>
+            </div>
+          `;
+        }
+
+        const borderStyle = isToday 
+          ? 'border-2 border-tile-blue bg-blue-50/40' 
+          : 'border border-slate-200 hover:border-slate-900 hover:bg-slate-50';
+
+        html += `
+          <button onclick="selectAppointmentDay('${dateIso}')" class="min-h-[85px] md:min-h-[105px] p-2.5 text-left transition-all relative flex flex-col justify-between ${borderStyle}">
+            <div class="flex items-center justify-between w-full">
+              <span class="text-base font-light ${isToday ? 'font-bold text-tile-blue' : 'text-slate-800'}">${d}</span>
+              ${isToday ? '<span class="text-[10px] uppercase font-bold text-tile-blue tracking-wider">Hoje</span>' : ''}
+            </div>
+            ${badges}
+          </button>
+        `;
+      }
+
+      grid.innerHTML = html;
+      lucide.createIcons();
+    }
+
+    function changeCalendarMonth(delta) {
+      calendarMonth += delta;
+      if (calendarMonth > 11) {
+        calendarMonth = 0;
+        calendarYear++;
+      } else if (calendarMonth < 0) {
+        calendarMonth = 11;
+        calendarYear--;
+      }
+      renderCalendar();
+    }
+
+    function resetCalendarToToday() {
+      const now = new Date();
+      calendarYear = now.getFullYear();
+      calendarMonth = now.getMonth();
+      renderCalendar();
+    }
+
+    // Abertura da Tela de Detalhes do Dia Selecionado (Exatamente a tela do print do usuário)
+    function selectAppointmentDay(dateStr) {
+      selectedDayDate = dateStr;
+      
+      const calendarSection = document.getElementById('appointments-calendar-section');
+      const tableSection = document.getElementById('app-table-section');
+      const btnBackCal = document.getElementById('btn-back-to-calendar');
+      
+      calendarSection.classList.add('hidden');
+      tableSection.classList.remove('hidden');
+      btnBackCal.classList.remove('hidden');
+
+      // Formata a data por extenso
+      const [y, m, d] = dateStr.split('-');
+      const dt = new Date(y, m - 1, d);
+      const formatted = dt.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+      document.getElementById('app-table-title').textContent = 'Agenda e Atendimentos';
+      document.getElementById('app-table-subtitle').textContent = formatted.charAt(0).toUpperCase() + formatted.slice(1);
+
+      renderAppTable('appointments');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Volta da Tela do Dia para a Visão de Calendário Completo
+    function backToCalendar() {
+      selectedDayDate = null;
+      document.getElementById('appointments-calendar-section').classList.remove('hidden');
+      document.getElementById('app-table-section').classList.add('hidden');
+      document.getElementById('btn-back-to-calendar').classList.add('hidden');
+      document.getElementById('app-table-subtitle').textContent = '';
+      renderCalendar();
+    }
+
+    // Navegação estilo Metro (Abre App View)
+    function openApp(appId, filter = null) {
+      currentApp = appId;
+      if (appId === 'appointments') {
+        selectedDayDate = null;
+      }
+      if (appId === 'financial') {
+        financialFilter = filter;
+      }
+
+      const titles = {
+        'dashboard': 'visão geral',
+        'appointments': 'agendamentos',
+        'financial': financialFilter === 'receita' ? 'receitas' : (financialFilter === 'despesa' ? 'despesas' : 'financeiro'),
+        'customers': 'clientes',
+        'services': 'serviços'
+      };
+
+      document.getElementById('start-screen').classList.add('hidden');
+      const appView = document.getElementById('app-view');
+      appView.classList.remove('hidden');
+
+      document.getElementById('app-view-title').textContent = titles[appId] || appId;
+
+      const kpisBox = document.getElementById('app-dashboard-kpis');
+      const actionsBox = document.getElementById('app-view-actions');
+      const calendarSection = document.getElementById('appointments-calendar-section');
+      const tableSection = document.getElementById('app-table-section');
+      const btnBackCal = document.getElementById('btn-back-to-calendar');
+      const finFilterTabs = document.getElementById('financial-filter-tabs');
+      const tableSubtitle = document.getElementById('app-table-subtitle');
+      tableSubtitle.textContent = '';
+
+      if (finFilterTabs) {
+        if (appId === 'financial') {
+          finFilterTabs.classList.remove('hidden');
+          updateFinancialFilterTabs();
+        } else {
+          finFilterTabs.classList.add('hidden');
+        }
+      }
+
+      // Configuração dos botões de ação rápida no topo
+      const btnActionAppt = document.getElementById('btn-action-appointment');
+      const btnActionTrx = document.getElementById('btn-action-transaction');
+      const btnActionCust = document.getElementById('btn-action-customer');
+      const btnActionSrv = document.getElementById('btn-action-service');
+
+      if (btnActionAppt) {
+        if (appId === 'dashboard' || appId === 'appointments') {
+          btnActionAppt.classList.remove('hidden');
+        } else {
+          btnActionAppt.classList.add('hidden');
+        }
+      }
+
+      if (btnActionTrx) {
+        if (appId === 'financial') {
+          btnActionTrx.classList.remove('hidden');
+        } else {
+          btnActionTrx.classList.add('hidden');
+        }
+      }
+
+      if (btnActionCust) {
+        if (appId === 'customers') {
+          btnActionCust.classList.remove('hidden');
+        } else {
+          btnActionCust.classList.add('hidden');
+        }
+      }
+
+      if (btnActionSrv) {
+        if (appId === 'services') {
+          btnActionSrv.classList.remove('hidden');
+        } else {
+          btnActionSrv.classList.add('hidden');
+        }
+      }
+
+      const dashSection = document.getElementById('dashboard-view-section');
+      const btnBack = document.getElementById('btn-app-back');
+      const appTitle = document.getElementById('app-view-title');
+
+      // Se for Dashboard, ativa tema grafite/escuro combinando com o gráfico da primeira página
+      if (appId === 'dashboard') {
+        appView.className = 'min-h-screen bg-black text-white px-6 md:px-14 pt-8 pb-28 metro-enter';
+        if (btnBack) btnBack.className = 'flex items-center justify-center text-white hover:opacity-60 transition-opacity p-1';
+        if (appTitle) appTitle.className = 'text-4xl md:text-5xl font-light lowercase text-white';
+        
+        if (dashSection) dashSection.classList.remove('hidden');
+        if (kpisBox) kpisBox.classList.add('hidden');
+        actionsBox.classList.add('hidden');
+        calendarSection.classList.add('hidden');
+        tableSection.classList.add('hidden');
+        btnBackCal.classList.add('hidden');
+        
+        setTimeout(initFullDashboardViewCharts, 60);
+      } else {
+        appView.className = 'min-h-screen bg-white text-slate-900 px-8 md:px-20 pt-10 pb-28 metro-enter';
+        if (btnBack) btnBack.className = 'flex items-center justify-center text-slate-900 hover:opacity-60 transition-opacity p-1';
+        if (appTitle) appTitle.className = 'text-4xl md:text-5xl font-light lowercase text-slate-900';
+        if (dashSection) dashSection.classList.add('hidden');
+      }
+
+      // Renderização do conteúdo de cada aplicativo
+      if (appId === 'dashboard') {
+        // Nada extra a fazer aqui, os gráficos foram chamados acima
+      } else if (appId === 'appointments') {
+        kpisBox.classList.add('hidden');
+        actionsBox.classList.remove('hidden');
+        
+        // Abre o formato de agenda (calendário) ou detalhe do dia
+        if (!selectedDayDate) {
+          calendarSection.classList.remove('hidden');
+          tableSection.classList.add('hidden');
+          btnBackCal.classList.add('hidden');
+          renderCalendar();
+        } else {
+          calendarSection.classList.add('hidden');
+          tableSection.classList.remove('hidden');
+          btnBackCal.classList.remove('hidden');
+          document.getElementById('app-table-title').textContent = 'Agenda e Atendimentos';
+          renderAppTable('appointments');
+        }
+      } else if (appId === 'financial') {
+        kpisBox.classList.add('hidden');
+        actionsBox.classList.remove('hidden');
+        calendarSection.classList.add('hidden');
+        tableSection.classList.remove('hidden');
+        btnBackCal.classList.add('hidden');
+
+        if (financialFilter === 'receita') {
+          document.getElementById('app-table-title').textContent = 'Lançamentos de Receitas';
+          tableSubtitle.textContent = 'Exibindo apenas receitas realizadas e a receber';
+        } else if (financialFilter === 'despesa') {
+          document.getElementById('app-table-title').textContent = 'Lançamentos de Despesas';
+          tableSubtitle.textContent = 'Exibindo apenas despesas efetuadas e a pagar';
+        } else {
+          document.getElementById('app-table-title').textContent = 'Lista de Financeiro';
+          tableSubtitle.textContent = 'Todos os lançamentos de receitas e despesas';
+        }
+        renderAppTable('financial');
+      } else {
+        kpisBox.classList.add('hidden');
+        actionsBox.classList.remove('hidden');
+        calendarSection.classList.add('hidden');
+        tableSection.classList.remove('hidden');
+        btnBackCal.classList.add('hidden');
+        document.getElementById('app-table-title').textContent = `Lista de ${titles[appId]}`;
+        renderAppTable(appId);
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      lucide.createIcons();
+    }
+
+    function updateFinancialFilterTabs() {
+      const btnAll = document.getElementById('btn-filter-all');
+      const btnInc = document.getElementById('btn-filter-income');
+      const btnExp = document.getElementById('btn-filter-expense');
+      if (!btnAll || !btnInc || !btnExp) return;
+
+      const baseInactive = "px-3 py-1.5 border border-slate-300 text-slate-700 hover:bg-slate-50 transition-colors text-xs font-normal";
+      
+      btnAll.className = !financialFilter 
+        ? "px-3 py-1.5 border-2 border-slate-900 bg-slate-900 text-white font-medium text-xs transition-colors"
+        : baseInactive;
+
+      btnInc.className = financialFilter === 'receita'
+        ? "px-3 py-1.5 border-2 border-[#0063B1] bg-[#0063B1] text-white font-medium text-xs transition-colors"
+        : baseInactive;
+
+      btnExp.className = financialFilter === 'despesa'
+        ? "px-3 py-1.5 border-2 border-rose-600 bg-rose-600 text-white font-medium text-xs transition-colors"
+        : baseInactive;
+    }
+
+    function setFinancialFilter(filter) {
+      openApp('financial', filter);
+    }
+
+    // Retorna ao Start Screen
+    function closeApp() {
+      currentApp = null;
+      selectedDayDate = null;
+      financialFilter = null;
+      document.getElementById('app-view').classList.add('hidden');
+      document.getElementById('start-screen').classList.remove('hidden');
+      updateStartTiles();
+      lucide.createIcons();
+      setTimeout(initDashboardCharts, 100);
+    }
+
+    function refreshCurrentApp() {
+      syncWithBackend().then(() => {
+        if (currentApp === 'appointments' && !selectedDayDate) {
+          renderCalendar();
+        } else if (currentApp) {
+          renderAppTable(currentApp);
+        }
+      });
+    }
+
+    // Renderiza tabelas de cada aplicativo
+    function renderAppTable(appId) {
+      const thead = document.getElementById('app-table-head');
+      const tbody = document.getElementById('app-table-body');
+      thead.innerHTML = '';
+      tbody.innerHTML = '';
+
+      if (appId === 'appointments' || appId === 'dashboard') {
+        thead.innerHTML = `
+          <tr class="border-b-2 border-slate-900 text-left">
+            <th class="py-2.5 pr-6 font-semibold">Horário</th>
+            <th class="py-2.5 pr-6 font-semibold">Cliente</th>
+            <th class="py-2.5 pr-6 font-semibold">Serviço</th>
+            <th class="py-2.5 pr-6 font-semibold">Duração / Valor</th>
+            <th class="py-2.5 pr-6 font-semibold">Status</th>
+            <th class="py-2.5 pr-6 text-right font-semibold">Ação</th>
+          </tr>
+        `;
+
+        let listToRender = appointments;
+        if (appId === 'appointments' && selectedDayDate) {
+          listToRender = appointments.filter(a => a.date === selectedDayDate);
+        }
+
+        if (listToRender.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="6" class="py-12 text-center text-slate-400">
+                Nenhum atendimento agendado para esta data.
+                <div class="mt-2">
+                  <button onclick="openAppointmentDialog()" class="text-xs text-tile-blue hover:underline font-medium">
+                    + Agendar atendimento para este dia
+                  </button>
+                </div>
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        listToRender.forEach(a => {
+          let actionBtn = '';
+          if (a.status === 'pendente' || a.status === 'pending') {
+            actionBtn = `<button onclick="confirmAppointment(${typeof a.id === 'string' ? `'${a.id}'` : a.id})" class="text-xs text-tile-blue hover:underline font-normal">confirmar</button>`;
+          } else if (a.status === 'confirmado' || a.status === 'confirmed') {
+            actionBtn = `<button onclick="completeAppointment(${typeof a.id === 'string' ? `'${a.id}'` : a.id})" class="text-xs text-emerald-700 hover:underline font-normal">concluir & receber</button>`;
+          }
+
+          tbody.innerHTML += `
+            <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+              <td class="py-3.5 pr-6 font-medium text-slate-900">${a.time}</td>
+              <td class="py-3.5 pr-6">${a.customer}</td>
+              <td class="py-3.5 pr-6">${a.service}</td>
+              <td class="py-3.5 pr-6 opacity-75">${a.duration} min · ${brl(a.price)}</td>
+              <td class="py-3.5 pr-6">${renderStatusBadge(a.status)}</td>
+              <td class="py-3.5 pr-6 text-right">${actionBtn}</td>
+            </tr>
+          `;
+        });
+      } else if (appId === 'financial') {
+        const filteredList = financialFilter
+          ? financial.filter(f => f.type === financialFilter)
+          : financial;
+
+        thead.innerHTML = `
+          <tr class="border-b-2 border-slate-900 text-left">
+            <th class="py-2.5 pr-6 font-semibold">Tipo</th>
+            <th class="py-2.5 pr-6 font-semibold">Categoria / Descrição</th>
+            <th class="py-2.5 pr-6 font-semibold">Vencimento</th>
+            <th class="py-2.5 pr-6 font-semibold">Forma</th>
+            <th class="py-2.5 pr-6 font-semibold">Status</th>
+            <th class="py-2.5 pr-6 text-right font-semibold">Valor</th>
+          </tr>
+        `;
+
+        if (filteredList.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="6" class="py-12 text-center text-slate-400">
+                Nenhum lançamento de ${financialFilter === 'receita' ? 'receita' : (financialFilter === 'despesa' ? 'despesa' : 'financeiro')} encontrado.
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        filteredList.forEach(f => {
+          const isIncome = f.type === 'receita';
+          tbody.innerHTML += `
+            <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+              <td class="py-3.5 pr-6 uppercase text-xs font-semibold ${isIncome ? 'text-tile-green' : 'text-tile-red'}">${f.type}</td>
+              <td class="py-3.5 pr-6 font-medium text-slate-900">${f.category}</td>
+              <td class="py-3.5 pr-6">${f.due}</td>
+              <td class="py-3.5 pr-6">${f.method}</td>
+              <td class="py-3.5 pr-6">${renderStatusBadge(f.status)}</td>
+              <td class="py-3.5 pr-6 text-right font-bold ${isIncome ? 'text-tile-green' : 'text-tile-red'}">${isIncome ? '+' : '-'} ${brl(f.value)}</td>
+            </tr>
+          `;
+        });
+      } else if (appId === 'customers') {
+        thead.innerHTML = `
+          <tr class="border-b-2 border-slate-900 text-left">
+            <th class="py-2.5 pr-6 font-semibold">Nome</th>
+            <th class="py-2.5 pr-6 font-semibold">Telefone</th>
+            <th class="py-2.5 pr-6 font-semibold">E-mail</th>
+            <th class="py-2.5 pr-6 font-semibold">Observações</th>
+          </tr>
+        `;
+
+        customers.forEach(c => {
+          tbody.innerHTML += `
+            <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+              <td class="py-3.5 pr-6 font-medium text-slate-900">${c.name}</td>
+              <td class="py-3.5 pr-6">${c.phone || '—'}</td>
+              <td class="py-3.5 pr-6">${c.email || '—'}</td>
+              <td class="py-3.5 pr-6 text-slate-500 text-xs">${c.notes || '—'}</td>
+            </tr>
+          `;
+        });
+      } else if (appId === 'services') {
+        thead.innerHTML = `
+          <tr class="border-b-2 border-slate-900 text-left">
+            <th class="py-2.5 pr-6 font-semibold">Serviço</th>
+            <th class="py-2.5 pr-6 font-semibold">Descrição</th>
+            <th class="py-2.5 pr-6 font-semibold">Duração</th>
+            <th class="py-2.5 pr-6 text-right font-semibold">Preço Sugerido</th>
+          </tr>
+        `;
+
+        services.forEach(s => {
+          tbody.innerHTML += `
+            <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+              <td class="py-3.5 pr-6 font-medium text-slate-900">${s.name}</td>
+              <td class="py-3.5 pr-6 text-slate-500 text-xs">${s.description || '—'}</td>
+              <td class="py-3.5 pr-6">${s.duration || s.duration_minutes || 0} min</td>
+              <td class="py-3.5 pr-6 text-right font-bold text-slate-900">${brl(s.price)}</td>
+            </tr>
+          `;
+        });
+      }
+    }
+
+    // Ações de Agendamento (Confirmar / Concluir)
+    async function confirmAppointment(id) {
+      const item = appointments.find(a => a.id === id);
+      if (item) item.status = 'confirmado';
+      if (token && typeof id === 'string') {
+        try {
+          await apiFetch(`/appointments/${id}/status`, {
+            method: 'PATCH',
+            body: JSON.stringify({ status: 'CONFIRMED' })
+          });
+        } catch (e) { console.warn(e); }
+      }
+      updateStartTiles();
+      if (currentApp) renderAppTable(currentApp);
+    }
+
+    async function completeAppointment(id) {
+      if (!confirm('Deseja concluir este atendimento e registrar a receita no financeiro?')) return;
+      
+      const item = appointments.find(a => a.id === id);
+      if (item) item.status = 'concluido';
+
+      if (token && typeof id === 'string') {
+        try {
+          await apiFetch(`/appointments/${id}/complete`, {
+            method: 'POST',
+            body: JSON.stringify({ generate_financial_entry: true, payment_method: 'PIX' })
+          });
+          await syncWithBackend();
+        } catch (e) {
+          alert('Erro ao concluir no backend: ' + e.message);
+        }
+      } else {
+        // Mock fallback
+        if (item) {
+          financial.push({
+            id: Date.now(),
+            type: "receita",
+            category: `Atendimento · ${item.service}`,
+            due: new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }),
+            method: "PIX",
+            status: "pago",
+            value: item.price
+          });
+        }
+      }
+
+      updateStartTiles();
+      if (currentApp) renderAppTable(currentApp);
+    }
+
+    // Dialogs / Modais estilo Windows 8 Charms
+    function handleUserHeaderClick() {
+      if (currentUser || token) {
+        if (confirm('Deseja sair do sistema?')) logout();
+      } else {
+        openAuthDialog();
+      }
+    }
+
+    function openAuthDialog() {
+      document.getElementById('auth-error').classList.add('hidden');
+      document.getElementById('modal-auth').classList.remove('hidden');
+    }
+    function closeAuthDialog() {
+      document.getElementById('modal-auth').classList.add('hidden');
+    }
+
+    function logout() {
+      token = null;
+      currentUser = null;
+      localStorage.removeItem('s0_token');
+      document.getElementById('header-user-name').textContent = 'Entrar';
+      document.getElementById('header-user-sub').textContent = 'Sistema 0 · Starter Base';
+      document.getElementById('header-user-avatar').innerHTML = '<i data-lucide="log-in" class="w-6 h-6"></i>';
+      showAuthScreen();
+    }
+
+    async function handleAuthSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('auth-email').value;
+      const password = document.getElementById('auth-password').value;
+      const errBox = document.getElementById('auth-error');
+      errBox.classList.add('hidden');
+
+      try {
+        const res = await fetch(`${API_BASE}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || 'Falha no login');
+
+        token = data.access_token;
+        localStorage.setItem('s0_token', token);
+        closeAuthDialog();
+        await syncWithBackend();
+      } catch (err) {
+        errBox.textContent = err.message;
+        errBox.classList.remove('hidden');
+      }
+    }
+
+    function openAppointmentDialog() {
+      const custSelect = document.getElementById('appt-customer-select');
+      custSelect.innerHTML = customers.map(c => `<option value="${c.id || c.name}">${c.name}</option>`).join('');
+
+      const srvSelect = document.getElementById('appt-service-select');
+      srvSelect.innerHTML = services.map(s => `<option value="${s.id || s.name}">${s.name} (${s.duration || s.duration_minutes || 0}m - R$ ${s.price})</option>`).join('');
+
+      // Data padrão: se um dia estiver selecionado na agenda, usa esse dia. Senão, amanhã às 10:00
+      if (selectedDayDate) {
+        document.getElementById('appt-start-time').value = `${selectedDayDate}T10:00`;
+      } else {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        tomorrow.setHours(10, 0, 0, 0);
+        const tzOffset = tomorrow.getTimezoneOffset() * 60000;
+        document.getElementById('appt-start-time').value = (new Date(tomorrow - tzOffset)).toISOString().slice(0, 16);
+      }
+
+      document.getElementById('appt-error').classList.add('hidden');
+      document.getElementById('modal-appointment').classList.remove('hidden');
+    }
+
+    function closeAppointmentDialog() {
+      document.getElementById('modal-appointment').classList.add('hidden');
+    }
+    // =========================================================================
+    // SISTEMA DE LOGIN E CADASTRO (SPLIT AZUL)
+    // =========================================================================
+    let authMode = 'login'; // 'login' | 'cadastro'
+
+    function showAuthScreen() {
+      const authScr = document.getElementById('auth-screen');
+      const startScr = document.getElementById('start-screen');
+      const appView = document.getElementById('app-view');
+      if (authScr) authScr.classList.remove('hidden');
+      if (startScr) startScr.classList.add('hidden');
+      if (appView) appView.classList.add('hidden');
+      
+      const errBox = document.getElementById('auth-error-msg');
+      if (errBox) errBox.classList.add('hidden');
+      
+      updateAuthFormView();
+      lucide.createIcons();
+    }
+
+    function showStartScreen() {
+      const authScr = document.getElementById('auth-screen');
+      const startScr = document.getElementById('start-screen');
+      const appView = document.getElementById('app-view');
+      if (authScr) authScr.classList.add('hidden');
+      if (startScr) startScr.classList.remove('hidden');
+      if (appView) appView.classList.add('hidden');
+      updateStartTiles();
+      setTimeout(initDashboardCharts, 80);
+      lucide.createIcons();
+    }
+
+    function openAuthDialog() {
+      showAuthScreen();
+    }
+
+    function closeAuthDialog() {
+      showStartScreen();
+    }
+
+    function toggleAuthMode() {
+      authMode = (authMode === 'login') ? 'cadastro' : 'login';
+      updateAuthFormView();
+    }
+
+    function updateAuthFormView() {
+      const titleEl = document.getElementById('auth-title');
+      const nameGrp = document.getElementById('auth-group-name');
+      const confirmGrp = document.getElementById('auth-group-confirm');
+      const linkText = document.getElementById('auth-mode-link-text');
+      const submitBtn = document.getElementById('auth-submit-btn');
+      const errBox = document.getElementById('auth-error-msg');
+      if (errBox) errBox.classList.add('hidden');
+
+      if (!titleEl) return;
+
+      if (authMode === 'cadastro') {
+        titleEl.textContent = 'Criar conta';
+        nameGrp.classList.remove('hidden');
+        confirmGrp.classList.remove('hidden');
+        linkText.textContent = 'Já tem conta? Entrar';
+        submitBtn.textContent = 'Cadastrar';
+      } else {
+        titleEl.textContent = 'Autenticação';
+        nameGrp.classList.add('hidden');
+        confirmGrp.classList.add('hidden');
+        linkText.textContent = 'Não tem conta? Cadastre-se';
+        submitBtn.textContent = 'Entrar';
+      }
+    }
+
+    function handleAuthCancel() {
+      // Entra no sistema em modo demonstração caso o usuário cancele ou queira apenas navegar
+      if (!token) {
+        currentUser = {
+          name: 'Administrador Master',
+          tenant: { name: 'Empresa Modelo Demo' }
+        };
+        token = 'mock-demo-token';
+        localStorage.setItem('s0_token', token);
+        document.getElementById('header-user-name').textContent = currentUser.name;
+        document.getElementById('header-user-sub').textContent = `${currentUser.tenant.name} · sair`;
+        document.getElementById('header-user-avatar').innerHTML = '<i data-lucide="user" class="w-6 h-6"></i>';
+      }
+      showStartScreen();
+    }
+
+    async function handleAuthSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('auth-field-email').value.trim();
+      const password = document.getElementById('auth-field-password').value;
+      const nameEl = document.getElementById('auth-field-name');
+      const confirmEl = document.getElementById('auth-field-confirm');
+      const errBox = document.getElementById('auth-error-msg');
+      if (errBox) errBox.classList.add('hidden');
+
+      if (authMode === 'cadastro') {
+        const name = nameEl ? nameEl.value.trim() : '';
+        const confirmPass = confirmEl ? confirmEl.value : '';
+        if (password !== confirmPass) {
+          errBox.textContent = 'As senhas não coincidem.';
+          errBox.classList.remove('hidden');
+          return;
+        }
+
+        try {
+          const res = await fetch(`${API_BASE}/auth/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              company_name: 'Minha Empresa',
+              admin_name: name || 'Usuário',
+              email: email,
+              password: password
+            })
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.detail || 'Falha no cadastro.');
+
+          token = data.access_token;
+          localStorage.setItem('s0_token', token);
+          showStartScreen();
+          await syncWithBackend();
+          return;
+        } catch (err) {
+          console.warn('Backend offline ou erro:', err);
+          // Fallback para mock
+          currentUser = {
+            name: name || 'Novo Usuário',
+            tenant: { name: 'Empresa Modelo Demo' }
+          };
+          token = 'mock-demo-token';
+          localStorage.setItem('s0_token', token);
+          document.getElementById('header-user-name').textContent = currentUser.name;
+          document.getElementById('header-user-sub').textContent = `${currentUser.tenant.name} · sair`;
+          document.getElementById('header-user-avatar').innerHTML = '<i data-lucide="user" class="w-6 h-6"></i>';
+          showStartScreen();
+          return;
+        }
+      }
+
+      // Modo Login
+      try {
+        const res = await fetch(`${API_BASE}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || 'E-mail ou senha incorretos.');
+
+        token = data.access_token;
+        localStorage.setItem('s0_token', token);
+        showStartScreen();
+        await syncWithBackend();
+      } catch (err) {
+        console.warn('Backend login fallback:', err);
+        // Fallback demo mock
+        currentUser = {
+          name: 'Administrador Master',
+          tenant: { name: 'Empresa Modelo Demo' }
+        };
+        token = 'mock-demo-token';
+        localStorage.setItem('s0_token', token);
+        document.getElementById('header-user-name').textContent = currentUser.name;
+        document.getElementById('header-user-sub').textContent = `${currentUser.tenant.name} · sair`;
+        document.getElementById('header-user-avatar').innerHTML = '<i data-lucide="user" class="w-6 h-6"></i>';
+        showStartScreen();
+      }
+    }
+
+    // =========================================================================
+    // MODAL DE NOVO LANÇAMENTO FINANCEIRO
+    // =========================================================================
+    function openTransactionDialog() {
+      const typeSelect = document.getElementById('trx-type');
+      if (financialFilter === 'despesa') {
+        typeSelect.value = 'despesa';
+        document.getElementById('modal-trx-title').textContent = 'Novo lançamento · Despesa';
+      } else if (financialFilter === 'receita') {
+        typeSelect.value = 'receita';
+        document.getElementById('modal-trx-title').textContent = 'Novo lançamento · Receita';
+      } else {
+        typeSelect.value = 'receita';
+        document.getElementById('modal-trx-title').textContent = 'Novo lançamento';
+      }
+
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('trx-due-date').value = today;
+      document.getElementById('trx-amount').value = '';
+      document.getElementById('trx-category').value = '';
+      document.getElementById('trx-status').value = 'pago';
+      document.getElementById('trx-method').value = 'PIX';
+
+      document.getElementById('trx-error').classList.add('hidden');
+      document.getElementById('modal-transaction').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeTransactionDialog() {
+      document.getElementById('modal-transaction').classList.add('hidden');
+    }
+
+    function handleTrxTypeChange() {
+      const typeVal = document.getElementById('trx-type').value;
+      document.getElementById('modal-trx-title').textContent = typeVal === 'despesa' ? 'Novo lançamento · Despesa' : 'Novo lançamento · Receita';
+    }
+
+    async function handleCreateTransaction(e) {
+      e.preventDefault();
+      const typeVal = document.getElementById('trx-type').value; // 'receita' ou 'despesa'
+      const amountVal = parseFloat(document.getElementById('trx-amount').value);
+      const catVal = document.getElementById('trx-category').value.trim();
+      const dueDateVal = document.getElementById('trx-due-date').value;
+      const methodVal = document.getElementById('trx-method').value;
+      const statusVal = document.getElementById('trx-status').value; // 'pago' ou 'pendente'
+      const errBox = document.getElementById('trx-error');
+      errBox.classList.add('hidden');
+
+      if (isNaN(amountVal) || amountVal <= 0) {
+        errBox.textContent = 'Informe um valor válido maior que zero.';
+        errBox.classList.remove('hidden');
+        return;
+      }
+
+      if (!catVal) {
+        errBox.textContent = 'Informe a categoria ou descrição.';
+        errBox.classList.remove('hidden');
+        return;
+      }
+
+      if (token && currentUser) {
+        try {
+          const methodMap = {
+            'PIX': 'PIX',
+            'Cartão': 'CREDIT_CARD',
+            'Boleto': 'TRANSFER',
+            'Dinheiro': 'CASH',
+            'Transferência': 'TRANSFER'
+          };
+
+          await apiFetch('/financial/transactions', {
+            method: 'POST',
+            body: JSON.stringify({
+              type: typeVal === 'receita' ? 'INCOME' : 'EXPENSE',
+              category: catVal,
+              amount: amountVal,
+              due_date: dueDateVal,
+              payment_date: statusVal === 'pago' ? dueDateVal : null,
+              status: statusVal === 'pago' ? 'PAID' : 'PENDING',
+              payment_method: methodMap[methodVal] || 'PIX'
+            })
+          });
+
+          closeTransactionDialog();
+          await syncWithBackend();
+        } catch (err) {
+          errBox.textContent = err.message || 'Erro ao registrar no backend.';
+          errBox.classList.remove('hidden');
+          return;
+        }
+      } else {
+        const parts = dueDateVal.split('-');
+        const dueFormatted = parts.length === 3 ? `${parts[2]}/${parts[1]}` : dueDateVal;
+
+        financial.unshift({
+          id: Date.now(),
+          type: typeVal,
+          category: catVal,
+          due: dueFormatted,
+          method: methodVal,
+          status: statusVal,
+          value: amountVal
+        });
+
+        closeTransactionDialog();
+        updateStartTiles();
+      }
+
+      if (currentApp) renderAppTable(currentApp);
+      lucide.createIcons();
+    }
+
+
+    async function handleCreateAppointment(e) {
+      e.preventDefault();
+      const custVal = document.getElementById('appt-customer-select').value;
+      const srvVal = document.getElementById('appt-service-select').value;
+      const startTime = document.getElementById('appt-start-time').value;
+      const notes = document.getElementById('appt-notes').value;
+      const errBox = document.getElementById('appt-error');
+      errBox.classList.add('hidden');
+
+      const srv = services.find(s => s.id == srvVal || s.name == srvVal) || services[0];
+      const cust = customers.find(c => c.id == custVal || c.name == custVal) || customers[0];
+
+      // Se temos backend ativo
+      if (token && cust.id && srv.id && typeof cust.id === 'string') {
+        try {
+          const res = await apiFetch('/appointments/', {
+            method: 'POST',
+            body: JSON.stringify({
+              customer_id: cust.id,
+              service_id: srv.id,
+              start_time: new Date(startTime).toISOString(),
+              notes: notes || undefined
+            })
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.detail || 'Erro ao agendar');
+          await syncWithBackend();
+        } catch (err) {
+          errBox.textContent = err.message;
+          errBox.classList.remove('hidden');
+          return;
+        }
+      } else {
+        // Fallback local
+        const dateStr = startTime.slice(0, 10);
+        const timeStr = startTime.slice(11, 16) || "10:00";
+        appointments.push({
+          id: Date.now(),
+          date: dateStr,
+          time: timeStr,
+          customer: cust.name,
+          service: srv.name,
+          duration: srv.duration || srv.duration_minutes || 45,
+          price: srv.price || 70,
+          status: "pendente"
+        });
+        appointments.sort((a, b) => a.time.localeCompare(b.time));
+        updateStartTiles();
+      }
+
+      closeAppointmentDialog();
+      if (currentApp === 'appointments') {
+        if (selectedDayDate) {
+          renderAppTable('appointments');
+        } else {
+          renderCalendar();
+        }
+      } else if (currentApp) {
+        renderAppTable(currentApp);
+      }
+    }
+
+    // Inicialização do Gráfico de Faturamento Mensal (Linha de Receita e Despesa da Primeira Página)
+    function initDashboardCharts() {
+      const ctxFat = document.getElementById('chart-faturamento');
+      if (!ctxFat) return;
+
+      if (typeof Chart === 'undefined') {
+        setTimeout(initDashboardCharts, 150);
+        return;
+      }
+
+      const startScr = document.getElementById('start-screen');
+      if (startScr && startScr.classList.contains('hidden')) return;
+
+      // Se o canvas ainda estiver com largura zero (layout pendente), tenta novamente em breve
+      if (ctxFat.offsetWidth === 0) {
+        setTimeout(initDashboardCharts, 80);
+        return;
+      }
+
+      if (window.fatChartInstance) {
+        try { window.fatChartInstance.destroy(); } catch(e) {}
+      }
+
+      const ctxFat2d = ctxFat.getContext('2d');
+      const gradReceita = ctxFat2d.createLinearGradient(0, 0, 0, 240);
+      gradReceita.addColorStop(0, 'rgba(0, 99, 177, 0.7)');
+      gradReceita.addColorStop(1, 'rgba(0, 99, 177, 0.05)');
+
+      const gradDespesa = ctxFat2d.createLinearGradient(0, 0, 0, 240);
+      gradDespesa.addColorStop(0, 'rgba(255, 255, 255, 0.45)');
+      gradDespesa.addColorStop(1, 'rgba(255, 255, 255, 0.03)');
+
+      window.fatChartInstance = new Chart(ctxFat, {
+        type: 'line',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Sep', 'Out', 'Nov', 'Dez'],
+          datasets: [
+            {
+              label: 'Receitas',
+              data: [25, 60, 52, 40, 85, 75, 95, 140, 135, 105, 80, 145],
+              borderColor: '#0063B1',
+              backgroundColor: gradReceita,
+              fill: true,
+              tension: 0.45,
+              borderWidth: 2.5,
+              pointRadius: 0,
+              pointHoverRadius: 6,
+              pointHoverBackgroundColor: '#0063B1',
+              pointHoverBorderColor: '#ffffff',
+              pointHoverBorderWidth: 2
+            },
+            {
+              label: 'Despesas',
+              data: [42, 50, 65, 45, 55, 100, 75, 85, 90, 100, 125, 130],
+              borderColor: '#FFFFFF',
+              backgroundColor: gradDespesa,
+              fill: true,
+              tension: 0.45,
+              borderWidth: 2.5,
+              pointRadius: 0,
+              pointHoverRadius: 6,
+              pointHoverBackgroundColor: '#FFFFFF',
+              pointHoverBorderColor: '#000000',
+              pointHoverBorderWidth: 2
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: { duration: 1000, easing: 'easeOutQuart' },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#1E1B4B',
+              titleColor: '#FFFFFF',
+              bodyColor: '#E2E8F0',
+              padding: 10,
+              borderColor: 'rgba(255, 255, 255, 0.1)',
+              borderWidth: 1,
+              callbacks: {
+                label: (ctx) => ` ${ctx.dataset.label}: R$ ${ctx.raw}.000`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { font: { family: '"FS Me", "Lexend", "Atkinson Hyperlegible", sans-serif', size: 10 }, color: '#94A3B8' }
+            },
+            y: {
+              grid: { color: 'rgba(255, 255, 255, 0.08)' },
+              ticks: {
+                font: { family: '"FS Me", "Lexend", "Atkinson Hyperlegible", sans-serif', size: 10 },
+                color: '#94A3B8',
+                callback: (val) => val === 0 ? '0' : val + 'k'
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Garante inicialização após carregamento de todas as bibliotecas externas e em resize
+    window.addEventListener('load', () => {
+      setTimeout(initDashboardCharts, 120);
+    });
+    window.addEventListener('resize', () => {
+      const s = document.getElementById('start-screen');
+      if (s && !s.classList.contains('hidden')) {
+        initDashboardCharts();
+      }
+    });
+
+    // Inicialização da Página
+    window.addEventListener('DOMContentLoaded', async () => {
+      lucide.createIcons();
+      if (token) {
+        showStartScreen();
+        await syncWithBackend();
+      } else {
+        showAuthScreen();
+      }
+    });
+  
+    // ================= CONTROLE DOS MODAIS DE CLIENTES E SERVIÇOS =================
+    function openCustomerDialog() {
+      const form = document.getElementById('form-customer');
+      if (form) form.reset();
+      const errBox = document.getElementById('customer-error');
+      if (errBox) errBox.classList.add('hidden');
+      document.getElementById('modal-customer').classList.remove('hidden');
+      document.getElementById('cust-name').focus();
+    }
+
+    function closeCustomerDialog() {
+      document.getElementById('modal-customer').classList.add('hidden');
+    }
+
+    async function handleCreateCustomer(e) {
+      e.preventDefault();
+      const name = document.getElementById('cust-name').value.trim();
+      const phone = document.getElementById('cust-phone').value.trim();
+      const email = document.getElementById('cust-email').value.trim();
+      const notes = document.getElementById('cust-notes').value.trim();
+      const errBox = document.getElementById('customer-error');
+      errBox.classList.add('hidden');
+
+      if (!name) {
+        errBox.textContent = 'Informe o nome do cliente.';
+        errBox.classList.remove('hidden');
+        return;
+      }
+
+      if (token && currentUser) {
+        try {
+          const res = await apiFetch('/customers/', {
+            method: 'POST',
+            body: JSON.stringify({
+              name: name,
+              phone: phone || undefined,
+              email: email || undefined,
+              notes: notes || undefined
+            })
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.detail || 'Erro ao cadastrar cliente.');
+          closeCustomerDialog();
+          await syncWithBackend();
+        } catch (err) {
+          errBox.textContent = err.message || 'Erro ao salvar cliente no backend.';
+          errBox.classList.remove('hidden');
+          return;
+        }
+      } else {
+        // Fallback local
+        const newCust = {
+          id: Date.now(),
+          name: name,
+          phone: phone || '—',
+          email: email || '—',
+          notes: notes || '—'
+        };
+        customers.unshift(newCust);
+        closeCustomerDialog();
+        updateStartTiles();
+      }
+
+      if (currentApp === 'customers') {
+        renderAppTable('customers');
+      }
+      lucide.createIcons();
+    }
+
+    function openServiceDialog() {
+      const form = document.getElementById('form-service');
+      if (form) form.reset();
+      document.getElementById('srv-duration').value = '45';
+      const errBox = document.getElementById('service-error');
+      if (errBox) errBox.classList.add('hidden');
+      document.getElementById('modal-service').classList.remove('hidden');
+      document.getElementById('srv-name').focus();
+    }
+
+    function closeServiceDialog() {
+      document.getElementById('modal-service').classList.add('hidden');
+    }
+
+    async function handleCreateService(e) {
+      e.preventDefault();
+      const name = document.getElementById('srv-name').value.trim();
+      const priceVal = parseFloat(document.getElementById('srv-price').value);
+      const durationVal = parseInt(document.getElementById('srv-duration').value, 10) || 45;
+      const desc = document.getElementById('srv-desc').value.trim();
+      const errBox = document.getElementById('service-error');
+      errBox.classList.add('hidden');
+
+      if (!name) {
+        errBox.textContent = 'Informe o nome do serviço.';
+        errBox.classList.remove('hidden');
+        return;
+      }
+
+      if (isNaN(priceVal) || priceVal < 0) {
+        errBox.textContent = 'Informe um preço válido.';
+        errBox.classList.remove('hidden');
+        return;
+      }
+
+      if (token && currentUser) {
+        try {
+          const res = await apiFetch('/services/', {
+            method: 'POST',
+            body: JSON.stringify({
+              name: name,
+              price: priceVal,
+              duration_minutes: durationVal,
+              description: desc || undefined,
+              is_active: true
+            })
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.detail || 'Erro ao cadastrar serviço.');
+          closeServiceDialog();
+          await syncWithBackend();
+        } catch (err) {
+          errBox.textContent = err.message || 'Erro ao salvar serviço no backend.';
+          errBox.classList.remove('hidden');
+          return;
+        }
+      } else {
+        // Fallback local
+        const newSrv = {
+          id: Date.now(),
+          name: name,
+          description: desc || '—',
+          duration: durationVal,
+          price: priceVal
+        };
+        services.unshift(newSrv);
+        closeServiceDialog();
+        updateStartTiles();
+      }
+
+      if (currentApp === 'services') {
+        renderAppTable('services');
+      }
+      lucide.createIcons();
+    }
+
+    // ================= DASHBOARD COMPLETO (GRÁFICOS, ANIMACÕES E SPARKLINES) =================
+    window.dashInstances = {};
+
+    function createSparkline(canvasId, data, color) {
+      const canvas = document.getElementById(canvasId);
+      if (!canvas || typeof Chart === 'undefined') return;
+      if (window.dashInstances[canvasId]) {
+        window.dashInstances[canvasId].destroy();
+      }
+
+      const ctx = canvas.getContext('2d');
+      const grad = ctx.createLinearGradient(0, 0, 0, 50);
+      grad.addColorStop(0, color + '55'); // 33% alpha
+      grad.addColorStop(1, color + '05'); // 2% alpha
+
+      window.dashInstances[canvasId] = new Chart(canvas, {
+        type: 'line',
+        data: {
+          labels: data.map((_, i) => i),
+          datasets: [{
+            data: data,
+            borderColor: color,
+            backgroundColor: grad,
+            borderWidth: 2,
+            tension: 0.45,
+            fill: true,
+            pointRadius: 0,
+            pointHoverRadius: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false }, tooltip: { enabled: false } },
+          scales: { x: { display: false }, y: { display: false } },
+          animation: { duration: 1200, easing: 'easeOutQuart' }
+        }
+      });
+    }
+
+
+    // ================= ESTADO E LÓGICA DE PROJEÇÃO INTERATIVA DO DASHBOARD =================
+    let selectedDashMonthIndex = 9; // Outubro por padrão
+
+    const dashMonthData = [
+      { short: 'Jan', full: 'Janeiro',   receita: 25,  despesa: 42,  saldo: -17, proj: '-8.2%',  meta: '72%' },
+      { short: 'Fev', full: 'Fevereiro', receita: 60,  despesa: 50,  saldo: 10,  proj: '+12.4%', meta: '88%' },
+      { short: 'Mar', full: 'Março',     receita: 52,  despesa: 65,  saldo: -13, proj: '+4.1%',  meta: '81%' },
+      { short: 'Abr', full: 'Abril',     receita: 40,  despesa: 45,  saldo: -5,  proj: '-3.5%',  meta: '76%' },
+      { short: 'Mai', full: 'Maio',      receita: 85,  despesa: 55,  saldo: 30,  proj: '+18.0%', meta: '95%' },
+      { short: 'Jun', full: 'Junho',     receita: 75,  despesa: 100, saldo: -25, proj: '+6.2%',  meta: '89%' },
+      { short: 'Jul', full: 'Julho',     receita: 95,  despesa: 75,  saldo: 20,  proj: '+14.5%', meta: '92%' },
+      { short: 'Ago', full: 'Agosto',    receita: 140, despesa: 85,  saldo: 55,  proj: '+26.3%', meta: '110%' },
+      { short: 'Set', full: 'Setembro',  receita: 135, despesa: 90,  saldo: 45,  proj: '+21.0%', meta: '106%' },
+      { short: 'Out', full: 'Outubro',   receita: 105, despesa: 100, saldo: 5,   proj: '+14.5%', meta: '94.2%' },
+      { short: 'Nov', full: 'Novembro',  receita: 80,  despesa: 125, saldo: -45, proj: '+11.8%', meta: '85%' },
+      { short: 'Dez', full: 'Dezembro',  receita: 145, despesa: 130, saldo: 15,  proj: '+32.0%', meta: '115%' }
+    ];
+
+    function renderDashMonthSelector() {
+      const container = document.getElementById('dash-month-selector');
+      if (!container) return;
+
+      container.innerHTML = dashMonthData.map((m, idx) => {
+        const isActive = idx === selectedDashMonthIndex;
+        const btnCls = isActive
+          ? 'bg-[#0063B1] text-white font-semibold shadow-md'
+          : 'bg-white/5 hover:bg-white/10 text-slate-300 font-normal';
+        return `<button onclick="selectDashboardMonth(${idx})" class="px-2.5 py-1 text-xs rounded-lg transition-all shrink-0 ${btnCls}">${m.short}</button>`;
+      }).join('');
+    }
+
+    function selectDashboardMonth(idx) {
+      if (idx < 0 || idx >= dashMonthData.length) return;
+      selectedDashMonthIndex = idx;
+      renderDashMonthSelector();
+      updateMonthProjectionDisplay(idx);
+
+      // Anima os pontos ativos no gráfico
+      const chart = window.dashInstances['main-fat'];
+      if (chart) {
+        chart.update('active');
+      }
+    }
+
+    function updateMonthProjectionDisplay(idx) {
+      const item = dashMonthData[idx];
+      if (!item) return;
+
+      const nameEl = document.getElementById('proj-month-name');
+      const statusEl = document.getElementById('proj-month-status');
+      const incomeEl = document.getElementById('proj-income-val');
+      const expenseEl = document.getElementById('proj-expense-val');
+      const netEl = document.getElementById('proj-net-val');
+      const goalEl = document.getElementById('proj-goal-val');
+
+      if (nameEl) nameEl.textContent = `${item.full} 2024`;
+      if (incomeEl) incomeEl.textContent = `R$ ${(item.receita * 1000).toLocaleString('pt-BR')}`;
+      if (expenseEl) expenseEl.textContent = `R$ ${(item.despesa * 1000).toLocaleString('pt-BR')}`;
+      
+      if (netEl) {
+        const sign = item.saldo >= 0 ? '+' : '-';
+        netEl.textContent = `${sign} R$ ${Math.abs(item.saldo * 1000).toLocaleString('pt-BR')}`;
+        netEl.className = item.saldo >= 0 
+          ? 'text-lg md:text-xl font-semibold text-[#72A824]' 
+          : 'text-lg md:text-xl font-semibold text-[#D11F25]';
+      }
+
+      if (statusEl) {
+        const isPos = item.saldo >= 0;
+        statusEl.textContent = `${item.proj} proj.`;
+        statusEl.className = isPos
+          ? 'text-[10px] font-semibold text-[#72A824] bg-[#72A824]/10 border border-[#72A824]/20 px-2 py-0.5 rounded-full'
+          : 'text-[10px] font-semibold text-[#D11F25] bg-[#D11F25]/10 border border-[#D11F25]/20 px-2 py-0.5 rounded-full';
+      }
+
+      if (goalEl) goalEl.textContent = item.meta;
+    }
+
+    function initFullDashboardViewCharts() {
+      if (typeof Chart === 'undefined') return;
+
+      // 1. Sparklines dos 4 Cards Superiores
+      createSparkline('sparkline-faturamento', [12, 19, 15, 26, 22, 30, 27, 36], '#0063B1');
+      createSparkline('sparkline-pedidos', [16, 24, 20, 32, 27, 34, 30, 42], '#38BDF8');
+      createSparkline('sparkline-ticket', [32, 30, 26, 28, 25, 23, 24, 21], '#5C3BAA');
+      createSparkline('sparkline-clientes', [10, 16, 14, 22, 20, 28, 25, 34], '#72A824');
+
+      // 2. Gráfico Principal Faturamento Mensal (com interação dinâmica de meses e projeções)
+      const mainFatCanvas = document.getElementById('chart-dash-main-faturamento');
+      if (mainFatCanvas) {
+        if (window.dashInstances['main-fat']) {
+          window.dashInstances['main-fat'].destroy();
+        }
+
+        const ctxFat2d = mainFatCanvas.getContext('2d');
+        const gradReceita = ctxFat2d.createLinearGradient(0, 0, 0, 260);
+        gradReceita.addColorStop(0, 'rgba(0, 99, 177, 0.7)');
+        gradReceita.addColorStop(1, 'rgba(0, 99, 177, 0.05)');
+
+        const gradDespesa = ctxFat2d.createLinearGradient(0, 0, 0, 260);
+        gradDespesa.addColorStop(0, 'rgba(255, 255, 255, 0.45)');
+        gradDespesa.addColorStop(1, 'rgba(255, 255, 255, 0.03)');
+
+        window.dashInstances['main-fat'] = new Chart(mainFatCanvas, {
+          type: 'line',
+          data: {
+            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            datasets: [
+              {
+                label: 'Receitas',
+                data: [25, 60, 52, 40, 85, 75, 95, 140, 135, 105, 80, 145],
+                borderColor: '#0063B1',
+                backgroundColor: gradReceita,
+                fill: true,
+                tension: 0.45,
+                borderWidth: 2.5,
+                pointRadius: (ctx) => ctx.dataIndex === selectedDashMonthIndex ? 7 : 0,
+                pointBackgroundColor: '#0063B1',
+                pointBorderColor: '#FFFFFF',
+                pointBorderWidth: 2,
+                pointHoverRadius: 8,
+                pointHoverBackgroundColor: '#0063B1',
+                pointHoverBorderColor: '#FFFFFF',
+                pointHoverBorderWidth: 2.5
+              },
+              {
+                label: 'Despesas',
+                data: [42, 50, 65, 45, 55, 100, 75, 85, 90, 100, 125, 130],
+                borderColor: '#FFFFFF',
+                backgroundColor: gradDespesa,
+                fill: true,
+                tension: 0.45,
+                borderWidth: 2.5,
+                pointRadius: (ctx) => ctx.dataIndex === selectedDashMonthIndex ? 7 : 0,
+                pointBackgroundColor: '#FFFFFF',
+                pointBorderColor: '#0063B1',
+                pointBorderWidth: 2,
+                pointHoverRadius: 8,
+                pointHoverBackgroundColor: '#FFFFFF',
+                pointHoverBorderColor: '#000000',
+                pointHoverBorderWidth: 2.5
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: { duration: 1200, easing: 'easeOutQuart' },
+            onClick: (evt, activeEls) => {
+              if (activeEls && activeEls.length > 0) {
+                selectDashboardMonth(activeEls[0].index);
+              } else {
+                const chart = window.dashInstances['main-fat'];
+                if (!chart) return;
+                const points = chart.getElementsAtEventForMode(evt, 'index', { intersect: false }, true);
+                if (points && points.length > 0) {
+                  selectDashboardMonth(points[0].index);
+                }
+              }
+            },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: '#1E1B4B',
+                titleColor: '#FFFFFF',
+                bodyColor: '#E2E8F0',
+                padding: 10,
+                borderColor: 'rgba(255, 255, 255, 0.1)',
+                borderWidth: 1,
+                callbacks: {
+                  label: (ctx) => ` ${ctx.dataset.label}: R$ ${ctx.raw}.000`
+                }
+              }
+            },
+            scales: {
+              x: {
+                grid: { display: false },
+                ticks: { font: { family: '"FS Me", "Lexend", "Atkinson Hyperlegible", sans-serif', size: 11 }, color: '#94A3B8' }
+              },
+              y: {
+                grid: { color: 'rgba(255, 255, 255, 0.08)' },
+                ticks: {
+                  font: { family: '"FS Me", "Lexend", "Atkinson Hyperlegible", sans-serif', size: 11 },
+                  color: '#94A3B8',
+                  callback: (val) => val === 0 ? '0' : val + 'k'
+                }
+              }
+            }
+          }
+        });
+
+        // Inicializa o seletor de meses e a projeção padrão (Outubro)
+        renderDashMonthSelector();
+        updateMonthProjectionDisplay(selectedDashMonthIndex);
+      }
+
+      // 3. Gráfico Donut de Vendas por Canal
+      const canalCanvas = document.getElementById('chart-dash-canal');
+      if (canalCanvas) {
+        if (window.dashInstances['canal']) {
+          window.dashInstances['canal'].destroy();
+        }
+
+        window.dashInstances['canal'] = new Chart(canalCanvas, {
+          type: 'doughnut',
+          data: {
+            labels: ['Directo', 'Social', 'Email', 'Orgânico'],
+            datasets: [{
+              data: [40, 25, 20, 15],
+              backgroundColor: ['#0063B1', '#5C3BAA', '#38BDF8', '#72A824'],
+              borderWidth: 3,
+              borderColor: '#1A1D24',
+              hoverOffset: 6
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '72%',
+            animation: { animateRotate: true, animateScale: true, duration: 1500, easing: 'easeOutQuart' },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: '#1E1B4B',
+                titleColor: '#FFFFFF',
+                bodyColor: '#E2E8F0',
+                padding: 10,
+                callbacks: {
+                  label: (ctx) => ` ${ctx.label}: ${ctx.raw}%`
+                }
+              }
+            }
+          }
+        });
+      }
+    }
+</script>
+</body>
+</html>

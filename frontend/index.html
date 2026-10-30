@@ -226,6 +226,28 @@
               <span class="text-xs md:text-sm font-normal text-white/90">Saldo</span>
             </button>
 
+            <!-- Tile Equipe & Comissões (Completa a grade perfeitamente) -->
+            <button onclick="openApp('team')" style="animation-delay: 280ms;" class="tile metro-enter col-span-6 row-span-2 bg-[#1A1D24] border border-white/10 text-white p-3.5 lg:p-4 xl:p-5 text-left flex flex-col justify-between hover:border-white/25 transition-all">
+              <div class="flex items-center justify-between w-full">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 lg:w-10 lg:h-10 rounded-lg bg-[#0063B1]/20 border border-[#0063B1]/40 flex items-center justify-center text-[#38BDF8]">
+                    <i data-lucide="users-round" class="h-5 w-5 lg:h-6 lg:w-6"></i>
+                  </div>
+                  <div>
+                    <span id="tile-team-count" class="text-xl lg:text-2xl font-light text-white">3 profissionais</span>
+                    <span class="block text-[10px] lg:text-xs text-white/50">escala ativa no mês</span>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span id="tile-team-comm" class="text-xs lg:text-sm font-semibold text-[#72A824] bg-[#72A824]/10 border border-[#72A824]/20 px-2.5 py-1 rounded-full">R$ 2.450,00 comissões</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between w-full pt-1">
+                <span id="tile-team-preview" class="text-xs text-slate-400 truncate max-w-[320px] lg:max-w-[420px]">Carlos E. (45%) · Mariana L. (40%) · Lucas M. (50%)</span>
+                <span class="text-xs md:text-sm font-normal text-white/90 shrink-0">Equipe</span>
+              </div>
+            </button>
+
           </div>
         </section>
 
@@ -392,6 +414,9 @@
         </button>
         <button id="btn-action-customer" onclick="openCustomerDialog()" class="hidden flex items-center gap-2 bg-tile-blue hover:opacity-90 px-4 py-2 text-white font-normal transition-opacity shadow-sm rounded-lg">
           <i data-lucide="plus" class="h-4 w-4"></i> Novo cadastro
+        </button>
+        <button id="btn-action-team" onclick="openTeamMemberDialog()" class="hidden flex items-center gap-2 bg-tile-blue hover:opacity-90 px-4 py-2 text-white font-normal transition-opacity shadow-sm rounded-lg">
+          <i data-lucide="plus" class="h-4 w-4"></i> Novo colaborador
         </button>
         <button id="btn-action-service" onclick="openServiceDialog()" class="hidden flex items-center gap-2 bg-tile-blue hover:opacity-90 px-4 py-2 text-white font-normal transition-opacity shadow-sm rounded-lg">
           <i data-lucide="plus" class="h-4 w-4"></i> Novo cadastro
@@ -647,6 +672,53 @@
       <!-- Grade dos dias do mês -->
       <div id="appointments-calendar-grid" class="grid grid-cols-7 gap-1 mt-1">
         <!-- Renderizado dinamicamente via JS -->
+      </div>
+    </div>
+
+    <!-- ================= SEÇÃO DE EQUIPE (MÉTRICAS DE PROFISSIONAIS & COMISSÕES) ================= -->
+    <div id="team-summary-section" class="hidden mt-6 mb-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 flex flex-col justify-between shadow-sm">
+        <div class="flex items-center justify-between">
+          <span class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Profissionais Ativos</span>
+          <i data-lucide="users-round" class="w-4 h-4 text-[#0063B1]"></i>
+        </div>
+        <div class="mt-2">
+          <p id="kpi-team-total" class="text-2xl font-bold text-slate-900">3</p>
+          <p class="text-xs text-slate-500 mt-0.5">colaboradores cadastrados</p>
+        </div>
+      </div>
+
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 flex flex-col justify-between shadow-sm">
+        <div class="flex items-center justify-between">
+          <span class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Atendimentos no Mês</span>
+          <i data-lucide="calendar-check" class="w-4 h-4 text-[#72A824]"></i>
+        </div>
+        <div class="mt-2">
+          <p id="kpi-team-appts" class="text-2xl font-bold text-slate-900">48</p>
+          <p class="text-xs text-slate-500 mt-0.5">serviços executados</p>
+        </div>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 text-white rounded-xl p-5 flex flex-col justify-between shadow-sm">
+        <div class="flex items-center justify-between">
+          <span class="text-xs uppercase tracking-wider text-white/70 font-semibold">Comissões a Repassar</span>
+          <i data-lucide="wallet" class="w-4 h-4 text-[#72A824]"></i>
+        </div>
+        <div class="mt-2">
+          <p id="kpi-team-comms" class="text-2xl font-bold text-[#72A824]">R$ 2.450,00</p>
+          <p class="text-xs text-white/60 mt-0.5">fechamento do mês atual</p>
+        </div>
+      </div>
+
+      <div class="bg-tile-blue text-white rounded-xl p-5 flex flex-col justify-between shadow-sm">
+        <div class="flex items-center justify-between">
+          <span class="text-xs uppercase tracking-wider text-white/80 font-semibold">Comissão Média</span>
+          <i data-lucide="percent" class="w-4 h-4 text-white/80"></i>
+        </div>
+        <div class="mt-2">
+          <p id="kpi-team-rate" class="text-2xl font-bold text-white">45%</p>
+          <p class="text-xs text-white/70 mt-0.5">taxa média de repasse</p>
+        </div>
       </div>
     </div>
 
@@ -1012,6 +1084,60 @@
     </div>
   </div>
 
+  <!-- ================= MODAL DE NOVO / EDITAR COLABORADOR DA EQUIPE ================= -->
+  <div id="modal-team-member" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm px-4">
+    <div class="w-full max-w-lg bg-black text-white p-8 md:p-10 rounded-2xl shadow-2xl border border-white/10">
+      <div class="flex items-center justify-between mb-8">
+        <h3 id="modal-team-title" class="text-3xl md:text-4xl font-normal text-white tracking-tight">Novo Colaborador</h3>
+        <button type="button" onclick="closeTeamMemberDialog()" class="text-slate-400 hover:text-white transition-colors">
+          <i data-lucide="x" class="h-6 w-6"></i>
+        </button>
+      </div>
+
+      <div id="team-error" class="hidden mb-6 p-3 bg-tile-red text-white text-sm rounded-lg"></div>
+
+      <form id="form-team" onsubmit="handleSaveTeamMember(event)" class="space-y-4">
+        <input type="hidden" id="team-member-id" value="">
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">NOME COMPLETO</label>
+          <input id="team-name" type="text" placeholder="Ex: Rodrigo Albuquerque" required class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">ESPECIALIDADE / CARGO</label>
+            <input id="team-role" type="text" placeholder="Ex: Especialista Facial" required class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">% COMISSÃO</label>
+            <input id="team-commission" type="number" step="1" min="0" max="100" placeholder="40" value="40" required class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">TELEFONE / WHATSAPP</label>
+            <input id="team-phone" type="tel" placeholder="(11) 98877-6655" class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">E-MAIL</label>
+            <input id="team-email" type="email" placeholder="colaborador@empresa.com" class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-6">
+          <button type="submit" id="team-submit-btn" class="bg-white text-tile-blue hover:bg-slate-100 font-semibold px-6 py-2.5 rounded-lg transition-colors text-sm">
+            Cadastrar
+          </button>
+          <button type="button" onclick="closeTeamMemberDialog()" class="border border-white bg-transparent text-white hover:bg-white/10 font-semibold px-6 py-2.5 rounded-lg transition-colors text-sm">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- ================= MODAL DE NOVO SERVIÇO (FORMATO ANEXO) ================= -->
   <div id="modal-service" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm px-4">
     <div class="w-full max-w-lg bg-black text-white p-8 md:p-10 rounded-2xl shadow-2xl border border-white/10">
@@ -1089,6 +1215,13 @@
       { id: 2, name: "Bruno Lima",   phone: "(11) 97766-3344", email: "bruno@email.com", notes: "" },
       { id: 3, name: "Carla Mendes", phone: "(21) 99654-7788", email: "carla@email.com", notes: "Alergia a látex" },
       { id: 4, name: "Diego Rocha",  phone: "(31) 98123-4455", email: "diego@email.com", notes: "" },
+    ];
+
+        // Estado de Colaboradores e Equipe (Módulo 5)
+    let teamMembers = JSON.parse(localStorage.getItem('s0_team_members') || 'null') || [
+      { id: 1, name: "Carlos Eduardo Silva", role: "Consultor / Especialista", phone: "(11) 98877-5544", email: "carlos@sistema0.com", commission: 45, services_count: 22, commission_total: 1485.00, status: "ativo" },
+      { id: 2, name: "Mariana Souza Lima",  role: "Esteticista Facial",         phone: "(11) 97766-2211", email: "mariana@sistema0.com", commission: 40, services_count: 16, commission_total: 640.00,  status: "ativo" },
+      { id: 3, name: "Lucas Mendes Rocha",  role: "Terapeuta Corporal",         phone: "(21) 99654-3322", email: "lucas@sistema0.com",   commission: 50, services_count: 10, commission_total: 325.00,  status: "ativo" }
     ];
 
     let services = [
@@ -1214,6 +1347,35 @@
       if (sExpPend) sExpPend.textContent = `a pagar ${brl(expPend)}`;
       if (sNetReal) sNetReal.textContent = brl(netReal);
       if (sNetProj) sNetProj.textContent = `proj. ${brl(netProj)}`;
+
+      // Atualiza Tile e KPIs da Equipe (Módulo 5)
+      const teamCountEl = document.getElementById('tile-team-count');
+      const teamCommEl = document.getElementById('tile-team-comm');
+      const teamPreviewEl = document.getElementById('tile-team-preview');
+
+      const totalTeamComms = teamMembers.reduce((sum, m) => sum + (m.commission_total || 0), 0);
+      const totalTeamAppts = teamMembers.reduce((sum, m) => sum + (m.services_count || 0), 0);
+      const avgRate = teamMembers.length > 0 
+        ? Math.round(teamMembers.reduce((s, m) => s + (m.commission || 0), 0) / teamMembers.length)
+        : 0;
+
+      if (teamCountEl) teamCountEl.textContent = `${teamMembers.length} ${teamMembers.length === 1 ? 'profissional' : 'profissionais'}`;
+      if (teamCommEl) teamCommEl.textContent = `${brl(totalTeamComms)} comissões`;
+      if (teamPreviewEl) {
+        teamPreviewEl.textContent = teamMembers.length > 0
+          ? teamMembers.slice(0, 3).map(m => `${m.name.split(' ')[0]} (${m.commission}%)`).join(' · ')
+          : 'Nenhum colaborador cadastrado';
+      }
+
+      const kpiTeamTot = document.getElementById('kpi-team-total');
+      const kpiTeamApp = document.getElementById('kpi-team-appts');
+      const kpiTeamCom = document.getElementById('kpi-team-comms');
+      const kpiTeamRat = document.getElementById('kpi-team-rate');
+
+      if (kpiTeamTot) kpiTeamTot.textContent = teamMembers.length;
+      if (kpiTeamApp) kpiTeamApp.textContent = totalTeamAppts;
+      if (kpiTeamCom) kpiTeamCom.textContent = brl(totalTeamComms);
+      if (kpiTeamRat) kpiTeamRat.textContent = `${avgRate}%`;
     }
 
     // Sincronização com a API FastAPI real
@@ -1437,7 +1599,8 @@
         'appointments': 'Agendamentos',
         'financial': financialFilter === 'receita' ? 'Receitas' : (financialFilter === 'despesa' ? 'Despesas' : 'Financeiro'),
         'customers': 'Clientes',
-        'services': 'Serviços'
+        'services': 'Serviços',
+        'team': 'Equipe & Profissionais'
       };
 
       document.getElementById('start-screen').classList.add('hidden');
@@ -1471,6 +1634,15 @@
       const btnActionTrx = document.getElementById('btn-action-transaction');
       const btnActionCust = document.getElementById('btn-action-customer');
       const btnActionSrv = document.getElementById('btn-action-service');
+      const btnActionTeam = document.getElementById('btn-action-team');
+
+      if (btnActionTeam) {
+        if (appId === 'team') {
+          btnActionTeam.classList.remove('hidden');
+        } else {
+          btnActionTeam.classList.add('hidden');
+        }
+      }
 
       if (btnActionAppt) {
         if (appId === 'dashboard' || appId === 'appointments') {
@@ -1529,7 +1701,16 @@
         if (dashSection) dashSection.classList.add('hidden');
       }
 
-      // Exibe ou oculta a seção de Saldo (Cards de Receitas + Despesas)
+      // Exibe ou oculta a seção de Saldo e Equipe
+      const teamSection = document.getElementById('team-summary-section');
+      if (teamSection) {
+        if (appId === 'team') {
+          teamSection.classList.remove('hidden');
+        } else {
+          teamSection.classList.add('hidden');
+        }
+      }
+
       if (saldoSection) {
         if (appId === 'saldo') {
           saldoSection.classList.remove('hidden');
@@ -1541,6 +1722,15 @@
       // Renderização do conteúdo de cada aplicativo
       if (appId === 'dashboard') {
         // Nada extra a fazer aqui, os gráficos foram chamados acima
+      } else if (appId === 'team') {
+        kpisBox.classList.add('hidden');
+        actionsBox.classList.remove('hidden');
+        calendarSection.classList.add('hidden');
+        tableSection.classList.remove('hidden');
+        btnBackCal.classList.add('hidden');
+        document.getElementById('app-table-title').textContent = 'Gestão de Colaboradores e Escala';
+        document.getElementById('app-table-subtitle').textContent = 'Profissionais cadastrados e controle de comissões';
+        renderAppTable('team');
       } else if (appId === 'saldo') {
         kpisBox.classList.add('hidden');
         actionsBox.classList.remove('hidden');
@@ -1631,6 +1821,7 @@
       financialFilter = null;
       document.getElementById('app-view').classList.add('hidden');
       const sSec = document.getElementById('saldo-summary-section'); if (sSec) sSec.classList.add('hidden');
+      const tSec = document.getElementById('team-summary-section'); if (tSec) tSec.classList.add('hidden');
       document.getElementById('start-screen').classList.remove('hidden');
       updateStartTiles();
       lucide.createIcons();
@@ -1888,7 +2079,70 @@
             </tr>
           `;
         });
-      } else if (appId === 'services') {
+      } else if (appId === 'team') {
+        let listToRender = teamMembers;
+        if (tableSearchTerm) {
+          listToRender = listToRender.filter(m =>
+            (m.name && m.name.toLowerCase().includes(tableSearchTerm)) ||
+            (m.role && m.role.toLowerCase().includes(tableSearchTerm)) ||
+            (m.phone && m.phone.toLowerCase().includes(tableSearchTerm))
+          );
+        }
+
+        if (counterEl) counterEl.textContent = `${listToRender.length} colaborador(es) encontrado(s)`;
+
+        thead.innerHTML = `
+          <tr class="border-b-2 border-slate-900 text-left">
+            <th class="py-2.5 pr-4 font-semibold">Profissional</th>
+            <th class="py-2.5 pr-4 font-semibold">Cargo / Especialidade</th>
+            <th class="py-2.5 pr-4 font-semibold">Telefone / E-mail</th>
+            <th class="py-2.5 pr-4 font-semibold">% Repasse</th>
+            <th class="py-2.5 pr-4 font-semibold">Atendimentos</th>
+            <th class="py-2.5 pr-4 text-right font-semibold">Comissão Acumulada</th>
+            <th class="py-2.5 pr-4 text-right font-semibold">Ações</th>
+          </tr>
+        `;
+
+        if (listToRender.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="7" class="py-12 text-center text-slate-400">
+                ${tableSearchTerm ? 'Nenhum profissional encontrado para esta pesquisa.' : 'Nenhum colaborador cadastrado na equipe.'}
+                <div class="mt-2">
+                  <button onclick="openTeamMemberDialog()" class="text-xs text-tile-blue hover:underline font-medium">
+                    + Cadastrar primeiro colaborador
+                  </button>
+                </div>
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        listToRender.forEach(m => {
+          const rawId = m.id;
+          tbody.innerHTML += `
+            <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+              <td class="py-3.5 pr-4 font-medium text-slate-900 flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-[#0063B1]/10 text-[#0063B1] flex items-center justify-center font-bold text-xs">
+                  ${m.name.slice(0, 2).toUpperCase()}
+                </div>
+                <span>${m.name}</span>
+              </td>
+              <td class="py-3.5 pr-4 text-slate-600">${m.role}</td>
+              <td class="py-3.5 pr-4 text-slate-500 text-xs">${m.phone || m.email || '—'}</td>
+              <td class="py-3.5 pr-4 font-semibold text-slate-800">${m.commission}%</td>
+              <td class="py-3.5 pr-4">${m.services_count || 0} feitos</td>
+              <td class="py-3.5 pr-4 text-right font-bold text-[#72A824]">${brl(m.commission_total || 0)}</td>
+              <td class="py-3.5 pr-4 text-right whitespace-nowrap space-x-2">
+                <button onclick="openEditTeamMemberDialog(${rawId})" class="text-xs text-tile-blue hover:underline font-medium">Editar</button>
+                <button onclick="deleteTeamMemberConfirm(${rawId})" class="text-xs text-rose-600 hover:underline">Excluir</button>
+              </td>
+            </tr>
+          `;
+        });
+      }
+      else if (appId === 'services') {
         let listToRender = services;
         if (tableSearchTerm) {
           listToRender = listToRender.filter(s =>
@@ -2614,6 +2868,101 @@
       }
       updateStartTiles();
       if (currentApp) renderAppTable(currentApp);
+    }
+
+        // ================= CONTROLE DA EQUIPE & PROFISSIONAIS =================
+    function openTeamMemberDialog() {
+      const form = document.getElementById('form-team');
+      if (form) form.reset();
+      document.getElementById('team-member-id').value = '';
+      document.getElementById('team-commission').value = '40';
+      document.getElementById('modal-team-title').textContent = 'Novo Colaborador';
+      document.getElementById('team-submit-btn').textContent = 'Cadastrar';
+      const errBox = document.getElementById('team-error');
+      if (errBox) errBox.classList.add('hidden');
+      document.getElementById('modal-team-member').classList.remove('hidden');
+      document.getElementById('team-name').focus();
+    }
+
+    function openEditTeamMemberDialog(id) {
+      const m = teamMembers.find(item => item.id == id);
+      if (!m) return;
+
+      document.getElementById('team-member-id').value = m.id;
+      document.getElementById('team-name').value = m.name || '';
+      document.getElementById('team-role').value = m.role || '';
+      document.getElementById('team-commission').value = m.commission || 40;
+      document.getElementById('team-phone').value = m.phone && m.phone !== '—' ? m.phone : '';
+      document.getElementById('team-email').value = m.email && m.email !== '—' ? m.email : '';
+
+      document.getElementById('modal-team-title').textContent = 'Editar Colaborador';
+      document.getElementById('team-submit-btn').textContent = 'Salvar Alterações';
+
+      const errBox = document.getElementById('team-error');
+      if (errBox) errBox.classList.add('hidden');
+      document.getElementById('modal-team-member').classList.remove('hidden');
+      document.getElementById('team-name').focus();
+    }
+
+    function closeTeamMemberDialog() {
+      document.getElementById('modal-team-member').classList.add('hidden');
+    }
+
+    function deleteTeamMemberConfirm(id) {
+      if (!confirm('Deseja realmente remover este colaborador da equipe?')) return;
+      teamMembers = teamMembers.filter(m => m.id != id);
+      localStorage.setItem('s0_team_members', JSON.stringify(teamMembers));
+      updateStartTiles();
+      if (currentApp === 'team') renderAppTable('team');
+      lucide.createIcons();
+    }
+
+    function handleSaveTeamMember(e) {
+      e.preventDefault();
+      const editId = document.getElementById('team-member-id').value;
+      const name = document.getElementById('team-name').value.trim();
+      const role = document.getElementById('team-role').value.trim();
+      const commission = parseInt(document.getElementById('team-commission').value, 10) || 40;
+      const phone = document.getElementById('team-phone').value.trim();
+      const email = document.getElementById('team-email').value.trim();
+
+      const errBox = document.getElementById('team-error');
+      if (errBox) errBox.classList.add('hidden');
+
+      if (!name) {
+        errBox.textContent = 'Informe o nome do colaborador.';
+        errBox.classList.remove('hidden');
+        return;
+      }
+
+      if (editId) {
+        const item = teamMembers.find(m => m.id == editId);
+        if (item) {
+          item.name = name;
+          item.role = role;
+          item.commission = commission;
+          item.phone = phone || '—';
+          item.email = email || '—';
+        }
+      } else {
+        teamMembers.push({
+          id: Date.now(),
+          name: name,
+          role: role,
+          commission: commission,
+          phone: phone || '—',
+          email: email || '—',
+          services_count: 0,
+          commission_total: 0,
+          status: 'ativo'
+        });
+      }
+
+      localStorage.setItem('s0_team_members', JSON.stringify(teamMembers));
+      closeTeamMemberDialog();
+      updateStartTiles();
+      if (currentApp === 'team') renderAppTable('team');
+      lucide.createIcons();
     }
 
     // ================= CONTROLE DOS MODAIS DE CLIENTES (CRIAR, EDITAR, EXCLUIR) =================

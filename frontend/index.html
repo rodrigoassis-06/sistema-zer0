@@ -146,14 +146,13 @@
     <!-- Header Adaptativo do Start -->
     <header class="w-full flex items-center justify-between shrink-0 pb-4">
       <div class="flex items-center gap-3">
-        <span class="text-2xl md:text-3xl font-light tracking-wide text-white">Sistema 0</span>
-        <span class="text-[11px] uppercase tracking-wider text-white/60 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/10">Starter Base</span>
+        <span class="text-2xl md:text-3xl font-light tracking-wide text-white">Visão Geral</span>
       </div>
 
       <button onclick="handleUserHeaderClick()" class="flex items-center gap-3 text-right hover:opacity-90 transition-opacity">
         <span>
           <span id="header-user-name" class="block text-xl md:text-2xl font-light">Entrar</span>
-          <span id="header-user-sub" class="block text-xs md:text-sm opacity-70">Sistema 0 · Starter Base</span>
+          <span id="header-user-sub" class="block text-xs md:text-sm opacity-70"></span>
         </span>
         <span id="header-user-avatar" class="flex items-center justify-center text-white/90 hover:text-white transition-colors">
           <i data-lucide="log-in" class="w-6 h-6"></i>
@@ -326,25 +325,25 @@
           <h2 class="mb-3 text-xl lg:text-2xl font-light text-white/90">Gestão & Operações</h2>
           <div class="grid auto-rows-[70px] grid-cols-[repeat(4,70px)] sm:auto-rows-[78px] sm:grid-cols-[repeat(4,78px)] lg:auto-rows-[88px] lg:grid-cols-[repeat(4,88px)] xl:auto-rows-[98px] xl:grid-cols-[repeat(4,98px)] 2xl:auto-rows-[110px] 2xl:grid-cols-[repeat(4,110px)] gap-2.5 lg:gap-3 xl:gap-3.5">
             
-            <!-- 1. Tile Clientes (Trocado com Fila de Atendimento - cor escura do destino) -->
-            <button onclick="openApp('customers')" style="animation-delay: 500ms;" class="tile metro-enter col-span-4 row-span-2 bg-[#1A1D24] border border-white/10 text-white p-3.5 lg:p-4 xl:p-5 text-left hover:border-white/25 transition-all">
+            <!-- 1. Tile Clientes (cor branca bg-white text-slate-900, assim como Fila de Atendimento) -->
+            <button onclick="openApp('customers')" style="animation-delay: 500ms;" class="tile metro-enter col-span-4 row-span-2 bg-white text-slate-900 p-3.5 lg:p-4 xl:p-5 text-left hover:opacity-95 transition-all">
               <div class="h-[200%] live-flip">
                 <!-- Face 1 -->
-                <div class="flex h-1/2 items-center gap-4">
-                  <i data-lucide="users" class="h-10 w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 text-white"></i>
+                <div class="flex h-1/2 items-center gap-4 text-slate-900">
+                  <i data-lucide="users" class="h-10 w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 text-slate-900"></i>
                   <div>
-                    <span id="tile-customers-count" class="text-4xl md:text-5xl lg:text-6xl font-light text-white">4</span>
-                    <span class="block text-xs md:text-sm text-slate-400">clientes ativos</span>
+                    <span id="tile-customers-count" class="text-4xl md:text-5xl lg:text-6xl font-light text-slate-900">4</span>
+                    <span class="block text-xs md:text-sm text-slate-500">clientes ativos</span>
                   </div>
                 </div>
                 <!-- Face 2 -->
-                <div id="tile-customers-preview" class="flex h-1/2 flex-col justify-center text-white">
-                  <span class="text-base md:text-lg lg:text-xl font-light truncate">Ana Souza</span>
-                  <span class="text-base md:text-lg lg:text-xl font-light truncate">Bruno Lima</span>
-                  <span class="text-base md:text-lg lg:text-xl font-light truncate">Carla Mendes</span>
+                <div id="tile-customers-preview" class="flex h-1/2 flex-col justify-center text-slate-900">
+                  <span class="text-base md:text-lg font-light truncate">Ana Souza</span>
+                  <span class="text-base md:text-lg font-light truncate">Bruno Lima</span>
+                  <span class="text-base md:text-lg font-light truncate">Carla Mendes</span>
                 </div>
               </div>
-              <span class="absolute bottom-2.5 left-3.5 lg:bottom-3 lg:left-4 text-xs md:text-sm font-normal text-white/90">Clientes</span>
+              <span class="absolute bottom-2.5 left-3.5 lg:bottom-3 lg:left-4 text-xs md:text-sm font-medium text-slate-900">Clientes</span>
             </button>
 
             <!-- 2. Tile Fornecedores (2x2 - Novo módulo comercial) -->
@@ -365,8 +364,8 @@
               <span class="absolute bottom-2.5 left-3.5 lg:bottom-3 lg:left-4 text-xs md:text-sm font-normal text-white/90">Serviços</span>
             </button>
 
-            <!-- 4. Tile Relatórios & Fechamento (Wide 4x2 com live-flip e fundo branco) -->
-            <button onclick="openApp('reports')" style="animation-delay: 680ms;" class="tile metro-enter col-span-4 row-span-2 bg-white text-slate-900 p-3.5 lg:p-4 xl:p-5 text-left hover:opacity-95 transition-all">
+            <!-- 4. Tile Relatórios & Fechamento (cor personalizada #FCD97B) -->
+            <button onclick="openApp('reports')" style="animation-delay: 680ms; background-color: #FCD97B;" class="tile metro-enter col-span-4 row-span-2 text-slate-900 p-3.5 lg:p-4 xl:p-5 text-left hover:opacity-95 transition-all">
               <div class="h-[200%] live-flip">
                 <!-- Face 1 -->
                 <div class="flex h-1/2 items-center justify-between pr-2 lg:pr-4 text-slate-900">
@@ -374,19 +373,19 @@
                     <i data-lucide="bar-chart-3" class="h-10 w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 text-slate-900"></i>
                     <div>
                       <span class="text-3xl md:text-4xl lg:text-5xl font-light text-slate-900">DRE</span>
-                      <span class="block text-xs md:text-sm text-slate-500">fechamento mensal</span>
+                      <span class="block text-xs md:text-sm text-slate-800/70">fechamento mensal</span>
                     </div>
                   </div>
                   <div class="text-right">
-                    <span class="text-[10px] md:text-xs uppercase tracking-wider text-slate-500">Ticket Médio</span>
+                    <span class="text-[10px] md:text-xs uppercase tracking-wider text-slate-800/70">Ticket Médio</span>
                     <p id="tile-report-ticket" class="text-lg md:text-xl lg:text-2xl font-light text-slate-900">R$ 185,00</p>
                   </div>
                 </div>
                 <!-- Face 2 -->
                 <div class="flex h-1/2 flex-col justify-center text-slate-900">
-                  <span class="text-[10px] md:text-xs uppercase tracking-wider text-slate-500">Distribuição por Forma</span>
+                  <span class="text-[10px] md:text-xs uppercase tracking-wider text-slate-800/70">Distribuição por Forma</span>
                   <span class="text-sm md:text-base font-light truncate">65% PIX · 25% Cartão · 10% Dinheiro</span>
-                  <span class="text-xs text-slate-500 truncate">Clique para exportar relatórios contábeis</span>
+                  <span class="text-xs text-slate-800/70 truncate">Clique para exportar relatórios contábeis</span>
                 </div>
               </div>
               <span class="absolute bottom-2.5 left-3.5 lg:bottom-3 lg:left-4 text-xs md:text-sm font-medium text-slate-900">Relatórios & Fechamento</span>
@@ -400,8 +399,6 @@
 
     <!-- Footer Adaptativo do Start -->
     <footer class="w-full flex items-center justify-between text-xs text-white/40 pt-4 border-t border-white/5 shrink-0">
-      <span>Painel Operacional · Sistema 0</span>
-      <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#72A824]"></span> Sistema conectado e operacional</span>
     </footer>
 
   </div>
@@ -2464,7 +2461,7 @@
       currentUser = null;
       localStorage.removeItem('s0_token');
       document.getElementById('header-user-name').textContent = 'Entrar';
-      document.getElementById('header-user-sub').textContent = 'Sistema 0 · Starter Base';
+      document.getElementById('header-user-sub').textContent = '';
       document.getElementById('header-user-avatar').innerHTML = '<i data-lucide="log-in" class="w-6 h-6"></i>';
       showAuthScreen();
     }

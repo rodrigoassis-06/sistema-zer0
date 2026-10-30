@@ -170,30 +170,20 @@
           <h2 class="mb-3 text-xl lg:text-2xl font-light text-white/90">Visão geral</h2>
           <div class="grid auto-rows-[70px] grid-cols-[repeat(6,70px)] sm:auto-rows-[78px] sm:grid-cols-[repeat(6,78px)] lg:auto-rows-[88px] lg:grid-cols-[repeat(6,88px)] xl:auto-rows-[98px] xl:grid-cols-[repeat(6,98px)] 2xl:auto-rows-[110px] 2xl:grid-cols-[repeat(6,110px)] gap-2.5 lg:gap-3 xl:gap-3.5">
             
-            <!-- Tile Agenda de hoje (Wide - com flip dinâmico) -->
-            <button onclick="openApp('appointments')" style="animation-delay: 0ms;" class="tile metro-enter col-span-4 row-span-2 bg-tile-blue p-3.5 lg:p-4 xl:p-5 text-left">
-              <div class="h-[200%] live-flip">
-                <!-- Face 1 -->
-                <div class="flex h-1/2 flex-col justify-center gap-0.5">
-                  <span id="tile-appt-count" class="text-5xl lg:text-6xl xl:text-7xl font-light">5</span>
-                  <span id="tile-appt-status-text" class="text-xs md:text-sm lg:text-base opacity-80">2 confirmados · 2 pendentes</span>
-                </div>
-                <!-- Face 2 -->
-                <div class="flex h-1/2 flex-col justify-center">
-                  <span class="text-[10px] md:text-xs uppercase tracking-wider opacity-70">Próximo</span>
-                  <span id="tile-appt-next-title" class="text-xl md:text-2xl lg:text-3xl font-light truncate">10:30 · Carla Mendes</span>
-                  <span id="tile-appt-next-sub" class="text-xs md:text-sm lg:text-base opacity-80 truncate">Limpeza de pele</span>
-                </div>
+            <!-- Tile Dashboard (Destino: Visão geral, mantém a cor azul do destino) -->
+            <button onclick="openApp('dashboard')" style="animation-delay: 0ms;" class="tile metro-enter col-span-4 row-span-2 bg-tile-blue p-3.5 lg:p-4 xl:p-5 text-left hover:opacity-95 transition-all">
+              <div class="flex h-full items-center justify-center">
+                <i data-lucide="layout-dashboard" class="h-10 w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 text-white"></i>
               </div>
-              <span class="absolute bottom-2.5 left-3.5 lg:bottom-3 lg:left-4 text-xs md:text-sm font-normal">Agenda de hoje</span>
+              <span class="absolute bottom-2.5 left-3.5 lg:bottom-3 lg:left-4 text-xs md:text-sm font-normal text-white">Dashboard</span>
             </button>
 
-            <!-- Tile Novo (+) -->
-            <button onclick="openAppointmentDialog()" style="animation-delay: 60ms;" class="tile metro-enter col-span-2 row-span-2 bg-white text-slate-900 p-3.5 lg:p-4 xl:p-5 text-left hover:opacity-95 transition-all">
+            <!-- Tile Financeiro (Destino: Visão geral, mantém a cor branca do destino) -->
+            <button onclick="openApp('financial')" style="animation-delay: 60ms;" class="tile metro-enter col-span-2 row-span-2 bg-white text-slate-900 p-3.5 lg:p-4 xl:p-5 text-left hover:opacity-95 transition-all">
               <div class="flex h-full items-center justify-center">
-                <i data-lucide="plus" class="h-10 w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 text-slate-900"></i>
+                <i data-lucide="wallet" class="h-10 w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 text-slate-900"></i>
               </div>
-              <span class="absolute bottom-2.5 left-3.5 lg:bottom-3 lg:left-4 text-xs md:text-sm font-medium text-slate-900">Novo</span>
+              <span class="absolute bottom-2.5 left-3.5 lg:bottom-3 lg:left-4 text-xs md:text-sm font-medium text-slate-900">Financeiro</span>
             </button>
 
             <!-- Tile Receitas (mês) -->
@@ -264,20 +254,22 @@
           <h2 class="mb-3 text-xl lg:text-2xl font-light text-white/90">Aplicativos</h2>
           <div class="grid auto-rows-[70px] grid-cols-[repeat(4,70px)] sm:auto-rows-[78px] sm:grid-cols-[repeat(4,78px)] lg:auto-rows-[88px] lg:grid-cols-[repeat(4,88px)] xl:auto-rows-[98px] xl:grid-cols-[repeat(4,98px)] 2xl:auto-rows-[110px] 2xl:grid-cols-[repeat(4,110px)] gap-2.5 lg:gap-3 xl:gap-3.5">
             
-            <!-- Tile Clientes (Wide - com flip dinâmico) -->
-            <button onclick="openApp('customers')" style="animation-delay: 300ms;" class="tile metro-enter col-span-4 row-span-2 bg-[#6C757D] text-white p-3.5 lg:p-4 xl:p-5 text-left">
+            <!-- Tile Agenda de hoje (Destino: Aplicativos, mantém a cor grafite #6C757D do destino) -->
+            <button onclick="openApp('appointments')" style="animation-delay: 300ms;" class="tile metro-enter col-span-4 row-span-2 bg-[#6C757D] text-white p-3.5 lg:p-4 xl:p-5 text-left">
               <div class="h-[200%] live-flip">
-                <div class="flex h-1/2 items-center gap-4">
-                  <i data-lucide="users" class="h-10 w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 text-white"></i>
-                  <span id="tile-customers-count" class="text-4xl md:text-5xl lg:text-6xl font-light text-white">4</span>
+                <!-- Face 1 -->
+                <div class="flex h-1/2 flex-col justify-center gap-0.5">
+                  <span id="tile-appt-count" class="text-5xl lg:text-6xl xl:text-7xl font-light">5</span>
+                  <span id="tile-appt-status-text" class="text-xs md:text-sm lg:text-base opacity-80">2 confirmados · 2 pendentes</span>
                 </div>
-                <div id="tile-customers-preview" class="flex h-1/2 flex-col justify-center text-white">
-                  <span class="text-base md:text-lg lg:text-xl font-light truncate">Ana Souza</span>
-                  <span class="text-base md:text-lg lg:text-xl font-light truncate">Bruno Lima</span>
-                  <span class="text-base md:text-lg lg:text-xl font-light truncate">Carla Mendes</span>
+                <!-- Face 2 -->
+                <div class="flex h-1/2 flex-col justify-center">
+                  <span class="text-[10px] md:text-xs uppercase tracking-wider opacity-70">Próximo</span>
+                  <span id="tile-appt-next-title" class="text-xl md:text-2xl lg:text-3xl font-light truncate">10:30 · Carla Mendes</span>
+                  <span id="tile-appt-next-sub" class="text-xs md:text-sm lg:text-base opacity-80 truncate">Limpeza de pele</span>
                 </div>
               </div>
-              <span class="absolute bottom-2.5 left-3.5 lg:bottom-3 lg:left-4 text-xs md:text-sm text-white">Clientes</span>
+              <span class="absolute bottom-2.5 left-3.5 lg:bottom-3 lg:left-4 text-xs md:text-sm font-normal text-white">Agenda de hoje</span>
             </button>
 
             <!-- Tile Serviços -->
@@ -288,20 +280,28 @@
               <span class="absolute bottom-2.5 left-3.5 lg:bottom-3 lg:left-4 text-xs md:text-sm font-normal text-white/90">Serviços</span>
             </button>
 
-            <!-- Tile Financeiro -->
-            <button onclick="openApp('financial')" style="animation-delay: 420ms;" class="tile metro-enter col-span-2 row-span-2 bg-tile-lime p-3.5 lg:p-4 xl:p-5 text-left">
+            <!-- Tile Novo (+) (Destino: Aplicativos, mantém a cor verde-limão bg-tile-lime do destino) -->
+            <button onclick="openAppointmentDialog()" style="animation-delay: 420ms;" class="tile metro-enter col-span-2 row-span-2 bg-tile-lime text-white p-3.5 lg:p-4 xl:p-5 text-left hover:opacity-95 transition-all">
               <div class="flex h-full items-center justify-center">
-                <i data-lucide="wallet" class="h-10 w-10 md:h-12 md:w-12 lg:h-14 lg:w-14"></i>
+                <i data-lucide="plus" class="h-10 w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 text-white"></i>
               </div>
-              <span class="absolute bottom-2.5 left-3.5 lg:bottom-3 lg:left-4 text-xs md:text-sm">Financeiro</span>
+              <span class="absolute bottom-2.5 left-3.5 lg:bottom-3 lg:left-4 text-xs md:text-sm font-normal text-white">Novo</span>
             </button>
 
-            <!-- Tile Dashboard -->
-            <button onclick="openApp('dashboard')" style="animation-delay: 480ms;" class="tile metro-enter col-span-4 row-span-2 bg-white text-slate-900 p-3.5 lg:p-4 xl:p-5 text-left hover:opacity-95 transition-all">
-              <div class="flex h-full items-center justify-center">
-                <i data-lucide="layout-dashboard" class="h-10 w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 text-slate-900"></i>
+            <!-- Tile Clientes (Destino: Aplicativos, mantém a cor branca do destino) -->
+            <button onclick="openApp('customers')" style="animation-delay: 480ms;" class="tile metro-enter col-span-4 row-span-2 bg-white text-slate-900 p-3.5 lg:p-4 xl:p-5 text-left hover:opacity-95 transition-all">
+              <div class="h-[200%] live-flip">
+                <div class="flex h-1/2 items-center gap-4 text-slate-900">
+                  <i data-lucide="users" class="h-10 w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 text-slate-900"></i>
+                  <span id="tile-customers-count" class="text-4xl md:text-5xl lg:text-6xl font-light text-slate-900">4</span>
+                </div>
+                <div id="tile-customers-preview" class="flex h-1/2 flex-col justify-center text-slate-900">
+                  <span class="text-base md:text-lg font-light truncate">Ana Souza</span>
+                  <span class="text-base md:text-lg font-light truncate">Bruno Lima</span>
+                  <span class="text-base md:text-lg font-light truncate">Carla Mendes</span>
+                </div>
               </div>
-              <span class="absolute bottom-2.5 left-3.5 lg:bottom-3 lg:left-4 text-xs md:text-sm font-medium text-slate-900">Dashboard</span>
+              <span class="absolute bottom-2.5 left-3.5 lg:bottom-3 lg:left-4 text-xs md:text-sm font-medium text-slate-900">Clientes</span>
             </button>
 
           </div>

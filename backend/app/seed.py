@@ -34,21 +34,35 @@ def seed_database():
             db.flush()
             print(f"[+] Tenant criado: {tenant.name} ({tenant.slug})")
 
-        # 2. Check or Create Admin User
-        admin_email = "admin@demo.com"
-        admin_user = db.query(User).filter(User.email == admin_email).first()
-        if not admin_user:
-            admin_user = User(
-                tenant_id=tenant.id,
-                name="Administrador Master",
-                email=admin_email,
-                password_hash=get_password_hash("admin123"),
-                role="ADMIN",
-                is_active=True
-            )
-            db.add(admin_user)
-            db.flush()
-            print(f"[+] Usuário Admin criado: {admin_user.email} / senha: admin123")
+        # 2. Check or Create Admin & Test Users
+        users_to_seed = [
+            ("admin@demo.com", "admin123", "Administrador Master", "ADMIN"),
+            ("teste@demo.com", "admin123", "Usuário de Teste", "ADMIN"),
+            ("teste@teste.com", "teste123", "Conta Teste", "ADMIN"),
+        ]
+        
+        admin_user = None
+        for email_addr, pwd, full_name, role_name in users_to_seed:
+            clean_email = email_addr.lower()
+            existing_u = db.query(User).filter(User.email == clean_email).first()
+            if not existing_u:
+                existing_u = User(
+                    tenant_id=tenant.id,
+                    name=full_name,
+                    email=clean_email,
+                    password_hash=get_password_hash(pwd),
+                    role=role_name,
+                    is_active=True
+                )
+                db.add(existing_u)
+                db.flush()
+                print(f"[+] Usuário criado: {clean_email} / senha: {pwd}")
+            else:
+                existing_u.password_hash = get_password_hash(pwd)
+                existing_u.is_active = True
+                db.flush()
+            if clean_email == "admin@demo.com":
+                admin_user = existing_u
 
         # 3. Services
         existing_services = db.query(Service).filter(Service.tenant_id == tenant.id).count()

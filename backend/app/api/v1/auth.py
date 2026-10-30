@@ -57,7 +57,18 @@ def register(request: RegisterRequest, db: Session = Depends(get_db)):
 
 @router.post("/login", response_model=Token)
 def login(request: LoginRequest, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.email == request.email).first()
+    clean_email = request.email.strip().lower()
+    user = db.query(User).filter(User.email == clean_email).first()
+
+    # Fallback auto-seed se o banco estiver vazio ou usuário demo estiver faltando
+    if not user and (clean_email in ["admin@demo.com", "teste@demo.com", "teste@teste.com"] or db.query(User).count() == 0):
+        try:
+            from app.seed import seed_database
+            seed_database()
+            user = db.query(User).filter(User.email == clean_email).first()
+        except Exception:
+            pass
+
     if not user or not verify_password(request.password, user.password_hash):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

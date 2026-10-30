@@ -11,6 +11,13 @@ from app.api.v1 import api_router
 # Auto-create tables on startup (especially convenient for local SQLite / rapid setup)
 Base.metadata.create_all(bind=engine)
 
+# Auto-seed initial demo & test data on startup (creates demo/teste accounts automatically)
+try:
+    from app.seed import seed_database
+    seed_database()
+except Exception as e:
+    print(f"[*] Aviso ao semear banco inicial: {e}")
+
 app = FastAPI(
     title=settings.PROJECT_NAME,
     description="Sistema 0: Base Starter com Agendamento e Controle Financeiro Multi-tenant",

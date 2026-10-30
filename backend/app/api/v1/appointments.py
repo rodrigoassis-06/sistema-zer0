@@ -180,6 +180,7 @@ def update_appointment(
     db.refresh(appointment)
     return appointment
 
+
 @router.post("/{appointment_id}/complete", response_model=AppointmentResponse)
 def complete_appointment(
     appointment_id: str,
@@ -225,4 +226,21 @@ def complete_appointment(
     db.commit()
     db.refresh(appointment)
     return appointment
+
+@router.delete("/{appointment_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_appointment(
+    appointment_id: str,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    appointment = db.query(Appointment).filter(
+        Appointment.id == appointment_id,
+        Appointment.tenant_id == current_user.tenant_id
+    ).first()
+    if not appointment:
+        raise HTTPException(status_code=404, detail="Agendamento não encontrado")
+    db.delete(appointment)
+    db.commit()
+    return None
+
 

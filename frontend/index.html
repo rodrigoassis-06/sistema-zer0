@@ -404,14 +404,14 @@
   </div>
 
     <!-- ================= TELA DO APLICATIVO (METRO APP VIEW) ================= -->
-  <div id="app-view" class="hidden min-h-screen bg-white text-slate-900 px-8 md:px-20 pt-10 pb-28 metro-enter">
+  <div id="app-view" class="hidden min-h-screen bg-black text-white px-6 md:px-14 pt-8 pb-28 metro-enter">
     
     <!-- Top Bar com Seta Voltar -->
     <div class="flex items-center gap-4">
-      <button id="btn-app-back" onclick="handleBackClick()" aria-label="Voltar" class="flex items-center justify-center text-slate-900 hover:opacity-60 transition-opacity p-1">
+      <button id="btn-app-back" onclick="handleBackClick()" aria-label="Voltar" class="flex items-center justify-center text-white hover:opacity-60 transition-opacity p-1">
         <i data-lucide="arrow-left" class="h-8 w-8 stroke-[1.75]"></i>
       </button>
-      <h1 id="app-view-title" class="text-4xl md:text-5xl font-light">Visão geral</h1>
+      <h1 id="app-view-title" class="text-4xl md:text-5xl font-light text-white">Visão geral</h1>
       
       <div id="app-view-actions" class="ml-auto flex items-center gap-2">
         <button id="btn-action-appointment" onclick="openAppointmentDialog()" class="flex items-center gap-2 bg-tile-blue hover:opacity-90 px-4 py-2 text-white font-normal transition-opacity shadow-sm rounded-lg">
@@ -428,6 +428,21 @@
         </button>
         <button id="btn-action-service" onclick="openServiceDialog()" class="hidden flex items-center gap-2 bg-tile-blue hover:opacity-90 px-4 py-2 text-white font-normal transition-opacity shadow-sm rounded-lg">
           <i data-lucide="plus" class="h-4 w-4"></i> Novo cadastro
+        </button>
+        <button id="btn-action-queue" onclick="openAddQueueDialog()" class="hidden flex items-center gap-2 bg-tile-blue hover:opacity-90 px-4 py-2 text-white font-normal transition-opacity shadow-sm rounded-lg">
+          <i data-lucide="plus" class="h-4 w-4"></i> Inserir na fila
+        </button>
+        <button id="btn-action-goal" onclick="openEditGoalDialog()" class="hidden flex items-center gap-2 bg-tile-blue hover:opacity-90 px-4 py-2 text-white font-normal transition-opacity shadow-sm rounded-lg">
+          <i data-lucide="target" class="h-4 w-4"></i> Ajustar meta
+        </button>
+        <button id="btn-action-wa" onclick="sendAllPendingWhatsApp()" class="hidden flex items-center gap-2 bg-tile-blue hover:opacity-90 px-4 py-2 text-white font-normal transition-opacity shadow-sm rounded-lg">
+          <i data-lucide="send" class="h-4 w-4"></i> Disparar WhatsApp
+        </button>
+        <button id="btn-action-rep" onclick="exportDREReport()" class="hidden flex items-center gap-2 bg-[#FCD97B] text-slate-950 font-medium hover:opacity-90 px-4 py-2 transition-opacity shadow-sm rounded-lg">
+          <i data-lucide="download" class="h-4 w-4"></i> Exportar DRE (.csv)
+        </button>
+        <button id="btn-action-supplier" onclick="openSupplierDialog()" class="hidden flex items-center gap-2 bg-tile-blue hover:opacity-90 px-4 py-2 text-white font-normal transition-opacity shadow-sm rounded-lg">
+          <i data-lucide="plus" class="h-4 w-4"></i> Novo fornecedor
         </button>
       </div>
     </div>
@@ -647,27 +662,27 @@
     </div>
 
     <!-- SEÇÃO 1: FORMATO DE AGENDA / CALENDÁRIO MENSAL -->
-    <div id="appointments-calendar-section" class="hidden mt-8">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+    <div id="appointments-calendar-section" class="hidden mt-6 bg-[#1A1D24] border border-white/10 rounded-2xl p-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
         <div>
-          <h2 id="calendar-month-title" class="text-3xl font-light capitalize text-slate-900">Outubro 2026</h2>
-          <p class="text-xs text-slate-500 mt-1">Clique em qualquer dia para abrir a agenda detalhada de atendimentos.</p>
+          <h2 id="calendar-month-title" class="text-2xl md:text-3xl font-light capitalize text-white">Outubro 2026</h2>
+          <p class="text-xs text-slate-400 mt-1">Clique em qualquer dia para abrir a agenda detalhada de atendimentos.</p>
         </div>
         <div class="flex items-center gap-2">
-          <button onclick="changeCalendarMonth(-1)" title="Mês anterior" class="px-3 py-1.5 border border-slate-300 hover:bg-slate-50 text-slate-700 text-sm flex items-center gap-1 transition-colors">
+          <button onclick="changeCalendarMonth(-1)" title="Mês anterior" class="px-3 py-1.5 border border-white/10 hover:bg-white/10 text-white rounded-lg text-xs md:text-sm flex items-center gap-1 transition-colors">
             <i data-lucide="chevron-left" class="w-4 h-4"></i> Anterior
           </button>
-          <button onclick="resetCalendarToToday()" class="px-3 py-1.5 border border-slate-300 hover:bg-slate-50 text-slate-700 text-sm font-medium transition-colors">
+          <button onclick="resetCalendarToToday()" class="px-3 py-1.5 border border-white/10 hover:bg-white/10 text-white rounded-lg text-xs md:text-sm font-medium transition-colors">
             Hoje
           </button>
-          <button onclick="changeCalendarMonth(1)" title="Próximo mês" class="px-3 py-1.5 border border-slate-300 hover:bg-slate-50 text-slate-700 text-sm flex items-center gap-1 transition-colors">
+          <button onclick="changeCalendarMonth(1)" title="Próximo mês" class="px-3 py-1.5 border border-white/10 hover:bg-white/10 text-white rounded-lg text-xs md:text-sm flex items-center gap-1 transition-colors">
             Próximo <i data-lucide="chevron-right" class="w-4 h-4"></i>
           </button>
         </div>
       </div>
 
       <!-- Cabeçalho dos dias da semana -->
-      <div class="grid grid-cols-7 mt-4 border-b-2 border-slate-900 text-center text-xs font-semibold uppercase text-slate-600 pb-2">
+      <div class="grid grid-cols-7 mt-4 border-b border-white/10 text-center text-xs font-semibold uppercase text-slate-400 pb-2">
         <span>Dom</span>
         <span>Seg</span>
         <span>Ter</span>
@@ -678,129 +693,129 @@
       </div>
 
       <!-- Grade dos dias do mês -->
-      <div id="appointments-calendar-grid" class="grid grid-cols-7 gap-1 mt-1">
+      <div id="appointments-calendar-grid" class="grid grid-cols-7 gap-1.5 mt-2">
         <!-- Renderizado dinamicamente via JS -->
       </div>
     </div>
 
     <!-- ================= SEÇÃO DE EQUIPE (MÉTRICAS DE PROFISSIONAIS & COMISSÕES) ================= -->
-    <div id="team-summary-section" class="hidden mt-6 mb-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 flex flex-col justify-between shadow-sm">
+    <div id="team-summary-section" class="hidden mt-6 mb-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-[#1A1D24] border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-white/20 transition-all">
         <div class="flex items-center justify-between">
-          <span class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Profissionais Ativos</span>
+          <span class="text-xs uppercase tracking-wider text-slate-400 font-medium">Profissionais Ativos</span>
           <i data-lucide="users-round" class="w-4 h-4 text-[#0063B1]"></i>
         </div>
-        <div class="mt-2">
-          <p id="kpi-team-total" class="text-2xl font-bold text-slate-900">3</p>
-          <p class="text-xs text-slate-500 mt-0.5">colaboradores cadastrados</p>
+        <div class="mt-3">
+          <p id="kpi-team-total" class="text-2xl md:text-3xl font-light text-white tracking-tight">3</p>
+          <p class="text-xs text-slate-400 mt-1">colaboradores cadastrados</p>
         </div>
       </div>
 
-      <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 flex flex-col justify-between shadow-sm">
+      <div class="bg-[#1A1D24] border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-white/20 transition-all">
         <div class="flex items-center justify-between">
-          <span class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Atendimentos no Mês</span>
+          <span class="text-xs uppercase tracking-wider text-slate-400 font-medium">Atendimentos no Mês</span>
           <i data-lucide="calendar-check" class="w-4 h-4 text-[#72A824]"></i>
         </div>
-        <div class="mt-2">
-          <p id="kpi-team-appts" class="text-2xl font-bold text-slate-900">48</p>
-          <p class="text-xs text-slate-500 mt-0.5">serviços executados</p>
+        <div class="mt-3">
+          <p id="kpi-team-appts" class="text-2xl md:text-3xl font-light text-white tracking-tight">48</p>
+          <p class="text-xs text-slate-400 mt-1">serviços executados</p>
         </div>
       </div>
 
-      <div class="bg-slate-900 border border-slate-800 text-white rounded-xl p-5 flex flex-col justify-between shadow-sm">
+      <div class="bg-[#1A1D24] border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-white/20 transition-all">
         <div class="flex items-center justify-between">
-          <span class="text-xs uppercase tracking-wider text-white/70 font-semibold">Comissões a Repassar</span>
+          <span class="text-xs uppercase tracking-wider text-slate-400 font-medium">Comissões a Repassar</span>
           <i data-lucide="wallet" class="w-4 h-4 text-[#72A824]"></i>
         </div>
-        <div class="mt-2">
-          <p id="kpi-team-comms" class="text-2xl font-bold text-[#72A824]">R$ 2.450,00</p>
-          <p class="text-xs text-white/60 mt-0.5">fechamento do mês atual</p>
+        <div class="mt-3">
+          <p id="kpi-team-comms" class="text-2xl md:text-3xl font-light text-[#72A824] tracking-tight">R$ 2.450,00</p>
+          <p class="text-xs text-slate-400 mt-1">fechamento do mês atual</p>
         </div>
       </div>
 
-      <div class="bg-tile-blue text-white rounded-xl p-5 flex flex-col justify-between shadow-sm">
+      <div class="bg-[#1A1D24] border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-white/20 transition-all">
         <div class="flex items-center justify-between">
-          <span class="text-xs uppercase tracking-wider text-white/80 font-semibold">Comissão Média</span>
-          <i data-lucide="percent" class="w-4 h-4 text-white/80"></i>
+          <span class="text-xs uppercase tracking-wider text-slate-400 font-medium">Comissão Média</span>
+          <i data-lucide="percent" class="w-4 h-4 text-[#0063B1]"></i>
         </div>
-        <div class="mt-2">
-          <p id="kpi-team-rate" class="text-2xl font-bold text-white">45%</p>
-          <p class="text-xs text-white/70 mt-0.5">taxa média de repasse</p>
+        <div class="mt-3">
+          <p id="kpi-team-rate" class="text-2xl md:text-3xl font-light text-white tracking-tight">45%</p>
+          <p class="text-xs text-slate-400 mt-1">taxa média de repasse</p>
         </div>
       </div>
     </div>
 
     <!-- ================= SEÇÃO DE SALDO (RECEITAS + DESPESAS) ================= -->
-    <div id="saldo-summary-section" class="hidden mt-6 mb-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div id="saldo-summary-section" class="hidden mt-6 mb-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       
       <!-- Card Receitas -->
-      <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 flex flex-col justify-between shadow-sm">
+      <div class="bg-[#1A1D24] border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-white/20 transition-all">
         <div class="flex items-center justify-between">
-          <span class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Total Receitas</span>
-          <span class="w-2.5 h-2.5 rounded-full bg-tile-green"></span>
+          <span class="text-xs uppercase tracking-wider text-slate-400 font-medium">Total Receitas</span>
+          <span class="text-[11px] font-semibold text-[#72A824] bg-[#72A824]/10 border border-[#72A824]/20 px-2 py-0.5 rounded-full">Realizado</span>
         </div>
-        <div class="mt-2">
-          <p id="saldo-card-income-paid" class="text-2xl font-bold text-tile-green">R$ 0,00</p>
-          <p id="saldo-card-income-pend" class="text-xs text-slate-500 mt-0.5">a receber R$ 0,00</p>
+        <div class="mt-3">
+          <p id="saldo-card-income-paid" class="text-2xl md:text-3xl font-light text-[#72A824] tracking-tight">R$ 0,00</p>
+          <p id="saldo-card-income-pend" class="text-xs text-slate-400 mt-1">a receber R$ 0,00</p>
         </div>
       </div>
 
       <!-- Card Despesas -->
-      <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 flex flex-col justify-between shadow-sm">
+      <div class="bg-[#1A1D24] border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-white/20 transition-all">
         <div class="flex items-center justify-between">
-          <span class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Total Despesas</span>
-          <span class="w-2.5 h-2.5 rounded-full bg-tile-red"></span>
+          <span class="text-xs uppercase tracking-wider text-slate-400 font-medium">Total Despesas</span>
+          <span class="text-[11px] font-semibold text-[#D11F25] bg-[#D11F25]/10 border border-[#D11F25]/20 px-2 py-0.5 rounded-full">Efetuado</span>
         </div>
-        <div class="mt-2">
-          <p id="saldo-card-expense-paid" class="text-2xl font-bold text-tile-red">R$ 0,00</p>
-          <p id="saldo-card-expense-pend" class="text-xs text-slate-500 mt-0.5">a pagar R$ 0,00</p>
+        <div class="mt-3">
+          <p id="saldo-card-expense-paid" class="text-2xl md:text-3xl font-light text-[#D11F25] tracking-tight">R$ 0,00</p>
+          <p id="saldo-card-expense-pend" class="text-xs text-slate-400 mt-1">a pagar R$ 0,00</p>
         </div>
       </div>
 
       <!-- Card Saldo Realizado -->
-      <div class="bg-slate-900 border border-slate-800 text-white rounded-xl p-5 flex flex-col justify-between shadow-sm">
+      <div class="bg-[#1A1D24] border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-white/20 transition-all">
         <div class="flex items-center justify-between">
-          <span class="text-xs uppercase tracking-wider text-white/70 font-semibold">Saldo Realizado</span>
-          <i data-lucide="scale" class="w-4 h-4 text-white/80"></i>
+          <span class="text-xs uppercase tracking-wider text-slate-400 font-medium">Saldo Realizado</span>
+          <span class="text-[11px] font-semibold text-white bg-white/10 border border-white/10 px-2 py-0.5 rounded-full">Líquido</span>
         </div>
-        <div class="mt-2">
-          <p id="saldo-card-net-real" class="text-2xl font-bold text-white">R$ 0,00</p>
-          <p class="text-xs text-white/60 mt-0.5">receitas pagas - despesas pagas</p>
+        <div class="mt-3">
+          <p id="saldo-card-net-real" class="text-2xl md:text-3xl font-light text-white tracking-tight">R$ 0,00</p>
+          <p class="text-xs text-slate-400 mt-1">receitas pagas - despesas pagas</p>
         </div>
       </div>
 
       <!-- Card Saldo Projetado -->
-      <div class="bg-tile-blue text-white rounded-xl p-5 flex flex-col justify-between shadow-sm">
+      <div class="bg-[#1A1D24] border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-white/20 transition-all">
         <div class="flex items-center justify-between">
-          <span class="text-xs uppercase tracking-wider text-white/80 font-semibold">Saldo Projetado</span>
-          <i data-lucide="trending-up" class="w-4 h-4 text-white/80"></i>
+          <span class="text-xs uppercase tracking-wider text-slate-400 font-medium">Saldo Projetado</span>
+          <span class="text-[11px] font-semibold text-[#0063B1] bg-[#0063B1]/20 border border-[#0063B1]/30 px-2 py-0.5 rounded-full">Projeção</span>
         </div>
-        <div class="mt-2">
-          <p id="saldo-card-net-proj" class="text-2xl font-bold text-white">R$ 0,00</p>
-          <p class="text-xs text-white/70 mt-0.5">previsão final do mês</p>
+        <div class="mt-3">
+          <p id="saldo-card-net-proj" class="text-2xl md:text-3xl font-light text-[#0063B1] tracking-tight">R$ 0,00</p>
+          <p class="text-xs text-slate-400 mt-1">previsão final do mês</p>
         </div>
       </div>
 
     </div>
 
     <!-- SEÇÃO 2: TABELA DE REGISTROS / ATENDIMENTOS DO DIA -->
-    <div id="app-table-section">
+    <div id="app-table-section" class="mt-6 bg-[#1A1D24] border border-white/10 rounded-2xl p-6">
       <!-- Título da Tabela -->
-      <div class="mt-10 flex items-center justify-between border-b border-slate-200 pb-2">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
         <div>
-          <h2 id="app-table-title" class="text-2xl font-light">Agenda e Atendimentos</h2>
-          <span id="app-table-subtitle" class="text-xs text-slate-500 block"></span>
+          <h2 id="app-table-title" class="text-xl font-light text-white">Agenda e Atendimentos</h2>
+          <span id="app-table-subtitle" class="text-xs text-slate-400 block mt-0.5"></span>
         </div>
-        <div class="flex items-center gap-4">
-          <button id="btn-back-to-calendar" onclick="backToCalendar()" class="hidden text-xs text-tile-blue hover:underline flex items-center gap-1 font-medium">
+        <div class="flex flex-wrap items-center gap-3">
+          <button id="btn-back-to-calendar" onclick="backToCalendar()" class="hidden text-xs text-sky-400 hover:underline flex items-center gap-1 font-medium">
             <i data-lucide="calendar" class="w-3.5 h-3.5"></i> Ver Calendário Completo
           </button>
-          <div id="financial-filter-tabs" class="hidden flex items-center gap-1">
-            <button onclick="setFinancialFilter(null)" id="btn-filter-all" class="px-3 py-1.5 border border-slate-300 text-slate-700 hover:bg-slate-50 transition-colors text-xs font-normal">Todos</button>
-            <button onclick="setFinancialFilter('receita')" id="btn-filter-income" class="px-3 py-1.5 border border-slate-300 text-slate-700 hover:bg-slate-50 transition-colors text-xs font-normal">Receitas</button>
-            <button onclick="setFinancialFilter('despesa')" id="btn-filter-expense" class="px-3 py-1.5 border border-slate-300 text-slate-700 hover:bg-slate-50 transition-colors text-xs font-normal">Despesas</button>
+          <div id="financial-filter-tabs" class="hidden flex items-center gap-1.5">
+            <button onclick="setFinancialFilter(null)" id="btn-filter-all" class="px-3 py-1.5 border border-white/10 text-slate-300 hover:bg-white/10 text-xs font-normal rounded-lg transition-colors">Todos</button>
+            <button onclick="setFinancialFilter('receita')" id="btn-filter-income" class="px-3 py-1.5 border border-white/10 text-slate-300 hover:bg-white/10 text-xs font-normal rounded-lg transition-colors">Receitas</button>
+            <button onclick="setFinancialFilter('despesa')" id="btn-filter-expense" class="px-3 py-1.5 border border-white/10 text-slate-300 hover:bg-white/10 text-xs font-normal rounded-lg transition-colors">Despesas</button>
           </div>
-          <button onclick="refreshCurrentApp()" class="text-xs text-slate-500 hover:text-slate-800 flex items-center gap-1">
+          <button onclick="refreshCurrentApp()" class="text-xs text-slate-400 hover:text-white flex items-center gap-1 transition-colors">
             <i data-lucide="rotate-cw" class="w-3.5 h-3.5"></i> Atualizar
           </button>
         </div>
@@ -810,18 +825,18 @@
       <div class="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div class="relative w-full max-w-sm">
           <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
-          <input id="table-search-input" type="text" oninput="handleTableSearch(this.value)" placeholder="Pesquisar registros..." class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs pl-9 pr-4 py-2.5 rounded-lg outline-none focus:border-tile-blue focus:bg-white transition-all shadow-sm">
+          <input id="table-search-input" type="text" oninput="handleTableSearch(this.value)" placeholder="Pesquisar registros..." class="w-full bg-black/40 border border-white/10 text-white placeholder-slate-400 text-xs pl-9 pr-4 py-2.5 rounded-lg outline-none focus:border-white/30 transition-all shadow-sm">
         </div>
-        <div id="table-search-counter" class="text-xs text-slate-500 font-normal"></div>
+        <div id="table-search-counter" class="text-xs text-slate-400 font-normal"></div>
       </div>
 
-      <!-- Tabela Estilo Metro -->
+      <!-- Tabela Estilo Metro Dark (padrão Dashboard) -->
       <div class="mt-4 overflow-x-auto">
         <table class="min-w-full text-sm">
           <thead id="app-table-head">
             <!-- Dinâmico -->
           </thead>
-          <tbody id="app-table-body" class="divide-y divide-slate-100">
+          <tbody id="app-table-body" class="divide-y divide-white/5">
             <!-- Dinâmico -->
           </tbody>
         </table>
@@ -1280,23 +1295,27 @@
 
     const brl = (v) => Number(v || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
-    // Status colors badge estilo Metro (como na captura do usuário)
+    // Status colors badge no padrão escuro refinado do Dashboard
     const statusBadges = {
-      'confirmado': 'bg-[#5C3BAA] text-white',
-      'CONFIRMED': 'bg-[#5C3BAA] text-white',
-      'pendente': 'bg-[#5C3BAA] text-white',
-      'PENDING': 'bg-[#5C3BAA] text-white',
-      'concluido': 'bg-tile-blue text-white',
-      'COMPLETED': 'bg-tile-blue text-white',
-      'cancelado': 'bg-tile-red text-white',
-      'CANCELLED': 'bg-tile-red text-white',
-      'pago': 'bg-tile-green text-white',
-      'PAID': 'bg-tile-green text-white'
+      'confirmado': 'bg-[#0063B1]/20 border border-[#0063B1]/30 text-sky-400',
+      'CONFIRMED': 'bg-[#0063B1]/20 border border-[#0063B1]/30 text-sky-400',
+      'pendente': 'bg-amber-500/15 border border-amber-500/30 text-amber-400',
+      'PENDING': 'bg-amber-500/15 border border-amber-500/30 text-amber-400',
+      'concluido': 'bg-emerald-500/15 border border-emerald-500/30 text-emerald-400',
+      'COMPLETED': 'bg-emerald-500/15 border border-emerald-500/30 text-emerald-400',
+      'cancelado': 'bg-[#D11F25]/15 border border-[#D11F25]/30 text-rose-400',
+      'CANCELLED': 'bg-[#D11F25]/15 border border-[#D11F25]/30 text-rose-400',
+      'pago': 'bg-[#72A824]/15 border border-[#72A824]/30 text-[#72A824]',
+      'PAID': 'bg-[#72A824]/15 border border-[#72A824]/30 text-[#72A824]',
+      'em_atendimento': 'bg-[#72A824]/20 border border-[#72A824]/40 text-[#72A824]',
+      'aguardando': 'bg-white/10 border border-white/20 text-slate-300',
+      'ativo': 'bg-[#72A824]/15 border border-[#72A824]/30 text-[#72A824]',
+      'inativo': 'bg-slate-700/40 border border-slate-600 text-slate-400'
     };
 
     function renderStatusBadge(status) {
-      const cls = statusBadges[status] || 'bg-tile-purple text-white';
-      return `<span class="${cls} px-2 py-0.5 text-xs uppercase tracking-wide inline-block">${status}</span>`;
+      const cls = statusBadges[status] || 'bg-white/10 border border-white/20 text-slate-300';
+      return `<span class="${cls} px-2.5 py-0.5 text-xs font-semibold rounded-full uppercase tracking-wide inline-block">${status}</span>`;
     }
 
     // Requisição genérica autenticada com fallback suave
@@ -1571,7 +1590,7 @@
       // Dias residuais do mês anterior
       for (let i = firstDay - 1; i >= 0; i--) {
         const d = prevTotalDays - i;
-        html += `<div class="min-h-[85px] md:min-h-[105px] p-2 bg-slate-50 border border-slate-100 text-slate-300 cursor-not-allowed select-none"><span class="text-xs">${d}</span></div>`;
+        html += `<div class="min-h-[85px] md:min-h-[105px] p-2 bg-black/40 border border-white/5 text-slate-600 rounded-lg cursor-not-allowed select-none"><span class="text-xs">${d}</span></div>`;
       }
 
       // Dias do mês atual
@@ -1588,10 +1607,10 @@
         if (count > 0) {
           badges = `
             <div class="mt-1 flex flex-col gap-1 w-full overflow-hidden">
-              <span class="inline-block bg-[#0063B1] text-white text-[11px] px-1.5 py-0.5 font-medium truncate">
+              <span class="inline-block bg-[#0063B1] text-white text-[11px] px-2 py-0.5 rounded font-medium truncate">
                 ${count} agendamento${count > 1 ? 's' : ''}
               </span>
-              <span class="text-[11px] text-slate-600 truncate hidden sm:block">
+              <span class="text-[11px] text-slate-300 truncate hidden sm:block">
                 ${dayAppts[0].time} · ${dayAppts[0].customer}
               </span>
             </div>
@@ -1599,14 +1618,14 @@
         }
 
         const borderStyle = isToday 
-          ? 'border-2 border-tile-blue bg-blue-50/40' 
-          : 'border border-slate-200 hover:border-slate-900 hover:bg-slate-50';
+          ? 'border-2 border-tile-blue bg-tile-blue/15 shadow-[0_0_15px_rgba(0,120,215,0.2)]' 
+          : 'border border-white/10 hover:border-white/30 hover:bg-white/5 bg-black/30';
 
         html += `
-          <button onclick="selectAppointmentDay('${dateIso}')" class="min-h-[85px] md:min-h-[105px] p-2.5 text-left transition-all relative flex flex-col justify-between ${borderStyle}">
+          <button onclick="selectAppointmentDay('${dateIso}')" class="min-h-[85px] md:min-h-[105px] p-2.5 text-left transition-all relative flex flex-col justify-between rounded-lg ${borderStyle}">
             <div class="flex items-center justify-between w-full">
-              <span class="text-base font-light ${isToday ? 'font-bold text-tile-blue' : 'text-slate-800'}">${d}</span>
-              ${isToday ? '<span class="text-[10px] uppercase font-bold text-tile-blue tracking-wider">Hoje</span>' : ''}
+              <span class="text-base font-light ${isToday ? 'font-bold text-sky-400' : 'text-white'}">${d}</span>
+              ${isToday ? '<span class="text-[10px] uppercase font-bold text-sky-400 tracking-wider">Hoje</span>' : ''}
             </div>
             ${badges}
           </button>
@@ -1685,7 +1704,7 @@
 
       const titles = {
         'dashboard': 'Visão geral',
-        'saldo': 'Saldo',
+        'saldo': 'Financeiro & Saldo',
         'appointments': 'Agendamentos',
         'financial': financialFilter === 'receita' ? 'Receitas' : (financialFilter === 'despesa' ? 'Despesas' : 'Financeiro'),
         'customers': 'Clientes',
@@ -1702,7 +1721,10 @@
       const appView = document.getElementById('app-view');
       appView.classList.remove('hidden');
 
-      document.getElementById('app-view-title').textContent = titles[appId] || appId;
+      const appTitle = document.getElementById('app-view-title');
+      if (appTitle) {
+        appTitle.textContent = titles[appId] || 'Aplicativo';
+      }
 
       const kpisBox = document.getElementById('app-dashboard-kpis');
       const actionsBox = document.getElementById('app-view-actions');
@@ -1711,9 +1733,12 @@
       const btnBackCal = document.getElementById('btn-back-to-calendar');
       const finFilterTabs = document.getElementById('financial-filter-tabs');
       const tableSubtitle = document.getElementById('app-table-subtitle');
-      tableSubtitle.textContent = '';
+      if (tableSubtitle) tableSubtitle.textContent = '';
 
       const saldoSection = document.getElementById('saldo-summary-section');
+      const teamSection = document.getElementById('team-summary-section');
+      const dashSection = document.getElementById('dashboard-view-section');
+      const btnBack = document.getElementById('btn-app-back');
 
       if (finFilterTabs) {
         if (appId === 'financial' || appId === 'saldo') {
@@ -1724,6 +1749,11 @@
         }
       }
 
+      // Limpa campo de pesquisa ao trocar de aplicativo
+      const searchInp = document.getElementById('table-search-input');
+      if (searchInp) searchInp.value = '';
+      tableSearchTerm = '';
+
       // Configuração dos botões de ação rápida no topo
       const btnActionAppt = document.getElementById('btn-action-appointment');
       const btnActionTrx = document.getElementById('btn-action-transaction');
@@ -1731,257 +1761,108 @@
       const btnActionSrv = document.getElementById('btn-action-service');
       const btnActionTeam = document.getElementById('btn-action-team');
       const btnActionQueue = document.getElementById('btn-action-queue');
-      const btnActionGoals = document.getElementById('btn-action-goals');
-      const btnActionWa = document.getElementById('btn-action-whatsapp');
-      const btnActionRep = document.getElementById('btn-action-reports');
+      const btnActionGoal = document.getElementById('btn-action-goal');
+      const btnActionWa = document.getElementById('btn-action-wa');
+      const btnActionRep = document.getElementById('btn-action-rep');
+      const btnActionSup = document.getElementById('btn-action-supplier');
 
+      if (btnActionAppt) btnActionAppt.classList.toggle('hidden', appId !== 'dashboard' && appId !== 'appointments');
+      if (btnActionTrx) btnActionTrx.classList.toggle('hidden', appId !== 'financial' && appId !== 'saldo');
+      if (btnActionCust) btnActionCust.classList.toggle('hidden', appId !== 'customers');
+      if (btnActionSrv) btnActionSrv.classList.toggle('hidden', appId !== 'services');
+      if (btnActionTeam) btnActionTeam.classList.toggle('hidden', appId !== 'team');
       if (btnActionQueue) btnActionQueue.classList.toggle('hidden', appId !== 'queue');
-      if (btnActionGoals) btnActionGoals.classList.toggle('hidden', appId !== 'goals');
+      if (btnActionGoal) btnActionGoal.classList.toggle('hidden', appId !== 'goals');
       if (btnActionWa) btnActionWa.classList.toggle('hidden', appId !== 'whatsapp');
       if (btnActionRep) btnActionRep.classList.toggle('hidden', appId !== 'reports');
-      const btnActionSup = document.getElementById('btn-action-supplier');
       if (btnActionSup) btnActionSup.classList.toggle('hidden', appId !== 'suppliers');
 
-      if (btnActionTeam) {
-        if (appId === 'team') {
-          btnActionTeam.classList.remove('hidden');
-        } else {
-          btnActionTeam.classList.add('hidden');
-        }
-      }
+      // TEMA METRO ESCURO DASHBOARD UNIFICADO PARA TODAS AS SESSÕES
+      appView.className = 'min-h-screen bg-black text-white px-6 md:px-14 pt-8 pb-28 metro-enter';
+      if (btnBack) btnBack.className = 'flex items-center justify-center text-white hover:opacity-60 transition-opacity p-1';
+      if (appTitle) appTitle.className = 'text-4xl md:text-5xl font-light text-white';
 
-      if (btnActionAppt) {
-        if (appId === 'dashboard' || appId === 'appointments') {
-          btnActionAppt.classList.remove('hidden');
-        } else {
-          btnActionAppt.classList.add('hidden');
-        }
-      }
+      // Visibilidade das seções complementares
+      if (teamSection) teamSection.classList.toggle('hidden', appId !== 'team');
+      if (saldoSection) saldoSection.classList.toggle('hidden', appId !== 'saldo' && appId !== 'financial');
 
-      if (btnActionTrx) {
-        if (appId === 'financial' || appId === 'saldo') {
-          btnActionTrx.classList.remove('hidden');
-        } else {
-          btnActionTrx.classList.add('hidden');
-        }
-      }
-
-      if (btnActionCust) {
-        if (appId === 'customers') {
-          btnActionCust.classList.remove('hidden');
-        } else {
-          btnActionCust.classList.add('hidden');
-        }
-      }
-
-      if (btnActionSrv) {
-        if (appId === 'services') {
-          btnActionSrv.classList.remove('hidden');
-        } else {
-          btnActionSrv.classList.add('hidden');
-        }
-      }
-
-      const dashSection = document.getElementById('dashboard-view-section');
-      const btnBack = document.getElementById('btn-app-back');
-      const appTitle = document.getElementById('app-view-title');
-
-      // Se for Dashboard, ativa tema grafite/escuro combinando com o gráfico da primeira página
       if (appId === 'dashboard') {
-        appView.className = 'min-h-screen bg-black text-white px-6 md:px-14 pt-8 pb-28 metro-enter';
-        if (btnBack) btnBack.className = 'flex items-center justify-center text-white hover:opacity-60 transition-opacity p-1';
-        if (appTitle) appTitle.className = 'text-4xl md:text-5xl font-light text-white';
-        
         if (dashSection) dashSection.classList.remove('hidden');
         if (kpisBox) kpisBox.classList.add('hidden');
-        actionsBox.classList.add('hidden');
-        calendarSection.classList.add('hidden');
-        tableSection.classList.add('hidden');
-        btnBackCal.classList.add('hidden');
-        
+        if (actionsBox) actionsBox.classList.remove('hidden');
+        if (calendarSection) calendarSection.classList.add('hidden');
+        if (tableSection) tableSection.classList.add('hidden');
+        if (btnBackCal) btnBackCal.classList.add('hidden');
         setTimeout(initFullDashboardViewCharts, 60);
       } else {
-        appView.className = 'min-h-screen bg-white text-slate-900 px-8 md:px-20 pt-10 pb-28 metro-enter';
-        if (btnBack) btnBack.className = 'flex items-center justify-center text-slate-900 hover:opacity-60 transition-opacity p-1';
-        if (appTitle) appTitle.className = 'text-4xl md:text-5xl font-light text-slate-900';
         if (dashSection) dashSection.classList.add('hidden');
-      }
+        if (kpisBox) kpisBox.classList.add('hidden');
+        if (actionsBox) actionsBox.classList.remove('hidden');
 
-      // Exibe ou oculta a seção de Saldo e Equipe
-      const teamSection = document.getElementById('team-summary-section');
-      if (teamSection) {
-        if (appId === 'team') {
-          teamSection.classList.remove('hidden');
-        } else {
-          teamSection.classList.add('hidden');
-        }
-      }
-
-      if (saldoSection) {
-        if (appId === 'saldo' || appId === 'financial') {
-          saldoSection.classList.remove('hidden');
-        } else {
-          saldoSection.classList.add('hidden');
-        }
-      }
-
-      // Renderização do conteúdo de cada aplicativo
-      if (appId === 'dashboard') {
-        // Nada extra a fazer aqui, os gráficos foram chamados acima
-      } else if (appId === 'team') {
-        kpisBox.classList.add('hidden');
-        actionsBox.classList.remove('hidden');
-        calendarSection.classList.add('hidden');
-        tableSection.classList.remove('hidden');
-        btnBackCal.classList.add('hidden');
-        document.getElementById('app-table-title').textContent = 'Gestão de Colaboradores e Escala';
-        document.getElementById('app-table-subtitle').textContent = 'Profissionais cadastrados e controle de comissões';
-        renderAppTable('team');
-      } else if (appId === 'queue') {
-        kpisBox.classList.add('hidden');
-        actionsBox.classList.remove('hidden');
-        calendarSection.classList.add('hidden');
-        tableSection.classList.remove('hidden');
-        btnBackCal.classList.add('hidden');
-        document.getElementById('app-table-title').textContent = 'Fila de Atendimento do Dia';
-        document.getElementById('app-table-subtitle').textContent = 'Controle de recepção, chamados e tempo de atendimento';
-        renderAppTable('queue');
-      } else if (appId === 'goals') {
-        kpisBox.classList.add('hidden');
-        actionsBox.classList.remove('hidden');
-        calendarSection.classList.add('hidden');
-        tableSection.classList.remove('hidden');
-        btnBackCal.classList.add('hidden');
-        document.getElementById('app-table-title').textContent = 'Meta do Mês & Progresso Estratégico';
-        document.getElementById('app-table-subtitle').textContent = 'Acompanhamento de metas financeiras e operacionais do negócio';
-        renderAppTable('goals');
-      } else if (appId === 'whatsapp') {
-        kpisBox.classList.add('hidden');
-        actionsBox.classList.remove('hidden');
-        calendarSection.classList.add('hidden');
-        tableSection.classList.remove('hidden');
-        btnBackCal.classList.add('hidden');
-        document.getElementById('app-table-title').textContent = 'Lembretes & Confirmação via WhatsApp';
-        document.getElementById('app-table-subtitle').textContent = 'Disparos diretos de confirmação anti-falta com 1 clique';
-        renderAppTable('whatsapp');
-      } else if (appId === 'suppliers') {
-        let listToRender = suppliers;
-        if (tableSearchTerm) {
-          listToRender = listToRender.filter(s =>
-            (s.name && s.name.toLowerCase().includes(tableSearchTerm)) ||
-            (s.category && s.category.toLowerCase().includes(tableSearchTerm)) ||
-            (s.contact && s.contact.toLowerCase().includes(tableSearchTerm)) ||
-            (s.phone && s.phone.toLowerCase().includes(tableSearchTerm))
-          );
-        }
-        if (counterEl) counterEl.textContent = `${listToRender.length} fornecedor(es) encontrado(s)`;
-
-        thead.innerHTML = `
-          <tr class="border-b-2 border-slate-900 text-left">
-            <th class="py-2.5 pr-4 font-semibold">Fornecedor / Razão</th>
-            <th class="py-2.5 pr-4 font-semibold">Categoria / Insumo</th>
-            <th class="py-2.5 pr-4 font-semibold">Contato Principal</th>
-            <th class="py-2.5 pr-4 font-semibold">Telefone / WhatsApp</th>
-            <th class="py-2.5 pr-4 font-semibold">Condição de Pagamento</th>
-            <th class="py-2.5 pr-4 font-semibold">Status</th>
-            <th class="py-2.5 pr-4 text-right font-semibold">Ações</th>
-          </tr>
-        `;
-
-        if (listToRender.length === 0) {
-          tbody.innerHTML = `<tr><td colspan="7" class="py-12 text-center text-slate-400">Nenhum fornecedor cadastrado ou encontrado.</td></tr>`;
-          return;
-        }
-
-        listToRender.forEach(s => {
-          const rawId = s.id;
-          tbody.innerHTML += `
-            <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
-              <td class="py-3.5 pr-4 font-medium text-slate-900">${s.name}</td>
-              <td class="py-3.5 pr-4 text-slate-600">${s.category}</td>
-              <td class="py-3.5 pr-4">${s.contact}</td>
-              <td class="py-3.5 pr-4 font-mono text-xs text-slate-600">${s.phone}</td>
-              <td class="py-3.5 pr-4 font-medium text-slate-700">${s.paymentTerms}</td>
-              <td class="py-3.5 pr-4">
-                <span class="px-2.5 py-1 rounded bg-[#72A824]/10 text-[#72A824] font-semibold text-xs">${s.status === 'ativo' ? 'Ativo' : 'Inativo'}</span>
-              </td>
-              <td class="py-3.5 pr-4 text-right whitespace-nowrap space-x-2">
-                <button onclick="openEditSupplierDialog(${rawId})" class="text-xs text-tile-blue hover:underline font-medium">Editar</button>
-                <button onclick="deleteSupplierConfirm(${rawId})" class="text-xs text-rose-600 hover:underline">Excluir</button>
-              </td>
-            </tr>
-          `;
-        });
-      } else if (appId === 'reports') {
-        kpisBox.classList.add('hidden');
-        actionsBox.classList.remove('hidden');
-        calendarSection.classList.add('hidden');
-        tableSection.classList.remove('hidden');
-        btnBackCal.classList.add('hidden');
-        document.getElementById('app-table-title').textContent = 'Relatórios & Fechamento Contábil (DRE)';
-        document.getElementById('app-table-subtitle').textContent = 'Demonstrativo de resultado, meios de pagamento e exportação';
-        renderAppTable('reports');
-      } else if (appId === 'suppliers') {
-        kpisBox.classList.add('hidden');
-        actionsBox.classList.remove('hidden');
-        calendarSection.classList.add('hidden');
-        tableSection.classList.remove('hidden');
-        btnBackCal.classList.add('hidden');
-        document.getElementById('app-table-title').textContent = 'Fornecedores e Parceiros Comerciais';
-        document.getElementById('app-table-subtitle').textContent = 'Cadastro de parceiros de insumos, contatos e condições de pagamento';
-        renderAppTable('suppliers');
-      } else if (appId === 'saldo') {
-        kpisBox.classList.add('hidden');
-        actionsBox.classList.remove('hidden');
-        calendarSection.classList.add('hidden');
-        tableSection.classList.remove('hidden');
-        btnBackCal.classList.add('hidden');
-        document.getElementById('app-table-title').textContent = 'Balanço de Movimentações';
-        document.getElementById('app-table-subtitle').textContent = 'Demonstrativo consolidado de Receitas e Despesas';
-        renderAppTable('financial');
-      } else if (appId === 'appointments') {
-        kpisBox.classList.add('hidden');
-        actionsBox.classList.remove('hidden');
-        
-        // Abre o formato de agenda (calendário) ou detalhe do dia
-        if (!selectedDayDate) {
-          calendarSection.classList.remove('hidden');
-          tableSection.classList.add('hidden');
-          btnBackCal.classList.add('hidden');
-          renderCalendar();
+        if (appId === 'appointments') {
+          if (!selectedDayDate) {
+            calendarSection.classList.remove('hidden');
+            tableSection.classList.add('hidden');
+            btnBackCal.classList.add('hidden');
+            renderCalendar();
+          } else {
+            calendarSection.classList.add('hidden');
+            tableSection.classList.remove('hidden');
+            btnBackCal.classList.remove('hidden');
+            document.getElementById('app-table-title').textContent = 'Agenda e Atendimentos';
+            tableSubtitle.textContent = `Atendimentos agendados para ${selectedDayDate}`;
+            renderAppTable('appointments');
+          }
         } else {
           calendarSection.classList.add('hidden');
           tableSection.classList.remove('hidden');
-          btnBackCal.classList.remove('hidden');
-          document.getElementById('app-table-title').textContent = 'Agenda e Atendimentos';
-          renderAppTable('appointments');
-        }
-      } else if (appId === 'financial') {
-        kpisBox.classList.add('hidden');
-        actionsBox.classList.remove('hidden');
-        calendarSection.classList.add('hidden');
-        tableSection.classList.remove('hidden');
-        btnBackCal.classList.add('hidden');
+          btnBackCal.classList.add('hidden');
 
-        if (financialFilter === 'receita') {
-          document.getElementById('app-table-title').textContent = 'Lançamentos de Receitas';
-          tableSubtitle.textContent = 'Exibindo apenas receitas realizadas e a receber';
-        } else if (financialFilter === 'despesa') {
-          document.getElementById('app-table-title').textContent = 'Lançamentos de Despesas';
-          tableSubtitle.textContent = 'Exibindo apenas despesas efetuadas e a pagar';
-        } else {
-          document.getElementById('app-table-title').textContent = 'Lista de Financeiro';
-          tableSubtitle.textContent = 'Todos os lançamentos de receitas e despesas';
+          if (appId === 'team') {
+            document.getElementById('app-table-title').textContent = 'Gestão de Colaboradores e Escala';
+            tableSubtitle.textContent = 'Profissionais cadastrados e controle de comissões';
+          } else if (appId === 'queue') {
+            document.getElementById('app-table-title').textContent = 'Fila de Atendimento do Dia';
+            tableSubtitle.textContent = 'Controle de recepção, chamados e tempo de atendimento';
+          } else if (appId === 'goals') {
+            document.getElementById('app-table-title').textContent = 'Meta do Mês & Progresso Estratégico';
+            tableSubtitle.textContent = 'Acompanhamento de metas financeiras e operacionais do negócio';
+          } else if (appId === 'whatsapp') {
+            document.getElementById('app-table-title').textContent = 'Lembretes & Confirmação via WhatsApp';
+            tableSubtitle.textContent = 'Disparos diretos de confirmação anti-falta com 1 clique';
+          } else if (appId === 'reports') {
+            document.getElementById('app-table-title').textContent = 'Relatórios & Fechamento Contábil (DRE)';
+            tableSubtitle.textContent = 'Demonstrativo de resultado, meios de pagamento e exportação';
+          } else if (appId === 'suppliers') {
+            document.getElementById('app-table-title').textContent = 'Fornecedores e Parceiros Comerciais';
+            tableSubtitle.textContent = 'Cadastro de parceiros de insumos, contatos e condições de pagamento';
+          } else if (appId === 'saldo') {
+            document.getElementById('app-table-title').textContent = 'Balanço de Movimentações';
+            tableSubtitle.textContent = 'Demonstrativo consolidado de Receitas e Despesas';
+          } else if (appId === 'financial') {
+            if (financialFilter === 'receita') {
+              document.getElementById('app-table-title').textContent = 'Lançamentos de Receitas';
+              tableSubtitle.textContent = 'Exibindo apenas receitas realizadas e a receber';
+            } else if (financialFilter === 'despesa') {
+              document.getElementById('app-table-title').textContent = 'Lançamentos de Despesas';
+              tableSubtitle.textContent = 'Exibindo apenas despesas efetuadas e a pagar';
+            } else {
+              document.getElementById('app-table-title').textContent = 'Lista do Financeiro';
+              tableSubtitle.textContent = 'Todos os lançamentos de receitas e despesas';
+            }
+          } else if (appId === 'customers') {
+            document.getElementById('app-table-title').textContent = 'Carteira de Clientes';
+            tableSubtitle.textContent = 'Base cadastrada de contatos e histórico';
+          } else if (appId === 'services') {
+            document.getElementById('app-table-title').textContent = 'Catálogo de Serviços';
+            tableSubtitle.textContent = 'Tabela de preços, duração e opções disponíveis';
+          } else {
+            document.getElementById('app-table-title').textContent = `Lista de ${titles[appId] || 'Registros'}`;
+            tableSubtitle.textContent = 'Gerenciamento completo dos registros';
+          }
+
+          renderAppTable(appId);
         }
-        renderAppTable('financial');
-      } else {
-        kpisBox.classList.add('hidden');
-        actionsBox.classList.remove('hidden');
-        calendarSection.classList.add('hidden');
-        tableSection.classList.remove('hidden');
-        btnBackCal.classList.add('hidden');
-        document.getElementById('app-table-title').textContent = `Lista de ${titles[appId]}`;
-        renderAppTable(appId);
       }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1994,18 +1875,18 @@
       const btnExp = document.getElementById('btn-filter-expense');
       if (!btnAll || !btnInc || !btnExp) return;
 
-      const baseInactive = "px-3 py-1.5 border border-slate-300 text-slate-700 hover:bg-slate-50 transition-colors text-xs font-normal";
+      const baseInactive = "px-3 py-1.5 border border-white/10 text-slate-300 hover:bg-white/10 text-xs font-normal rounded-lg transition-colors";
       
       btnAll.className = !financialFilter 
-        ? "px-3 py-1.5 border-2 border-slate-900 bg-slate-900 text-white font-medium text-xs transition-colors"
+        ? "px-3 py-1.5 border border-white/30 bg-white/20 text-white font-medium text-xs rounded-lg transition-colors"
         : baseInactive;
 
       btnInc.className = financialFilter === 'receita'
-        ? "px-3 py-1.5 border-2 border-[#0063B1] bg-[#0063B1] text-white font-medium text-xs transition-colors"
+        ? "px-3 py-1.5 border border-[#0063B1] bg-[#0063B1] text-white font-medium text-xs rounded-lg transition-colors"
         : baseInactive;
 
       btnExp.className = financialFilter === 'despesa'
-        ? "px-3 py-1.5 border-2 border-rose-600 bg-rose-600 text-white font-medium text-xs transition-colors"
+        ? "px-3 py-1.5 border border-rose-600 bg-rose-600 text-white font-medium text-xs rounded-lg transition-colors"
         : baseInactive;
     }
 
@@ -2013,7 +1894,6 @@
       openApp('financial', filter);
     }
 
-    // Retorna ao Start Screen
     function closeApp() {
       currentApp = null;
       selectedDayDate = null;
@@ -2088,15 +1968,16 @@
       thead.innerHTML = '';
       tbody.innerHTML = '';
 
+      // 1. AGENDAMENTOS E ATENDIMENTOS DO DIA
       if (appId === 'appointments' || appId === 'dashboard') {
         thead.innerHTML = `
-          <tr class="border-b-2 border-slate-900 text-left">
-            <th class="py-2.5 pr-4 font-semibold">Horário</th>
-            <th class="py-2.5 pr-4 font-semibold">Cliente</th>
-            <th class="py-2.5 pr-4 font-semibold">Serviço</th>
-            <th class="py-2.5 pr-4 font-semibold">Duração / Valor</th>
-            <th class="py-2.5 pr-4 font-semibold">Status</th>
-            <th class="py-2.5 pr-4 text-right font-semibold">Ações</th>
+          <tr class="border-b border-white/10 text-left text-xs uppercase tracking-wider text-white/40 font-semibold">
+            <th class="py-3 pr-4">Horário</th>
+            <th class="py-3 pr-4">Cliente</th>
+            <th class="py-3 pr-4">Serviço</th>
+            <th class="py-3 pr-4">Duração / Valor</th>
+            <th class="py-3 pr-4">Status</th>
+            <th class="py-3 pr-4 text-right">Ações</th>
           </tr>
         `;
 
@@ -2120,8 +2001,8 @@
             <tr>
               <td colspan="6" class="py-12 text-center text-slate-400">
                 ${tableSearchTerm ? 'Nenhum agendamento encontrado para esta pesquisa.' : 'Nenhum atendimento agendado para esta data.'}
-                <div class="mt-2">
-                  <button onclick="openAppointmentDialog()" class="text-xs text-tile-blue hover:underline font-medium">
+                <div class="mt-2.5">
+                  <button onclick="openAppointmentDialog()" class="text-xs text-sky-400 hover:underline font-medium">
                     + Agendar novo atendimento
                   </button>
                 </div>
@@ -2139,27 +2020,30 @@
 
           let actions = '<div class="flex items-center justify-end gap-2.5">';
           if (isPending) {
-            actions += `<button onclick="confirmAppointment(${rawId})" class="text-xs text-tile-blue hover:underline font-medium">Confirmar</button>`;
-            actions += `<button onclick="cancelAppointment(${rawId})" class="text-xs text-slate-500 hover:text-slate-800">Cancelar</button>`;
+            actions += `<button onclick="confirmAppointment(${rawId})" class="text-xs text-sky-400 hover:underline font-medium">Confirmar</button>`;
+            actions += `<button onclick="cancelAppointment(${rawId})" class="text-xs text-slate-400 hover:text-white">Cancelar</button>`;
           } else if (isConfirmed) {
-            actions += `<button onclick="completeAppointment(${rawId})" class="text-xs text-emerald-700 hover:underline font-semibold">Concluir</button>`;
-            actions += `<button onclick="cancelAppointment(${rawId})" class="text-xs text-slate-500 hover:text-slate-800">Cancelar</button>`;
+            actions += `<button onclick="completeAppointment(${rawId})" class="text-xs text-[#72A824] hover:underline font-semibold">Concluir</button>`;
+            actions += `<button onclick="cancelAppointment(${rawId})" class="text-xs text-slate-400 hover:text-white">Cancelar</button>`;
           }
-          actions += `<button onclick="deleteAppointmentConfirm(${rawId})" class="text-xs text-rose-600 hover:underline">Excluir</button>`;
+          actions += `<button onclick="deleteAppointmentConfirm(${rawId})" class="text-xs text-rose-400 hover:underline">Excluir</button>`;
           actions += '</div>';
 
           tbody.innerHTML += `
-            <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
-              <td class="py-3.5 pr-4 font-medium text-slate-900">${a.time || '--:--'}</td>
-              <td class="py-3.5 pr-4 font-medium">${a.customer || '—'}</td>
-              <td class="py-3.5 pr-4">${a.service || '—'}</td>
-              <td class="py-3.5 pr-4 opacity-75">${a.duration || 0} min · ${brl(a.price)}</td>
+            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+              <td class="py-3.5 pr-4 font-medium text-white">${a.time || '--:--'}</td>
+              <td class="py-3.5 pr-4 font-medium text-white">${a.customer || '—'}</td>
+              <td class="py-3.5 pr-4 text-slate-300">${a.service || '—'}</td>
+              <td class="py-3.5 pr-4 text-slate-400 text-xs md:text-sm">${a.duration || 0} min · ${brl(a.price)}</td>
               <td class="py-3.5 pr-4">${renderStatusBadge(a.status)}</td>
               <td class="py-3.5 pr-4 text-right">${actions}</td>
             </tr>
           `;
         });
-      } else if (appId === 'financial') {
+      }
+
+      // 2. FINANCEIRO & SALDO
+      else if (appId === 'financial' || appId === 'saldo') {
         let filteredList = financialFilter
           ? financial.filter(f => f.type === financialFilter)
           : financial;
@@ -2175,14 +2059,14 @@
         if (counterEl) counterEl.textContent = `${filteredList.length} lançamento(s) encontrado(s)`;
 
         thead.innerHTML = `
-          <tr class="border-b-2 border-slate-900 text-left">
-            <th class="py-2.5 pr-4 font-semibold">Tipo</th>
-            <th class="py-2.5 pr-4 font-semibold">Categoria / Descrição</th>
-            <th class="py-2.5 pr-4 font-semibold">Vencimento</th>
-            <th class="py-2.5 pr-4 font-semibold">Forma</th>
-            <th class="py-2.5 pr-4 font-semibold">Status</th>
-            <th class="py-2.5 pr-4 text-right font-semibold">Valor</th>
-            <th class="py-2.5 pr-4 text-right font-semibold">Ações</th>
+          <tr class="border-b border-white/10 text-left text-xs uppercase tracking-wider text-white/40 font-semibold">
+            <th class="py-3 pr-4">Tipo</th>
+            <th class="py-3 pr-4">Categoria / Descrição</th>
+            <th class="py-3 pr-4">Vencimento</th>
+            <th class="py-3 pr-4">Forma</th>
+            <th class="py-3 pr-4">Status</th>
+            <th class="py-3 pr-4 text-right">Valor</th>
+            <th class="py-3 pr-4 text-right">Ações</th>
           </tr>
         `;
 
@@ -2191,8 +2075,8 @@
             <tr>
               <td colspan="7" class="py-12 text-center text-slate-400">
                 ${tableSearchTerm ? 'Nenhum lançamento encontrado para esta pesquisa.' : `Nenhum lançamento de ${financialFilter === 'receita' ? 'receita' : (financialFilter === 'despesa' ? 'despesa' : 'financeiro')} encontrado.`}
-                <div class="mt-2">
-                  <button onclick="openTransactionDialog()" class="text-xs text-tile-blue hover:underline font-medium">
+                <div class="mt-2.5">
+                  <button onclick="openTransactionDialog()" class="text-xs text-sky-400 hover:underline font-medium">
                     + Adicionar novo lançamento
                   </button>
                 </div>
@@ -2208,23 +2092,26 @@
           const rawId = typeof f.id === 'string' ? `'${f.id}'` : f.id;
 
           tbody.innerHTML += `
-            <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
-              <td class="py-3.5 pr-4 uppercase text-xs font-semibold ${isIncome ? 'text-tile-green' : 'text-tile-red'}">${isIncome ? 'Receita' : 'Despesa'}</td>
-              <td class="py-3.5 pr-4 font-medium text-slate-900">${f.category}</td>
-              <td class="py-3.5 pr-4">${f.due}</td>
-              <td class="py-3.5 pr-4">${f.method}</td>
+            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+              <td class="py-3.5 pr-4 uppercase text-xs font-semibold ${isIncome ? 'text-[#72A824]' : 'text-[#D11F25]'}">${isIncome ? 'Receita' : 'Despesa'}</td>
+              <td class="py-3.5 pr-4 font-medium text-white">${f.category}</td>
+              <td class="py-3.5 pr-4 text-slate-300">${f.due}</td>
+              <td class="py-3.5 pr-4 text-slate-400">${f.method}</td>
               <td class="py-3.5 pr-4">${renderStatusBadge(f.status)}</td>
-              <td class="py-3.5 pr-4 text-right font-bold ${isIncome ? 'text-tile-green' : 'text-tile-red'}">${isIncome ? '+' : '-'} ${brl(f.value)}</td>
+              <td class="py-3.5 pr-4 text-right font-bold ${isIncome ? 'text-[#72A824]' : 'text-[#D11F25]'}">${isIncome ? '+' : '-'} ${brl(f.value)}</td>
               <td class="py-3.5 pr-4 text-right whitespace-nowrap space-x-2">
-                <button onclick="toggleTransactionStatus(${rawId}, '${f.status}')" class="text-xs ${isPaid ? 'text-amber-700' : 'text-emerald-700'} hover:underline font-medium">
-                  ${isPaid ? 'Pendente' : 'Pagar'}
+                <button onclick="toggleTransactionStatus(${rawId}, '${f.status}')" class="text-xs ${isPaid ? 'text-amber-400' : 'text-[#72A824]'} hover:underline font-medium">
+                  ${isPaid ? 'Marcar Pendente' : 'Pagar'}
                 </button>
-                <button onclick="deleteTransactionConfirm(${rawId})" class="text-xs text-rose-600 hover:underline">Excluir</button>
+                <button onclick="deleteTransactionConfirm(${rawId})" class="text-xs text-rose-400 hover:underline">Excluir</button>
               </td>
             </tr>
           `;
         });
-      } else if (appId === 'customers') {
+      }
+
+      // 3. CLIENTES
+      else if (appId === 'customers') {
         let listToRender = customers;
         if (tableSearchTerm) {
           listToRender = listToRender.filter(c =>
@@ -2238,12 +2125,12 @@
         if (counterEl) counterEl.textContent = `${listToRender.length} cliente(s) encontrado(s)`;
 
         thead.innerHTML = `
-          <tr class="border-b-2 border-slate-900 text-left">
-            <th class="py-2.5 pr-4 font-semibold">Nome</th>
-            <th class="py-2.5 pr-4 font-semibold">Telefone</th>
-            <th class="py-2.5 pr-4 font-semibold">E-mail</th>
-            <th class="py-2.5 pr-4 font-semibold">Observações</th>
-            <th class="py-2.5 pr-4 text-right font-semibold">Ações</th>
+          <tr class="border-b border-white/10 text-left text-xs uppercase tracking-wider text-white/40 font-semibold">
+            <th class="py-3 pr-4">Nome</th>
+            <th class="py-3 pr-4">Telefone</th>
+            <th class="py-3 pr-4">E-mail</th>
+            <th class="py-3 pr-4">Observações</th>
+            <th class="py-3 pr-4 text-right">Ações</th>
           </tr>
         `;
 
@@ -2252,8 +2139,8 @@
             <tr>
               <td colspan="5" class="py-12 text-center text-slate-400">
                 ${tableSearchTerm ? 'Nenhum cliente encontrado para esta pesquisa.' : 'Nenhum cliente cadastrado ainda.'}
-                <div class="mt-2">
-                  <button onclick="openCustomerDialog()" class="text-xs text-tile-blue hover:underline font-medium">
+                <div class="mt-2.5">
+                  <button onclick="openCustomerDialog()" class="text-xs text-sky-400 hover:underline font-medium">
                     + Cadastrar primeiro cliente
                   </button>
                 </div>
@@ -2266,19 +2153,22 @@
         listToRender.forEach(c => {
           const rawId = typeof c.id === 'string' ? `'${c.id}'` : c.id;
           tbody.innerHTML += `
-            <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
-              <td class="py-3.5 pr-4 font-medium text-slate-900">${c.name}</td>
-              <td class="py-3.5 pr-4">${c.phone || '—'}</td>
-              <td class="py-3.5 pr-4">${c.email || '—'}</td>
-              <td class="py-3.5 pr-4 text-slate-500 text-xs">${c.notes || '—'}</td>
+            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+              <td class="py-3.5 pr-4 font-medium text-white">${c.name}</td>
+              <td class="py-3.5 pr-4 text-slate-300 font-mono text-xs">${c.phone || '—'}</td>
+              <td class="py-3.5 pr-4 text-slate-300">${c.email || '—'}</td>
+              <td class="py-3.5 pr-4 text-slate-400 text-xs">${c.notes || '—'}</td>
               <td class="py-3.5 pr-4 text-right whitespace-nowrap space-x-2">
-                <button onclick="openEditCustomerDialog(${rawId})" class="text-xs text-tile-blue hover:underline font-medium">Editar</button>
-                <button onclick="deleteCustomerConfirm(${rawId})" class="text-xs text-rose-600 hover:underline">Excluir</button>
+                <button onclick="openEditCustomerDialog(${rawId})" class="text-xs text-sky-400 hover:underline font-medium">Editar</button>
+                <button onclick="deleteCustomerConfirm(${rawId})" class="text-xs text-rose-400 hover:underline">Excluir</button>
               </td>
             </tr>
           `;
         });
-      } else if (appId === 'team') {
+      }
+
+      // 4. EQUIPE & PROFISSIONAIS
+      else if (appId === 'team') {
         let listToRender = teamMembers;
         if (tableSearchTerm) {
           listToRender = listToRender.filter(m =>
@@ -2291,14 +2181,14 @@
         if (counterEl) counterEl.textContent = `${listToRender.length} colaborador(es) encontrado(s)`;
 
         thead.innerHTML = `
-          <tr class="border-b-2 border-slate-900 text-left">
-            <th class="py-2.5 pr-4 font-semibold">Profissional</th>
-            <th class="py-2.5 pr-4 font-semibold">Cargo / Especialidade</th>
-            <th class="py-2.5 pr-4 font-semibold">Telefone / E-mail</th>
-            <th class="py-2.5 pr-4 font-semibold">% Repasse</th>
-            <th class="py-2.5 pr-4 font-semibold">Atendimentos</th>
-            <th class="py-2.5 pr-4 text-right font-semibold">Comissão Acumulada</th>
-            <th class="py-2.5 pr-4 text-right font-semibold">Ações</th>
+          <tr class="border-b border-white/10 text-left text-xs uppercase tracking-wider text-white/40 font-semibold">
+            <th class="py-3 pr-4">Profissional</th>
+            <th class="py-3 pr-4">Cargo / Especialidade</th>
+            <th class="py-3 pr-4">Telefone / E-mail</th>
+            <th class="py-3 pr-4">% Repasse</th>
+            <th class="py-3 pr-4">Atendimentos</th>
+            <th class="py-3 pr-4 text-right">Comissão Acumulada</th>
+            <th class="py-3 pr-4 text-right">Ações</th>
           </tr>
         `;
 
@@ -2307,8 +2197,8 @@
             <tr>
               <td colspan="7" class="py-12 text-center text-slate-400">
                 ${tableSearchTerm ? 'Nenhum profissional encontrado para esta pesquisa.' : 'Nenhum colaborador cadastrado na equipe.'}
-                <div class="mt-2">
-                  <button onclick="openTeamMemberDialog()" class="text-xs text-tile-blue hover:underline font-medium">
+                <div class="mt-2.5">
+                  <button onclick="openTeamMemberDialog()" class="text-xs text-sky-400 hover:underline font-medium">
                     + Cadastrar primeiro colaborador
                   </button>
                 </div>
@@ -2321,26 +2211,28 @@
         listToRender.forEach(m => {
           const rawId = m.id;
           tbody.innerHTML += `
-            <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
-              <td class="py-3.5 pr-4 font-medium text-slate-900 flex items-center gap-2.5">
-                <div class="w-8 h-8 rounded-full bg-[#0063B1]/10 text-[#0063B1] flex items-center justify-center font-bold text-xs">
+            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+              <td class="py-3.5 pr-4 font-medium text-white flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-[#0063B1]/20 border border-[#0063B1]/30 text-sky-400 flex items-center justify-center font-bold text-xs">
                   ${m.name.slice(0, 2).toUpperCase()}
                 </div>
                 <span>${m.name}</span>
               </td>
-              <td class="py-3.5 pr-4 text-slate-600">${m.role}</td>
-              <td class="py-3.5 pr-4 text-slate-500 text-xs">${m.phone || m.email || '—'}</td>
-              <td class="py-3.5 pr-4 font-semibold text-slate-800">${m.commission}%</td>
-              <td class="py-3.5 pr-4">${m.services_count || 0} feitos</td>
+              <td class="py-3.5 pr-4 text-slate-300">${m.role}</td>
+              <td class="py-3.5 pr-4 text-slate-400 text-xs">${m.phone || m.email || '—'}</td>
+              <td class="py-3.5 pr-4 font-semibold text-white">${m.commission}%</td>
+              <td class="py-3.5 pr-4 text-slate-300">${m.services_count || 0} feitos</td>
               <td class="py-3.5 pr-4 text-right font-bold text-[#72A824]">${brl(m.commission_total || 0)}</td>
               <td class="py-3.5 pr-4 text-right whitespace-nowrap space-x-2">
-                <button onclick="openEditTeamMemberDialog(${rawId})" class="text-xs text-tile-blue hover:underline font-medium">Editar</button>
-                <button onclick="deleteTeamMemberConfirm(${rawId})" class="text-xs text-rose-600 hover:underline">Excluir</button>
+                <button onclick="openEditTeamMemberDialog(${rawId})" class="text-xs text-sky-400 hover:underline font-medium">Editar</button>
+                <button onclick="deleteTeamMemberConfirm(${rawId})" class="text-xs text-rose-400 hover:underline">Excluir</button>
               </td>
             </tr>
           `;
         });
       }
+
+      // 5. SERVIÇOS
       else if (appId === 'services') {
         let listToRender = services;
         if (tableSearchTerm) {
@@ -2353,12 +2245,12 @@
         if (counterEl) counterEl.textContent = `${listToRender.length} serviço(s) encontrado(s)`;
 
         thead.innerHTML = `
-          <tr class="border-b-2 border-slate-900 text-left">
-            <th class="py-2.5 pr-4 font-semibold">Serviço</th>
-            <th class="py-2.5 pr-4 font-semibold">Descrição</th>
-            <th class="py-2.5 pr-4 font-semibold">Duração</th>
-            <th class="py-2.5 pr-4 font-semibold">Preço Sugerido</th>
-            <th class="py-2.5 pr-4 text-right font-semibold">Ações</th>
+          <tr class="border-b border-white/10 text-left text-xs uppercase tracking-wider text-white/40 font-semibold">
+            <th class="py-3 pr-4">Serviço</th>
+            <th class="py-3 pr-4">Descrição</th>
+            <th class="py-3 pr-4">Duração</th>
+            <th class="py-3 pr-4">Preço Sugerido</th>
+            <th class="py-3 pr-4 text-right">Ações</th>
           </tr>
         `;
 
@@ -2367,8 +2259,8 @@
             <tr>
               <td colspan="5" class="py-12 text-center text-slate-400">
                 ${tableSearchTerm ? 'Nenhum serviço encontrado para esta pesquisa.' : 'Nenhum serviço cadastrado ainda.'}
-                <div class="mt-2">
-                  <button onclick="openServiceDialog()" class="text-xs text-tile-blue hover:underline font-medium">
+                <div class="mt-2.5">
+                  <button onclick="openServiceDialog()" class="text-xs text-sky-400 hover:underline font-medium">
                     + Cadastrar primeiro serviço
                   </button>
                 </div>
@@ -2378,17 +2270,315 @@
           return;
         }
 
-        services.forEach(s => {
+        listToRender.forEach(s => {
           const rawId = typeof s.id === 'string' ? `'${s.id}'` : s.id;
           tbody.innerHTML += `
-            <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
-              <td class="py-3.5 pr-4 font-medium text-slate-900">${s.name}</td>
-              <td class="py-3.5 pr-4 text-slate-500 text-xs">${s.description || '—'}</td>
-              <td class="py-3.5 pr-4">${s.duration || s.duration_minutes || 0} min</td>
-              <td class="py-3.5 pr-4 font-semibold text-slate-900">${brl(s.price)}</td>
+            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+              <td class="py-3.5 pr-4 font-medium text-white">${s.name}</td>
+              <td class="py-3.5 pr-4 text-slate-400 text-xs">${s.description || '—'}</td>
+              <td class="py-3.5 pr-4 text-slate-300">${s.duration || s.duration_minutes || 0} min</td>
+              <td class="py-3.5 pr-4 font-semibold text-white">${brl(s.price)}</td>
               <td class="py-3.5 pr-4 text-right whitespace-nowrap space-x-2">
-                <button onclick="openEditServiceDialog(${rawId})" class="text-xs text-tile-blue hover:underline font-medium">Editar</button>
-                <button onclick="deleteServiceConfirm(${rawId})" class="text-xs text-rose-600 hover:underline">Excluir</button>
+                <button onclick="openEditServiceDialog(${rawId})" class="text-xs text-sky-400 hover:underline font-medium">Editar</button>
+                <button onclick="deleteServiceConfirm(${rawId})" class="text-xs text-rose-400 hover:underline">Excluir</button>
+              </td>
+            </tr>
+          `;
+        });
+      }
+
+      // 6. FILA DE ATENDIMENTO
+      else if (appId === 'queue') {
+        let listToRender = queueItems;
+        if (tableSearchTerm) {
+          listToRender = listToRender.filter(q =>
+            (q.customer && q.customer.toLowerCase().includes(tableSearchTerm)) ||
+            (q.service && q.service.toLowerCase().includes(tableSearchTerm)) ||
+            (q.staff && q.staff.toLowerCase().includes(tableSearchTerm))
+          );
+        }
+
+        if (counterEl) counterEl.textContent = `${listToRender.length} cliente(s) na fila`;
+
+        thead.innerHTML = `
+          <tr class="border-b border-white/10 text-left text-xs uppercase tracking-wider text-white/40 font-semibold">
+            <th class="py-3 pr-4">Posição</th>
+            <th class="py-3 pr-4">Cliente</th>
+            <th class="py-3 pr-4">Serviço Desejado</th>
+            <th class="py-3 pr-4">Profissional</th>
+            <th class="py-3 pr-4">Horário / Chegada</th>
+            <th class="py-3 pr-4">Status</th>
+            <th class="py-3 pr-4 text-right">Ações</th>
+          </tr>
+        `;
+
+        if (listToRender.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="7" class="py-12 text-center text-slate-400">
+                Fila de espera vazia no momento.
+                <div class="mt-2.5">
+                  <button onclick="openAddQueueDialog()" class="text-xs text-sky-400 hover:underline font-medium">
+                    + Inserir cliente na fila
+                  </button>
+                </div>
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        listToRender.forEach(q => {
+          const isAtend = q.status === 'em_atendimento';
+          const isDone = q.status === 'concluido';
+          tbody.innerHTML += `
+            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+              <td class="py-3.5 pr-4">
+                <span class="w-7 h-7 rounded-full bg-white/10 border border-white/15 flex items-center justify-center font-bold text-xs text-white">#${q.position}</span>
+              </td>
+              <td class="py-3.5 pr-4 font-medium text-white">${q.customer}</td>
+              <td class="py-3.5 pr-4 text-slate-300">${q.service}</td>
+              <td class="py-3.5 pr-4 text-slate-400 text-xs">${q.staff}</td>
+              <td class="py-3.5 pr-4 text-slate-300 font-mono text-xs">${q.arrival || q.time}</td>
+              <td class="py-3.5 pr-4">${renderStatusBadge(q.status)}</td>
+              <td class="py-3.5 pr-4 text-right whitespace-nowrap space-x-2">
+                ${!isDone ? `<button onclick="callQueueItem(${q.id})" class="text-xs ${isAtend ? 'text-amber-400' : 'text-sky-400'} hover:underline font-medium">${isAtend ? 'Atendendo' : 'Chamar'}</button>` : ''}
+                ${!isDone ? `<button onclick="finishQueueItem(${q.id})" class="text-xs text-[#72A824] hover:underline font-medium">Concluir</button>` : ''}
+                <button onclick="removeQueueItem(${q.id})" class="text-xs text-rose-400 hover:underline">Remover</button>
+              </td>
+            </tr>
+          `;
+        });
+      }
+
+      // 7. META DO MÊS & PROGRESSO ESTRATÉGICO
+      else if (appId === 'goals') {
+        const target = monthlyGoal.targetRevenue || 25000;
+        const current = monthlyGoal.currentRevenue || 18500;
+        const pct = Math.min(100, Math.round((current / target) * 100));
+
+        thead.innerHTML = `
+          <tr class="border-b border-white/10 text-left text-xs uppercase tracking-wider text-white/40 font-semibold">
+            <th class="py-3 pr-4">Indicador / Métrica</th>
+            <th class="py-3 pr-4">Alvo Estipulado</th>
+            <th class="py-3 pr-4">Realizado no Mês</th>
+            <th class="py-3 pr-4">Progresso Visual</th>
+            <th class="py-3 pr-4">% Atingido</th>
+            <th class="py-3 pr-4 text-right">Ações</th>
+          </tr>
+        `;
+
+        tbody.innerHTML = `
+          <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+            <td class="py-4 pr-4 font-medium text-white">
+              <span class="block">Faturamento Mensal</span>
+              <span class="text-xs text-slate-400">Meta principal de vendas do negócio</span>
+            </td>
+            <td class="py-4 pr-4 font-semibold text-white">${brl(target)}</td>
+            <td class="py-4 pr-4 font-bold text-[#72A824]">${brl(current)}</td>
+            <td class="py-4 pr-4 w-52">
+              <div class="w-full bg-white/10 rounded-full h-2.5 overflow-hidden">
+                <div class="bg-[#72A824] h-2.5 rounded-full" style="width: ${pct}%"></div>
+              </div>
+            </td>
+            <td class="py-4 pr-4 font-bold text-white">${pct}%</td>
+            <td class="py-4 pr-4 text-right">
+              <button onclick="openEditGoalDialog()" class="text-xs text-sky-400 hover:underline font-medium">Ajustar Meta</button>
+            </td>
+          </tr>
+          <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+            <td class="py-4 pr-4 font-medium text-white">
+              <span class="block">Novos Clientes Cadastrados</span>
+              <span class="text-xs text-slate-400">Expansão de base ativa</span>
+            </td>
+            <td class="py-4 pr-4 font-semibold text-white">50 clientes</td>
+            <td class="py-4 pr-4 font-bold text-sky-400">38 clientes</td>
+            <td class="py-4 pr-4 w-52">
+              <div class="w-full bg-white/10 rounded-full h-2.5 overflow-hidden">
+                <div class="bg-[#0063B1] h-2.5 rounded-full" style="width: 76%"></div>
+              </div>
+            </td>
+            <td class="py-4 pr-4 font-bold text-white">76%</td>
+            <td class="py-4 pr-4 text-right">
+              <span class="text-xs text-slate-500 font-normal">Automático</span>
+            </td>
+          </tr>
+          <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+            <td class="py-4 pr-4 font-medium text-white">
+              <span class="block">Atendimentos Concluídos</span>
+              <span class="text-xs text-slate-400">Volume operacional da equipe</span>
+            </td>
+            <td class="py-4 pr-4 font-semibold text-white">120 serviços</td>
+            <td class="py-4 pr-4 font-bold text-[#72A824]">94 serviços</td>
+            <td class="py-4 pr-4 w-52">
+              <div class="w-full bg-white/10 rounded-full h-2.5 overflow-hidden">
+                <div class="bg-[#72A824] h-2.5 rounded-full" style="width: 78%"></div>
+              </div>
+            </td>
+            <td class="py-4 pr-4 font-bold text-white">78%</td>
+            <td class="py-4 pr-4 text-right">
+              <span class="text-xs text-slate-500 font-normal">Automático</span>
+            </td>
+          </tr>
+        `;
+      }
+
+      // 8. WHATSAPP LEMBRETES & ANTI-FALTA
+      else if (appId === 'whatsapp') {
+        let listToRender = whatsappReminders;
+        if (tableSearchTerm) {
+          listToRender = listToRender.filter(w =>
+            (w.customer && w.customer.toLowerCase().includes(tableSearchTerm)) ||
+            (w.service && w.service.toLowerCase().includes(tableSearchTerm)) ||
+            (w.phone && w.phone.toLowerCase().includes(tableSearchTerm))
+          );
+        }
+
+        if (counterEl) counterEl.textContent = `${listToRender.length} lembrete(s) cadastrado(s)`;
+
+        thead.innerHTML = `
+          <tr class="border-b border-white/10 text-left text-xs uppercase tracking-wider text-white/40 font-semibold">
+            <th class="py-3 pr-4">Cliente</th>
+            <th class="py-3 pr-4">WhatsApp / Contato</th>
+            <th class="py-3 pr-4">Serviço Agendado</th>
+            <th class="py-3 pr-4">Horário Agendado</th>
+            <th class="py-3 pr-4">Status de Confirmação</th>
+            <th class="py-3 pr-4 text-right">Ação Anti-Falta</th>
+          </tr>
+        `;
+
+        if (listToRender.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="6" class="py-12 text-center text-slate-400">
+                Nenhum lembrete para disparar hoje.
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        listToRender.forEach(w => {
+          const isPending = w.status === 'pendente';
+          tbody.innerHTML += `
+            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+              <td class="py-3.5 pr-4 font-medium text-white">${w.customer}</td>
+              <td class="py-3.5 pr-4 font-mono text-xs text-slate-300">${w.phone}</td>
+              <td class="py-3.5 pr-4 text-slate-300">${w.service}</td>
+              <td class="py-3.5 pr-4 text-slate-300 font-mono text-xs">${w.time}</td>
+              <td class="py-3.5 pr-4">${renderStatusBadge(w.status)}</td>
+              <td class="py-3.5 pr-4 text-right">
+                <button onclick="sendSingleWhatsApp(${w.id})" class="px-3 py-1 bg-[#25D366]/20 border border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366]/30 rounded-lg text-xs font-semibold transition-colors">
+                  ${isPending ? '📲 Disparar WhatsApp' : '✅ Reenviar WhatsApp'}
+                </button>
+              </td>
+            </tr>
+          `;
+        });
+      }
+
+      // 9. RELATÓRIOS & FECHAMENTO CONTÁBIL (DRE)
+      else if (appId === 'reports') {
+        const inc = financial.filter(f => f.type === 'receita' || f.type === 'INCOME');
+        const exp = financial.filter(f => f.type === 'despesa' || f.type === 'EXPENSE');
+        const sumVal = (arr) => arr.reduce((s, x) => s + Number(x.value || x.amount || 0), 0);
+        const incPaid = sumVal(inc.filter(f => f.status === 'pago' || f.status === 'PAID'));
+        const expPaid = sumVal(exp.filter(f => f.status === 'pago' || f.status === 'PAID'));
+        const teamComms = teamMembers.reduce((sum, m) => sum + (m.commission_total || 0), 0);
+        const net = incPaid - expPaid - teamComms;
+
+        thead.innerHTML = `
+          <tr class="border-b border-white/10 text-left text-xs uppercase tracking-wider text-white/40 font-semibold">
+            <th class="py-3 pr-4">Linha do DRE / Demonstrativo</th>
+            <th class="py-3 pr-4">Classificação</th>
+            <th class="py-3 pr-4 text-right">Valor Consolidado</th>
+            <th class="py-3 pr-4 text-right">% s/ Receita Bruta</th>
+          </tr>
+        `;
+
+        tbody.innerHTML = `
+          <tr class="border-b border-white/5 hover:bg-white/5 transition-colors font-medium">
+            <td class="py-3.5 pr-4 text-white">1. RECEITA OPERACIONAL BRUTA (Paga)</td>
+            <td class="py-3.5 pr-4 text-[#72A824] uppercase text-xs font-semibold">Receitas Realizadas</td>
+            <td class="py-3.5 pr-4 text-right font-bold text-[#72A824]">${brl(incPaid)}</td>
+            <td class="py-3.5 pr-4 text-right text-slate-300">100.0%</td>
+          </tr>
+          <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+            <td class="py-3.5 pr-4 text-white pl-4">(-) Despesas Operacionais e Insumos</td>
+            <td class="py-3.5 pr-4 text-[#D11F25] uppercase text-xs">Custos Fixos / Variáveis</td>
+            <td class="py-3.5 pr-4 text-right font-semibold text-[#D11F25]">- ${brl(expPaid)}</td>
+            <td class="py-3.5 pr-4 text-right text-slate-400">${incPaid > 0 ? ((expPaid / incPaid) * 100).toFixed(1) : '0.0'}%</td>
+          </tr>
+          <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+            <td class="py-3.5 pr-4 text-white pl-4">(-) Repasses e Comissões da Equipe</td>
+            <td class="py-3.5 pr-4 text-[#D11F25] uppercase text-xs">Custo de Mão de Obra</td>
+            <td class="py-3.5 pr-4 text-right font-semibold text-[#D11F25]">- ${brl(teamComms)}</td>
+            <td class="py-3.5 pr-4 text-right text-slate-400">${incPaid > 0 ? ((teamComms / incPaid) * 100).toFixed(1) : '0.0'}%</td>
+          </tr>
+          <tr class="border-t border-white/20 bg-white/5 font-bold">
+            <td class="py-4 pr-4 text-white text-base">(=) RESULTADO LÍQUIDO DO EXERCÍCIO (Lucro Real)</td>
+            <td class="py-4 pr-4 text-sky-400 uppercase text-xs">Margem Líquida</td>
+            <td class="py-4 pr-4 text-right text-lg ${net >= 0 ? 'text-[#72A824]' : 'text-[#D11F25]'}">${brl(net)}</td>
+            <td class="py-4 pr-4 text-right text-white">${incPaid > 0 ? ((net / incPaid) * 100).toFixed(1) : '0.0'}%</td>
+          </tr>
+        `;
+      }
+
+      // 10. FORNECEDORES & PARCEIROS COMERCIAIS
+      else if (appId === 'suppliers') {
+        let listToRender = suppliers;
+        if (tableSearchTerm) {
+          listToRender = listToRender.filter(s =>
+            (s.name && s.name.toLowerCase().includes(tableSearchTerm)) ||
+            (s.category && s.category.toLowerCase().includes(tableSearchTerm)) ||
+            (s.contact && s.contact.toLowerCase().includes(tableSearchTerm)) ||
+            (s.phone && s.phone.toLowerCase().includes(tableSearchTerm))
+          );
+        }
+
+        if (counterEl) counterEl.textContent = `${listToRender.length} fornecedor(es) encontrado(s)`;
+
+        thead.innerHTML = `
+          <tr class="border-b border-white/10 text-left text-xs uppercase tracking-wider text-white/40 font-semibold">
+            <th class="py-3 pr-4">Fornecedor / Razão</th>
+            <th class="py-3 pr-4">Categoria / Insumo</th>
+            <th class="py-3 pr-4">Contato Principal</th>
+            <th class="py-3 pr-4">Telefone / WhatsApp</th>
+            <th class="py-3 pr-4">Condição de Pagamento</th>
+            <th class="py-3 pr-4">Status</th>
+            <th class="py-3 pr-4 text-right">Ações</th>
+          </tr>
+        `;
+
+        if (listToRender.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="7" class="py-12 text-center text-slate-400">
+                Nenhum fornecedor cadastrado ou encontrado.
+                <div class="mt-2.5">
+                  <button onclick="openSupplierDialog()" class="text-xs text-sky-400 hover:underline font-medium">
+                    + Cadastrar fornecedor
+                  </button>
+                </div>
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        listToRender.forEach(s => {
+          const rawId = s.id;
+          tbody.innerHTML += `
+            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+              <td class="py-3.5 pr-4 font-medium text-white">${s.name}</td>
+              <td class="py-3.5 pr-4 text-slate-300">${s.category}</td>
+              <td class="py-3.5 pr-4 text-slate-300">${s.contact}</td>
+              <td class="py-3.5 pr-4 font-mono text-xs text-slate-400">${s.phone}</td>
+              <td class="py-3.5 pr-4 text-slate-300 font-medium">${s.paymentTerms}</td>
+              <td class="py-3.5 pr-4">${renderStatusBadge(s.status)}</td>
+              <td class="py-3.5 pr-4 text-right whitespace-nowrap space-x-2">
+                <button onclick="openEditSupplierDialog(${rawId})" class="text-xs text-sky-400 hover:underline font-medium">Editar</button>
+                <button onclick="deleteSupplierConfirm(${rawId})" class="text-xs text-rose-400 hover:underline">Excluir</button>
               </td>
             </tr>
           `;
@@ -2396,7 +2586,6 @@
       }
     }
 
-    // Ações de Agendamento (Confirmar / Concluir)
     async function confirmAppointment(id) {
       const item = appointments.find(a => a.id === id);
       if (item) item.status = 'confirmado';

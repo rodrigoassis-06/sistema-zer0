@@ -307,89 +307,87 @@
           </div>
         </section>
 
-        <!-- SEÇÃO 3: Faturamento Mensal & Pedidos Recentes (Adaptativo e Flexível) -->
-        <section class="flex-1 min-w-[460px] max-w-[850px] pb-4 flex flex-col justify-between">
-          
-          <!-- 1. Gráfico de Faturamento Mensal (Linha de Receita e Despesa) -->
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <h2 class="text-xl lg:text-2xl font-light text-white/90">Faturamento Mensal (2026)</h2>
-              <div class="flex items-center gap-4 text-xs md:text-sm">
-                <span class="flex items-center gap-1.5 font-normal text-white/80">
-                  <span class="w-2.5 h-2.5 rounded-full bg-[#0063B1]"></span> Receitas
-                </span>
-                <span class="flex items-center gap-1.5 font-normal text-white/80">
-                  <span class="w-2.5 h-2.5 rounded-full bg-white"></span> Despesas
-                </span>
+        <!-- SEÇÃO 3: Gestão & Operações (Duplicada da coluna Aplicativos com 4 botões Metro) -->
+        <section class="shrink-0">
+          <h2 class="mb-3 text-xl lg:text-2xl font-light text-white/90">Gestão & Operações</h2>
+          <div class="grid auto-rows-[70px] grid-cols-[repeat(4,70px)] sm:auto-rows-[78px] sm:grid-cols-[repeat(4,78px)] lg:auto-rows-[88px] lg:grid-cols-[repeat(4,88px)] xl:auto-rows-[98px] xl:grid-cols-[repeat(4,98px)] 2xl:auto-rows-[110px] 2xl:grid-cols-[repeat(4,110px)] gap-2.5 lg:gap-3 xl:gap-3.5">
+            
+            <!-- 1. Tile Fila de Atendimento (Wide 4x2 com live-flip) -->
+            <button onclick="openApp('queue')" style="animation-delay: 500ms;" class="tile metro-enter col-span-4 row-span-2 bg-[#1A1D24] border border-white/10 text-white p-3.5 lg:p-4 xl:p-5 text-left hover:border-white/25 transition-all">
+              <div class="h-[200%] live-flip">
+                <!-- Face 1 -->
+                <div class="flex h-1/2 items-center justify-between pr-2 lg:pr-4">
+                  <div class="flex items-center gap-4">
+                    <i data-lucide="timer" class="h-10 w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 text-white"></i>
+                    <div>
+                      <span id="tile-queue-count" class="text-4xl md:text-5xl lg:text-6xl font-light text-white">2</span>
+                      <span class="block text-xs md:text-sm text-slate-400">na fila de espera</span>
+                    </div>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-[10px] md:text-xs uppercase tracking-wider text-slate-400">Em atendimento</span>
+                    <p id="tile-queue-current" class="text-base md:text-lg lg:text-xl font-light text-[#38BDF8] truncate">Carla Mendes</p>
+                    <span class="text-[10px] md:text-xs text-slate-400">término est. 11:15</span>
+                  </div>
+                </div>
+                <!-- Face 2 -->
+                <div class="flex h-1/2 flex-col justify-center text-white">
+                  <span class="text-[10px] md:text-xs uppercase tracking-wider text-slate-400">Próximo chamado</span>
+                  <span id="tile-queue-next" class="text-base md:text-lg lg:text-xl font-light truncate">11:30 · Roberto Santos (Barba)</span>
+                  <span class="text-xs md:text-sm text-slate-400 truncate">Aguardando na recepção há 10 min</span>
+                </div>
               </div>
-            </div>
+              <span class="absolute bottom-2.5 left-3.5 lg:bottom-3 lg:left-4 text-xs md:text-sm font-normal text-white/90">Fila de Atendimento</span>
+            </button>
 
-            <!-- Canvas do Gráfico com Altura Responsiva -->
-            <div class="h-60 sm:h-64 lg:h-72 xl:h-80 w-full relative" style="min-height: 240px;">
-              <canvas id="chart-faturamento"></canvas>
-            </div>
+            <!-- 2. Tile Meta do Mês & Progresso (2x2) -->
+            <button onclick="openApp('goals')" style="animation-delay: 560ms;" class="tile metro-enter col-span-2 row-span-2 bg-[#1A1D24] border border-white/10 text-white p-3.5 lg:p-4 xl:p-5 text-left flex flex-col justify-between hover:border-white/25 transition-all">
+              <i data-lucide="target" class="h-6 w-6 lg:h-7 lg:w-7 text-[#FFB900]"></i>
+              <div>
+                <p id="tile-goal-percent" class="text-lg md:text-xl lg:text-2xl font-light text-white">74%</p>
+                <p id="tile-goal-sub" class="text-[10px] md:text-xs truncate text-slate-400">R$ 18.5k / 25k</p>
+              </div>
+              <span class="text-xs md:text-sm font-normal text-white/90">Meta do Mês</span>
+            </button>
+
+            <!-- 3. Tile Lembretes WhatsApp (2x2) -->
+            <button onclick="openApp('whatsapp')" style="animation-delay: 620ms;" class="tile metro-enter col-span-2 row-span-2 bg-[#1A1D24] border border-white/10 text-white p-3.5 lg:p-4 xl:p-5 text-left flex flex-col justify-between hover:border-white/25 transition-all">
+              <i data-lucide="message-square" class="h-6 w-6 lg:h-7 lg:w-7 text-[#25D366]"></i>
+              <div>
+                <p id="tile-whatsapp-pending" class="text-lg md:text-xl lg:text-2xl font-light text-white">3 envios</p>
+                <p class="text-[10px] md:text-xs truncate text-[#25D366]">Anti-falta ativo</p>
+              </div>
+              <span class="text-xs md:text-sm font-normal text-white/90">WhatsApp</span>
+            </button>
+
+            <!-- 4. Tile Relatórios & Fechamento (Wide 4x2 com live-flip e fundo branco) -->
+            <button onclick="openApp('reports')" style="animation-delay: 680ms;" class="tile metro-enter col-span-4 row-span-2 bg-white text-slate-900 p-3.5 lg:p-4 xl:p-5 text-left hover:opacity-95 transition-all">
+              <div class="h-[200%] live-flip">
+                <!-- Face 1 -->
+                <div class="flex h-1/2 items-center justify-between pr-2 lg:pr-4 text-slate-900">
+                  <div class="flex items-center gap-4">
+                    <i data-lucide="bar-chart-3" class="h-10 w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 text-slate-900"></i>
+                    <div>
+                      <span class="text-3xl md:text-4xl lg:text-5xl font-light text-slate-900">DRE</span>
+                      <span class="block text-xs md:text-sm text-slate-500">fechamento mensal</span>
+                    </div>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-[10px] md:text-xs uppercase tracking-wider text-slate-500">Ticket Médio</span>
+                    <p id="tile-report-ticket" class="text-lg md:text-xl lg:text-2xl font-light text-slate-900">R$ 185,00</p>
+                  </div>
+                </div>
+                <!-- Face 2 -->
+                <div class="flex h-1/2 flex-col justify-center text-slate-900">
+                  <span class="text-[10px] md:text-xs uppercase tracking-wider text-slate-500">Distribuição por Forma</span>
+                  <span class="text-sm md:text-base font-light truncate">65% PIX · 25% Cartão · 10% Dinheiro</span>
+                  <span class="text-xs text-slate-500 truncate">Clique para exportar relatórios contábeis</span>
+                </div>
+              </div>
+              <span class="absolute bottom-2.5 left-3.5 lg:bottom-3 lg:left-4 text-xs md:text-sm font-medium text-slate-900">Relatórios & Fechamento</span>
+            </button>
+
           </div>
-
-          <!-- 2. Tabela de Pedidos Recentes (Fixa e Permanente) -->
-          <div class="mt-6 lg:mt-8">
-            <div class="flex items-center justify-between mb-3 border-b border-white/10 pb-2">
-              <h3 class="text-lg lg:text-xl font-light text-white/90">Pedidos Recentes</h3>
-              <button onclick="openApp('financial')" class="text-xs text-tile-blue hover:underline font-normal">Ver todos &rarr;</button>
-            </div>
-
-            <div class="overflow-x-auto">
-              <table class="min-w-full text-xs md:text-sm">
-                <thead>
-                  <tr class="text-left text-white/40 uppercase tracking-wider border-b border-white/10 font-normal">
-                    <th class="pb-2.5 font-medium">ID</th>
-                    <th class="pb-2.5 font-medium">Cliente</th>
-                    <th class="pb-2.5 font-medium">Data</th>
-                    <th class="pb-2.5 font-medium">Valor</th>
-                    <th class="pb-2.5 font-medium">Status</th>
-                  </tr>
-                </thead>
-                <tbody id="start-recent-table-body" class="divide-y divide-white/5 text-white/80">
-                  <tr class="hover:bg-white/5 transition-colors">
-                    <td class="py-3 font-medium text-white/50">#1234</td>
-                    <td class="py-3 font-medium text-white">Alice Silva</td>
-                    <td class="py-3 text-white/70">24 Mai</td>
-                    <td class="py-3 font-medium text-white">R$ 250,50</td>
-                    <td class="py-3">
-                      <span class="text-[#72A824] text-xs md:text-sm font-semibold">Pago</span>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-white/5 transition-colors">
-                    <td class="py-3 font-medium text-white/50">#1233</td>
-                    <td class="py-3 font-medium text-white">Bruno Costa</td>
-                    <td class="py-3 text-white/70">24 Mai</td>
-                    <td class="py-3 font-medium text-white">R$ 115,00</td>
-                    <td class="py-3">
-                      <span class="text-white text-xs md:text-sm font-semibold">Pendente</span>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-white/5 transition-colors">
-                    <td class="py-3 font-medium text-white/50">#1232</td>
-                    <td class="py-3 font-medium text-white">Carla Lima</td>
-                    <td class="py-3 text-white/70">23 Mai</td>
-                    <td class="py-3 font-medium text-white">R$ 420,80</td>
-                    <td class="py-3">
-                      <span class="text-white text-xs md:text-sm font-semibold">Enviado</span>
-                    </td>
-                  </tr>
-                  <tr class="hover:bg-white/5 transition-colors">
-                    <td class="py-3 font-medium text-white/50">#1231</td>
-                    <td class="py-3 font-medium text-white">Diego Souza</td>
-                    <td class="py-3 text-white/70">23 Mai</td>
-                    <td class="py-3 font-medium text-white">R$ 180,00</td>
-                    <td class="py-3">
-                      <span class="text-[#72A824] text-xs md:text-sm font-semibold">Pago</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
         </section>
 
       </div>
@@ -1225,7 +1223,29 @@
       { id: 4, name: "Diego Rocha",  phone: "(31) 98123-4455", email: "diego@email.com", notes: "" },
     ];
 
-        // Estado de Colaboradores e Equipe (Módulo 5)
+            // Estado do Módulo: Fila de Atendimento
+    let queueItems = JSON.parse(localStorage.getItem('s0_queue_items') || 'null') || [
+      { id: 1, position: 1, customer: 'Carla Mendes', service: 'Limpeza de pele', staff: 'Mariana Lima', time: '10:30', status: 'em_atendimento', arrival: '10:15' },
+      { id: 2, position: 2, customer: 'Roberto Santos', service: 'Corte + Barba', staff: 'Carlos Eduardo', time: '11:30', status: 'aguardando', arrival: '11:20' },
+      { id: 3, position: 3, customer: 'Juliana Paes', service: 'Massagem Relaxante', staff: 'Lucas Motta', time: '12:00', status: 'aguardando', arrival: '11:55' }
+    ];
+
+    // Estado do Módulo: Meta do Mês & Progresso
+    let monthlyGoal = JSON.parse(localStorage.getItem('s0_monthly_goal') || 'null') || {
+      targetRevenue: 25000,
+      targetAppts: 150,
+      workDays: 22
+    };
+
+    // Estado do Módulo: Lembretes WhatsApp
+    let whatsappReminders = JSON.parse(localStorage.getItem('s0_whatsapp_reminders') || 'null') || [
+      { id: 1, customer: 'Ana Souza', phone: '11987654321', service: 'Manicure Completa', date: 'Amanhã', time: '14:00', status: 'pendente' },
+      { id: 2, customer: 'Bruno Costa', phone: '11977654321', service: 'Corte Degradê', date: 'Amanhã', time: '15:30', status: 'pendente' },
+      { id: 3, customer: 'Diego Souza', phone: '11966543210', service: 'Barboterapia & Alinhamento', date: 'Amanhã', time: '17:00', status: 'confirmado' },
+      { id: 4, customer: 'Carla Lima', phone: '11955432109', service: 'Coloração & Hidratação', date: 'Amanhã', time: '18:30', status: 'pendente' }
+    ];
+
+    // Estado de Colaboradores e Equipe (Módulo 5)
     let teamMembers = JSON.parse(localStorage.getItem('s0_team_members') || 'null') || [
       { id: 1, name: "Carlos Eduardo Silva", role: "Consultor / Especialista", phone: "(11) 98877-5544", email: "carlos@sistema0.com", commission: 45, services_count: 22, commission_total: 1485.00, status: "ativo" },
       { id: 2, name: "Mariana Souza Lima",  role: "Esteticista Facial",         phone: "(11) 97766-2211", email: "mariana@sistema0.com", commission: 40, services_count: 16, commission_total: 640.00,  status: "ativo" },
@@ -1373,6 +1393,49 @@
         teamPreviewEl.textContent = teamMembers.length > 0
           ? teamMembers.slice(0, 3).map(m => `${m.name.split(' ')[0]} (${m.commission}%)`).join(' · ')
           : 'Nenhum colaborador cadastrado';
+      }
+
+      
+      // Atualiza Tiles da Coluna Gestão & Operações
+      const qCountEl = document.getElementById('tile-queue-count');
+      const qCurrentEl = document.getElementById('tile-queue-current');
+      const qNextEl = document.getElementById('tile-queue-next');
+      if (qCountEl) {
+        const inWaiting = queueItems.filter(q => q.status === 'aguardando').length;
+        qCountEl.textContent = inWaiting;
+      }
+      if (qCurrentEl) {
+        const curr = queueItems.find(q => q.status === 'em_atendimento');
+        qCurrentEl.textContent = curr ? curr.customer : 'Livre';
+      }
+      if (qNextEl) {
+        const nextQ = queueItems.find(q => q.status === 'aguardando');
+        qNextEl.textContent = nextQ ? `${nextQ.time} · ${nextQ.customer} (${nextQ.service})` : 'Nenhum próximo aguardando';
+      }
+
+      // Meta do Mês
+      const goalPctEl = document.getElementById('tile-goal-percent');
+      const goalSubEl = document.getElementById('tile-goal-sub');
+      if (goalPctEl) {
+        const pct = Math.round((incPaid / (monthlyGoal.targetRevenue || 25000)) * 100);
+        goalPctEl.textContent = `${pct}%`;
+      }
+      if (goalSubEl) {
+        goalSubEl.textContent = `${brl(incPaid)} / ${brl(monthlyGoal.targetRevenue || 25000)}`;
+      }
+
+      // WhatsApp
+      const waPendEl = document.getElementById('tile-whatsapp-pending');
+      if (waPendEl) {
+        const waPending = whatsappReminders.filter(w => w.status === 'pendente').length;
+        waPendEl.textContent = `${waPending} pendente${waPending === 1 ? '' : 's'}`;
+      }
+
+      // Relatórios Ticket Médio
+      const repTicketEl = document.getElementById('tile-report-ticket');
+      if (repTicketEl) {
+        const avgTicket = appointments.length > 0 ? (incPaid / appointments.length) : 185;
+        repTicketEl.textContent = brl(avgTicket);
       }
 
       const kpiTeamTot = document.getElementById('kpi-team-total');
@@ -1608,7 +1671,11 @@
         'financial': financialFilter === 'receita' ? 'Receitas' : (financialFilter === 'despesa' ? 'Despesas' : 'Financeiro'),
         'customers': 'Clientes',
         'services': 'Serviços',
-        'team': 'Equipe & Profissionais'
+        'team': 'Equipe & Profissionais',
+        'queue': 'Fila de Atendimento',
+        'goals': 'Meta do Mês & Progresso',
+        'whatsapp': 'Lembretes & Confirmação via WhatsApp',
+        'reports': 'Relatórios & Fechamento Contábil'
       };
 
       document.getElementById('start-screen').classList.add('hidden');
@@ -1643,6 +1710,15 @@
       const btnActionCust = document.getElementById('btn-action-customer');
       const btnActionSrv = document.getElementById('btn-action-service');
       const btnActionTeam = document.getElementById('btn-action-team');
+      const btnActionQueue = document.getElementById('btn-action-queue');
+      const btnActionGoals = document.getElementById('btn-action-goals');
+      const btnActionWa = document.getElementById('btn-action-whatsapp');
+      const btnActionRep = document.getElementById('btn-action-reports');
+
+      if (btnActionQueue) btnActionQueue.classList.toggle('hidden', appId !== 'queue');
+      if (btnActionGoals) btnActionGoals.classList.toggle('hidden', appId !== 'goals');
+      if (btnActionWa) btnActionWa.classList.toggle('hidden', appId !== 'whatsapp');
+      if (btnActionRep) btnActionRep.classList.toggle('hidden', appId !== 'reports');
 
       if (btnActionTeam) {
         if (appId === 'team') {
@@ -1739,6 +1815,42 @@
         document.getElementById('app-table-title').textContent = 'Gestão de Colaboradores e Escala';
         document.getElementById('app-table-subtitle').textContent = 'Profissionais cadastrados e controle de comissões';
         renderAppTable('team');
+      } else if (appId === 'queue') {
+        kpisBox.classList.add('hidden');
+        actionsBox.classList.remove('hidden');
+        calendarSection.classList.add('hidden');
+        tableSection.classList.remove('hidden');
+        btnBackCal.classList.add('hidden');
+        document.getElementById('app-table-title').textContent = 'Fila de Atendimento do Dia';
+        document.getElementById('app-table-subtitle').textContent = 'Controle de recepção, chamados e tempo de atendimento';
+        renderAppTable('queue');
+      } else if (appId === 'goals') {
+        kpisBox.classList.add('hidden');
+        actionsBox.classList.remove('hidden');
+        calendarSection.classList.add('hidden');
+        tableSection.classList.remove('hidden');
+        btnBackCal.classList.add('hidden');
+        document.getElementById('app-table-title').textContent = 'Meta do Mês & Progresso Estratégico';
+        document.getElementById('app-table-subtitle').textContent = 'Acompanhamento de metas financeiras e operacionais do negócio';
+        renderAppTable('goals');
+      } else if (appId === 'whatsapp') {
+        kpisBox.classList.add('hidden');
+        actionsBox.classList.remove('hidden');
+        calendarSection.classList.add('hidden');
+        tableSection.classList.remove('hidden');
+        btnBackCal.classList.add('hidden');
+        document.getElementById('app-table-title').textContent = 'Lembretes & Confirmação via WhatsApp';
+        document.getElementById('app-table-subtitle').textContent = 'Disparos diretos de confirmação anti-falta com 1 clique';
+        renderAppTable('whatsapp');
+      } else if (appId === 'reports') {
+        kpisBox.classList.add('hidden');
+        actionsBox.classList.remove('hidden');
+        calendarSection.classList.add('hidden');
+        tableSection.classList.remove('hidden');
+        btnBackCal.classList.add('hidden');
+        document.getElementById('app-table-title').textContent = 'Relatórios & Fechamento Contábil (DRE)';
+        document.getElementById('app-table-subtitle').textContent = 'Demonstrativo de resultado, meios de pagamento e exportação';
+        renderAppTable('reports');
       } else if (appId === 'saldo') {
         kpisBox.classList.add('hidden');
         actionsBox.classList.remove('hidden');
@@ -2878,7 +2990,117 @@
       if (currentApp) renderAppTable(currentApp);
     }
 
-        // ================= CONTROLE DA EQUIPE & PROFISSIONAIS =================
+            // ================= CONTROLE DA FILA, METAS, WHATSAPP E RELATÓRIOS =================
+    function callQueueItem(id) {
+      queueItems = queueItems.map(q => {
+        if (q.id === id) return { ...q, status: 'em_atendimento' };
+        if (q.status === 'em_atendimento') return { ...q, status: 'aguardando' };
+        return q;
+      });
+      localStorage.setItem('s0_queue_items', JSON.stringify(queueItems));
+      updateStartTiles();
+      if (currentApp === 'queue') renderAppTable('queue');
+      alert('Cliente chamado para o atendimento!');
+    }
+
+    function finishQueueItem(id) {
+      queueItems = queueItems.map(q => q.id === id ? { ...q, status: 'concluido' } : q);
+      localStorage.setItem('s0_queue_items', JSON.stringify(queueItems));
+      updateStartTiles();
+      if (currentApp === 'queue') renderAppTable('queue');
+    }
+
+    function removeQueueItem(id) {
+      if (!confirm('Remover este cliente da fila?')) return;
+      queueItems = queueItems.filter(q => q.id !== id);
+      localStorage.setItem('s0_queue_items', JSON.stringify(queueItems));
+      updateStartTiles();
+      if (currentApp === 'queue') renderAppTable('queue');
+    }
+
+    function openAddQueueDialog() {
+      const name = prompt('Nome do cliente para a fila:');
+      if (!name) return;
+      const service = prompt('Serviço:', 'Atendimento Geral') || 'Atendimento Geral';
+      queueItems.push({
+        id: Date.now(),
+        position: queueItems.length + 1,
+        customer: name,
+        service: service,
+        staff: 'Profissional Disponível',
+        time: 'Agora',
+        status: 'aguardando',
+        arrival: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+      });
+      localStorage.setItem('s0_queue_items', JSON.stringify(queueItems));
+      updateStartTiles();
+      if (currentApp === 'queue') renderAppTable('queue');
+    }
+
+    function openEditGoalDialog() {
+      const current = monthlyGoal.targetRevenue || 25000;
+      const val = prompt('Informe a nova meta de faturamento mensal (R$):', current);
+      if (!val) return;
+      const num = parseFloat(val.replace(',', '.'));
+      if (!isNaN(num) && num > 0) {
+        monthlyGoal.targetRevenue = num;
+        localStorage.setItem('s0_monthly_goal', JSON.stringify(monthlyGoal));
+        updateStartTiles();
+        if (currentApp === 'goals') renderAppTable('goals');
+      }
+    }
+
+    function sendSingleWhatsApp(id) {
+      const item = whatsappReminders.find(w => w.id === id);
+      if (!item) return;
+      const msg = `Olá ${item.customer}! Lembramos do seu agendamento de ${item.service} amanhã às ${item.time}. Podemos confirmar sua presença?`;
+      const url = `https://wa.me/55${item.phone.replace(/\D/g, '')}?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+      item.status = 'confirmado';
+      localStorage.setItem('s0_whatsapp_reminders', JSON.stringify(whatsappReminders));
+      updateStartTiles();
+      if (currentApp === 'whatsapp') renderAppTable('whatsapp');
+    }
+
+    function sendAllPendingWhatsApp() {
+      const pendings = whatsappReminders.filter(w => w.status === 'pendente');
+      if (pendings.length === 0) {
+        alert('Não há lembretes pendentes de envio no momento.');
+        return;
+      }
+      if (!confirm(`Deseja marcar como disparados ${pendings.length} lembretes pendentes via WhatsApp?`)) return;
+      whatsappReminders.forEach(w => w.status = 'confirmado');
+      localStorage.setItem('s0_whatsapp_reminders', JSON.stringify(whatsappReminders));
+      updateStartTiles();
+      if (currentApp === 'whatsapp') renderAppTable('whatsapp');
+      alert(`${pendings.length} lembretes confirmados com sucesso!`);
+    }
+
+    function exportDREReport() {
+      const inc = financial.filter(f => f.type === 'receita' || f.type === 'INCOME');
+      const exp = financial.filter(f => f.type === 'despesa' || f.type === 'EXPENSE');
+      const sumVal = (arr) => arr.reduce((s, x) => s + Number(x.value || x.amount || 0), 0);
+      const incPaid = sumVal(inc.filter(f => f.status === 'pago' || f.status === 'PAID'));
+      const expPaid = sumVal(exp.filter(f => f.status === 'pago' || f.status === 'PAID'));
+      const teamComms = teamMembers.reduce((sum, m) => sum + (m.commission_total || 0), 0);
+      const net = incPaid - expPaid - teamComms;
+
+      let csv = 'Conta;Tipo;Valor\n';
+      csv += `1. RECEITA BRUTA OPERACIONAL;Receita;${incPaid.toFixed(2)}\n`;
+      csv += `2. DESPESAS OPERACIONAIS;Despesa;${expPaid.toFixed(2)}\n`;
+      csv += `3. REPASSES E COMISSOES;Despesa;${teamComms.toFixed(2)}\n`;
+      csv += `4. RESULTADO LIQUIDO DO EXERCICIO;Lucro Liquido;${net.toFixed(2)}\n`;
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `relatorio-dre-fechamento-${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // ================= CONTROLE DA EQUIPE & PROFISSIONAIS =================
     function openTeamMemberDialog() {
       const form = document.getElementById('form-team');
       if (form) form.reset();

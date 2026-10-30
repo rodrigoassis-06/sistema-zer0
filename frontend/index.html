@@ -206,14 +206,14 @@
               <span class="text-xs md:text-sm font-normal text-white/90">Despesas (mês)</span>
             </button>
 
-            <!-- Tile Saldo -->
-            <button onclick="openApp('saldo')" style="animation-delay: 240ms;" class="tile metro-enter col-span-2 row-span-2 bg-[#1A1D24] border border-white/10 text-white p-3.5 lg:p-4 xl:p-5 text-left flex flex-col justify-between hover:border-white/25 transition-all">
-              <i data-lucide="scale" class="h-6 w-6 lg:h-7 lg:w-7 text-white/90"></i>
+            <!-- Tile Meta do Mês & Progresso (2x2 - Substitui o antigo botão Saldo) -->
+            <button onclick="openApp('goals')" style="animation-delay: 240ms;" class="tile metro-enter col-span-2 row-span-2 bg-[#1A1D24] border border-white/10 text-white p-3.5 lg:p-4 xl:p-5 text-left flex flex-col justify-between hover:border-white/25 transition-all">
+              <i data-lucide="target" class="h-6 w-6 lg:h-7 lg:w-7 text-[#FFB900]"></i>
               <div>
-                <p id="tile-net-realized" class="text-lg md:text-xl lg:text-2xl font-light text-white">R$ 1.870,00</p>
-                <p id="tile-net-projected" class="text-[10px] md:text-xs truncate text-slate-400">proj. R$ 1.630,00</p>
+                <p id="tile-goal-percent" class="text-lg md:text-xl lg:text-2xl font-light text-white">74%</p>
+                <p id="tile-goal-sub" class="text-[10px] md:text-xs truncate text-slate-400">R$ 18.5k / 25k</p>
               </div>
-              <span class="text-xs md:text-sm font-normal text-white/90">Saldo</span>
+              <span class="text-xs md:text-sm font-normal text-white/90">Meta do Mês</span>
             </button>
 
             <!-- Tile Equipe (Replica exatamente o padrão visual e layout dos outros botões) -->
@@ -347,14 +347,14 @@
               <span class="absolute bottom-2.5 left-3.5 lg:bottom-3 lg:left-4 text-xs md:text-sm font-normal text-white/90">Clientes</span>
             </button>
 
-            <!-- 2. Tile Meta do Mês & Progresso (2x2) -->
-            <button onclick="openApp('goals')" style="animation-delay: 560ms;" class="tile metro-enter col-span-2 row-span-2 bg-[#1A1D24] border border-white/10 text-white p-3.5 lg:p-4 xl:p-5 text-left flex flex-col justify-between hover:border-white/25 transition-all">
-              <i data-lucide="target" class="h-6 w-6 lg:h-7 lg:w-7 text-[#FFB900]"></i>
+            <!-- 2. Tile Fornecedores (2x2 - Novo módulo comercial) -->
+            <button onclick="openApp('suppliers')" style="animation-delay: 560ms;" class="tile metro-enter col-span-2 row-span-2 bg-[#1A1D24] border border-white/10 text-white p-3.5 lg:p-4 xl:p-5 text-left flex flex-col justify-between hover:border-white/25 transition-all">
+              <i data-lucide="truck" class="h-6 w-6 lg:h-7 lg:w-7 text-[#00A4EF]"></i>
               <div>
-                <p id="tile-goal-percent" class="text-lg md:text-xl lg:text-2xl font-light text-white">74%</p>
-                <p id="tile-goal-sub" class="text-[10px] md:text-xs truncate text-slate-400">R$ 18.5k / 25k</p>
+                <p id="tile-suppliers-count" class="text-lg md:text-xl lg:text-2xl font-light text-white">5 ativos</p>
+                <p class="text-[10px] md:text-xs truncate text-slate-400">pedidos & insumos</p>
               </div>
-              <span class="text-xs md:text-sm font-normal text-white/90">Meta do Mês</span>
+              <span class="text-xs md:text-sm font-normal text-white/90">Fornecedores</span>
             </button>
 
             <!-- 3. Tile Serviços (Trocado com WhatsApp) -->
@@ -1228,7 +1228,16 @@
       { id: 4, name: "Diego Rocha",  phone: "(31) 98123-4455", email: "diego@email.com", notes: "" },
     ];
 
-            // Estado do Módulo: Fila de Atendimento
+                // Estado do Módulo: Fornecedores & Parceiros
+    let suppliers = JSON.parse(localStorage.getItem('s0_suppliers') || 'null') || [
+      { id: 1, name: 'Distribuidora Bella Cosméticos', category: 'Produtos & Cosméticos', contact: 'Marcos Silva', phone: '(11) 98822-1100', paymentTerms: 'Boleto 30d', status: 'ativo' },
+      { id: 2, name: 'Insumos Pro Estética', category: 'Descartáveis & Higiene', contact: 'Renata Souza', phone: '(11) 97711-2233', paymentTerms: 'PIX à vista', status: 'ativo' },
+      { id: 3, name: 'Equipamentos Laser Tech', category: 'Manutenção de Aparelhos', contact: 'Carlos Eduardo', phone: '(11) 96600-4455', paymentTerms: 'Boleto 15d', status: 'ativo' },
+      { id: 4, name: 'Embalagens & Rótulos Express', category: 'Embalagens e Sacolas', contact: 'Juliana Dias', phone: '(11) 95544-3322', paymentTerms: 'Cartão 2x', status: 'ativo' },
+      { id: 5, name: 'Gráfica MasterPrint', category: 'Material Gráfico e Brindes', contact: 'Lucas Mendes', phone: '(11) 94433-2211', paymentTerms: 'PIX', status: 'ativo' }
+    ];
+
+    // Estado do Módulo: Fila de Atendimento
     let queueItems = JSON.parse(localStorage.getItem('s0_queue_items') || 'null') || [
       { id: 1, position: 1, customer: 'Carla Mendes', service: 'Limpeza de pele', staff: 'Mariana Lima', time: '10:30', status: 'em_atendimento', arrival: '10:15' },
       { id: 2, position: 2, customer: 'Roberto Santos', service: 'Corte + Barba', staff: 'Carlos Eduardo', time: '11:30', status: 'aguardando', arrival: '11:20' },
@@ -1437,6 +1446,14 @@
       }
 
       // Relatórios Ticket Médio
+      
+      // Atualiza Tile Fornecedores
+      const supCountEl = document.getElementById('tile-suppliers-count');
+      if (supCountEl) {
+        const activeCount = suppliers.filter(s => s.status === 'ativo').length;
+        supCountEl.textContent = `${activeCount} ativo${activeCount === 1 ? '' : 's'}`;
+      }
+
       const repTicketEl = document.getElementById('tile-report-ticket');
       if (repTicketEl) {
         const avgTicket = appointments.length > 0 ? (incPaid / appointments.length) : 185;
@@ -1680,7 +1697,8 @@
         'queue': 'Fila de Atendimento',
         'goals': 'Meta do Mês & Progresso',
         'whatsapp': 'Lembretes & Confirmação via WhatsApp',
-        'reports': 'Relatórios & Fechamento Contábil'
+        'reports': 'Relatórios & Fechamento Contábil',
+        'suppliers': 'Fornecedores & Parceiros'
       };
 
       document.getElementById('start-screen').classList.add('hidden');
@@ -1724,6 +1742,8 @@
       if (btnActionGoals) btnActionGoals.classList.toggle('hidden', appId !== 'goals');
       if (btnActionWa) btnActionWa.classList.toggle('hidden', appId !== 'whatsapp');
       if (btnActionRep) btnActionRep.classList.toggle('hidden', appId !== 'reports');
+      const btnActionSup = document.getElementById('btn-action-supplier');
+      if (btnActionSup) btnActionSup.classList.toggle('hidden', appId !== 'suppliers');
 
       if (btnActionTeam) {
         if (appId === 'team') {
@@ -1801,7 +1821,7 @@
       }
 
       if (saldoSection) {
-        if (appId === 'saldo') {
+        if (appId === 'saldo' || appId === 'financial') {
           saldoSection.classList.remove('hidden');
         } else {
           saldoSection.classList.add('hidden');
@@ -1847,6 +1867,54 @@
         document.getElementById('app-table-title').textContent = 'Lembretes & Confirmação via WhatsApp';
         document.getElementById('app-table-subtitle').textContent = 'Disparos diretos de confirmação anti-falta com 1 clique';
         renderAppTable('whatsapp');
+      } else if (appId === 'suppliers') {
+        let listToRender = suppliers;
+        if (tableSearchTerm) {
+          listToRender = listToRender.filter(s =>
+            (s.name && s.name.toLowerCase().includes(tableSearchTerm)) ||
+            (s.category && s.category.toLowerCase().includes(tableSearchTerm)) ||
+            (s.contact && s.contact.toLowerCase().includes(tableSearchTerm)) ||
+            (s.phone && s.phone.toLowerCase().includes(tableSearchTerm))
+          );
+        }
+        if (counterEl) counterEl.textContent = `${listToRender.length} fornecedor(es) encontrado(s)`;
+
+        thead.innerHTML = `
+          <tr class="border-b-2 border-slate-900 text-left">
+            <th class="py-2.5 pr-4 font-semibold">Fornecedor / Razão</th>
+            <th class="py-2.5 pr-4 font-semibold">Categoria / Insumo</th>
+            <th class="py-2.5 pr-4 font-semibold">Contato Principal</th>
+            <th class="py-2.5 pr-4 font-semibold">Telefone / WhatsApp</th>
+            <th class="py-2.5 pr-4 font-semibold">Condição de Pagamento</th>
+            <th class="py-2.5 pr-4 font-semibold">Status</th>
+            <th class="py-2.5 pr-4 text-right font-semibold">Ações</th>
+          </tr>
+        `;
+
+        if (listToRender.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="7" class="py-12 text-center text-slate-400">Nenhum fornecedor cadastrado ou encontrado.</td></tr>`;
+          return;
+        }
+
+        listToRender.forEach(s => {
+          const rawId = s.id;
+          tbody.innerHTML += `
+            <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+              <td class="py-3.5 pr-4 font-medium text-slate-900">${s.name}</td>
+              <td class="py-3.5 pr-4 text-slate-600">${s.category}</td>
+              <td class="py-3.5 pr-4">${s.contact}</td>
+              <td class="py-3.5 pr-4 font-mono text-xs text-slate-600">${s.phone}</td>
+              <td class="py-3.5 pr-4 font-medium text-slate-700">${s.paymentTerms}</td>
+              <td class="py-3.5 pr-4">
+                <span class="px-2.5 py-1 rounded bg-[#72A824]/10 text-[#72A824] font-semibold text-xs">${s.status === 'ativo' ? 'Ativo' : 'Inativo'}</span>
+              </td>
+              <td class="py-3.5 pr-4 text-right whitespace-nowrap space-x-2">
+                <button onclick="openEditSupplierDialog(${rawId})" class="text-xs text-tile-blue hover:underline font-medium">Editar</button>
+                <button onclick="deleteSupplierConfirm(${rawId})" class="text-xs text-rose-600 hover:underline">Excluir</button>
+              </td>
+            </tr>
+          `;
+        });
       } else if (appId === 'reports') {
         kpisBox.classList.add('hidden');
         actionsBox.classList.remove('hidden');
@@ -1856,6 +1924,15 @@
         document.getElementById('app-table-title').textContent = 'Relatórios & Fechamento Contábil (DRE)';
         document.getElementById('app-table-subtitle').textContent = 'Demonstrativo de resultado, meios de pagamento e exportação';
         renderAppTable('reports');
+      } else if (appId === 'suppliers') {
+        kpisBox.classList.add('hidden');
+        actionsBox.classList.remove('hidden');
+        calendarSection.classList.add('hidden');
+        tableSection.classList.remove('hidden');
+        btnBackCal.classList.add('hidden');
+        document.getElementById('app-table-title').textContent = 'Fornecedores e Parceiros Comerciais';
+        document.getElementById('app-table-subtitle').textContent = 'Cadastro de parceiros de insumos, contatos e condições de pagamento';
+        renderAppTable('suppliers');
       } else if (appId === 'saldo') {
         kpisBox.classList.add('hidden');
         actionsBox.classList.remove('hidden');
@@ -2995,7 +3072,95 @@
       if (currentApp) renderAppTable(currentApp);
     }
 
-            // ================= CONTROLE DA FILA, METAS, WHATSAPP E RELATÓRIOS =================
+        
+    // ================= CONTROLE DE FORNECEDORES =================
+    function openSupplierDialog() {
+      const form = document.getElementById('form-supplier');
+      if (form) form.reset();
+      document.getElementById('supplier-id').value = '';
+      document.getElementById('modal-supplier-title').textContent = 'Novo Fornecedor';
+      document.getElementById('supplier-submit-btn').textContent = 'Salvar Fornecedor';
+      const errBox = document.getElementById('supplier-error');
+      if (errBox) errBox.classList.add('hidden');
+      document.getElementById('modal-supplier').classList.remove('hidden');
+      document.getElementById('supplier-name').focus();
+    }
+
+    function openEditSupplierDialog(id) {
+      const s = suppliers.find(item => item.id == id);
+      if (!s) return;
+      document.getElementById('supplier-id').value = s.id;
+      document.getElementById('supplier-name').value = s.name || '';
+      document.getElementById('supplier-category').value = s.category || '';
+      document.getElementById('supplier-contact').value = s.contact || '';
+      document.getElementById('supplier-phone').value = s.phone || '';
+      document.getElementById('supplier-terms').value = s.paymentTerms || '';
+      document.getElementById('modal-supplier-title').textContent = 'Editar Fornecedor';
+      document.getElementById('supplier-submit-btn').textContent = 'Salvar Alterações';
+      const errBox = document.getElementById('supplier-error');
+      if (errBox) errBox.classList.add('hidden');
+      document.getElementById('modal-supplier').classList.remove('hidden');
+      document.getElementById('supplier-name').focus();
+    }
+
+    function closeSupplierDialog() {
+      document.getElementById('modal-supplier').classList.add('hidden');
+    }
+
+    function deleteSupplierConfirm(id) {
+      if (!confirm('Deseja realmente remover este fornecedor?')) return;
+      suppliers = suppliers.filter(s => s.id != id);
+      localStorage.setItem('s0_suppliers', JSON.stringify(suppliers));
+      updateStartTiles();
+      if (currentApp === 'suppliers') renderAppTable('suppliers');
+    }
+
+    function handleSaveSupplier(e) {
+      e.preventDefault();
+      const editId = document.getElementById('supplier-id').value;
+      const name = document.getElementById('supplier-name').value.trim();
+      const category = document.getElementById('supplier-category').value.trim() || 'Geral';
+      const contact = document.getElementById('supplier-contact').value.trim() || '—';
+      const phone = document.getElementById('supplier-phone').value.trim() || '—';
+      const paymentTerms = document.getElementById('supplier-terms').value.trim() || 'A Combinar';
+
+      const errBox = document.getElementById('supplier-error');
+      if (errBox) errBox.classList.add('hidden');
+
+      if (!name) {
+        errBox.textContent = 'Informe a razão social ou nome do fornecedor.';
+        errBox.classList.remove('hidden');
+        return;
+      }
+
+      if (editId) {
+        const item = suppliers.find(s => s.id == editId);
+        if (item) {
+          item.name = name;
+          item.category = category;
+          item.contact = contact;
+          item.phone = phone;
+          item.paymentTerms = paymentTerms;
+        }
+      } else {
+        suppliers.push({
+          id: Date.now(),
+          name: name,
+          category: category,
+          contact: contact,
+          phone: phone,
+          paymentTerms: paymentTerms,
+          status: 'ativo'
+        });
+      }
+
+      localStorage.setItem('s0_suppliers', JSON.stringify(suppliers));
+      closeSupplierDialog();
+      updateStartTiles();
+      if (currentApp === 'suppliers') renderAppTable('suppliers');
+    }
+
+    // ================= CONTROLE DA FILA, METAS, WHATSAPP E RELATÓRIOS =================
     function callQueueItem(id) {
       queueItems = queueItems.map(q => {
         if (q.id === id) return { ...q, status: 'em_atendimento' };

@@ -715,7 +715,7 @@
             Autenticação
           </h2>
 
-          <div id="auth-error-msg" class="hidden mb-6 p-3 bg-tile-red text-white text-xs font-medium"></div>
+          <div id="auth-error-msg" class="hidden mb-6 p-3.5 bg-tile-red/90 border border-white/20 text-white text-xs font-medium rounded-lg"></div>
 
           <form id="form-auth-split" onsubmit="handleAuthSubmit(event)" class="space-y-5">
             
@@ -725,6 +725,14 @@
                 NOME COMPLETO
               </label>
               <input id="auth-field-name" type="text" placeholder="Ex: Ana Souza" class="block w-full border border-transparent bg-white px-4 py-3 text-slate-900 outline-none focus:border-tile-blue text-sm transition-colors rounded-lg">
+            </div>
+
+            <!-- Campo Nome da Empresa (Apenas no Cadastro) -->
+            <div id="auth-group-company" class="hidden">
+              <label class="block text-xs uppercase tracking-wider text-white/90 mb-1.5 font-medium">
+                NOME DA EMPRESA
+              </label>
+              <input id="auth-field-company" type="text" placeholder="Ex: Studio Bella" class="block w-full border border-transparent bg-white px-4 py-3 text-slate-900 outline-none focus:ring-2 focus:ring-tile-blue text-sm transition-all rounded-lg">
             </div>
 
             <!-- Campo E-mail -->
@@ -1741,14 +1749,6 @@
       }
     }
 
-    function openAuthDialog() {
-      document.getElementById('auth-error').classList.add('hidden');
-      document.getElementById('modal-auth').classList.remove('hidden');
-    }
-    function closeAuthDialog() {
-      document.getElementById('modal-auth').classList.add('hidden');
-    }
-
     function logout() {
       token = null;
       currentUser = null;
@@ -1757,32 +1757,6 @@
       document.getElementById('header-user-sub').textContent = 'Sistema 0 · Starter Base';
       document.getElementById('header-user-avatar').innerHTML = '<i data-lucide="log-in" class="w-6 h-6"></i>';
       showAuthScreen();
-    }
-
-    async function handleAuthSubmit(e) {
-      e.preventDefault();
-      const email = document.getElementById('auth-email').value;
-      const password = document.getElementById('auth-password').value;
-      const errBox = document.getElementById('auth-error');
-      errBox.classList.add('hidden');
-
-      try {
-        const res = await fetch(`${API_BASE}/auth/login`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password })
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.detail || 'Falha no login');
-
-        token = data.access_token;
-        localStorage.setItem('s0_token', token);
-        closeAuthDialog();
-        await syncWithBackend();
-      } catch (err) {
-        errBox.textContent = err.message;
-        errBox.classList.remove('hidden');
-      }
     }
 
     function openAppointmentDialog() {
@@ -1858,6 +1832,7 @@
     function updateAuthFormView() {
       const titleEl = document.getElementById('auth-title');
       const nameGrp = document.getElementById('auth-group-name');
+      const companyGrp = document.getElementById('auth-group-company');
       const confirmGrp = document.getElementById('auth-group-confirm');
       const linkText = document.getElementById('auth-mode-link-text');
       const submitBtn = document.getElementById('auth-submit-btn');
@@ -1868,32 +1843,32 @@
 
       if (authMode === 'cadastro') {
         titleEl.textContent = 'Criar conta';
-        nameGrp.classList.remove('hidden');
-        confirmGrp.classList.remove('hidden');
-        linkText.textContent = 'Já tem conta? Entrar';
-        submitBtn.textContent = 'Cadastrar';
+        if (nameGrp) nameGrp.classList.remove('hidden');
+        if (companyGrp) companyGrp.classList.remove('hidden');
+        if (confirmGrp) confirmGrp.classList.remove('hidden');
+        if (linkText) linkText.textContent = 'Já tem conta? Entrar';
+        if (submitBtn) submitBtn.textContent = 'Cadastrar';
       } else {
         titleEl.textContent = 'Autenticação';
-        nameGrp.classList.add('hidden');
-        confirmGrp.classList.add('hidden');
-        linkText.textContent = 'Não tem conta? Cadastre-se';
-        submitBtn.textContent = 'Entrar';
+        if (nameGrp) nameGrp.classList.add('hidden');
+        if (companyGrp) companyGrp.classList.add('hidden');
+        if (confirmGrp) confirmGrp.classList.add('hidden');
+        if (linkText) linkText.textContent = 'Não tem conta? Cadastre-se';
+        if (submitBtn) submitBtn.textContent = 'Entrar';
       }
     }
 
     function handleAuthCancel() {
-      // Entra no sistema em modo demonstração caso o usuário cancele ou queira apenas navegar
-      if (!token) {
-        currentUser = {
-          name: 'Administrador Master',
-          tenant: { name: 'Empresa Modelo Demo' }
-        };
-        token = 'mock-demo-token';
-        localStorage.setItem('s0_token', token);
-        document.getElementById('header-user-name').textContent = currentUser.name;
-        document.getElementById('header-user-sub').textContent = `${currentUser.tenant.name} · sair`;
-        document.getElementById('header-user-avatar').innerHTML = '<i data-lucide="user" class="w-6 h-6"></i>';
-      }
+      // Modo convidado / demonstração sem forçar token falso que quebre APIs
+      currentUser = {
+        name: 'Administrador Demo',
+        tenant: { name: 'Empresa Modelo Demo' }
+      };
+      token = null;
+      localStorage.removeItem('s0_token');
+      document.getElementById('header-user-name').textContent = currentUser.name;
+      document.getElementById('header-user-sub').textContent = `${currentUser.tenant.name} · entrar`;
+      document.getElementById('header-user-avatar').innerHTML = '<i data-lucide="log-in" class="w-6 h-6"></i>';
       showStartScreen();
     }
 
@@ -1902,26 +1877,41 @@
       const email = document.getElementById('auth-field-email').value.trim();
       const password = document.getElementById('auth-field-password').value;
       const nameEl = document.getElementById('auth-field-name');
+      const companyEl = document.getElementById('auth-field-company');
       const confirmEl = document.getElementById('auth-field-confirm');
       const errBox = document.getElementById('auth-error-msg');
+      const submitBtn = document.getElementById('auth-submit-btn');
       if (errBox) errBox.classList.add('hidden');
 
       if (authMode === 'cadastro') {
         const name = nameEl ? nameEl.value.trim() : '';
+        const company = companyEl && companyEl.value.trim() ? companyEl.value.trim() : 'Minha Empresa';
         const confirmPass = confirmEl ? confirmEl.value : '';
+
+        if (!name) {
+          errBox.textContent = 'Por favor, informe seu nome completo.';
+          errBox.classList.remove('hidden');
+          return;
+        }
         if (password !== confirmPass) {
           errBox.textContent = 'As senhas não coincidem.';
           errBox.classList.remove('hidden');
           return;
         }
+        if (password.length < 6) {
+          errBox.textContent = 'A senha deve conter no mínimo 6 caracteres.';
+          errBox.classList.remove('hidden');
+          return;
+        }
 
         try {
+          if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Cadastrando...'; }
           const res = await fetch(`${API_BASE}/auth/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              company_name: 'Minha Empresa',
-              admin_name: name || 'Usuário',
+              company_name: company,
+              admin_name: name,
               email: email,
               password: password
             })
@@ -1935,24 +1925,17 @@
           await syncWithBackend();
           return;
         } catch (err) {
-          console.warn('Backend offline ou erro:', err);
-          // Fallback para mock
-          currentUser = {
-            name: name || 'Novo Usuário',
-            tenant: { name: 'Empresa Modelo Demo' }
-          };
-          token = 'mock-demo-token';
-          localStorage.setItem('s0_token', token);
-          document.getElementById('header-user-name').textContent = currentUser.name;
-          document.getElementById('header-user-sub').textContent = `${currentUser.tenant.name} · sair`;
-          document.getElementById('header-user-avatar').innerHTML = '<i data-lucide="user" class="w-6 h-6"></i>';
-          showStartScreen();
+          errBox.textContent = err.message || 'Erro ao realizar cadastro.';
+          errBox.classList.remove('hidden');
           return;
+        } finally {
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Cadastrar'; }
         }
       }
 
       // Modo Login
       try {
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Entrando...'; }
         const res = await fetch(`${API_BASE}/auth/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -1966,18 +1949,10 @@
         showStartScreen();
         await syncWithBackend();
       } catch (err) {
-        console.warn('Backend login fallback:', err);
-        // Fallback demo mock
-        currentUser = {
-          name: 'Administrador Master',
-          tenant: { name: 'Empresa Modelo Demo' }
-        };
-        token = 'mock-demo-token';
-        localStorage.setItem('s0_token', token);
-        document.getElementById('header-user-name').textContent = currentUser.name;
-        document.getElementById('header-user-sub').textContent = `${currentUser.tenant.name} · sair`;
-        document.getElementById('header-user-avatar').innerHTML = '<i data-lucide="user" class="w-6 h-6"></i>';
-        showStartScreen();
+        errBox.textContent = err.message || 'E-mail ou senha incorretos.';
+        errBox.classList.remove('hidden');
+      } finally {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Entrar'; }
       }
     }
 

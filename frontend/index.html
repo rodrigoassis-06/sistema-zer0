@@ -300,26 +300,61 @@
             </div>
           </div>
 
-          <!-- 2. Tabela de Pedidos Recentes -->
+          <!-- 2. Tabela de Pedidos Recentes (Fixa e Permanente) -->
           <div class="mt-6 lg:mt-8">
             <div class="flex items-center justify-between mb-3 border-b border-white/10 pb-2">
-              <h3 class="text-lg lg:text-xl font-light text-white/90">Últimos Atendimentos & Movimentações</h3>
-              <button onclick="openApp('financial')" class="text-xs text-tile-blue hover:underline font-normal">Ver financeiro &rarr;</button>
+              <h3 class="text-lg lg:text-xl font-light text-white/90">Pedidos Recentes</h3>
+              <button onclick="openApp('financial')" class="text-xs text-tile-blue hover:underline font-normal">Ver todos &rarr;</button>
             </div>
 
             <div class="overflow-x-auto">
               <table class="min-w-full text-xs md:text-sm">
                 <thead>
                   <tr class="text-left text-white/40 uppercase tracking-wider border-b border-white/10 font-normal">
-                    <th class="pb-2.5 font-medium">Registro</th>
-                    <th class="pb-2.5 font-medium">Cliente / Descrição</th>
+                    <th class="pb-2.5 font-medium">ID</th>
+                    <th class="pb-2.5 font-medium">Cliente</th>
                     <th class="pb-2.5 font-medium">Data</th>
                     <th class="pb-2.5 font-medium">Valor</th>
                     <th class="pb-2.5 font-medium">Status</th>
                   </tr>
                 </thead>
                 <tbody id="start-recent-table-body" class="divide-y divide-white/5 text-white/80">
-                  <!-- Alimentado dinamicamente via renderRecentActivities() -->
+                  <tr class="hover:bg-white/5 transition-colors">
+                    <td class="py-3 font-medium text-white/50">#1234</td>
+                    <td class="py-3 font-medium text-white">Alice Silva</td>
+                    <td class="py-3 text-white/70">24 Mai</td>
+                    <td class="py-3 font-medium text-white">R$ 250,50</td>
+                    <td class="py-3">
+                      <span class="text-[#72A824] text-xs md:text-sm font-semibold">Pago</span>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-white/5 transition-colors">
+                    <td class="py-3 font-medium text-white/50">#1233</td>
+                    <td class="py-3 font-medium text-white">Bruno Costa</td>
+                    <td class="py-3 text-white/70">24 Mai</td>
+                    <td class="py-3 font-medium text-white">R$ 115,00</td>
+                    <td class="py-3">
+                      <span class="text-white text-xs md:text-sm font-semibold">Pendente</span>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-white/5 transition-colors">
+                    <td class="py-3 font-medium text-white/50">#1232</td>
+                    <td class="py-3 font-medium text-white">Carla Lima</td>
+                    <td class="py-3 text-white/70">23 Mai</td>
+                    <td class="py-3 font-medium text-white">R$ 420,80</td>
+                    <td class="py-3">
+                      <span class="text-white text-xs md:text-sm font-semibold">Enviado</span>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-white/5 transition-colors">
+                    <td class="py-3 font-medium text-white/50">#1231</td>
+                    <td class="py-3 font-medium text-white">Diego Souza</td>
+                    <td class="py-3 text-white/70">23 Mai</td>
+                    <td class="py-3 font-medium text-white">R$ 180,00</td>
+                    <td class="py-3">
+                      <span class="text-[#72A824] text-xs md:text-sm font-semibold">Pago</span>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -1525,67 +1560,40 @@
       if (currentApp) renderAppTable(currentApp);
     }
 
-    // Renderiza a tabela de Atividades Recentes na Tela Inicial
+    // Renderiza a tabela de Pedidos Recentes na Tela Inicial (mantém dados fixos por padrão)
     function renderRecentActivities() {
       const tbody = document.getElementById('start-recent-table-body');
       if (!tbody) return;
 
       const items = [];
-      // Adiciona transações financeiras
-      financial.forEach(f => {
-        items.push({
-          id: f.id,
-          code: typeof f.id === 'string' ? `#${f.id.slice(0, 4)}` : `#${f.id}`,
-          title: f.category,
-          date: f.due,
-          value: f.value,
-          status: f.status,
-          type: f.type
+      // Se houver transações financeiras reais, extrai as mais recentes
+      if (Array.isArray(financial) && financial.length > 0) {
+        financial.slice(0, 4).forEach(f => {
+          items.push({
+            code: typeof f.id === 'string' ? `#${f.id.slice(0, 4)}` : `#${f.id || '1234'}`,
+            title: f.category || 'Atendimento',
+            date: f.due || 'Hoje',
+            value: f.value || 0,
+            status: f.status === 'pago' || f.status === 'PAID' ? 'Pago' : 'Pendente',
+            isPaid: f.status === 'pago' || f.status === 'PAID'
+          });
         });
-      });
-
-      // Adiciona agendamentos
-      appointments.forEach(a => {
-        items.push({
-          id: a.id,
-          code: typeof a.id === 'string' ? `#${a.id.slice(0, 4)}` : `#${a.id}`,
-          title: `${a.customer} · ${a.service}`,
-          date: a.date ? a.date.split('-').slice(1).reverse().join('/') : a.time,
-          value: a.price,
-          status: a.status,
-          type: 'receita'
-        });
-      });
-
-      if (items.length === 0) {
-        tbody.innerHTML = `
-          <tr>
-            <td colspan="5" class="py-8 text-center text-white/40 font-light">
-              Nenhuma movimentação registrada recentemente.
-            </td>
-          </tr>
-        `;
-        return;
       }
 
-      // Mostra as 4 mais recentes
-      const recents = items.slice(0, 4);
-      tbody.innerHTML = recents.map(item => {
-        const isPaid = item.status === 'pago' || item.status === 'PAID' || item.status === 'concluido' || item.status === 'COMPLETED';
-        const statusLabel = isPaid ? 'Pago' : (item.status === 'confirmado' ? 'Confirmado' : 'Pendente');
-        const statusClass = isPaid ? 'text-[#72A824] font-semibold' : 'text-white/80 font-medium';
-        return `
+      // Se houver itens novos, renderiza. Caso contrário, mantém os 4 registros fixos padrão
+      if (items.length > 0) {
+        tbody.innerHTML = items.map(item => `
           <tr class="hover:bg-white/5 transition-colors">
             <td class="py-3 font-medium text-white/50">${item.code}</td>
             <td class="py-3 font-medium text-white truncate max-w-[180px]">${item.title}</td>
             <td class="py-3 text-white/70">${item.date}</td>
             <td class="py-3 font-medium text-white">${brl(item.value)}</td>
             <td class="py-3">
-              <span class="${statusClass} text-xs md:text-sm">${statusLabel}</span>
+              <span class="${item.isPaid ? 'text-[#72A824] font-semibold' : 'text-white font-medium'} text-xs md:text-sm">${item.status}</span>
             </td>
           </tr>
-        `;
-      }).join('');
+        `).join('');
+      }
     }
 
     // Renderiza tabelas de cada aplicativo com Ações (Editar, Excluir, Status) e Busca
@@ -2284,113 +2292,139 @@
       }
     }
 
-    // Inicialização do Gráfico de Faturamento Mensal (Linha de Receita e Despesa da Primeira Página)
+    // Inicialização Permanente e Robusta do Gráfico de Faturamento Mensal da Primeira Página
     function initDashboardCharts() {
       const ctxFat = document.getElementById('chart-faturamento');
       if (!ctxFat) return;
 
       if (typeof Chart === 'undefined') {
-        setTimeout(initDashboardCharts, 150);
+        setTimeout(initDashboardCharts, 100);
         return;
       }
 
       const startScr = document.getElementById('start-screen');
-      if (startScr && startScr.classList.contains('hidden')) return;
-
-      // Se o canvas ainda estiver com largura zero (layout pendente), tenta novamente em breve
-      if (ctxFat.offsetWidth === 0) {
-        setTimeout(initDashboardCharts, 80);
+      // Se a tela iniciar estiver oculta no momento, aguarda ela se tornar visível
+      if (startScr && startScr.classList.contains('hidden')) {
         return;
       }
 
-      if (window.fatChartInstance) {
-        try { window.fatChartInstance.destroy(); } catch(e) {}
-      }
+      try {
+        if (window.fatChartInstance) {
+          window.fatChartInstance.destroy();
+          window.fatChartInstance = null;
+        }
 
-      const ctxFat2d = ctxFat.getContext('2d');
-      const gradReceita = ctxFat2d.createLinearGradient(0, 0, 0, 240);
-      gradReceita.addColorStop(0, 'rgba(0, 99, 177, 0.7)');
-      gradReceita.addColorStop(1, 'rgba(0, 99, 177, 0.05)');
+        const ctxFat2d = ctxFat.getContext('2d');
+        let gradReceita = '#0063B1';
+        let gradDespesa = 'rgba(255, 255, 255, 0.3)';
 
-      const gradDespesa = ctxFat2d.createLinearGradient(0, 0, 0, 240);
-      gradDespesa.addColorStop(0, 'rgba(255, 255, 255, 0.45)');
-      gradDespesa.addColorStop(1, 'rgba(255, 255, 255, 0.03)');
+        try {
+          const gr = ctxFat2d.createLinearGradient(0, 0, 0, 240);
+          gr.addColorStop(0, 'rgba(0, 99, 177, 0.7)');
+          gr.addColorStop(1, 'rgba(0, 99, 177, 0.05)');
+          gradReceita = gr;
 
-      window.fatChartInstance = new Chart(ctxFat, {
-        type: 'line',
-        data: {
-          labels: ['Jan', 'Feb', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Sep', 'Out', 'Nov', 'Dez'],
-          datasets: [
-            {
-              label: 'Receitas',
-              data: [25, 60, 52, 40, 85, 75, 95, 140, 135, 105, 80, 145],
-              borderColor: '#0063B1',
-              backgroundColor: gradReceita,
-              fill: true,
-              tension: 0.45,
-              borderWidth: 2.5,
-              pointRadius: 0,
-              pointHoverRadius: 6,
-              pointHoverBackgroundColor: '#0063B1',
-              pointHoverBorderColor: '#ffffff',
-              pointHoverBorderWidth: 2
-            },
-            {
-              label: 'Despesas',
-              data: [42, 50, 65, 45, 55, 100, 75, 85, 90, 100, 125, 130],
-              borderColor: '#FFFFFF',
-              backgroundColor: gradDespesa,
-              fill: true,
-              tension: 0.45,
-              borderWidth: 2.5,
-              pointRadius: 0,
-              pointHoverRadius: 6,
-              pointHoverBackgroundColor: '#FFFFFF',
-              pointHoverBorderColor: '#000000',
-              pointHoverBorderWidth: 2
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          animation: { duration: 1000, easing: 'easeOutQuart' },
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              backgroundColor: '#1E1B4B',
-              titleColor: '#FFFFFF',
-              bodyColor: '#E2E8F0',
-              padding: 10,
-              borderColor: 'rgba(255, 255, 255, 0.1)',
-              borderWidth: 1,
-              callbacks: {
-                label: (ctx) => ` ${ctx.dataset.label}: R$ ${ctx.raw}.000`
+          const gd = ctxFat2d.createLinearGradient(0, 0, 0, 240);
+          gd.addColorStop(0, 'rgba(255, 255, 255, 0.45)');
+          gd.addColorStop(1, 'rgba(255, 255, 255, 0.03)');
+          gradDespesa = gd;
+        } catch(e) {}
+
+        window.fatChartInstance = new Chart(ctxFat, {
+          type: 'line',
+          data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Sep', 'Out', 'Nov', 'Dez'],
+            datasets: [
+              {
+                label: 'Receitas',
+                data: [25, 60, 52, 40, 85, 75, 95, 140, 135, 105, 80, 145],
+                borderColor: '#0063B1',
+                backgroundColor: gradReceita,
+                fill: true,
+                tension: 0.45,
+                borderWidth: 2.5,
+                pointRadius: 0,
+                pointHoverRadius: 6,
+                pointHoverBackgroundColor: '#0063B1',
+                pointHoverBorderColor: '#ffffff',
+                pointHoverBorderWidth: 2
+              },
+              {
+                label: 'Despesas',
+                data: [42, 50, 65, 45, 55, 100, 75, 85, 90, 100, 125, 130],
+                borderColor: '#FFFFFF',
+                backgroundColor: gradDespesa,
+                fill: true,
+                tension: 0.45,
+                borderWidth: 2.5,
+                pointRadius: 0,
+                pointHoverRadius: 6,
+                pointHoverBackgroundColor: '#FFFFFF',
+                pointHoverBorderColor: '#000000',
+                pointHoverBorderWidth: 2
               }
-            }
+            ]
           },
-          scales: {
-            x: {
-              grid: { display: false },
-              ticks: { font: { family: '"FS Me", "Lexend", "Atkinson Hyperlegible", sans-serif', size: 10 }, color: '#94A3B8' }
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: { duration: 900, easing: 'easeOutQuart' },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: '#1E1B4B',
+                titleColor: '#FFFFFF',
+                bodyColor: '#E2E8F0',
+                padding: 10,
+                borderColor: 'rgba(255, 255, 255, 0.1)',
+                borderWidth: 1,
+                callbacks: {
+                  label: (ctx) => ` ${ctx.dataset.label}: R$ ${ctx.raw}.000`
+                }
+              }
             },
-            y: {
-              grid: { color: 'rgba(255, 255, 255, 0.08)' },
-              ticks: {
-                font: { family: '"FS Me", "Lexend", "Atkinson Hyperlegible", sans-serif', size: 10 },
-                color: '#94A3B8',
-                callback: (val) => val === 0 ? '0' : val + 'k'
+            scales: {
+              x: {
+                grid: { display: false },
+                ticks: { font: { family: '"FS Me", "Lexend", "Atkinson Hyperlegible", sans-serif', size: 10 }, color: '#94A3B8' }
+              },
+              y: {
+                grid: { color: 'rgba(255, 255, 255, 0.08)' },
+                ticks: {
+                  font: { family: '"FS Me", "Lexend", "Atkinson Hyperlegible", sans-serif', size: 10 },
+                  color: '#94A3B8',
+                  callback: (val) => val === 0 ? '0' : val + 'k'
+                }
               }
             }
           }
-        }
-      });
+        });
+      } catch(err) {
+        console.warn('Erro ao desenhar grafico:', err);
+      }
+    }
+
+    // Monitora a visibilidade da tela inicial para desenhar o gráfico imediatamente quando ela abrir
+    function setupChartObserver() {
+      const startScr = document.getElementById('start-screen');
+      if (startScr && typeof MutationObserver !== 'undefined') {
+        const observer = new MutationObserver(() => {
+          if (!startScr.classList.contains('hidden')) {
+            setTimeout(initDashboardCharts, 50);
+            setTimeout(initDashboardCharts, 300);
+          }
+        });
+        observer.observe(startScr, { attributes: true, attributeFilter: ['class'] });
+      }
     }
 
     // Garante inicialização após carregamento de todas as bibliotecas externas e em resize
     window.addEventListener('load', () => {
-      setTimeout(initDashboardCharts, 120);
+      setupChartObserver();
+      setTimeout(initDashboardCharts, 100);
+      setTimeout(initDashboardCharts, 400);
     });
+
     window.addEventListener('resize', () => {
       const s = document.getElementById('start-screen');
       if (s && !s.classList.contains('hidden')) {
@@ -2400,6 +2434,7 @@
 
     // Inicialização da Página: sempre entra primeiro pela tela de login
     window.addEventListener('DOMContentLoaded', () => {
+      setupChartObserver();
       lucide.createIcons();
       showAuthScreen();
     });

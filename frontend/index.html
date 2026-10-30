@@ -998,7 +998,7 @@
   <!-- ================= LÓGICA E ESTADO DA APLICAÇÃO ================= -->
   <script>
     const API_BASE = '/api/v1';
-    let token = localStorage.getItem('s0_token');
+    let token = null;
     let currentUser = null;
     let currentApp = null;
     let financialFilter = null; // 'receita', 'despesa', ou null (todos)
@@ -2245,15 +2245,10 @@
       }
     });
 
-    // Inicialização da Página
-    window.addEventListener('DOMContentLoaded', async () => {
+    // Inicialização da Página: sempre entra primeiro pela tela de login
+    window.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
-      if (token) {
-        showStartScreen();
-        await syncWithBackend();
-      } else {
-        showAuthScreen();
-      }
+      showAuthScreen();
     });
   
     // ================= CONTROLE DOS MODAIS DE CLIENTES E SERVIÇOS =================

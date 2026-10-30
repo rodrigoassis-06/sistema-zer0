@@ -217,7 +217,7 @@
             </button>
 
             <!-- Tile Saldo -->
-            <button onclick="openApp('dashboard')" style="animation-delay: 240ms;" class="tile metro-enter col-span-2 row-span-2 bg-[#1A1D24] border border-white/10 text-white p-3.5 lg:p-4 xl:p-5 text-left flex flex-col justify-between hover:border-white/25 transition-all">
+            <button onclick="openApp('saldo')" style="animation-delay: 240ms;" class="tile metro-enter col-span-2 row-span-2 bg-[#1A1D24] border border-white/10 text-white p-3.5 lg:p-4 xl:p-5 text-left flex flex-col justify-between hover:border-white/25 transition-all">
               <i data-lucide="scale" class="h-6 w-6 lg:h-7 lg:w-7 text-white/90"></i>
               <div>
                 <p id="tile-net-realized" class="text-lg md:text-xl lg:text-2xl font-light text-white">R$ 1.870,00</p>
@@ -648,6 +648,59 @@
       <div id="appointments-calendar-grid" class="grid grid-cols-7 gap-1 mt-1">
         <!-- Renderizado dinamicamente via JS -->
       </div>
+    </div>
+
+    <!-- ================= SEÇÃO DE SALDO (RECEITAS + DESPESAS) ================= -->
+    <div id="saldo-summary-section" class="hidden mt-6 mb-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      
+      <!-- Card Receitas -->
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 flex flex-col justify-between shadow-sm">
+        <div class="flex items-center justify-between">
+          <span class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Total Receitas</span>
+          <span class="w-2.5 h-2.5 rounded-full bg-tile-green"></span>
+        </div>
+        <div class="mt-2">
+          <p id="saldo-card-income-paid" class="text-2xl font-bold text-tile-green">R$ 0,00</p>
+          <p id="saldo-card-income-pend" class="text-xs text-slate-500 mt-0.5">a receber R$ 0,00</p>
+        </div>
+      </div>
+
+      <!-- Card Despesas -->
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 flex flex-col justify-between shadow-sm">
+        <div class="flex items-center justify-between">
+          <span class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Total Despesas</span>
+          <span class="w-2.5 h-2.5 rounded-full bg-tile-red"></span>
+        </div>
+        <div class="mt-2">
+          <p id="saldo-card-expense-paid" class="text-2xl font-bold text-tile-red">R$ 0,00</p>
+          <p id="saldo-card-expense-pend" class="text-xs text-slate-500 mt-0.5">a pagar R$ 0,00</p>
+        </div>
+      </div>
+
+      <!-- Card Saldo Realizado -->
+      <div class="bg-slate-900 border border-slate-800 text-white rounded-xl p-5 flex flex-col justify-between shadow-sm">
+        <div class="flex items-center justify-between">
+          <span class="text-xs uppercase tracking-wider text-white/70 font-semibold">Saldo Realizado</span>
+          <i data-lucide="scale" class="w-4 h-4 text-white/80"></i>
+        </div>
+        <div class="mt-2">
+          <p id="saldo-card-net-real" class="text-2xl font-bold text-white">R$ 0,00</p>
+          <p class="text-xs text-white/60 mt-0.5">receitas pagas - despesas pagas</p>
+        </div>
+      </div>
+
+      <!-- Card Saldo Projetado -->
+      <div class="bg-tile-blue text-white rounded-xl p-5 flex flex-col justify-between shadow-sm">
+        <div class="flex items-center justify-between">
+          <span class="text-xs uppercase tracking-wider text-white/80 font-semibold">Saldo Projetado</span>
+          <i data-lucide="trending-up" class="w-4 h-4 text-white/80"></i>
+        </div>
+        <div class="mt-2">
+          <p id="saldo-card-net-proj" class="text-2xl font-bold text-white">R$ 0,00</p>
+          <p class="text-xs text-white/70 mt-0.5">previsão final do mês</p>
+        </div>
+      </div>
+
     </div>
 
     <!-- SEÇÃO 2: TABELA DE REGISTROS / ATENDIMENTOS DO DIA -->
@@ -1146,6 +1199,21 @@
       document.getElementById('kpi-dash-expense').textContent = brl(expPaid);
       document.getElementById('kpi-dash-net').textContent = brl(netReal);
       renderRecentActivities();
+
+      // Atualiza também os cards exclusivos da tela de Saldo
+      const sIncPaid = document.getElementById('saldo-card-income-paid');
+      const sIncPend = document.getElementById('saldo-card-income-pend');
+      const sExpPaid = document.getElementById('saldo-card-expense-paid');
+      const sExpPend = document.getElementById('saldo-card-expense-pend');
+      const sNetReal = document.getElementById('saldo-card-net-real');
+      const sNetProj = document.getElementById('saldo-card-net-proj');
+
+      if (sIncPaid) sIncPaid.textContent = brl(incPaid);
+      if (sIncPend) sIncPend.textContent = `a receber ${brl(incPend)}`;
+      if (sExpPaid) sExpPaid.textContent = brl(expPaid);
+      if (sExpPend) sExpPend.textContent = `a pagar ${brl(expPend)}`;
+      if (sNetReal) sNetReal.textContent = brl(netReal);
+      if (sNetProj) sNetProj.textContent = `proj. ${brl(netProj)}`;
     }
 
     // Sincronização com a API FastAPI real
@@ -1359,9 +1427,13 @@
       if (appId === 'financial') {
         financialFilter = filter;
       }
+      if (appId === 'saldo') {
+        financialFilter = null; // Mostra Receitas + Despesas juntas no resultado de saldo
+      }
 
       const titles = {
         'dashboard': 'Visão geral',
+        'saldo': 'Saldo',
         'appointments': 'Agendamentos',
         'financial': financialFilter === 'receita' ? 'Receitas' : (financialFilter === 'despesa' ? 'Despesas' : 'Financeiro'),
         'customers': 'Clientes',
@@ -1383,8 +1455,10 @@
       const tableSubtitle = document.getElementById('app-table-subtitle');
       tableSubtitle.textContent = '';
 
+      const saldoSection = document.getElementById('saldo-summary-section');
+
       if (finFilterTabs) {
-        if (appId === 'financial') {
+        if (appId === 'financial' || appId === 'saldo') {
           finFilterTabs.classList.remove('hidden');
           updateFinancialFilterTabs();
         } else {
@@ -1407,7 +1481,7 @@
       }
 
       if (btnActionTrx) {
-        if (appId === 'financial') {
+        if (appId === 'financial' || appId === 'saldo') {
           btnActionTrx.classList.remove('hidden');
         } else {
           btnActionTrx.classList.add('hidden');
@@ -1455,9 +1529,27 @@
         if (dashSection) dashSection.classList.add('hidden');
       }
 
+      // Exibe ou oculta a seção de Saldo (Cards de Receitas + Despesas)
+      if (saldoSection) {
+        if (appId === 'saldo') {
+          saldoSection.classList.remove('hidden');
+        } else {
+          saldoSection.classList.add('hidden');
+        }
+      }
+
       // Renderização do conteúdo de cada aplicativo
       if (appId === 'dashboard') {
         // Nada extra a fazer aqui, os gráficos foram chamados acima
+      } else if (appId === 'saldo') {
+        kpisBox.classList.add('hidden');
+        actionsBox.classList.remove('hidden');
+        calendarSection.classList.add('hidden');
+        tableSection.classList.remove('hidden');
+        btnBackCal.classList.add('hidden');
+        document.getElementById('app-table-title').textContent = 'Balanço de Movimentações';
+        document.getElementById('app-table-subtitle').textContent = 'Demonstrativo consolidado de Receitas e Despesas';
+        renderAppTable('financial');
       } else if (appId === 'appointments') {
         kpisBox.classList.add('hidden');
         actionsBox.classList.remove('hidden');
@@ -1538,6 +1630,7 @@
       selectedDayDate = null;
       financialFilter = null;
       document.getElementById('app-view').classList.add('hidden');
+      const sSec = document.getElementById('saldo-summary-section'); if (sSec) sSec.classList.add('hidden');
       document.getElementById('start-screen').classList.remove('hidden');
       updateStartTiles();
       lucide.createIcons();

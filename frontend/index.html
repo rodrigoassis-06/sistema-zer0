@@ -630,7 +630,7 @@
                 <td class="py-3.5 pr-6 font-medium text-white">Alice Silva</td>
                 <td class="py-3.5 pr-6 text-white/70">24 Mai</td>
                 <td class="py-3.5 pr-6 font-semibold text-white">R$ 250,50</td>
-                <td class="py-3.5 pr-6"><span class="text-[#72A824] font-semibold text-xs">Pago</span></td>
+                <td class="py-3.5 pr-6"><span class="text-white font-semibold text-xs">Pago</span></td>
               </tr>
               <tr class="hover:bg-white/5 transition-colors">
                 <td class="py-3.5 pr-6 font-medium text-white/50">#1233</td>
@@ -651,7 +651,7 @@
                 <td class="py-3.5 pr-6 font-medium text-white">Diego Souza</td>
                 <td class="py-3.5 pr-6 text-white/70">23 Mai</td>
                 <td class="py-3.5 pr-6 font-semibold text-white">R$ 180,00</td>
-                <td class="py-3.5 pr-6"><span class="text-[#72A824] font-semibold text-xs">Pago</span></td>
+                <td class="py-3.5 pr-6"><span class="text-white font-semibold text-xs">Pago</span></td>
               </tr>
             </tbody>
           </table>
@@ -1330,9 +1330,8 @@
     };
 
     function renderStatusBadge(status) {
-      const color = statusColors[status] || 'text-white/80';
       const label = statusLabels[status] || status;
-      return `<span class="${color} font-semibold text-xs md:text-sm">${label}</span>`;
+      return `<span class="text-white font-semibold text-xs md:text-sm">${label}</span>`;
     }
 
     // Requisição genérica autenticada com fallback suave
@@ -1969,7 +1968,7 @@
             <td class="py-3 text-white/70">${item.date}</td>
             <td class="py-3 font-medium text-white">${brl(item.value)}</td>
             <td class="py-3">
-              <span class="${item.isPaid ? 'text-[#72A824] font-semibold' : 'text-white font-medium'} text-xs md:text-sm">${item.status}</span>
+              <span class="text-white font-semibold text-xs md:text-sm">${item.status}</span>
             </td>
           </tr>
         `).join('');
@@ -2037,10 +2036,10 @@
 
           let actions = '<div class="flex items-center justify-end gap-2.5">';
           if (isPending) {
-            actions += `<button onclick="confirmAppointment(${rawId})" class="text-xs text-sky-400 hover:underline font-medium">Confirmar</button>`;
+            actions += `<button onclick="confirmAppointment(${rawId})" class="text-xs text-white hover:underline font-medium">Confirmar</button>`;
             actions += `<button onclick="cancelAppointment(${rawId})" class="text-xs text-slate-400 hover:text-white">Cancelar</button>`;
           } else if (isConfirmed) {
-            actions += `<button onclick="completeAppointment(${rawId})" class="text-xs text-[#72A824] hover:underline font-semibold">Concluir</button>`;
+            actions += `<button onclick="completeAppointment(${rawId})" class="text-xs text-white hover:underline font-semibold">Concluir</button>`;
             actions += `<button onclick="cancelAppointment(${rawId})" class="text-xs text-slate-400 hover:text-white">Cancelar</button>`;
           }
           actions += `<button onclick="deleteAppointmentConfirm(${rawId})" class="text-xs text-rose-400 hover:underline">Excluir</button>`;
@@ -2110,12 +2109,12 @@
 
           tbody.innerHTML += `
             <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
-              <td class="py-3.5 pr-4 uppercase text-xs font-semibold ${isIncome ? 'text-[#72A824]' : 'text-[#D11F25]'}">${isIncome ? 'Receita' : 'Despesa'}</td>
+              <td class="py-3.5 pr-4 uppercase text-xs font-semibold text-white">${isIncome ? 'Receita' : 'Despesa'}</td>
               <td class="py-3.5 pr-4 font-medium text-white">${f.category}</td>
               <td class="py-3.5 pr-4 text-slate-300">${f.due}</td>
               <td class="py-3.5 pr-4 text-slate-400">${f.method}</td>
               <td class="py-3.5 pr-4">${renderStatusBadge(f.status)}</td>
-              <td class="py-3.5 pr-4 text-right font-bold ${isIncome ? 'text-[#72A824]' : 'text-[#D11F25]'}">${isIncome ? '+' : '-'} ${brl(f.value)}</td>
+              <td class="py-3.5 pr-4 text-right font-bold text-white">${isIncome ? '+' : '-'} ${brl(f.value)}</td>
               <td class="py-3.5 pr-4 text-right whitespace-nowrap space-x-2">
                 <button onclick="toggleTransactionStatus(${rawId}, '${f.status}')" class="text-xs ${isPaid ? 'text-amber-400' : 'text-[#72A824]'} hover:underline font-medium">
                   ${isPaid ? 'Marcar Pendente' : 'Pagar'}
@@ -2230,7 +2229,7 @@
           tbody.innerHTML += `
             <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
               <td class="py-3.5 pr-4 font-medium text-white flex items-center gap-2.5">
-                <div class="w-8 h-8 rounded-full bg-[#0063B1]/20 border border-[#0063B1]/30 text-sky-400 flex items-center justify-center font-bold text-xs">
+                <div class="w-8 h-8 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center font-bold text-xs">
                   ${m.name.slice(0, 2).toUpperCase()}
                 </div>
                 <span>${m.name}</span>
@@ -2239,7 +2238,7 @@
               <td class="py-3.5 pr-4 text-slate-400 text-xs">${m.phone || m.email || '—'}</td>
               <td class="py-3.5 pr-4 font-semibold text-white">${m.commission}%</td>
               <td class="py-3.5 pr-4 text-slate-300">${m.services_count || 0} feitos</td>
-              <td class="py-3.5 pr-4 text-right font-bold text-[#72A824]">${brl(m.commission_total || 0)}</td>
+              <td class="py-3.5 pr-4 text-right font-bold text-white">${brl(m.commission_total || 0)}</td>
               <td class="py-3.5 pr-4 text-right whitespace-nowrap space-x-2">
                 <button onclick="openEditTeamMemberDialog(${rawId})" class="text-xs text-sky-400 hover:underline font-medium">Editar</button>
                 <button onclick="deleteTeamMemberConfirm(${rawId})" class="text-xs text-rose-400 hover:underline">Excluir</button>
@@ -2359,8 +2358,8 @@
               <td class="py-3.5 pr-4 text-slate-300 font-mono text-xs">${q.arrival || q.time}</td>
               <td class="py-3.5 pr-4">${renderStatusBadge(q.status)}</td>
               <td class="py-3.5 pr-4 text-right whitespace-nowrap space-x-2">
-                ${!isDone ? `<button onclick="callQueueItem(${q.id})" class="text-xs ${isAtend ? 'text-amber-400' : 'text-sky-400'} hover:underline font-medium">${isAtend ? 'Atendendo' : 'Chamar'}</button>` : ''}
-                ${!isDone ? `<button onclick="finishQueueItem(${q.id})" class="text-xs text-[#72A824] hover:underline font-medium">Concluir</button>` : ''}
+                ${!isDone ? `<button onclick="callQueueItem(${q.id})" class="text-xs text-white hover:underline font-medium">${isAtend ? 'Atendendo' : 'Chamar'}</button>` : ''}
+                ${!isDone ? `<button onclick="finishQueueItem(${q.id})" class="text-xs text-white hover:underline font-medium">Concluir</button>` : ''}
                 <button onclick="removeQueueItem(${q.id})" class="text-xs text-rose-400 hover:underline">Remover</button>
               </td>
             </tr>
@@ -2392,7 +2391,7 @@
               <span class="text-xs text-slate-400">Meta principal de vendas do negócio</span>
             </td>
             <td class="py-4 pr-4 font-semibold text-white">${brl(target)}</td>
-            <td class="py-4 pr-4 font-bold text-[#72A824]">${brl(current)}</td>
+            <td class="py-4 pr-4 font-bold text-white">${brl(current)}</td>
             <td class="py-4 pr-4 w-52">
               <div class="w-full bg-white/10 rounded-full h-2.5 overflow-hidden">
                 <div class="bg-[#72A824] h-2.5 rounded-full" style="width: ${pct}%"></div>
@@ -2400,7 +2399,7 @@
             </td>
             <td class="py-4 pr-4 font-bold text-white">${pct}%</td>
             <td class="py-4 pr-4 text-right">
-              <button onclick="openEditGoalDialog()" class="text-xs text-sky-400 hover:underline font-medium">Ajustar Meta</button>
+              <button onclick="openEditGoalDialog()" class="text-xs text-white hover:underline font-medium">Ajustar Meta</button>
             </td>
           </tr>
           <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
@@ -2409,7 +2408,7 @@
               <span class="text-xs text-slate-400">Expansão de base ativa</span>
             </td>
             <td class="py-4 pr-4 font-semibold text-white">50 clientes</td>
-            <td class="py-4 pr-4 font-bold text-sky-400">38 clientes</td>
+            <td class="py-4 pr-4 font-bold text-white">38 clientes</td>
             <td class="py-4 pr-4 w-52">
               <div class="w-full bg-white/10 rounded-full h-2.5 overflow-hidden">
                 <div class="bg-[#0063B1] h-2.5 rounded-full" style="width: 76%"></div>
@@ -2426,7 +2425,7 @@
               <span class="text-xs text-slate-400">Volume operacional da equipe</span>
             </td>
             <td class="py-4 pr-4 font-semibold text-white">120 serviços</td>
-            <td class="py-4 pr-4 font-bold text-[#72A824]">94 serviços</td>
+            <td class="py-4 pr-4 font-bold text-white">94 serviços</td>
             <td class="py-4 pr-4 w-52">
               <div class="w-full bg-white/10 rounded-full h-2.5 overflow-hidden">
                 <div class="bg-[#72A824] h-2.5 rounded-full" style="width: 78%"></div>
@@ -2485,8 +2484,8 @@
               <td class="py-3.5 pr-4 text-slate-300 font-mono text-xs">${w.time}</td>
               <td class="py-3.5 pr-4">${renderStatusBadge(w.status)}</td>
               <td class="py-3.5 pr-4 text-right">
-                <button onclick="sendSingleWhatsApp(${w.id})" class="px-3 py-1 bg-[#25D366]/20 border border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366]/30 rounded-lg text-xs font-semibold transition-colors">
-                  ${isPending ? '📲 Disparar WhatsApp' : '✅ Reenviar WhatsApp'}
+                <button onclick="sendSingleWhatsApp(${w.id})" class="px-3 py-1 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-lg text-xs font-medium transition-colors">
+                  ${isPending ? 'Disparar WhatsApp' : 'Reenviar WhatsApp'}
                 </button>
               </td>
             </tr>
@@ -2516,26 +2515,26 @@
         tbody.innerHTML = `
           <tr class="border-b border-white/5 hover:bg-white/5 transition-colors font-medium">
             <td class="py-3.5 pr-4 text-white">1. RECEITA OPERACIONAL BRUTA (Paga)</td>
-            <td class="py-3.5 pr-4 text-[#72A824] uppercase text-xs font-semibold">Receitas Realizadas</td>
-            <td class="py-3.5 pr-4 text-right font-bold text-[#72A824]">${brl(incPaid)}</td>
-            <td class="py-3.5 pr-4 text-right text-slate-300">100.0%</td>
+            <td class="py-3.5 pr-4 text-white uppercase text-xs font-semibold">Receitas Realizadas</td>
+            <td class="py-3.5 pr-4 text-right font-bold text-white">${brl(incPaid)}</td>
+            <td class="py-3.5 pr-4 text-right text-white/80">100.0%</td>
           </tr>
           <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
             <td class="py-3.5 pr-4 text-white pl-4">(-) Despesas Operacionais e Insumos</td>
-            <td class="py-3.5 pr-4 text-[#D11F25] uppercase text-xs">Custos Fixos / Variáveis</td>
-            <td class="py-3.5 pr-4 text-right font-semibold text-[#D11F25]">- ${brl(expPaid)}</td>
-            <td class="py-3.5 pr-4 text-right text-slate-400">${incPaid > 0 ? ((expPaid / incPaid) * 100).toFixed(1) : '0.0'}%</td>
+            <td class="py-3.5 pr-4 text-white/80 uppercase text-xs">Custos Fixos / Variáveis</td>
+            <td class="py-3.5 pr-4 text-right font-semibold text-white">- ${brl(expPaid)}</td>
+            <td class="py-3.5 pr-4 text-right text-white/80">${incPaid > 0 ? ((expPaid / incPaid) * 100).toFixed(1) : '0.0'}%</td>
           </tr>
           <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
             <td class="py-3.5 pr-4 text-white pl-4">(-) Repasses e Comissões da Equipe</td>
-            <td class="py-3.5 pr-4 text-[#D11F25] uppercase text-xs">Custo de Mão de Obra</td>
-            <td class="py-3.5 pr-4 text-right font-semibold text-[#D11F25]">- ${brl(teamComms)}</td>
-            <td class="py-3.5 pr-4 text-right text-slate-400">${incPaid > 0 ? ((teamComms / incPaid) * 100).toFixed(1) : '0.0'}%</td>
+            <td class="py-3.5 pr-4 text-white/80 uppercase text-xs">Custo de Mão de Obra</td>
+            <td class="py-3.5 pr-4 text-right font-semibold text-white">- ${brl(teamComms)}</td>
+            <td class="py-3.5 pr-4 text-right text-white/80">${incPaid > 0 ? ((teamComms / incPaid) * 100).toFixed(1) : '0.0'}%</td>
           </tr>
           <tr class="border-t border-white/20 bg-white/5 font-bold">
             <td class="py-4 pr-4 text-white text-base">(=) RESULTADO LÍQUIDO DO EXERCÍCIO (Lucro Real)</td>
-            <td class="py-4 pr-4 text-sky-400 uppercase text-xs">Margem Líquida</td>
-            <td class="py-4 pr-4 text-right text-lg ${net >= 0 ? 'text-[#72A824]' : 'text-[#D11F25]'}">${brl(net)}</td>
+            <td class="py-4 pr-4 text-white uppercase text-xs">Margem Líquida</td>
+            <td class="py-4 pr-4 text-right text-lg text-white">${brl(net)}</td>
             <td class="py-4 pr-4 text-right text-white">${incPaid > 0 ? ((net / incPaid) * 100).toFixed(1) : '0.0'}%</td>
           </tr>
         `;

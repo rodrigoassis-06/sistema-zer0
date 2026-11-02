@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema 0 — Documentação Oficial & Descritivo do Projeto</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
+
+    @page {
+      size: A4;
+      margin: 18mm 16mm 18mm 16mm;
+      @bottom-right {
+        content: counter(page);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lexend', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #0F172A;
+      background-color: #FFFFFF;
+      line-height: 1.55;
+      font-size: 10pt;
+    }
+
+    /* CAPA / CABEÇALHO EXECUTIVO */
+    .header-banner {
+      background: linear-gradient(135deg, #004B87 0%, #0063B1 50%, #0284C7 100%);
+      color: #FFFFFF;
+      padding: 28px 24px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 14px rgba(0, 99, 177, 0.18);
+    }
+
+    .brand-tag {
+      display: inline-block;
+      background-color: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 8pt;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 22pt;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 6px;
+      color: #FFFFFF;
+    }
+
+    .header-subtitle {
+      font-size: 11pt;
+      font-weight: 300;
+      opacity: 0.95;
+      line-height: 1.4;
+    }
+
+    .meta-bar {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 8.5pt;
+      opacity: 0.85;
+    }
+
+    /* SEÇÕES */
+    .section {
+      margin-bottom: 22px;
+      page-break-inside: avoid;
+    }
+
+    h2 {
+      font-size: 13pt;
+      font-weight: 700;
+      color: #004B87;
+      border-left: 4px solid #0063B1;
+      padding-left: 10px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    h3 {
+      font-size: 10.5pt;
+      font-weight: 600;
+      color: #1E293B;
+      margin-top: 10px;
+      margin-bottom: 4px;
+    }
+
+    p {
+      margin-bottom: 8px;
+      color: #334155;
+      font-size: 9.5pt;
+    }
+
+    /* CARDS EM GRADE */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .card {
+      background-color: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 12px 14px;
+      page-break-inside: avoid;
+    }
+
+    .card.highlight {
+      border-top: 3px solid #0063B1;
+      background-color: #FFFFFF;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .card-title {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: #0F172A;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .card-text {
+      font-size: 8.5pt;
+      color: #475569;
+      line-height: 1.45;
+    }
+
+    /* TABELAS */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      margin-bottom: 14px;
+      font-size: 8.5pt;
+      page-break-inside: avoid;
+    }
+
+    th {
+      background-color: #004B87;
+      color: #FFFFFF;
+      font-weight: 600;
+      text-align: left;
+      padding: 8px 10px;
+      text-transform: uppercase;
+      font-size: 7.5pt;
+      letter-spacing: 0.05em;
+    }
+
+    th:first-child {
+      border-top-left-radius: 6px;
+    }
+
+    th:last-child {
+      border-top-right-radius: 6px;
+    }
+
+    td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #E2E8F0;
+      color: #334155;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #F8FAFC;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 7.5pt;
+      font-weight: 600;
+    }
+
+    .badge-blue { background-color: #E0F2FE; color: #0369A1; }
+    .badge-green { background-color: #DCFCE7; color: #15803D; }
+    .badge-purple { background-color: #F3E8FF; color: #7E22CE; }
+    .badge-amber { background-color: #FEF3C7; color: #B45309; }
+
+    /* DESTAQUE CALLOUT */
+    .callout {
+      background-color: #F0FDF4;
+      border-left: 4px solid #16A34A;
+      padding: 12px 14px;
+      border-radius: 6px;
+      margin-top: 10px;
+      margin-bottom: 14px;
+      font-size: 9pt;
+      color: #166534;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    /* FOOTER */
+    .doc-footer {
+      margin-top: 26px;
+      padding-top: 12px;
+      border-top: 1px solid #CBD5E1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 8pt;
+      color: #64748B;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BANNER EXECUTIVO -->
+  <div class="header-banner">
+    <span class="brand-tag">Documento Oficial de Especificação & Proposta de Valor</span>
+    <h1>SISTEMA 0</h1>
+    <div class="header-subtitle">Plataforma Integrada de Gestão Empresarial, Operação & Relacionamento (ERP & CRM)</div>
+    <div class="meta-bar">
+      <span><strong>Versão:</strong> 2.0 (Build 2026.11)</span>
+      <span><strong>Segmento:</strong> Serviços, Estética, Salões, Barbearias e Clínicas</span>
+      <span><strong>Emissão:</strong> Novembro de 2026</span>
+    </div>
+  </div>
+
+  <!-- 1. VISÃO GERAL & PROPOSTA DE VALOR -->
+  <div class="section">
+    <h2>1. Visão Geral & Proposta de Valor</h2>
+    <p>O <strong>Sistema 0</strong> é uma solução completa de tecnologia desenhada especificamente para empresas do setor de serviços e cuidados pessoais. Ele substitui a fragmentação de planilhas manuais, anotações de papel e softwares genéricos por um ecossistema rápido, unificado e visualmente intuitivo.</p>
+    <p>Inspirado na clássica filosofia <em>Metro/Modern UI</em> com blocos dinâmicos (<strong>Live Tiles</strong>), o Sistema 0 elimina barreiras de usabilidade para recepcionistas, gestores e profissionais, permitindo que a equipe foque no atendimento de excelência enquanto a plataforma automatiza o controle financeiro, a retenção de clientes e os repasses de comissão.</p>
+  </div>
+
+  <!-- 2. ARQUITETURA TECNOLÓGICA -->
+  <div class="section">
+    <h2>2. Engenharia e Arquitetura Tecnológica</h2>
+    <div class="grid-3">
+      <div class="card highlight">
+        <div class="card-title"><span class="badge badge-blue">Backend</span> FastAPI (Python)</div>
+        <div class="card-text">Alta performance assíncrona, validação estrita com Pydantic, documentação interativa OpenAPI/Swagger e segurança nativa JWT.</div>
+      </div>
+      <div class="card highlight">
+        <div class="card-title"><span class="badge badge-green">Banco de Dados</span> PostgreSQL / Supabase</div>
+        <div class="card-text">SQLAlchemy ORM com suporte a PostgreSQL escalável (compatível com Supabase) e SQLite embarcado para testes locais imediatos.</div>
+      </div>
+      <div class="card highlight">
+        <div class="card-title"><span class="badge badge-purple">Frontend</span> Single-Page App</div>
+        <div class="card-text">Interface ultrarrápida com Tailwind CSS, ícones vetoriais Lucide e visualizações interativas com Chart.js. Sem lentidão de frameworks pesados.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. MÓDULOS DO SISTEMA -->
+  <div class="section">
+    <h2>3. Módulos Operacionais & Funcionalidades</h2>
+    
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">1. Tela Inicial Dinâmica (Live Tiles)</div>
+        <div class="card-text">Blocos com efeito visual de alternância que atualizam automaticamente métricas de faturamento, agenda do dia, clientes na fila e equipe ativa sem exigir cliques ou recarregamentos.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">2. Dashboard Analítico Executivo</div>
+        <div class="card-text">Curva Spline de faturamento anual, simulador interativo de projeção mês a mês com recálculo automático de metas, donut de vendas por canal e 4 cartões com gráficos sparklines.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">3. Agenda & Calendário Mensal</div>
+        <div class="card-text">Grade visual do mês completo com identificação do dia de "Hoje", contadores de serviços e abertura de agenda diária por horário para confirmar, concluir ou cancelar com 1 clique.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">4. Gestão Financeira & Fluxo de Caixa</div>
+        <div class="card-text">Quatro indicadores estratégicos (Receitas, Despesas, Saldo Realizado e Saldo Projetado), filtros por abas, busca em tempo real e alternância instantânea de status Pago/Pendente.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">5. Central Anti-Falta via WhatsApp</div>
+        <div class="card-text">Redução drástica de ausências (no-shows) com disparo pré-formatado via link direto wa.me contendo nome do cliente, serviço, data e horário marcado para confirmação rápida.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">6. Fila de Recepção em Tempo Real</div>
+        <div class="card-text">Controle visual de ordem de chegada de clientes no balcão, tempo de espera, chamada para atendimento e alocação dinâmica ao profissional responsável.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">7. Equipe & Fechamento de Comissões</div>
+        <div class="card-text">Cadastro de colaboradores com alíquotas personalizadas de comissão (%). Cada atendimento concluído gera automaticamente o repasse do colaborador, sem planilhas manuais.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">8. CRM de Clientes & Fornecedores</div>
+        <div class="card-text">Base centralizada de contatos, histórico de procedimentos e campo de anotações médicas/restrições (ex: alergias a químicos). Gestão de parceiros e compras de insumos.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">9. Demonstrativo de Resultado (DRE)</div>
+        <div class="card-text">Apuração do Lucro Líquido Real deduzindo Custos Operacionais e Comissões da Equipe da Receita Bruta, com cálculo da Margem Líquida e exportação imediata para arquivo CSV.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">10. Alternância de Temas (Dark / Light)</div>
+        <div class="card-text">Modo Escuro imersivo como padrão e Modo Claro em cartões brancos com contraste otimizado para ambientes iluminados, com memória de preferência no navegador.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. BENEFÍCIOS ESTRATÉGICOS -->
+  <div class="section">
+    <h2>4. Benefícios Estratégicos & Prós de Implementação</h2>
+    
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Diferencial / Pró</th>
+          <th style="width: 45%;">Descrição Operacional</th>
+          <th style="width: 30%;">Impacto Financeiro Direto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Combate Ativo ao No-Show</strong></td>
+          <td>Disparos de lembretes no WhatsApp com mensagem cordial de confirmação com apenas 1 clique.</td>
+          <td><span class="badge badge-green">Recuperação de até 60%</span> de faturamento perdido por faltas.</td>
+        </tr>
+        <tr>
+          <td><strong>Visão do Caixa vs. Projeção</strong></td>
+          <td>O gestor sabe o saldo disponível em conta e a projeção real de sobra até o último dia do mês.</td>
+          <td><span class="badge badge-blue">Previsibilidade Total</span> para compras e investimentos.</td>
+        </tr>
+        <tr>
+          <td><strong>Comissões Automatizadas</strong></td>
+          <td>Cálculo automático de repasse no exato momento da conclusão do atendimento no sistema.</td>
+          <td><span class="badge badge-purple">Zero Erros</span> e economia de dezenas de horas de fechamento.</td>
+        </tr>
+        <tr>
+          <td><strong>Integração Financeira Direta</strong></td>
+          <td>Ao concluir o serviço na agenda, a receita entra diretamente no fluxo de caixa e no DRE gerencial.</td>
+          <td><span class="badge badge-green">Controle Rigoroso</span> sem esquecimentos de lançamento.</td>
+        </tr>
+        <tr>
+          <td><strong>Interface Intuitiva Metro</strong></td>
+          <td>Blocos coloridos e tipografia em alto contraste com zero poluição visual ou telas confusas.</td>
+          <td><span class="badge badge-amber">Curva de Aprendizado Zero</span> para recepcionistas.</td>
+        </tr>
+        <tr>
+          <td><strong>Independência Tecnológica</strong></td>
+          <td>Código próprio sem taxas abusivas por usuário adicional ou cobranças ocultas de fornecedores.</td>
+          <td><span class="badge badge-blue">ROI Imediato</span> e controle proprietário da operação.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <div class="callout-title">Síntese de Retorno sobre Investimento (ROI)</div>
+      Ao centralizar recepção, agenda, faturamento e comissões em uma única interface ultrarrápida, o <strong>Sistema 0</strong> reduz gargalos de comunicação interna em mais de 70%, elimina divergências de repasse com profissionais e melhora a percepção de pontualidade e sofisticação junto aos clientes finais.
+    </div>
+  </div>
+
+  <!-- RODAPÉ -->
+  <div class="doc-footer">
+    <span>Sistema 0 &copy; 2026 &mdash; Todos os direitos reservados</span>
+    <span>Documentação Técnica & Proposta Comercial Executiva</span>
+  </div>
+
+</body>
+</html>

@@ -137,7 +137,7 @@
     }
 
   
-    /* ================= TEMA CLARO COMPLETO (LIGHT THEME) ================= */
+    /* ================= TEMA CLARO ROBUSTO E CONSISTENTE (LIGHT THEME) ================= */
     body.theme-light {
       background-color: #F8FAFC !important;
       color: #0F172A !important;
@@ -149,25 +149,21 @@
       color: #0F172A !important;
     }
 
-    /* Cabeçalhos, Títulos e Textos Principais */
-    body.theme-light h1,
-    body.theme-light h2,
-    body.theme-light h3,
-    body.theme-light h4,
+    /* 1. TÍTULOS E CABEÇALHOS DO START E TELAS INTERNAS */
+    body.theme-light header span.text-white,
+    body.theme-light #header-user-name,
+    body.theme-light #header-user-avatar,
+    body.theme-light section h2,
     body.theme-light #app-view-title,
     body.theme-light #app-table-title,
-    body.theme-light header span.text-white,
-    body.theme-light #header-user-name {
+    body.theme-light #calendar-month-title,
+    body.theme-light #dashboard-view-section h3 {
       color: #0F172A !important;
     }
     body.theme-light #header-user-sub,
     body.theme-light #table-subtitle,
-    body.theme-light #table-search-counter,
-    body.theme-light .text-slate-400 {
+    body.theme-light #table-search-counter {
       color: #64748B !important;
-    }
-    body.theme-light #header-user-avatar {
-      color: #0F172A !important;
     }
 
     /* Seta Voltar no app-view */
@@ -176,35 +172,13 @@
       color: #0F172A !important;
     }
 
-    /* Cards e Containers no modo claro */
-    body.theme-light .bg-black,
-    body.theme-light .bg-\[\#16181D\],
-    body.theme-light .bg-\[\#1A1D24\] {
-      background-color: #FFFFFF !important;
-      border-color: #E2E8F0 !important;
-      color: #0F172A !important;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    }
-
-    /* Bordas e divisores */
-    body.theme-light .border-white\/5,
-    body.theme-light .border-white\/10,
-    body.theme-light .border-white\/15,
-    body.theme-light .border-white\/20 {
-      border-color: #E2E8F0 !important;
-    }
-    body.theme-light .divide-white\/5 > * + *,
-    body.theme-light .divide-white\/10 > * + * {
-      border-color: #F1F5F9 !important;
-    }
-
     /* Botões utilitários de topo (Sino, Tema) */
     body.theme-light #btn-notifications,
     body.theme-light #btn-notifications-app,
     body.theme-light #btn-theme-toggle,
     body.theme-light #btn-theme-toggle-app {
       background-color: #FFFFFF !important;
-      border-color: #CBD5E1 !important;
+      border: 1px solid #CBD5E1 !important;
       color: #334155 !important;
       box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     }
@@ -216,29 +190,78 @@
       color: #0F172A !important;
     }
 
-    /* Input de Pesquisa */
-    body.theme-light #table-search-input {
+    /* 2. PROTEÇÃO ABSOLUTA DE BOTÕES E TILES COLORIDOS (SEMPRE BRANCOS) */
+    body.theme-light .tile.bg-tile-blue,
+    body.theme-light .tile.bg-tile-blue *,
+    body.theme-light .tile.bg-tile-lime,
+    body.theme-light .tile.bg-tile-lime *,
+    body.theme-light .tile.bg-\[\#6C757D\],
+    body.theme-light .tile.bg-\[\#6C757D\] *,
+    body.theme-light button.bg-tile-blue,
+    body.theme-light button.bg-tile-blue *,
+    body.theme-light [id^="btn-action-"]:not(#btn-action-rep),
+    body.theme-light [id^="btn-action-"]:not(#btn-action-rep) * {
+      color: #FFFFFF !important;
+    }
+
+    /* Botão Exportar DRE (.csv) amarelo com texto preto */
+    body.theme-light #btn-action-rep,
+    body.theme-light #btn-action-rep * {
+      background-color: #FCD97B !important;
+      color: #020617 !important;
+    }
+
+    /* 3. TILES DO START COM FUNDO ESCURO (#1A1D24) ADAPTADOS PARA BRANCO */
+    body.theme-light .tile.bg-\[\#1A1D24\] {
       background-color: #FFFFFF !important;
-      border-color: #CBD5E1 !important;
+      border: 1px solid #E2E8F0 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+    body.theme-light .tile.bg-\[\#1A1D24\] p,
+    body.theme-light .tile.bg-\[\#1A1D24\] div > p,
+    body.theme-light .tile.bg-\[\#1A1D24\] span {
+      color: #0F172A !important;
+    }
+    body.theme-light .tile.bg-\[\#1A1D24\] .text-slate-400 {
+      color: #64748B !important;
+    }
+    body.theme-light .tile.bg-\[\#1A1D24\] span.text-white\/90 {
+      color: #334155 !important;
+      font-weight: 500 !important;
+    }
+
+    /* 4. TABELAS NO MODO CLARO - 100% LEGÍVEIS */
+    body.theme-light #app-view .bg-\[\#16181D\],
+    body.theme-light #dashboard-view-section .bg-\[\#1A1D24\],
+    body.theme-light #appointments-calendar-section {
+      background-color: #FFFFFF !important;
+      border: 1px solid #E2E8F0 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Campo de busca da tabela */
+    body.theme-light #table-search-input {
+      background-color: #F8FAFC !important;
+      border: 1px solid #CBD5E1 !important;
       color: #0F172A !important;
     }
     body.theme-light #table-search-input::placeholder {
       color: #94A3B8 !important;
     }
-
-    /* TABELAS NO MODO CLARO - 100% legíveis */
-    body.theme-light table {
-      color: #0F172A !important;
+    body.theme-light i[data-lucide="search"] {
+      color: #64748B !important;
     }
+
+    /* Cabeçalhos e linhas das tabelas */
     body.theme-light table thead tr {
-      border-color: #E2E8F0 !important;
+      border-bottom: 2px solid #E2E8F0 !important;
     }
     body.theme-light table thead th {
       color: #475569 !important;
       font-weight: 600 !important;
     }
     body.theme-light table tbody tr {
-      border-color: #F1F5F9 !important;
+      border-bottom: 1px solid #F1F5F9 !important;
     }
     body.theme-light table tbody tr:hover {
       background-color: #F8FAFC !important;
@@ -252,15 +275,13 @@
       color: #0F172A !important;
     }
     body.theme-light table td.text-slate-300,
-    body.theme-light table td .text-slate-300 {
-      color: #475569 !important;
-    }
+    body.theme-light table td .text-slate-300,
     body.theme-light table td.text-slate-400,
-    body.theme-light table td .text-slate-400,
-    body.theme-light table td.text-white\/70,
-    body.theme-light table td.text-white\/50 {
+    body.theme-light table td .text-slate-400 {
       color: #64748B !important;
     }
+
+    /* Botões dentro de tabelas */
     body.theme-light table button.text-white {
       color: #0063B1 !important;
       font-weight: 600 !important;
@@ -270,11 +291,11 @@
     }
     body.theme-light table button.bg-white\/10 {
       background-color: #F1F5F9 !important;
-      border-color: #CBD5E1 !important;
+      border: 1px solid #CBD5E1 !important;
       color: #0F172A !important;
     }
 
-    /* TABELA DRE NO MODO CLARO */
+    /* Tabela DRE no modo claro */
     body.theme-light #app-table-body tr.border-t {
       background-color: #F1F5F9 !important;
       border-color: #CBD5E1 !important;
@@ -284,25 +305,18 @@
       font-weight: 700 !important;
     }
 
-    /* CALENDÁRIO NO MODO CLARO */
-    body.theme-light #appointments-calendar-section {
-      background-color: #FFFFFF !important;
-      border-color: #E2E8F0 !important;
-    }
-    body.theme-light #appointments-calendar-section h2 {
-      color: #0F172A !important;
-    }
+    /* 5. CALENDÁRIO MENSAL NO MODO CLARO */
     body.theme-light #appointments-calendar-section .grid-cols-7 span {
       color: #475569 !important;
     }
-    body.theme-light #appointments-calendar-section button {
-      border-color: #CBD5E1 !important;
+    body.theme-light #appointments-calendar-section button.border-white\/10 {
+      border: 1px solid #CBD5E1 !important;
       color: #334155 !important;
       background-color: #FFFFFF !important;
     }
     body.theme-light #appointments-calendar-grid button {
       background-color: #FFFFFF !important;
-      border-color: #E2E8F0 !important;
+      border: 1px solid #E2E8F0 !important;
     }
     body.theme-light #appointments-calendar-grid button:hover {
       background-color: #F8FAFC !important;
@@ -314,49 +328,14 @@
     }
     body.theme-light #appointments-calendar-grid div.cursor-not-allowed {
       background-color: #F8FAFC !important;
-      border-color: #F1F5F9 !important;
+      border: 1px solid #F1F5F9 !important;
       color: #94A3B8 !important;
     }
 
-    /* TILES DO START NO MODO CLARO */
-    /* Preserva cores vivas dos botões com destino colorido */
-    body.theme-light .tile.bg-tile-blue,
-    body.theme-light .tile.bg-tile-lime,
-    body.theme-light .tile.bg-\[\#6C757D\] {
-      color: #FFFFFF !important;
-    }
-    body.theme-light .tile.bg-tile-blue *,
-    body.theme-light .tile.bg-tile-lime *,
-    body.theme-light .tile.bg-\[\#6C757D\] * {
-      color: #FFFFFF !important;
-    }
-
-    /* Adapta os tiles com fundo escuro (#1A1D24) para fundo branco limpo */
-    body.theme-light .tile.bg-\[\#1A1D24\] {
-      background-color: #FFFFFF !important;
-      border-color: #CBD5E1 !important;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-    }
-    body.theme-light .tile.bg-\[\#1A1D24\] p,
-    body.theme-light .tile.bg-\[\#1A1D24\] span.font-normal,
-    body.theme-light .tile.bg-\[\#1A1D24\] div > p {
-      color: #0F172A !important;
-    }
-    body.theme-light .tile.bg-\[\#1A1D24\] span.text-white\/90 {
-      color: #334155 !important;
-      font-weight: 500 !important;
-    }
-    body.theme-light .tile.bg-\[\#1A1D24\] .text-slate-400 {
-      color: #64748B !important;
-    }
-
-    /* DASHBOARD COMPLETO NO MODO CLARO */
-    body.theme-light #dashboard-view-section h3 {
-      color: #0F172A !important;
-    }
+    /* 6. DASHBOARD E GRÁFICOS NO MODO CLARO */
     body.theme-light #dash-month-projection-box {
       background-color: #F8FAFC !important;
-      border-color: #E2E8F0 !important;
+      border: 1px solid #E2E8F0 !important;
     }
     body.theme-light #proj-month-name,
     body.theme-light #proj-expense-val {
@@ -364,7 +343,7 @@
     }
     body.theme-light #dash-month-selector button {
       background-color: #F1F5F9 !important;
-      border-color: #E2E8F0 !important;
+      border: 1px solid #E2E8F0 !important;
       color: #475569 !important;
     }
     body.theme-light #dash-month-selector button.active {
@@ -377,19 +356,18 @@
     body.theme-light span.w-2\.5.h-2\.5.bg-white {
       background-color: #64748B !important;
     }
+    body.theme-light #chart-dash-canal + div span,
     body.theme-light .text-slate-300 {
       color: #475569 !important;
     }
 
-    /* CENTRAL DE AVISOS NO MODO CLARO */
+    /* 7. CENTRAL DE AVISOS DROPDOWN */
     body.theme-light #notif-dropdown {
       background-color: rgba(255, 255, 255, 0.98) !important;
-      border-color: #CBD5E1 !important;
+      border: 1px solid #CBD5E1 !important;
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
     }
-    body.theme-light #notif-dropdown h3 {
-      color: #0F172A !important;
-    }
+    body.theme-light #notif-dropdown h3,
     body.theme-light #notif-dropdown h4 {
       color: #0F172A !important;
     }
@@ -401,10 +379,10 @@
       color: #475569 !important;
     }
 
-    /* MODAIS NO MODO CLARO */
+    /* 8. MODAIS NO MODO CLARO */
     body.theme-light [id^="modal-"] > div {
       background-color: #FFFFFF !important;
-      border-color: #E2E8F0 !important;
+      border: 1px solid #E2E8F0 !important;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
     }
     body.theme-light [id^="modal-"] h3 {
@@ -421,7 +399,7 @@
       color: #0F172A !important;
     }
     body.theme-light [id^="modal-"] button[type="button"].border-white {
-      border-color: #CBD5E1 !important;
+      border: 1px solid #CBD5E1 !important;
       color: #334155 !important;
       background-color: transparent !important;
     }
@@ -436,7 +414,7 @@
       background-color: #005A9E !important;
     }
 
-    /* TELA DE AUTENTICAÇÃO NO MODO CLARO */
+    /* 9. TELA DE AUTENTICAÇÃO */
     body.theme-light #screen-auth-split .bg-black {
       background-color: #FFFFFF !important;
     }
@@ -459,7 +437,7 @@
       color: #FFFFFF !important;
     }
     body.theme-light #screen-auth-split button.border-white {
-      border-color: #CBD5E1 !important;
+      border: 1px solid #CBD5E1 !important;
       color: #334155 !important;
     }
   </style>
@@ -4653,6 +4631,10 @@
     // ALTERNÂNCIA DE TEMA (CLARO / ESCURO)
     // =========================================================================
     let currentTheme = localStorage.getItem('s0_theme') || 'dark';
+    // Modo principal é sempre o escuro por padrão
+    if (!localStorage.getItem('s0_theme')) {
+      currentTheme = 'dark';
+    }
 
     function applyTheme(theme) {
       currentTheme = theme;

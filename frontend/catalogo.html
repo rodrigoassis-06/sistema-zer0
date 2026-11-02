@@ -3,15 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sistema 0 — Revista Digital Executiva 4K</title>
+  <title>Sistema 0 — Catálogo Oficial & Fichas Técnicas</title>
 
-  <!-- Fontes de Alta Legibilidade -->
+  <!-- Fontes Oficiais -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Lexend"', 'sans-serif'],
+            sans: ['"Atkinson Hyperlegible"', '"Lexend"', 'sans-serif'],
+          },
+          colors: {
+            primary: '#0063B1',
+            'primary-foreground': '#FFFFFF',
+            secondary: '#2B2F36',
+            'secondary-foreground': '#FFFFFF',
+            band: '#F4F6F9',
+            page: '#FFFFFF',
+            ink: '#0F172A',
+            accent: '#CBD5E1',
+            stage: '#090C12',
+            'stage-foreground': '#F8FAFC',
+            border: '#E2E8F0',
+            'muted-foreground': '#64748B',
+            'brand-orange': '#E66A00',
+            'brand-green': '#72A824',
+          }
+        }
+      }
+    }
+  </script>
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -21,673 +49,548 @@
 
   <style>
     body {
-      font-family: 'Lexend', sans-serif;
-      background-color: #06080D;
+      font-family: 'Atkinson Hyperlegible', sans-serif;
+      background-color: #090C12;
       color: #F8FAFC;
       overflow: hidden;
       user-select: none;
     }
 
-    /* Fundo Tecnológico com Grid e Iluminação Dinâmica */
-    .bg-tech-grid {
-      background-color: #06080D;
+    /* Fundo de palco tecnológico */
+    .bg-stage-pattern {
+      background-color: #080B10;
       background-image: 
-        radial-gradient(circle at 50% 40%, rgba(0, 99, 177, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 50% 30%, rgba(0, 99, 177, 0.15) 0%, transparent 60%),
         linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 100% 100%, 48px 48px, 48px 48px;
+      background-size: 100% 100%, 40px 40px, 40px 40px;
     }
 
-    /* Container do Livro 3D */
+    /* Container da Revista Folheável */
     .flip-book {
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 50px rgba(0, 99, 177, 0.15);
-      background: transparent;
+      box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.95), 0 0 50px rgba(0, 99, 177, 0.12);
       margin: 0 auto;
     }
 
-    /* Estilização individual das páginas da revista */
+    /* Páginas brancas estilo editorial revista */
     .page {
-      background-color: #0E121A;
-      color: #E2E8F0;
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
+      background-color: #FFFFFF;
+      color: #0F172A;
+      box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.04);
       overflow: hidden;
       position: relative;
     }
 
-    /* Vinco central da revista (Spine shadow realista) */
+    /* Sombra do vinco central da revista */
     .page-left {
-      background: linear-gradient(to right, #0F131C 0%, #0E121A 90%, rgba(0, 0, 0, 0.35) 100%);
+      box-shadow: inset -15px 0 25px -10px rgba(0, 0, 0, 0.12);
     }
     .page-right {
-      background: linear-gradient(to left, #0F131C 0%, #0E121A 90%, rgba(0, 0, 0, 0.35) 100%);
-    }
-
-    /* Efeito de brilho metálico na capa */
-    .cover-gradient {
-      background: radial-gradient(circle at 30% 20%, rgba(0, 99, 177, 0.25) 0%, #080B10 70%);
-    }
-
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      height: 4px;
-      width: 4px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #080B10;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #1E293B;
-      border-radius: 4px;
+      box-shadow: inset 15px 0 25px -10px rgba(0, 0, 0, 0.12);
     }
   </style>
 </head>
-<body class="h-screen w-screen flex flex-col justify-between bg-tech-grid">
+<body class="h-screen w-screen flex flex-col justify-between bg-stage-pattern">
 
-  <!-- ================= TOP BAR DE CONTROLES ================= -->
-  <header class="h-16 px-6 sm:px-10 flex items-center justify-between border-b border-white/10 bg-black/40 backdrop-blur-md z-30">
+  <!-- ================= TOP HEADER ================= -->
+  <header class="h-14 px-6 flex items-center justify-between border-b border-white/10 bg-black/50 backdrop-blur-md z-30">
     <div class="flex items-center gap-3">
-      <a href="/" title="Voltar ao Sistema" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white/80 hover:text-white text-xs transition-colors border border-white/10">
-        <i data-lucide="arrow-left" class="w-4 h-4"></i>
-        <span>Voltar ao Sistema</span>
+      <a href="/" class="flex items-center gap-1.5 px-3 py-1 rounded-md bg-white/10 hover:bg-white/15 text-white text-xs border border-white/10 transition-colors">
+        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> <span>Voltar ao Sistema</span>
       </a>
       <div class="h-4 w-[1px] bg-white/15"></div>
       <div class="flex items-center gap-2">
-        <span class="w-2.5 h-2.5 rounded-full bg-[#0063B1] animate-pulse"></span>
-        <h1 class="text-sm font-medium tracking-wide text-white">SISTEMA 0 • REVISTA DIGITAL INTERATIVA</h1>
+        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+        <span class="font-display font-bold text-xs sm:text-sm text-white tracking-wide">SISTEMA 0 • CATÁLOGO & FICHAS TÉCNICAS</span>
       </div>
     </div>
 
-    <!-- Controles Centrais/Direita -->
-    <div class="flex items-center gap-2 sm:gap-3">
-      <button id="btn-sound" onclick="toggleSound()" title="Som de folhear de papel" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/80 hover:text-white transition-colors border border-white/10 text-xs flex items-center gap-1.5">
-        <i data-lucide="volume-2" id="sound-icon" class="w-4 h-4 text-[#72A824]"></i>
-        <span class="hidden sm:inline text-[11px]">Áudio 3D</span>
+    <div class="flex items-center gap-2">
+      <button onclick="toggleThumbnails()" class="px-2.5 py-1 rounded-md bg-white/10 hover:bg-white/15 text-white text-xs border border-white/10 flex items-center gap-1.5">
+        <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Índice</span>
       </button>
-
-      <button onclick="toggleThumbnails()" title="Ver miniaturas de todas as páginas" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/80 hover:text-white transition-colors border border-white/10 text-xs flex items-center gap-1.5">
-        <i data-lucide="layout-grid" class="w-4 h-4"></i>
-        <span class="hidden sm:inline text-[11px]">Sumário</span>
-      </button>
-
-      <button onclick="toggleFullscreen()" title="Tela cheia" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/80 hover:text-white transition-colors border border-white/10 text-xs flex items-center gap-1.5">
-        <i data-lucide="maximize" id="fullscreen-icon" class="w-4 h-4"></i>
+      <button onclick="toggleFullscreen()" class="p-1.5 rounded-md bg-white/10 hover:bg-white/15 text-white text-xs border border-white/10">
+        <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
       </button>
     </div>
   </header>
 
-  <!-- ================= PALCO CENTRAL (REVISTA FOLHEÁVEL 3D) ================= -->
+  <!-- ================= PALCO CENTRAL (REVISTA 3D) ================= -->
   <main class="flex-1 flex items-center justify-center p-2 sm:p-4 relative overflow-hidden">
     
-    <!-- Botão de Navegação: Anterior -->
-    <button onclick="flipPrev()" aria-label="Página anterior" class="absolute left-3 sm:left-8 z-20 p-3 sm:p-4 rounded-full bg-black/60 hover:bg-[#0063B1] border border-white/15 text-white/80 hover:text-white transition-all shadow-2xl backdrop-blur-md group">
-      <i data-lucide="chevron-left" class="w-6 h-6 group-hover:-translate-x-0.5 transition-transform"></i>
+    <!-- Botão Anterior -->
+    <button onclick="flipPrev()" aria-label="Página anterior" class="absolute left-3 sm:left-8 z-20 p-3 sm:p-3.5 rounded-full bg-black/60 hover:bg-primary border border-white/15 text-white transition-all shadow-2xl backdrop-blur-md">
+      <i data-lucide="chevron-left" class="w-5 h-5"></i>
     </button>
 
-    <!-- O Livro 3D interativo renderizado pelo Canvas PageFlip -->
+    <!-- O Livro 3D montado dinamicamente -->
     <div id="magazine" class="flip-book">
-      
-      <!-- ================= PÁGINA 1: CAPA ================= -->
-      <div class="page cover-gradient p-8 sm:p-12 flex flex-col justify-between" data-density="hard">
-        <div>
-          <div class="flex items-center justify-between">
-            <span class="px-3 py-1 rounded-full bg-[#0063B1] text-white text-[11px] font-semibold tracking-wider uppercase">Catálogo Oficial 2026</span>
-            <span class="text-xs text-white/60 font-mono">ED. 01 • 4K ULTRA-HD</span>
-          </div>
-          <div class="mt-12 sm:mt-16">
-            <h2 class="text-xs uppercase tracking-[0.3em] text-[#0063B1] font-semibold mb-2">ARQUITETURA EMPRESARIAL UNIVERSAL</h2>
-            <h3 class="text-3xl sm:text-4xl font-light text-white tracking-tight leading-tight">
-              A Nova Era da Gestão:<br>
-              <strong class="font-bold text-white">Simplicidade & Escala em 2 Cliques</strong>
-            </h3>
-            <p class="text-xs sm:text-sm text-slate-400 mt-4 leading-relaxed font-light">
-              O ERP & CRM de alta precisão projetado para negócios que exigem agilidade sem abrir mão do controle financeiro, operacional e estratégico.
-            </p>
-          </div>
-        </div>
-
-        <!-- Centro da Capa: Mockup Notebook Tecnológico -->
-        <div class="relative my-4 flex items-center justify-center">
-          <img src="./img/mockup_laptop_sistema_zero.png" alt="Sistema 0 no Notebook" class="w-full max-w-sm sm:max-w-md drop-shadow-[0_15px_30px_rgba(0,99,177,0.35)] rounded-lg">
-        </div>
-
-        <!-- Rodapé da Capa -->
-        <div class="border-t border-white/10 pt-4 flex items-center justify-between text-[11px] text-slate-400">
-          <span>Sistema 0 Technologies</span>
-          <span class="text-[#72A824] flex items-center gap-1 font-medium">Folheie para explorar <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
-        </div>
-      </div>
-
-      <!-- ================= PÁGINA 2: MANIFESTO ================= -->
-      <div class="page page-left p-8 sm:p-10 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between border-b border-white/10 pb-3">
-            <span class="text-[11px] font-bold text-[#0063B1] uppercase tracking-wider">01 // MANIFESTO INSTITUCIONAL</span>
-            <span class="text-[11px] text-slate-500 font-mono">PÁG 02</span>
-          </div>
-          <div class="mt-6">
-            <h3 class="text-2xl font-light text-white">Por que o Sistema 0 foi criado?</h3>
-            <p class="text-xs text-slate-300 mt-3 leading-relaxed">
-              O mercado foi inundado por sistemas complexos, engessados e lentos, cheios de menus infinitos que roubam o tempo do empresário e da sua equipe.
-            </p>
-            <p class="text-xs text-slate-400 mt-3 leading-relaxed">
-              O <strong>Sistema 0</strong> rompe com essa barreira: uma interface fluida, minimalista e direta ao ponto, onde qualquer operação crítica ocorre em no máximo <strong>dois cliques</strong>.
-            </p>
-          </div>
-
-          <!-- Pilares Estratégicos -->
-          <div class="mt-6 space-y-3">
-            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5">
-              <span class="text-xs font-semibold text-[#0063B1] flex items-center gap-2">
-                <i data-lucide="zap" class="w-4 h-4"></i> Agilidade sem Burocracia
-              </span>
-              <p class="text-[11px] text-slate-400 mt-1">Lançamentos, cadastros e faturas em segundos, com interface Metro responsiva.</p>
-            </div>
-            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5">
-              <span class="text-xs font-semibold text-[#72A824] flex items-center gap-2">
-                <i data-lucide="layers" class="w-4 h-4"></i> Arquitetura Multi-Nicho
-              </span>
-              <p class="text-[11px] text-slate-400 mt-1">Estrutura universal que atende com perfeição prestadores de serviços, comércio, saúde, estética e consultoria.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-[10px] text-slate-500 border-t border-white/10 pt-2 flex justify-between">
-          <span>SISTEMA 0 • MANIFESTO</span>
-          <span>MULTI-NICHO</span>
-        </div>
-      </div>
-
-      <!-- ================= PÁGINA 3: DASHBOARD ANALÍTICO ================= -->
-      <div class="page page-right p-8 sm:p-10 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between border-b border-white/10 pb-3">
-            <span class="text-[11px] font-bold text-[#72A824] uppercase tracking-wider">02 // FICHA TÉCNICA: DASHBOARD</span>
-            <span class="text-[11px] text-slate-500 font-mono">PÁG 03</span>
-          </div>
-
-          <div class="mt-5">
-            <h3 class="text-xl font-light text-white">Inteligência de Dados em Tempo Real</h3>
-            <p class="text-xs text-slate-400 mt-1">Visão completa dos indicadores operacionais sem necessidade de exportar relatórios manuais.</p>
-          </div>
-
-          <!-- Mockup com notebook centralizado -->
-          <div class="mt-4 p-2 bg-black/40 rounded-xl border border-white/10 flex justify-center">
-            <img src="./img/mockup_laptop_sistema_zero.png" alt="Dashboard no Notebook" class="w-full max-h-48 object-contain">
-          </div>
-
-          <!-- Métricas e Diferenciais da Ficha Técnica -->
-          <div class="mt-4 grid grid-cols-2 gap-2 text-left">
-            <div class="p-2.5 rounded-lg bg-white/5 border border-white/5">
-              <span class="text-[10px] text-slate-400 uppercase tracking-wider block">Faturamento & Sparklines</span>
-              <span class="text-xs font-semibold text-white">Gráficos Spline Dinâmicos</span>
-            </div>
-            <div class="p-2.5 rounded-lg bg-white/5 border border-white/5">
-              <span class="text-[10px] text-slate-400 uppercase tracking-wider block">Canal de Aquisição</span>
-              <span class="text-xs font-semibold text-white">Doughnut Chart Nativo</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-[10px] text-slate-500 border-t border-white/10 pt-2 flex justify-between">
-          <span>MÓDULO DE INTELIGÊNCIA ANALÍTICA</span>
-          <span>TEMPO REAL</span>
-        </div>
-      </div>
-
-      <!-- ================= PÁGINA 4: FINANCEIRO & DRE ================= -->
-      <div class="page page-left p-8 sm:p-10 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between border-b border-white/10 pb-3">
-            <span class="text-[11px] font-bold text-[#0063B1] uppercase tracking-wider">03 // FICHA TÉCNICA: FINANCEIRO & DRE</span>
-            <span class="text-[11px] text-slate-500 font-mono">PÁG 04</span>
-          </div>
-
-          <div class="mt-5">
-            <h3 class="text-xl font-light text-white">Fluxo de Caixa & DRE Instantâneo</h3>
-            <p class="text-xs text-slate-400 mt-1">Controle absoluto de entradas, saídas, previsão de final de mês e margem líquida.</p>
-          </div>
-
-          <!-- Especificações Técnicas -->
-          <div class="mt-5 space-y-2.5">
-            <div class="p-3 rounded-xl bg-white/5 border border-white/5 flex items-start gap-3">
-              <i data-lucide="check-circle-2" class="w-4 h-4 text-[#72A824] mt-0.5"></i>
-              <div>
-                <strong class="text-xs text-white block">Conciliação com Status em 1 Toque</strong>
-                <span class="text-[11px] text-slate-400">Alterne entre "Pago" e "Pendente" instantaneamente na listagem.</span>
-              </div>
-            </div>
-
-            <div class="p-3 rounded-xl bg-white/5 border border-white/5 flex items-start gap-3">
-              <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0063B1] mt-0.5"></i>
-              <div>
-                <strong class="text-xs text-white block">Demonstrativo de Resultado (DRE)</strong>
-                <span class="text-[11px] text-slate-400">Totalizadores automáticos de receita bruta, custos e lucro operacional.</span>
-              </div>
-            </div>
-
-            <div class="p-3 rounded-xl bg-white/5 border border-white/5 flex items-start gap-3">
-              <i data-lucide="check-circle-2" class="w-4 h-4 text-[#72A824] mt-0.5"></i>
-              <div>
-                <strong class="text-xs text-white block">Saldo Projetado Inteligente</strong>
-                <span class="text-[11px] text-slate-400">Previsão precisa considerando contas a pagar e a receber até o fechamento.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-[10px] text-slate-500 border-t border-white/10 pt-2 flex justify-between">
-          <span>GESTÃO FINANCEIRA PROFISSIONAL</span>
-          <span>DRE AUTOMÁTICO</span>
-        </div>
-      </div>
-
-      <!-- ================= PÁGINA 5: AGENDA INTELIGENTE ================= -->
-      <div class="page page-right p-8 sm:p-10 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between border-b border-white/10 pb-3">
-            <span class="text-[11px] font-bold text-[#E66A00] uppercase tracking-wider">04 // FICHA TÉCNICA: AGENDA</span>
-            <span class="text-[11px] text-slate-500 font-mono">PÁG 05</span>
-          </div>
-
-          <div class="mt-5">
-            <h3 class="text-xl font-light text-white">Agenda & Reservas Inteligentes</h3>
-            <p class="text-xs text-slate-400 mt-1">Organização de atendimentos com visão mensal, contadores diários e zero conflitos.</p>
-          </div>
-
-          <div class="mt-5 space-y-3">
-            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5">
-              <div class="flex items-center justify-between mb-1">
-                <span class="text-xs font-semibold text-white">Visualização em Grade Mensal</span>
-                <span class="text-[10px] text-[#72A824] bg-[#72A824]/10 px-2 py-0.5 rounded">Tempo Real</span>
-              </div>
-              <p class="text-[11px] text-slate-400">Identificação visual imediata de dias com vagas, dias lotados e cancelamentos.</p>
-            </div>
-
-            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5">
-              <div class="flex items-center justify-between mb-1">
-                <span class="text-xs font-semibold text-white">Atendimento em 2 Cliques</span>
-                <span class="text-[10px] text-[#0063B1] bg-[#0063B1]/10 px-2 py-0.5 rounded">Agilidade</span>
-              </div>
-              <p class="text-[11px] text-slate-400">Clique na data desejada para abrir os agendamentos daquele dia e dar baixa com 1 toque.</p>
-            </div>
-
-            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5">
-              <div class="flex items-center justify-between mb-1">
-                <span class="text-xs font-semibold text-white">Redução de No-Show (Faltas)</span>
-                <span class="text-[10px] text-[#E66A00] bg-[#E66A00]/10 px-2 py-0.5 rounded">Retenção</span>
-              </div>
-              <p class="text-[11px] text-slate-400">Controle rigoroso de status: confirmado, pendente, concluído ou cancelado.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-[10px] text-slate-500 border-t border-white/10 pt-2 flex justify-between">
-          <span>GESTÃO DE AGENDAMENTOS</span>
-          <span>ZERO CONFLITOS</span>
-        </div>
-      </div>
-
-      <!-- ================= PÁGINA 6: CRM DE CLIENTES ================= -->
-      <div class="page page-left p-8 sm:p-10 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between border-b border-white/10 pb-3">
-            <span class="text-[11px] font-bold text-[#00897B] uppercase tracking-wider">05 // FICHA TÉCNICA: CRM DE CLIENTES</span>
-            <span class="text-[11px] text-slate-500 font-mono">PÁG 06</span>
-          </div>
-
-          <div class="mt-5">
-            <h3 class="text-xl font-light text-white">Carteira & Fidelização de Clientes</h3>
-            <p class="text-xs text-slate-400 mt-1">Conheça cada cliente pelo nome, histórico de compras e ticket médio acumulado.</p>
-          </div>
-
-          <div class="mt-6 space-y-3">
-            <div class="p-3 rounded-xl bg-white/5 border border-white/5">
-              <span class="text-xs font-semibold text-white block">Histórico de Atendimentos Completo</span>
-              <p class="text-[11px] text-slate-400 mt-1">Saiba quais serviços o cliente já realizou, valores pagos e frequência de visitas.</p>
-            </div>
-
-            <div class="p-3 rounded-xl bg-white/5 border border-white/5">
-              <span class="text-xs font-semibold text-white block">Busca Instantânea por Nome ou Telefone</span>
-              <p class="text-[11px] text-slate-400 mt-1">Filtro em tempo real digitado na tela sem recarregar a página.</p>
-            </div>
-
-            <div class="p-3 rounded-xl bg-white/5 border border-white/5">
-              <span class="text-xs font-semibold text-white block">Integração Direta com WhatsApp</span>
-              <p class="text-[11px] text-slate-400 mt-1">Contato com apenas um clique para envio de confirmações ou promoções.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-[10px] text-slate-500 border-t border-white/10 pt-2 flex justify-between">
-          <span>CRM & RETENÇÃO DE CLIENTES</span>
-          <span>LTV MAXIMIZADO</span>
-        </div>
-      </div>
-
-      <!-- ================= PÁGINA 7: EQUIPE & COMISSÕES ================= -->
-      <div class="page page-right p-8 sm:p-10 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between border-b border-white/10 pb-3">
-            <span class="text-[11px] font-bold text-[#5C3BAA] uppercase tracking-wider">06 // FICHA TÉCNICA: EQUIPE & METAS</span>
-            <span class="text-[11px] text-slate-500 font-mono">PÁG 07</span>
-          </div>
-
-          <div class="mt-5">
-            <h3 class="text-xl font-light text-white">Produtividade & Comissões Automáticas</h3>
-            <p class="text-xs text-slate-400 mt-1">Elimine erros no fechamento de pagamentos e incentive o atingimento de metas.</p>
-          </div>
-
-          <div class="mt-6 space-y-3">
-            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5">
-              <div class="flex items-center justify-between mb-1">
-                <span class="text-xs font-semibold text-white">Cálculo de Comissão Automático</span>
-                <span class="text-[10px] text-[#5C3BAA] font-bold">100% Preciso</span>
-              </div>
-              <p class="text-[11px] text-slate-400">Taxas personalizadas por profissional (ex: 40%, 45%, 50%) calculadas na hora de cada atendimento.</p>
-            </div>
-
-            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5">
-              <div class="flex items-center justify-between mb-1">
-                <span class="text-xs font-semibold text-white">Acompanhamento de Metas</span>
-                <span class="text-[10px] text-[#72A824] font-bold">Progresso Visual</span>
-              </div>
-              <p class="text-[11px] text-slate-400">Card dinâmico indicando o percentual atingido da meta mensal estabelecida.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-[10px] text-slate-500 border-t border-white/10 pt-2 flex justify-between">
-          <span>GESTÃO DE EQUIPE & PERFORMANCE</span>
-          <span>COMISSÃO AUTOMÁTICA</span>
-        </div>
-      </div>
-
-      <!-- ================= PÁGINA 8: CATÁLOGO DE SERVIÇOS & INSUMOS ================= -->
-      <div class="page page-left p-8 sm:p-10 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between border-b border-white/10 pb-3">
-            <span class="text-[11px] font-bold text-[#C3168A] uppercase tracking-wider">07 // FICHA TÉCNICA: SERVIÇOS & INSUMOS</span>
-            <span class="text-[11px] text-slate-500 font-mono">PÁG 08</span>
-          </div>
-
-          <div class="mt-5">
-            <h3 class="text-xl font-light text-white">Precificação & Controle de Fornecedores</h3>
-            <p class="text-xs text-slate-400 mt-1">Garanta margens de lucro saudáveis e controle compras de fornecedores sem planilhas paralelas.</p>
-          </div>
-
-          <div class="mt-6 space-y-3">
-            <div class="p-3 rounded-xl bg-white/5 border border-white/5">
-              <strong class="text-xs text-white block">Tabela de Preços e Duração</strong>
-              <p class="text-[11px] text-slate-400 mt-1">Defina durações estimadas de cada serviço para sincronizar perfeitamente com a agenda.</p>
-            </div>
-
-            <div class="p-3 rounded-xl bg-white/5 border border-white/5">
-              <strong class="text-xs text-white block">Cadastro Completo de Fornecedores</strong>
-              <p class="text-[11px] text-slate-400 mt-1">Razão social, categoria de insumo, contato principal e condições de pagamento salvas.</p>
-            </div>
-
-            <div class="p-3 rounded-xl bg-white/5 border border-white/5">
-              <strong class="text-xs text-white block">Visibilidade de Custos Operacionais</strong>
-              <p class="text-[11px] text-slate-400 mt-1">Monitore o impacto de despesas operacionais sobre a margem de cada entrega.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-[10px] text-slate-500 border-t border-white/10 pt-2 flex justify-between">
-          <span>SERVIÇOS, INSUMOS & FORNECEDORES</span>
-          <span>MARGEM PROTEGIDA</span>
-        </div>
-      </div>
-
-      <!-- ================= PÁGINA 9: TECNOLOGIA & MODO CLARO/ESCURO ================= -->
-      <div class="page page-right p-8 sm:p-10 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between border-b border-white/10 pb-3">
-            <span class="text-[11px] font-bold text-[#0063B1] uppercase tracking-wider">08 // INFRAESTRUTURA & DESIGN SYSTEM</span>
-            <span class="text-[11px] text-slate-500 font-mono">PÁG 09</span>
-          </div>
-
-          <div class="mt-5">
-            <h3 class="text-xl font-light text-white">Nuvem Segura & Design Ergonômico</h3>
-            <p class="text-xs text-slate-400 mt-1">Construído sobre arquitetura moderna em nuvem com alternância nativa de temas.</p>
-          </div>
-
-          <div class="mt-6 grid grid-cols-2 gap-3">
-            <div class="p-3.5 rounded-xl bg-black/60 border border-white/10">
-              <div class="flex items-center gap-2 text-xs font-semibold text-white mb-1.5">
-                <i data-lucide="moon" class="w-4 h-4 text-[#0063B1]"></i> Modo Escuro
-              </div>
-              <p class="text-[11px] text-slate-400">Descanso visual para uso contínuo em balcões e ambientes de pouca luz.</p>
-            </div>
-
-            <div class="p-3.5 rounded-xl bg-white text-slate-900 border border-slate-200">
-              <div class="flex items-center gap-2 text-xs font-bold text-slate-900 mb-1.5">
-                <i data-lucide="sun" class="w-4 h-4 text-[#E66A00]"></i> Modo Claro
-              </div>
-              <p class="text-[11px] text-slate-600">Alto contraste e máxima legibilidade para escritórios e impressão.</p>
-            </div>
-          </div>
-
-          <div class="mt-4 p-3.5 rounded-xl bg-white/5 border border-white/5">
-            <div class="flex items-center gap-2 text-xs font-semibold text-[#72A824] mb-1">
-              <i data-lucide="shield-check" class="w-4 h-4"></i> Segurança & Disponibilidade
-            </div>
-            <p class="text-[11px] text-slate-400">Banco de dados com backups regulares, criptografia de senhas (bcrypt) e API RESTful de alta velocidade.</p>
-          </div>
-        </div>
-
-        <div class="text-[10px] text-slate-500 border-t border-white/10 pt-2 flex justify-between">
-          <span>TECNOLOGIA DE PONTA</span>
-          <span>ALTA CONFIABILIDADE</span>
-        </div>
-      </div>
-
-      <!-- ================= PÁGINA 10: CONTRACAPA & CTA ================= -->
-      <div class="page cover-gradient p-8 sm:p-12 flex flex-col justify-between" data-density="hard">
-        <div>
-          <div class="flex items-center justify-between border-b border-white/10 pb-3">
-            <span class="text-[11px] font-bold text-[#72A824] uppercase tracking-wider">SISTEMA 0 // CONTRACAPA</span>
-            <span class="text-[11px] text-slate-500 font-mono">PÁG 10 / 10</span>
-          </div>
-
-          <div class="mt-8 text-center sm:text-left">
-            <h2 class="text-xs uppercase tracking-[0.25em] text-[#0063B1] font-semibold mb-2">TRANSFORME SUA GESTÃO HOJE</h2>
-            <h3 class="text-3xl font-light text-white leading-tight">
-              Pronto para ter sua empresa<br><strong class="font-bold">sob controle em 2 cliques?</strong>
-            </h3>
-            <p class="text-xs sm:text-sm text-slate-300 mt-4 leading-relaxed font-light">
-              Junte-se aos empresários e gestores que simplificaram suas operações com o Sistema 0. Atendimento multi-nicho, suporte técnico e implantação imediata.
-            </p>
-          </div>
-
-          <!-- Card de Contato & Acesso Direto -->
-          <div class="mt-8 p-6 rounded-2xl bg-white/5 border border-white/15 backdrop-blur-md">
-            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div>
-                <span class="text-xs uppercase tracking-wider text-slate-400 font-medium block">ACESSO ONLINE IMEDIATO</span>
-                <span class="text-lg font-semibold text-white">sistema-zero.com.br</span>
-                <span class="text-xs text-[#72A824] block mt-0.5">Ambiente Seguro & Hospedado</span>
-              </div>
-              <a href="/" class="px-5 py-3 rounded-xl bg-[#0063B1] hover:bg-[#0070C9] text-white text-xs font-semibold tracking-wide transition-all shadow-lg flex items-center gap-2">
-                <span>Acessar o Sistema</span>
-                <i data-lucide="external-link" class="w-4 h-4"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="border-t border-white/10 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-500">
-          <span>Sistema 0 Enterprise © 2026 • Todos os direitos reservados</span>
-          <span>Multi-Nicho • Universal • Alto Padrão</span>
-        </div>
-      </div>
-
+      <!-- Páginas inseridas dinamicamente pelo JavaScript com a estrutura exata do React -->
     </div>
 
-    <!-- Botão de Navegação: Próxima -->
-    <button onclick="flipNext()" aria-label="Próxima página" class="absolute right-3 sm:right-8 z-20 p-3 sm:p-4 rounded-full bg-black/60 hover:bg-[#0063B1] border border-white/15 text-white/80 hover:text-white transition-all shadow-2xl backdrop-blur-md group">
-      <i data-lucide="chevron-right" class="w-6 h-6 group-hover:translate-x-0.5 transition-transform"></i>
+    <!-- Botão Próximo -->
+    <button onclick="flipNext()" aria-label="Próxima página" class="absolute right-3 sm:right-8 z-20 p-3 sm:p-3.5 rounded-full bg-black/60 hover:bg-primary border border-white/15 text-white transition-all shadow-2xl backdrop-blur-md">
+      <i data-lucide="chevron-right" class="w-5 h-5"></i>
     </button>
   </main>
 
-  <!-- ================= BOTTOM BAR (CONTADOR E NAVEGAÇÃO) ================= -->
-  <footer class="h-16 px-6 sm:px-10 flex items-center justify-between border-t border-white/10 bg-black/40 backdrop-blur-md z-30">
-    <div class="text-xs text-slate-400 font-mono flex items-center gap-2">
-      <i data-lucide="book-open" class="w-4 h-4 text-[#0063B1]"></i>
-      <span id="page-counter">Página 1 de 10</span>
+  <!-- ================= BOTTOM BAR ================= -->
+  <footer class="h-14 px-6 flex items-center justify-between border-t border-white/10 bg-black/50 backdrop-blur-md z-30">
+    <div class="text-xs text-slate-400 font-display flex items-center gap-2">
+      <i data-lucide="book-open" class="w-4 h-4 text-primary"></i>
+      <span id="page-counter">Capa · Pág 1 de 10</span>
     </div>
 
     <div class="flex items-center gap-2">
-      <button onclick="flipPrev()" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white text-xs border border-white/10 flex items-center gap-1">
-        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Anterior</span>
+      <button onclick="flipPrev()" class="px-3 py-1.5 rounded-md bg-white/10 hover:bg-white/15 text-white text-xs border border-white/10 flex items-center gap-1">
+        <i data-lucide="arrow-left" class="w-3 h-3"></i> <span>Anterior</span>
       </button>
-      <button onclick="flipNext()" class="p-2 rounded-lg bg-[#0063B1] hover:bg-[#0070C9] text-white text-xs border border-transparent flex items-center gap-1 font-medium">
-        <span class="hidden sm:inline">Próxima</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      <button onclick="flipNext()" class="px-3 py-1.5 rounded-md bg-primary hover:bg-[#0070C9] text-white text-xs font-medium flex items-center gap-1 shadow">
+        <span>Próxima</span> <i data-lucide="arrow-right" class="w-3 h-3"></i>
       </button>
     </div>
 
     <div class="text-[11px] text-slate-500 hidden sm:block">
-      Dica: Você pode arrastar as pontas das páginas com o mouse ou usar as setas do teclado.
+      Dica: Você pode virar a folha arrastando a borda com o mouse ou usando as setas do teclado.
     </div>
   </footer>
 
-  <!-- ================= MODAL DE MINIATURAS (SUMÁRIO VISUAL) ================= -->
-  <div id="modal-thumbnails" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-lg p-6 sm:p-10 flex flex-col justify-between">
+  <!-- ================= MODAL DE ÍNDICE / MINIATURAS ================= -->
+  <div id="modal-thumbnails" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-md p-6 sm:p-12 flex flex-col justify-between">
     <div class="flex items-center justify-between border-b border-white/10 pb-4">
-      <h3 class="text-lg font-light text-white flex items-center gap-2">
-        <i data-lucide="layout-grid" class="w-5 h-5 text-[#0063B1]"></i> Sumário Visual da Revista (10 Páginas)
+      <h3 class="text-lg font-display font-semibold text-white flex items-center gap-2">
+        <i data-lucide="layout-grid" class="w-5 h-5 text-primary"></i> Índice Completo (10 Páginas)
       </h3>
       <button onclick="toggleThumbnails()" class="p-2 rounded-lg bg-white/10 text-white hover:bg-white/20">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
     </div>
 
-    <!-- Grade de Miniaturas -->
-    <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 my-6 overflow-y-auto max-h-[70vh] p-2">
-      <button onclick="goToPage(0)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
-        <span class="text-[10px] text-[#0063B1] font-bold block mb-1">PÁG 01</span>
-        <strong class="text-xs text-white block">Capa Executiva</strong>
-        <span class="text-[10px] text-slate-400">Sistema 0 & Mockup</span>
-      </button>
-      <button onclick="goToPage(1)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
-        <span class="text-[10px] text-[#0063B1] font-bold block mb-1">PÁG 02</span>
-        <strong class="text-xs text-white block">Manifesto</strong>
-        <span class="text-[10px] text-slate-400">Multi-Nicho & Pilares</span>
-      </button>
-      <button onclick="goToPage(2)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
-        <span class="text-[10px] text-[#72A824] font-bold block mb-1">PÁG 03</span>
-        <strong class="text-xs text-white block">Dashboard</strong>
-        <span class="text-[10px] text-slate-400">Inteligência de Dados</span>
-      </button>
-      <button onclick="goToPage(3)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
-        <span class="text-[10px] text-[#0063B1] font-bold block mb-1">PÁG 04</span>
-        <strong class="text-xs text-white block">Financeiro & DRE</strong>
-        <span class="text-[10px] text-slate-400">Fluxo de Caixa em 2 Cliques</span>
-      </button>
-      <button onclick="goToPage(4)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
-        <span class="text-[10px] text-[#E66A00] font-bold block mb-1">PÁG 05</span>
-        <strong class="text-xs text-white block">Agenda Inteligente</strong>
-        <span class="text-[10px] text-slate-400">Calendário & Reservas</span>
-      </button>
-      <button onclick="goToPage(5)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
-        <span class="text-[10px] text-[#00897B] font-bold block mb-1">PÁG 06</span>
-        <strong class="text-xs text-white block">CRM de Clientes</strong>
-        <span class="text-[10px] text-slate-400">Histórico & LTV</span>
-      </button>
-      <button onclick="goToPage(6)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
-        <span class="text-[10px] text-[#5C3BAA] font-bold block mb-1">PÁG 07</span>
-        <strong class="text-xs text-white block">Equipe & Metas</strong>
-        <span class="text-[10px] text-slate-400">Comissões Automáticas</span>
-      </button>
-      <button onclick="goToPage(7)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
-        <span class="text-[10px] text-[#C3168A] font-bold block mb-1">PÁG 08</span>
-        <strong class="text-xs text-white block">Serviços & Insumos</strong>
-        <span class="text-[10px] text-slate-400">Custos & Fornecedores</span>
-      </button>
-      <button onclick="goToPage(8)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
-        <span class="text-[10px] text-[#0063B1] font-bold block mb-1">PÁG 09</span>
-        <strong class="text-xs text-white block">Nuvem & Temas</strong>
-        <span class="text-[10px] text-slate-400">Modo Claro e Escuro</span>
-      </button>
-      <button onclick="goToPage(9)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
-        <span class="text-[10px] text-[#72A824] font-bold block mb-1">PÁG 10</span>
-        <strong class="text-xs text-white block">Contracapa & CTA</strong>
-        <span class="text-[10px] text-slate-400">Demonstração & Contato</span>
-      </button>
+    <div id="thumbnails-grid" class="grid grid-cols-2 sm:grid-cols-5 gap-4 my-6 overflow-y-auto max-h-[70vh] p-2">
+      <!-- Inserido dinamicamente -->
     </div>
 
     <div class="text-center">
-      <button onclick="toggleThumbnails()" class="px-6 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs">
-        Fechar Sumário
+      <button onclick="toggleThumbnails()" class="px-6 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs">
+        Fechar Índice
       </button>
     </div>
   </div>
 
-  <!-- ================= SCRIPTS DE INICIALIZAÇÃO DA REVISTA ================= -->
+  <!-- ================= LÓGICA E DADOS DA REVISTA ================= -->
   <script>
-    let pageFlip = null;
-    let soundEnabled = true;
-    let audioCtx = null;
+    // DADOS EXATOS DOS MÓDULOS (ADAPTADOS DO TYPESCRIPT ENVIADO)
+    const baseNutrition = [
+      ["Redução de tempo administrativo", "-85%", "★ Alto"],
+      ["Precisão de conciliação financeira", "100%", "Máximo"],
+      ["Redução de faltas (no-show)", "-60%", "Recorrência"],
+      ["Aumento da margem operacional", "+18%", "Lucro Líquido"],
+      ["Velocidade de atendimento", "2 cliques", "Instantâneo"],
+      ["Tempo de treinamento da equipe", "15 min", "Zero atrito"],
+      ["Disponibilidade dos dados em nuvem", "99.9%", "Seguro"],
+      ["Retorno sobre investimento (ROI)", "30 dias", "Garantido"],
+    ];
 
-    // Sintetizador de Som de Folhear de Papel (Web Audio API nativo, zero dependência externa)
-    function playPageFlipSound() {
-      if (!soundEnabled) return;
-      try {
-        if (!audioCtx) {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-
-        const bufferSize = audioCtx.sampleRate * 0.15; // 150ms
-        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-        const data = buffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) {
-          data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.3));
-        }
-
-        const noise = audioCtx.createBufferSource();
-        noise.buffer = buffer;
-
-        const filter = audioCtx.createBiquadFilter();
-        filter.type = 'bandpass';
-        filter.frequency.value = 850;
-        filter.Q.value = 1.2;
-
-        const gain = audioCtx.createGain();
-        gain.gain.setValueAtTime(0.25, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.14);
-
-        noise.connect(filter);
-        filter.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        noise.start();
-      } catch (e) {
-        console.warn("Audio feedback error:", e);
+    const products = [
+      {
+        name: ["SISTEMA 0", "DASHBOARD"],
+        flavor: "Visão Geral & Inteligência",
+        img: "./img/mockup_laptop_sistema_zero.png",
+        weight: "Tempo Real",
+        doses: "2 cliques",
+        claims: [
+          "Visão panorâmica e centralizada de todos os indicadores críticos do negócio.",
+          "Gráficos interativos de faturamento e volume de pedidos sem planilhas manuais.",
+          "Decisões estratégicas baseadas em dados atualizados instantaneamente."
+        ],
+        features: [
+          "Faturamento automatizado",
+          "Gráficos Spline dinâmicos",
+          "Canal de aquisição (Donut)",
+          "Controle de ticket médio",
+          "Zero digitação duplicada"
+        ],
+        ingredients: "Interface desenvolvida em arquitetura SPA de alta velocidade, gráficos alimentados por Chart.js, sincronização assíncrona via API RESTful e persistência de dados em banco de alta integridade. MULTI-NICHO: ADAPTA-SE AUTOMATICAMENTE AO SEU SEGMENTO.",
+        nutrition: baseNutrition
+      },
+      {
+        name: ["SISTEMA 0", "FINANCEIRO"],
+        flavor: "Fluxo de Caixa & DRE",
+        img: "./img/mockup_laptop_sistema_zero.png",
+        weight: "DRE 2 Cliques",
+        doses: "1 toque",
+        claims: [
+          "Demonstrativo de Resultado do Exercício (DRE) gerado automaticamente.",
+          "Controle rigoroso de entradas, saídas, boletos e recebimentos PIX / Cartão.",
+          "Previsão de saldo final do mês considerando receitas e despesas pendentes."
+        ],
+        features: [
+          "DRE instantâneo e auditável",
+          "Status Pago/Pendente em 1 clique",
+          "Previsão de fluxo de caixa",
+          "Categorização por plano de contas",
+          "Exportação de relatórios em PDF"
+        ],
+        ingredients: "Módulo financeiro estruturado com validações contábeis em partida simples e dupla, suporte a centros de custo e conciliação bancária ágil. ELIMINA 100% DE ERROS DE DIGITAÇÃO E PLANILHAS PARALELAS.",
+        nutrition: baseNutrition.map(([a, b, c], i) => [a, i === 1 ? "100%" : i === 3 ? "+22%" : b, c])
+      },
+      {
+        name: ["SISTEMA 0", "AGENDA"],
+        flavor: "Atendimentos & Reservas",
+        img: "./img/mockup_laptop_sistema_zero.png",
+        weight: "Grade Mensal",
+        doses: "Sem conflito",
+        claims: [
+          "Visão em grade de calendário mensal com contadores de vagas por dia.",
+          "Agendamentos vinculados diretamente ao cadastro do cliente e profissional.",
+          "Redução drástica do no-show através de lembretes e confirmações ágeis."
+        ],
+        features: [
+          "Calendário visual interativo",
+          "Status de confirmação em tempo real",
+          "Histórico de faltas e presenças",
+          "Duração inteligente por serviço",
+          "Baixa de atendimento em 1 clique"
+        ],
+        ingredients: "Engine de agendamento com detecção automática de choque de horários, cálculo de intervalo entre profissionais e integração nativa com o módulo de comissões e faturamento.",
+        nutrition: baseNutrition.map(([a, b, c], i) => [a, i === 2 ? "-60%" : i === 0 ? "-90%" : b, c])
+      },
+      {
+        name: ["SISTEMA 0", "CLIENTES"],
+        flavor: "CRM & Fidelização LTV",
+        img: "./img/mockup_laptop_sistema_zero.png",
+        weight: "Busca < 10ms",
+        doses: "Histórico 360°",
+        claims: [
+          "Ficha completa de cada cliente com histórico de atendimentos e ticket médio.",
+          "Busca instantânea digitada na tela em tempo real sem recarregar a página.",
+          "Ações rápidas de contato via WhatsApp com apenas um toque."
+        ],
+        features: [
+          "Histórico completo de compras",
+          "Ticket médio e frequência",
+          "Atalho direto para WhatsApp",
+          "Segmentação de clientes ativos",
+          "Busca instantânea por telefone/nome"
+        ],
+        ingredients: "Banco de dados otimizado para consultas em milissegundos, armazenamento protegido de dados pessoais conforme LGPD e suporte a campos customizados por segmento.",
+        nutrition: baseNutrition.map(([a, b, c], i) => [a, i === 3 ? "+25%" : b, c])
+      },
+      {
+        name: ["SISTEMA 0", "EQUIPE"],
+        flavor: "Metas & Comissões",
+        img: "./img/mockup_laptop_sistema_zero.png",
+        weight: "100% Automático",
+        doses: "Sem conflitos",
+        claims: [
+          "Cálculo automatizado de comissões por colaborador na conclusão do serviço.",
+          "Eliminação total de disputas e erros no fechamento quinzenal e mensal.",
+          "Card de progresso visual de metas da equipe para estímulo de vendas."
+        ],
+        features: [
+          "Taxas flexíveis por profissional",
+          "Rateio transparente de valores",
+          "Progresso visual de metas",
+          "Extrato detalhado por membro",
+          "Fechamento em poucos segundos"
+        ],
+        ingredients: "Sistema automatizado de comissionamento com suporte a múltiplos profissionais por ordem de serviço, divisão de repasses configurável e relatórios individuais para prestação de contas.",
+        nutrition: baseNutrition.map(([a, b, c], i) => [a, i === 0 ? "-95%" : b, c])
+      },
+      {
+        name: ["SISTEMA 0", "SERVIÇOS"],
+        flavor: "Insumos & Fornecedores",
+        img: "./img/mockup_laptop_sistema_zero.png",
+        weight: "Margem Ativa",
+        doses: "Controle Total",
+        claims: [
+          "Catálogo completo de procedimentos, produtos e serviços com precificação clara.",
+          "Cadastro e gestão de fornecedores parceiros com condições de pagamento.",
+          "Visibilidade de custos para garantia de margem de lucro saudável em cada venda."
+        ],
+        features: [
+          "Tabela de preços e durações",
+          "Gestão de fornecedores parceiros",
+          "Controle de custos diretos",
+          "Markup e margem protegida",
+          "Cadastro ágil em modal moderno"
+        ],
+        ingredients: "Módulo integrado de catálogo com associação de insumos a serviços, controle de prazos de pagamento com fornecedores e cálculo automático de rentabilidade líquida por item.",
+        nutrition: baseNutrition.map(([a, b, c], i) => [a, i === 3 ? "+18%" : b, c])
       }
+    ];
+
+    // GERAÇÃO DAS 10 PÁGINAS SEGUINDO EXATAMENTE A ESTRUTURA DO REACT
+    function renderPages() {
+      const container = document.getElementById('magazine');
+      let pagesHTML = '';
+
+      // PÁGINA 1: CAPA
+      pagesHTML += `
+        <div class="page page-right flex flex-col justify-between p-8 sm:p-12 relative bg-gradient-to-br from-white via-slate-50 to-slate-100" data-density="hard">
+          <div class="relative z-10">
+            <div class="flex items-center justify-between border-b border-border pb-3">
+              <div class="font-display font-bold text-primary flex items-center gap-2">
+                <span class="w-3.5 h-3.5 bg-primary rounded-sm"></span>
+                <span class="text-2xl tracking-tight">SISTEMA 0</span>
+              </div>
+              <span class="text-[10px] font-semibold tracking-widest uppercase bg-band px-2.5 py-1 rounded text-muted-foreground">Edição Oficial 2026</span>
+            </div>
+            
+            <div class="mt-8">
+              <span class="text-[11px] font-bold text-primary tracking-widest uppercase block mb-1">Catálogo Oficial de Tecnologia</span>
+              <h1 class="font-display text-4xl sm:text-5xl font-bold text-ink leading-[0.95] tracking-tight">
+                A Gestão da sua<br>empresa em<br><span class="text-primary">dois cliques.</span>
+              </h1>
+              <p class="mt-3 text-xs text-muted-foreground leading-relaxed max-w-sm">
+                Fichas técnicas, diferenciais de engenharia e métricas de impacto do ERP & CRM Multi-Nicho desenvolvido para negócios modernos.
+              </p>
+            </div>
+          </div>
+
+          <div class="relative z-10 my-4 flex items-center justify-center">
+            <img src="./img/mockup_laptop_sistema_zero.png" alt="Sistema 0 Mockup" class="w-full max-w-sm drop-shadow-2xl rounded">
+          </div>
+
+          <div class="relative z-10 border-t border-border pt-3 flex items-center justify-between text-[10px] text-muted-foreground">
+            <span>sistema-zero.com.br</span>
+            <span class="text-primary font-semibold flex items-center gap-1">Folheie para explorar <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+          </div>
+        </div>
+      `;
+
+      // PÁGINA 2: MANIFESTO
+      pagesHTML += `
+        <div class="page page-left flex flex-col justify-between p-8 sm:p-12 bg-band text-ink">
+          <div>
+            <div class="font-display font-bold text-primary flex items-center gap-2 mb-6">
+              <span class="w-3 h-3 bg-primary rounded-sm"></span>
+              <span class="text-2xl tracking-tight">SISTEMA 0</span>
+            </div>
+            
+            <h2 class="font-display text-3xl sm:text-4xl font-bold leading-tight text-ink">
+              Gestão de verdade,<br>feita para o seu<br><span class="text-primary">negócio crescer.</span>
+            </h2>
+            
+            <p class="mt-4 text-xs text-muted-foreground leading-relaxed">
+              O mercado foi saturado por softwares complexos, lentos e cheios de menus infinitos que roubam o tempo produtivo de quem deveria estar atendendo clientes e expandindo as vendas.
+            </p>
+            
+            <p class="mt-3 text-xs text-muted-foreground leading-relaxed">
+              O <strong>Sistema 0</strong> foi concebido sobre uma premissa inegociável: <strong>qualquer rotina operacional crítica deve ser executada em até dois cliques</strong>. Sem telas poluídas, sem treinamento desgastante e com funcionamento nativo em qualquer tela.
+            </p>
+
+            <div class="mt-6 p-4 rounded-lg bg-page border border-border">
+              <span class="font-display text-xs font-bold text-primary block mb-1">ARQUITETURA MULTI-NICHO</span>
+              <p class="text-[11px] text-muted-foreground leading-snug">
+                Projetado para atender com excelência prestadores de serviços, estúdios, clínicas, comércio, consultorias e empresas operacionais em escala.
+              </p>
+            </div>
+          </div>
+
+          <div class="border-t border-border pt-3 flex items-center justify-between text-[10px] text-muted-foreground">
+            <span>SISTEMA 0 ENTERPRISE</span>
+            <span class="font-mono">PÁG 02</span>
+          </div>
+        </div>
+      `;
+
+      // PÁGINA 3: ÍNDICE
+      pagesHTML += `
+        <div class="page page-right flex flex-col justify-between p-8 sm:p-12 bg-page text-ink">
+          <div>
+            <h2 class="font-display text-3xl font-bold text-ink tracking-tight">ÍNDICE DO CATÁLOGO</h2>
+            <div class="mt-2 h-1 w-16 bg-primary"></div>
+            <p class="mt-2 text-xs text-muted-foreground">Fichas técnicas dos módulos operacionais integrados.</p>
+
+            <ul class="mt-6 space-y-3 font-display text-xs">
+              ${products.map((p, i) => `
+                <li onclick="goToPage(${i + 3})" class="flex justify-between items-center border-b border-border pb-2.5 cursor-pointer hover:text-primary transition-colors">
+                  <div>
+                    <b class="text-ink text-sm">${p.name.join(' ')}</b>
+                    <span class="text-muted-foreground text-[11px] block">${p.flavor}</span>
+                  </div>
+                  <span class="text-primary font-bold font-mono text-sm">Pág ${i + 4}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+
+          <div class="border-t border-border pt-3 flex items-center justify-between text-[10px] text-muted-foreground">
+            <span>SISTEMA 0 • FICHAS TÉCNICAS</span>
+            <span class="font-mono">PÁG 03</span>
+          </div>
+        </div>
+      `;
+
+      // PÁGINAS 4 A 9: AS 6 FICHAS TÉCNICAS (ESTRUTURA EXATA DO COMPONENTE FICHA)
+      products.forEach((p, idx) => {
+        const pageNum = idx + 4;
+        const isLeft = pageNum % 2 === 0;
+
+        pagesHTML += `
+          <div class="page ${isLeft ? 'page-left' : 'page-right'} flex h-full flex-col px-[6%] py-[4%] text-ink text-[10px]">
+            
+            <!-- HEADER DA FICHA TÉCNICA -->
+            <div class="relative bg-band px-[4%] pt-2.5 pb-3 rounded-lg border border-border">
+              <div class="inline-block bg-page px-3 pt-2 pb-2 rounded shadow-sm border border-border/60">
+                <div class="font-display font-bold leading-none text-primary">
+                  <span class="text-xl sm:text-2xl tracking-tight">✱ SISTEMA 0</span>
+                  <div class="text-[8px] font-semibold tracking-widest ml-5 text-muted-foreground uppercase">Gestão Inteligente</div>
+                </div>
+                <div class="mt-1.5 rounded bg-secondary px-2.5 py-0.5 font-display text-[10px] font-semibold text-secondary-foreground text-center">
+                  FICHA TÉCNICA
+                </div>
+              </div>
+
+              <!-- Notebook Renderizado na Direita -->
+              <img src="${p.img}" alt="${p.name.join(' ')}" loading="lazy"
+                class="absolute right-[3%] top-1 h-[145%] w-auto rounded drop-shadow-md object-contain">
+            </div>
+
+            <!-- TÍTULO E CATEGORIA -->
+            <h2 class="mt-3 font-display text-3xl sm:text-4xl font-bold leading-[0.9] text-ink">
+              ${p.name[0]}<br><span class="text-primary">${p.name[1]}</span>
+            </h2>
+            <p class="mt-1 font-display text-xs uppercase tracking-wider">
+              <span class="font-semibold text-primary">FOCO OPERACIONAL:</span> ${p.flavor}
+            </p>
+
+            <!-- BARRA DE ESPECIFICAÇÃO CINZA -->
+            <div class="mt-2.5 flex bg-band text-[9px] font-medium rounded border border-border">
+              <span class="flex-1 px-2.5 py-1.5 text-muted-foreground">ARQUITETURA CLOUD MULTI-NICHO</span>
+              <span class="bg-accent px-3 py-1.5 text-ink">Velocidade <b class="text-xs text-primary">${p.weight}</b></span>
+              <span class="px-3 py-1.5 text-ink"><b class="text-xs text-ink">${p.doses}</b></span>
+            </div>
+
+            <!-- CORPO DIVIDIDO EM 2 COLUNAS (1.4fr e 1fr) -->
+            <div class="mt-2.5 grid flex-1 grid-cols-[1.4fr_1fr] gap-3">
+              
+              <!-- Coluna Esquerda -->
+              <div class="flex flex-col">
+                ${p.claims.map(c => `
+                  <p class="border-b-2 border-primary/60 py-1 text-[10.5px] leading-snug text-ink font-normal">${c}</p>
+                `).join('')}
+
+                <div class="mt-2 grid grid-cols-2 gap-2">
+                  <!-- Diferenciais -->
+                  <div>
+                    <h3 class="font-display text-[10px] font-bold uppercase text-ink">DIFERENCIAIS DO MÓDULO</h3>
+                    <ul class="mt-1 space-y-1 bg-band p-1.5 rounded border border-border">
+                      ${p.features.map(f => `
+                        <li class="flex gap-1 font-display text-[9.5px] leading-tight text-ink items-start">
+                          <i data-lucide="plus" class="h-3 w-3 shrink-0 text-primary mt-0.5"></i>
+                          <span>${f}</span>
+                        </li>
+                      `).join('')}
+                    </ul>
+                  </div>
+
+                  <!-- Especificações / Arquitetura -->
+                  <div>
+                    <h3 class="font-display text-[10px] font-bold uppercase text-ink">ARQUITETURA & SEGURANÇA</h3>
+                    <p class="mt-1 bg-band p-1.5 text-justify text-[8px] leading-snug text-muted-foreground rounded border border-border">
+                      ${p.ingredients}
+                    </p>
+                  </div>
+                </div>
+
+                <p class="mt-auto pt-1.5 text-[8px] text-muted-foreground border-t border-border mt-2">
+                  <b class="text-primary">Implantação Imediata:</b> pronto para operar em menos de 10 minutos. 
+                  <b class="text-primary">Disponibilidade:</b> 100% web, compatível com computadores, notebooks, tablets e smartphones.
+                </p>
+              </div>
+
+              <!-- Coluna Direita (Tabela de Indicadores / Nutrição) -->
+              <div>
+                <h3 class="font-display text-[10px] font-bold uppercase text-ink">INDICADORES DE PERFORMANCE</h3>
+                <p class="text-[8px] text-muted-foreground">Métrica operacional · Resultados comprovados</p>
+                
+                <table class="mt-1 w-full border-t border-ink text-[8px]">
+                  <thead>
+                    <tr class="border-b border-border font-bold">
+                      <th class="text-left py-0.5">Indicador</th>
+                      <th class="text-right py-0.5">Impacto</th>
+                      <th class="text-right py-0.5">Nível</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${p.nutrition.map(([a, b, c]) => `
+                      <tr class="border-b border-border/80 hover:bg-slate-50">
+                        <td class="py-0.5 text-ink">${a}</td>
+                        <td class="text-right font-bold text-primary">${b}</td>
+                        <td class="text-right text-muted-foreground">${c}</td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+                <p class="mt-1 text-[7px] text-muted-foreground">*Dados médios apurados em empresas ativas no Sistema 0.</p>
+              </div>
+            </div>
+
+            <!-- Rodapé da Ficha Técnica -->
+            <div class="mt-2 border-t border-border pt-1.5 flex justify-between text-[9px] text-muted-foreground">
+              <span>SISTEMA 0 • FICHA TÉCNICA OFICIAL</span>
+              <span class="font-mono">PÁG 0${pageNum}</span>
+            </div>
+          </div>
+        `;
+      });
+
+      // PÁGINA 10: CONTRACAPA
+      pagesHTML += `
+        <div class="page page-left flex h-full flex-col items-center justify-center gap-4 bg-primary p-[10%] text-center text-primary-foreground" data-density="hard">
+          <div class="font-display font-bold leading-none text-white">
+            <span class="text-4xl tracking-tight">✱ SISTEMA 0</span>
+            <div class="text-xs font-semibold tracking-widest mt-1 opacity-80 uppercase">A gestão em dois cliques</div>
+          </div>
+
+          <h2 class="font-display text-2xl sm:text-3xl font-bold mt-4 leading-tight">
+            Pronto para colocar sua empresa no piloto automático?
+          </h2>
+
+          <p class="text-xs max-w-sm opacity-90 leading-relaxed font-light">
+            Entre em contato hoje mesmo e veja o Sistema 0 operando com os dados do seu segmento. Implantação rápida, suporte humano e tecnologia de ponta.
+          </p>
+
+          <div class="mt-6 p-4 rounded-xl bg-white text-ink text-left w-full max-w-xs shadow-xl">
+            <span class="text-[9px] font-bold text-primary tracking-widest uppercase block mb-1">ACESSO ONLINE</span>
+            <strong class="text-sm font-display block text-ink">sistema-zero.com.br</strong>
+            <span class="text-[10px] text-muted-foreground block mt-0.5">contato@sistema-zero.com.br</span>
+            
+            <a href="/" class="mt-3 block text-center py-2 px-3 rounded bg-primary text-white text-xs font-bold hover:bg-[#0070C9] transition-colors">
+              Acessar Sistema Agora
+            </a>
+          </div>
+
+          <div class="mt-auto border-t border-white/20 pt-3 text-[10px] opacity-75">
+            Sistema 0 Enterprise © 2026 · Todos os direitos reservados · SAC 0800 000 0000
+          </div>
+        </div>
+      `;
+
+      container.innerHTML = pagesHTML;
     }
 
-    function initMagazine() {
-      const el = document.getElementById('magazine');
-      if (!el || typeof St === 'undefined' || !St.PageFlip) {
-        console.warn("St.PageFlip não disponível ou elemento ausente.");
-        return;
-      }
+    // INICIALIZAÇÃO DO PAGEFLIP 3D
+    let pageFlip = null;
 
-      // Calcula dimensões ideais com base na janela
+    function initFlipbook() {
+      renderPages();
+      buildThumbnails();
+
+      const el = document.getElementById('magazine');
+      if (!el || typeof St === 'undefined' || !St.PageFlip) return;
+
       const winW = window.innerWidth;
       const winH = window.innerHeight;
       
       let pageW = Math.min(520, Math.floor(winW * 0.44));
-      let pageH = Math.min(740, Math.floor(winH * 0.78));
+      let pageH = Math.min(740, Math.floor(winH * 0.80));
 
-      // Em telas pequenas (mobile), exibe em página única
       if (winW < 768) {
-        pageW = Math.min(420, Math.floor(winW * 0.9));
-        pageH = Math.min(640, Math.floor(winH * 0.75));
+        pageW = Math.min(420, Math.floor(winW * 0.92));
+        pageH = Math.min(640, Math.floor(winH * 0.78));
       }
 
       pageFlip = new St.PageFlip(el, {
@@ -695,30 +598,22 @@
         height: pageH,
         size: "fixed",
         minWidth: 320,
-        maxWidth: 600,
+        maxWidth: 620,
         minHeight: 460,
-        maxHeight: 850,
-        maxShadowOpacity: 0.6,
+        maxHeight: 880,
+        maxShadowOpacity: 0.5,
         showCover: true,
         useMouseEvents: true,
         usePortrait: winW < 768,
         startPage: 0,
         drawShadow: true,
-        flippingTime: 700
+        flippingTime: 650
       });
 
       pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-      // Eventos
       pageFlip.on('flip', (e) => {
-        playPageFlipSound();
         updateCounter(e.data);
-      });
-
-      pageFlip.on('changeState', (e) => {
-        if (e.data === 'flipping') {
-          playPageFlipSound();
-        }
       });
 
       updateCounter(0);
@@ -728,12 +623,11 @@
     function updateCounter(pageIndex) {
       const counter = document.getElementById('page-counter');
       if (!counter) return;
-
       const total = 10;
       if (pageIndex === 0) {
-        counter.textContent = `Capa (Pág 1 de ${total})`;
+        counter.textContent = `Capa · Pág 1 de ${total}`;
       } else if (pageIndex >= total - 1) {
-        counter.textContent = `Contracapa (Pág ${total} de ${total})`;
+        counter.textContent = `Contracapa · Pág ${total} de ${total}`;
       } else {
         const left = pageIndex + 1;
         const right = Math.min(pageIndex + 2, total);
@@ -741,26 +635,14 @@
       }
     }
 
-    function flipPrev() {
-      if (pageFlip) pageFlip.flipPrev();
-    }
-
-    function flipNext() {
-      if (pageFlip) pageFlip.flipNext();
-    }
+    function flipPrev() { if (pageFlip) pageFlip.flipPrev(); }
+    function flipNext() { if (pageFlip) pageFlip.flipNext(); }
 
     function goToPage(index) {
       if (pageFlip) {
         pageFlip.flip(index);
-        toggleThumbnails();
-      }
-    }
-
-    function toggleSound() {
-      soundEnabled = !soundEnabled;
-      const icon = document.getElementById('sound-icon');
-      if (icon) {
-        icon.className = soundEnabled ? 'w-4 h-4 text-[#72A824]' : 'w-4 h-4 text-slate-500';
+        const modal = document.getElementById('modal-thumbnails');
+        if (modal) modal.classList.add('hidden');
       }
     }
 
@@ -777,29 +659,49 @@
       if (modal) modal.classList.toggle('hidden');
     }
 
-    // Navegação com setas do teclado
+    function buildThumbnails() {
+      const grid = document.getElementById('thumbnails-grid');
+      if (!grid) return;
+
+      const titles = [
+        "Capa Oficial",
+        "Manifesto Institucional",
+        "Índice do Catálogo",
+        "Ficha: Dashboard",
+        "Ficha: Financeiro",
+        "Ficha: Agenda",
+        "Ficha: Clientes",
+        "Ficha: Equipe & Metas",
+        "Ficha: Serviços & Preços",
+        "Contracapa & Contato"
+      ];
+
+      grid.innerHTML = titles.map((t, idx) => `
+        <button onclick="goToPage(${idx})" class="p-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
+          <span class="text-[10px] text-primary font-bold block mb-1">PÁG ${idx + 1}</span>
+          <strong class="text-xs text-white block truncate">${t}</strong>
+          <span class="text-[10px] text-slate-400">Clique para abrir</span>
+        </button>
+      `).join('');
+    }
+
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight' || e.key === ' ') {
-        flipNext();
-      } else if (e.key === 'ArrowLeft') {
-        flipPrev();
-      } else if (e.key === 'Escape') {
+      if (e.key === 'ArrowRight' || e.key === ' ') flipNext();
+      if (e.key === 'ArrowLeft') flipPrev();
+      if (e.key === 'Escape') {
         const modal = document.getElementById('modal-thumbnails');
-        if (modal && !modal.classList.contains('hidden')) {
-          modal.classList.add('hidden');
-        }
+        if (modal) modal.classList.add('hidden');
       }
     });
 
     window.addEventListener('DOMContentLoaded', () => {
-      setTimeout(initMagazine, 150);
+      setTimeout(initFlipbook, 150);
     });
 
     window.addEventListener('resize', () => {
-      // Recalcula responsividade ao rotacionar ou redimensionar
       if (pageFlip) {
         pageFlip.destroy();
-        setTimeout(initMagazine, 200);
+        setTimeout(initFlipbook, 200);
       }
     });
   </script>

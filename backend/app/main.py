@@ -47,6 +47,14 @@ if os.path.exists(frontend_path):
         if os.path.exists(index_file):
             return FileResponse(index_file)
         return health_check()
+
+    @app.get("/catalogo")
+    @app.get("/revista")
+    def serve_catalogo():
+        catalogo_file = os.path.join(frontend_path, "catalogo.html")
+        if os.path.exists(catalogo_file):
+            return FileResponse(catalogo_file)
+        return serve_frontend_root()
 else:
     @app.get("/")
     def health_check():

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema 0 — Revista Digital Executiva 4K</title>
+
+  <!-- Fontes de Alta Legibilidade -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Biblioteca PageFlip Oficial -->
+  <script src="./js/page-flip.browser.js"></script>
+
+  <style>
+    body {
+      font-family: 'Lexend', sans-serif;
+      background-color: #06080D;
+      color: #F8FAFC;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* Fundo Tecnológico com Grid e Iluminação Dinâmica */
+    .bg-tech-grid {
+      background-color: #06080D;
+      background-image: 
+        radial-gradient(circle at 50% 40%, rgba(0, 99, 177, 0.12) 0%, transparent 60%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 48px 48px, 48px 48px;
+    }
+
+    /* Container do Livro 3D */
+    .flip-book {
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 50px rgba(0, 99, 177, 0.15);
+      background: transparent;
+      margin: 0 auto;
+    }
+
+    /* Estilização individual das páginas da revista */
+    .page {
+      background-color: #0E121A;
+      color: #E2E8F0;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Vinco central da revista (Spine shadow realista) */
+    .page-left {
+      background: linear-gradient(to right, #0F131C 0%, #0E121A 90%, rgba(0, 0, 0, 0.35) 100%);
+    }
+    .page-right {
+      background: linear-gradient(to left, #0F131C 0%, #0E121A 90%, rgba(0, 0, 0, 0.35) 100%);
+    }
+
+    /* Efeito de brilho metálico na capa */
+    .cover-gradient {
+      background: radial-gradient(circle at 30% 20%, rgba(0, 99, 177, 0.25) 0%, #080B10 70%);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      height: 4px;
+      width: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #080B10;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1E293B;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="h-screen w-screen flex flex-col justify-between bg-tech-grid">
+
+  <!-- ================= TOP BAR DE CONTROLES ================= -->
+  <header class="h-16 px-6 sm:px-10 flex items-center justify-between border-b border-white/10 bg-black/40 backdrop-blur-md z-30">
+    <div class="flex items-center gap-3">
+      <a href="/" title="Voltar ao Sistema" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white/80 hover:text-white text-xs transition-colors border border-white/10">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span>Voltar ao Sistema</span>
+      </a>
+      <div class="h-4 w-[1px] bg-white/15"></div>
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-[#0063B1] animate-pulse"></span>
+        <h1 class="text-sm font-medium tracking-wide text-white">SISTEMA 0 • REVISTA DIGITAL INTERATIVA</h1>
+      </div>
+    </div>
+
+    <!-- Controles Centrais/Direita -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <button id="btn-sound" onclick="toggleSound()" title="Som de folhear de papel" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/80 hover:text-white transition-colors border border-white/10 text-xs flex items-center gap-1.5">
+        <i data-lucide="volume-2" id="sound-icon" class="w-4 h-4 text-[#72A824]"></i>
+        <span class="hidden sm:inline text-[11px]">Áudio 3D</span>
+      </button>
+
+      <button onclick="toggleThumbnails()" title="Ver miniaturas de todas as páginas" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/80 hover:text-white transition-colors border border-white/10 text-xs flex items-center gap-1.5">
+        <i data-lucide="layout-grid" class="w-4 h-4"></i>
+        <span class="hidden sm:inline text-[11px]">Sumário</span>
+      </button>
+
+      <button onclick="toggleFullscreen()" title="Tela cheia" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/80 hover:text-white transition-colors border border-white/10 text-xs flex items-center gap-1.5">
+        <i data-lucide="maximize" id="fullscreen-icon" class="w-4 h-4"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= PALCO CENTRAL (REVISTA FOLHEÁVEL 3D) ================= -->
+  <main class="flex-1 flex items-center justify-center p-2 sm:p-4 relative overflow-hidden">
+    
+    <!-- Botão de Navegação: Anterior -->
+    <button onclick="flipPrev()" aria-label="Página anterior" class="absolute left-3 sm:left-8 z-20 p-3 sm:p-4 rounded-full bg-black/60 hover:bg-[#0063B1] border border-white/15 text-white/80 hover:text-white transition-all shadow-2xl backdrop-blur-md group">
+      <i data-lucide="chevron-left" class="w-6 h-6 group-hover:-translate-x-0.5 transition-transform"></i>
+    </button>
+
+    <!-- O Livro 3D interativo renderizado pelo Canvas PageFlip -->
+    <div id="magazine" class="flip-book">
+      
+      <!-- ================= PÁGINA 1: CAPA ================= -->
+      <div class="page cover-gradient p-8 sm:p-12 flex flex-col justify-between" data-density="hard">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="px-3 py-1 rounded-full bg-[#0063B1] text-white text-[11px] font-semibold tracking-wider uppercase">Catálogo Oficial 2026</span>
+            <span class="text-xs text-white/60 font-mono">ED. 01 • 4K ULTRA-HD</span>
+          </div>
+          <div class="mt-12 sm:mt-16">
+            <h2 class="text-xs uppercase tracking-[0.3em] text-[#0063B1] font-semibold mb-2">ARQUITETURA EMPRESARIAL UNIVERSAL</h2>
+            <h3 class="text-3xl sm:text-4xl font-light text-white tracking-tight leading-tight">
+              A Nova Era da Gestão:<br>
+              <strong class="font-bold text-white">Simplicidade & Escala em 2 Cliques</strong>
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-400 mt-4 leading-relaxed font-light">
+              O ERP & CRM de alta precisão projetado para negócios que exigem agilidade sem abrir mão do controle financeiro, operacional e estratégico.
+            </p>
+          </div>
+        </div>
+
+        <!-- Centro da Capa: Mockup Notebook Tecnológico -->
+        <div class="relative my-4 flex items-center justify-center">
+          <img src="./img/mockup_laptop_sistema_zero.png" alt="Sistema 0 no Notebook" class="w-full max-w-sm sm:max-w-md drop-shadow-[0_15px_30px_rgba(0,99,177,0.35)] rounded-lg">
+        </div>
+
+        <!-- Rodapé da Capa -->
+        <div class="border-t border-white/10 pt-4 flex items-center justify-between text-[11px] text-slate-400">
+          <span>Sistema 0 Technologies</span>
+          <span class="text-[#72A824] flex items-center gap-1 font-medium">Folheie para explorar <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+        </div>
+      </div>
+
+      <!-- ================= PÁGINA 2: MANIFESTO ================= -->
+      <div class="page page-left p-8 sm:p-10 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between border-b border-white/10 pb-3">
+            <span class="text-[11px] font-bold text-[#0063B1] uppercase tracking-wider">01 // MANIFESTO INSTITUCIONAL</span>
+            <span class="text-[11px] text-slate-500 font-mono">PÁG 02</span>
+          </div>
+          <div class="mt-6">
+            <h3 class="text-2xl font-light text-white">Por que o Sistema 0 foi criado?</h3>
+            <p class="text-xs text-slate-300 mt-3 leading-relaxed">
+              O mercado foi inundado por sistemas complexos, engessados e lentos, cheios de menus infinitos que roubam o tempo do empresário e da sua equipe.
+            </p>
+            <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+              O <strong>Sistema 0</strong> rompe com essa barreira: uma interface fluida, minimalista e direta ao ponto, onde qualquer operação crítica ocorre em no máximo <strong>dois cliques</strong>.
+            </p>
+          </div>
+
+          <!-- Pilares Estratégicos -->
+          <div class="mt-6 space-y-3">
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5">
+              <span class="text-xs font-semibold text-[#0063B1] flex items-center gap-2">
+                <i data-lucide="zap" class="w-4 h-4"></i> Agilidade sem Burocracia
+              </span>
+              <p class="text-[11px] text-slate-400 mt-1">Lançamentos, cadastros e faturas em segundos, com interface Metro responsiva.</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5">
+              <span class="text-xs font-semibold text-[#72A824] flex items-center gap-2">
+                <i data-lucide="layers" class="w-4 h-4"></i> Arquitetura Multi-Nicho
+              </span>
+              <p class="text-[11px] text-slate-400 mt-1">Estrutura universal que atende com perfeição prestadores de serviços, comércio, saúde, estética e consultoria.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-[10px] text-slate-500 border-t border-white/10 pt-2 flex justify-between">
+          <span>SISTEMA 0 • MANIFESTO</span>
+          <span>MULTI-NICHO</span>
+        </div>
+      </div>
+
+      <!-- ================= PÁGINA 3: DASHBOARD ANALÍTICO ================= -->
+      <div class="page page-right p-8 sm:p-10 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between border-b border-white/10 pb-3">
+            <span class="text-[11px] font-bold text-[#72A824] uppercase tracking-wider">02 // FICHA TÉCNICA: DASHBOARD</span>
+            <span class="text-[11px] text-slate-500 font-mono">PÁG 03</span>
+          </div>
+
+          <div class="mt-5">
+            <h3 class="text-xl font-light text-white">Inteligência de Dados em Tempo Real</h3>
+            <p class="text-xs text-slate-400 mt-1">Visão completa dos indicadores operacionais sem necessidade de exportar relatórios manuais.</p>
+          </div>
+
+          <!-- Mockup com notebook centralizado -->
+          <div class="mt-4 p-2 bg-black/40 rounded-xl border border-white/10 flex justify-center">
+            <img src="./img/mockup_laptop_sistema_zero.png" alt="Dashboard no Notebook" class="w-full max-h-48 object-contain">
+          </div>
+
+          <!-- Métricas e Diferenciais da Ficha Técnica -->
+          <div class="mt-4 grid grid-cols-2 gap-2 text-left">
+            <div class="p-2.5 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-[10px] text-slate-400 uppercase tracking-wider block">Faturamento & Sparklines</span>
+              <span class="text-xs font-semibold text-white">Gráficos Spline Dinâmicos</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-[10px] text-slate-400 uppercase tracking-wider block">Canal de Aquisição</span>
+              <span class="text-xs font-semibold text-white">Doughnut Chart Nativo</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-[10px] text-slate-500 border-t border-white/10 pt-2 flex justify-between">
+          <span>MÓDULO DE INTELIGÊNCIA ANALÍTICA</span>
+          <span>TEMPO REAL</span>
+        </div>
+      </div>
+
+      <!-- ================= PÁGINA 4: FINANCEIRO & DRE ================= -->
+      <div class="page page-left p-8 sm:p-10 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between border-b border-white/10 pb-3">
+            <span class="text-[11px] font-bold text-[#0063B1] uppercase tracking-wider">03 // FICHA TÉCNICA: FINANCEIRO & DRE</span>
+            <span class="text-[11px] text-slate-500 font-mono">PÁG 04</span>
+          </div>
+
+          <div class="mt-5">
+            <h3 class="text-xl font-light text-white">Fluxo de Caixa & DRE Instantâneo</h3>
+            <p class="text-xs text-slate-400 mt-1">Controle absoluto de entradas, saídas, previsão de final de mês e margem líquida.</p>
+          </div>
+
+          <!-- Especificações Técnicas -->
+          <div class="mt-5 space-y-2.5">
+            <div class="p-3 rounded-xl bg-white/5 border border-white/5 flex items-start gap-3">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-[#72A824] mt-0.5"></i>
+              <div>
+                <strong class="text-xs text-white block">Conciliação com Status em 1 Toque</strong>
+                <span class="text-[11px] text-slate-400">Alterne entre "Pago" e "Pendente" instantaneamente na listagem.</span>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-white/5 border border-white/5 flex items-start gap-3">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-[#0063B1] mt-0.5"></i>
+              <div>
+                <strong class="text-xs text-white block">Demonstrativo de Resultado (DRE)</strong>
+                <span class="text-[11px] text-slate-400">Totalizadores automáticos de receita bruta, custos e lucro operacional.</span>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-white/5 border border-white/5 flex items-start gap-3">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-[#72A824] mt-0.5"></i>
+              <div>
+                <strong class="text-xs text-white block">Saldo Projetado Inteligente</strong>
+                <span class="text-[11px] text-slate-400">Previsão precisa considerando contas a pagar e a receber até o fechamento.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-[10px] text-slate-500 border-t border-white/10 pt-2 flex justify-between">
+          <span>GESTÃO FINANCEIRA PROFISSIONAL</span>
+          <span>DRE AUTOMÁTICO</span>
+        </div>
+      </div>
+
+      <!-- ================= PÁGINA 5: AGENDA INTELIGENTE ================= -->
+      <div class="page page-right p-8 sm:p-10 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between border-b border-white/10 pb-3">
+            <span class="text-[11px] font-bold text-[#E66A00] uppercase tracking-wider">04 // FICHA TÉCNICA: AGENDA</span>
+            <span class="text-[11px] text-slate-500 font-mono">PÁG 05</span>
+          </div>
+
+          <div class="mt-5">
+            <h3 class="text-xl font-light text-white">Agenda & Reservas Inteligentes</h3>
+            <p class="text-xs text-slate-400 mt-1">Organização de atendimentos com visão mensal, contadores diários e zero conflitos.</p>
+          </div>
+
+          <div class="mt-5 space-y-3">
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-semibold text-white">Visualização em Grade Mensal</span>
+                <span class="text-[10px] text-[#72A824] bg-[#72A824]/10 px-2 py-0.5 rounded">Tempo Real</span>
+              </div>
+              <p class="text-[11px] text-slate-400">Identificação visual imediata de dias com vagas, dias lotados e cancelamentos.</p>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-semibold text-white">Atendimento em 2 Cliques</span>
+                <span class="text-[10px] text-[#0063B1] bg-[#0063B1]/10 px-2 py-0.5 rounded">Agilidade</span>
+              </div>
+              <p class="text-[11px] text-slate-400">Clique na data desejada para abrir os agendamentos daquele dia e dar baixa com 1 toque.</p>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-semibold text-white">Redução de No-Show (Faltas)</span>
+                <span class="text-[10px] text-[#E66A00] bg-[#E66A00]/10 px-2 py-0.5 rounded">Retenção</span>
+              </div>
+              <p class="text-[11px] text-slate-400">Controle rigoroso de status: confirmado, pendente, concluído ou cancelado.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-[10px] text-slate-500 border-t border-white/10 pt-2 flex justify-between">
+          <span>GESTÃO DE AGENDAMENTOS</span>
+          <span>ZERO CONFLITOS</span>
+        </div>
+      </div>
+
+      <!-- ================= PÁGINA 6: CRM DE CLIENTES ================= -->
+      <div class="page page-left p-8 sm:p-10 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between border-b border-white/10 pb-3">
+            <span class="text-[11px] font-bold text-[#00897B] uppercase tracking-wider">05 // FICHA TÉCNICA: CRM DE CLIENTES</span>
+            <span class="text-[11px] text-slate-500 font-mono">PÁG 06</span>
+          </div>
+
+          <div class="mt-5">
+            <h3 class="text-xl font-light text-white">Carteira & Fidelização de Clientes</h3>
+            <p class="text-xs text-slate-400 mt-1">Conheça cada cliente pelo nome, histórico de compras e ticket médio acumulado.</p>
+          </div>
+
+          <div class="mt-6 space-y-3">
+            <div class="p-3 rounded-xl bg-white/5 border border-white/5">
+              <span class="text-xs font-semibold text-white block">Histórico de Atendimentos Completo</span>
+              <p class="text-[11px] text-slate-400 mt-1">Saiba quais serviços o cliente já realizou, valores pagos e frequência de visitas.</p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-white/5 border border-white/5">
+              <span class="text-xs font-semibold text-white block">Busca Instantânea por Nome ou Telefone</span>
+              <p class="text-[11px] text-slate-400 mt-1">Filtro em tempo real digitado na tela sem recarregar a página.</p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-white/5 border border-white/5">
+              <span class="text-xs font-semibold text-white block">Integração Direta com WhatsApp</span>
+              <p class="text-[11px] text-slate-400 mt-1">Contato com apenas um clique para envio de confirmações ou promoções.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-[10px] text-slate-500 border-t border-white/10 pt-2 flex justify-between">
+          <span>CRM & RETENÇÃO DE CLIENTES</span>
+          <span>LTV MAXIMIZADO</span>
+        </div>
+      </div>
+
+      <!-- ================= PÁGINA 7: EQUIPE & COMISSÕES ================= -->
+      <div class="page page-right p-8 sm:p-10 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between border-b border-white/10 pb-3">
+            <span class="text-[11px] font-bold text-[#5C3BAA] uppercase tracking-wider">06 // FICHA TÉCNICA: EQUIPE & METAS</span>
+            <span class="text-[11px] text-slate-500 font-mono">PÁG 07</span>
+          </div>
+
+          <div class="mt-5">
+            <h3 class="text-xl font-light text-white">Produtividade & Comissões Automáticas</h3>
+            <p class="text-xs text-slate-400 mt-1">Elimine erros no fechamento de pagamentos e incentive o atingimento de metas.</p>
+          </div>
+
+          <div class="mt-6 space-y-3">
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-semibold text-white">Cálculo de Comissão Automático</span>
+                <span class="text-[10px] text-[#5C3BAA] font-bold">100% Preciso</span>
+              </div>
+              <p class="text-[11px] text-slate-400">Taxas personalizadas por profissional (ex: 40%, 45%, 50%) calculadas na hora de cada atendimento.</p>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-semibold text-white">Acompanhamento de Metas</span>
+                <span class="text-[10px] text-[#72A824] font-bold">Progresso Visual</span>
+              </div>
+              <p class="text-[11px] text-slate-400">Card dinâmico indicando o percentual atingido da meta mensal estabelecida.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-[10px] text-slate-500 border-t border-white/10 pt-2 flex justify-between">
+          <span>GESTÃO DE EQUIPE & PERFORMANCE</span>
+          <span>COMISSÃO AUTOMÁTICA</span>
+        </div>
+      </div>
+
+      <!-- ================= PÁGINA 8: CATÁLOGO DE SERVIÇOS & INSUMOS ================= -->
+      <div class="page page-left p-8 sm:p-10 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between border-b border-white/10 pb-3">
+            <span class="text-[11px] font-bold text-[#C3168A] uppercase tracking-wider">07 // FICHA TÉCNICA: SERVIÇOS & INSUMOS</span>
+            <span class="text-[11px] text-slate-500 font-mono">PÁG 08</span>
+          </div>
+
+          <div class="mt-5">
+            <h3 class="text-xl font-light text-white">Precificação & Controle de Fornecedores</h3>
+            <p class="text-xs text-slate-400 mt-1">Garanta margens de lucro saudáveis e controle compras de fornecedores sem planilhas paralelas.</p>
+          </div>
+
+          <div class="mt-6 space-y-3">
+            <div class="p-3 rounded-xl bg-white/5 border border-white/5">
+              <strong class="text-xs text-white block">Tabela de Preços e Duração</strong>
+              <p class="text-[11px] text-slate-400 mt-1">Defina durações estimadas de cada serviço para sincronizar perfeitamente com a agenda.</p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-white/5 border border-white/5">
+              <strong class="text-xs text-white block">Cadastro Completo de Fornecedores</strong>
+              <p class="text-[11px] text-slate-400 mt-1">Razão social, categoria de insumo, contato principal e condições de pagamento salvas.</p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-white/5 border border-white/5">
+              <strong class="text-xs text-white block">Visibilidade de Custos Operacionais</strong>
+              <p class="text-[11px] text-slate-400 mt-1">Monitore o impacto de despesas operacionais sobre a margem de cada entrega.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-[10px] text-slate-500 border-t border-white/10 pt-2 flex justify-between">
+          <span>SERVIÇOS, INSUMOS & FORNECEDORES</span>
+          <span>MARGEM PROTEGIDA</span>
+        </div>
+      </div>
+
+      <!-- ================= PÁGINA 9: TECNOLOGIA & MODO CLARO/ESCURO ================= -->
+      <div class="page page-right p-8 sm:p-10 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between border-b border-white/10 pb-3">
+            <span class="text-[11px] font-bold text-[#0063B1] uppercase tracking-wider">08 // INFRAESTRUTURA & DESIGN SYSTEM</span>
+            <span class="text-[11px] text-slate-500 font-mono">PÁG 09</span>
+          </div>
+
+          <div class="mt-5">
+            <h3 class="text-xl font-light text-white">Nuvem Segura & Design Ergonômico</h3>
+            <p class="text-xs text-slate-400 mt-1">Construído sobre arquitetura moderna em nuvem com alternância nativa de temas.</p>
+          </div>
+
+          <div class="mt-6 grid grid-cols-2 gap-3">
+            <div class="p-3.5 rounded-xl bg-black/60 border border-white/10">
+              <div class="flex items-center gap-2 text-xs font-semibold text-white mb-1.5">
+                <i data-lucide="moon" class="w-4 h-4 text-[#0063B1]"></i> Modo Escuro
+              </div>
+              <p class="text-[11px] text-slate-400">Descanso visual para uso contínuo em balcões e ambientes de pouca luz.</p>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-white text-slate-900 border border-slate-200">
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-900 mb-1.5">
+                <i data-lucide="sun" class="w-4 h-4 text-[#E66A00]"></i> Modo Claro
+              </div>
+              <p class="text-[11px] text-slate-600">Alto contraste e máxima legibilidade para escritórios e impressão.</p>
+            </div>
+          </div>
+
+          <div class="mt-4 p-3.5 rounded-xl bg-white/5 border border-white/5">
+            <div class="flex items-center gap-2 text-xs font-semibold text-[#72A824] mb-1">
+              <i data-lucide="shield-check" class="w-4 h-4"></i> Segurança & Disponibilidade
+            </div>
+            <p class="text-[11px] text-slate-400">Banco de dados com backups regulares, criptografia de senhas (bcrypt) e API RESTful de alta velocidade.</p>
+          </div>
+        </div>
+
+        <div class="text-[10px] text-slate-500 border-t border-white/10 pt-2 flex justify-between">
+          <span>TECNOLOGIA DE PONTA</span>
+          <span>ALTA CONFIABILIDADE</span>
+        </div>
+      </div>
+
+      <!-- ================= PÁGINA 10: CONTRACAPA & CTA ================= -->
+      <div class="page cover-gradient p-8 sm:p-12 flex flex-col justify-between" data-density="hard">
+        <div>
+          <div class="flex items-center justify-between border-b border-white/10 pb-3">
+            <span class="text-[11px] font-bold text-[#72A824] uppercase tracking-wider">SISTEMA 0 // CONTRACAPA</span>
+            <span class="text-[11px] text-slate-500 font-mono">PÁG 10 / 10</span>
+          </div>
+
+          <div class="mt-8 text-center sm:text-left">
+            <h2 class="text-xs uppercase tracking-[0.25em] text-[#0063B1] font-semibold mb-2">TRANSFORME SUA GESTÃO HOJE</h2>
+            <h3 class="text-3xl font-light text-white leading-tight">
+              Pronto para ter sua empresa<br><strong class="font-bold">sob controle em 2 cliques?</strong>
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-300 mt-4 leading-relaxed font-light">
+              Junte-se aos empresários e gestores que simplificaram suas operações com o Sistema 0. Atendimento multi-nicho, suporte técnico e implantação imediata.
+            </p>
+          </div>
+
+          <!-- Card de Contato & Acesso Direto -->
+          <div class="mt-8 p-6 rounded-2xl bg-white/5 border border-white/15 backdrop-blur-md">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div>
+                <span class="text-xs uppercase tracking-wider text-slate-400 font-medium block">ACESSO ONLINE IMEDIATO</span>
+                <span class="text-lg font-semibold text-white">sistema-zero.com.br</span>
+                <span class="text-xs text-[#72A824] block mt-0.5">Ambiente Seguro & Hospedado</span>
+              </div>
+              <a href="/" class="px-5 py-3 rounded-xl bg-[#0063B1] hover:bg-[#0070C9] text-white text-xs font-semibold tracking-wide transition-all shadow-lg flex items-center gap-2">
+                <span>Acessar o Sistema</span>
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-white/10 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-500">
+          <span>Sistema 0 Enterprise © 2026 • Todos os direitos reservados</span>
+          <span>Multi-Nicho • Universal • Alto Padrão</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Botão de Navegação: Próxima -->
+    <button onclick="flipNext()" aria-label="Próxima página" class="absolute right-3 sm:right-8 z-20 p-3 sm:p-4 rounded-full bg-black/60 hover:bg-[#0063B1] border border-white/15 text-white/80 hover:text-white transition-all shadow-2xl backdrop-blur-md group">
+      <i data-lucide="chevron-right" class="w-6 h-6 group-hover:translate-x-0.5 transition-transform"></i>
+    </button>
+  </main>
+
+  <!-- ================= BOTTOM BAR (CONTADOR E NAVEGAÇÃO) ================= -->
+  <footer class="h-16 px-6 sm:px-10 flex items-center justify-between border-t border-white/10 bg-black/40 backdrop-blur-md z-30">
+    <div class="text-xs text-slate-400 font-mono flex items-center gap-2">
+      <i data-lucide="book-open" class="w-4 h-4 text-[#0063B1]"></i>
+      <span id="page-counter">Página 1 de 10</span>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button onclick="flipPrev()" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white text-xs border border-white/10 flex items-center gap-1">
+        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Anterior</span>
+      </button>
+      <button onclick="flipNext()" class="p-2 rounded-lg bg-[#0063B1] hover:bg-[#0070C9] text-white text-xs border border-transparent flex items-center gap-1 font-medium">
+        <span class="hidden sm:inline">Próxima</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      </button>
+    </div>
+
+    <div class="text-[11px] text-slate-500 hidden sm:block">
+      Dica: Você pode arrastar as pontas das páginas com o mouse ou usar as setas do teclado.
+    </div>
+  </footer>
+
+  <!-- ================= MODAL DE MINIATURAS (SUMÁRIO VISUAL) ================= -->
+  <div id="modal-thumbnails" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-lg p-6 sm:p-10 flex flex-col justify-between">
+    <div class="flex items-center justify-between border-b border-white/10 pb-4">
+      <h3 class="text-lg font-light text-white flex items-center gap-2">
+        <i data-lucide="layout-grid" class="w-5 h-5 text-[#0063B1]"></i> Sumário Visual da Revista (10 Páginas)
+      </h3>
+      <button onclick="toggleThumbnails()" class="p-2 rounded-lg bg-white/10 text-white hover:bg-white/20">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Grade de Miniaturas -->
+    <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 my-6 overflow-y-auto max-h-[70vh] p-2">
+      <button onclick="goToPage(0)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
+        <span class="text-[10px] text-[#0063B1] font-bold block mb-1">PÁG 01</span>
+        <strong class="text-xs text-white block">Capa Executiva</strong>
+        <span class="text-[10px] text-slate-400">Sistema 0 & Mockup</span>
+      </button>
+      <button onclick="goToPage(1)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
+        <span class="text-[10px] text-[#0063B1] font-bold block mb-1">PÁG 02</span>
+        <strong class="text-xs text-white block">Manifesto</strong>
+        <span class="text-[10px] text-slate-400">Multi-Nicho & Pilares</span>
+      </button>
+      <button onclick="goToPage(2)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
+        <span class="text-[10px] text-[#72A824] font-bold block mb-1">PÁG 03</span>
+        <strong class="text-xs text-white block">Dashboard</strong>
+        <span class="text-[10px] text-slate-400">Inteligência de Dados</span>
+      </button>
+      <button onclick="goToPage(3)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
+        <span class="text-[10px] text-[#0063B1] font-bold block mb-1">PÁG 04</span>
+        <strong class="text-xs text-white block">Financeiro & DRE</strong>
+        <span class="text-[10px] text-slate-400">Fluxo de Caixa em 2 Cliques</span>
+      </button>
+      <button onclick="goToPage(4)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
+        <span class="text-[10px] text-[#E66A00] font-bold block mb-1">PÁG 05</span>
+        <strong class="text-xs text-white block">Agenda Inteligente</strong>
+        <span class="text-[10px] text-slate-400">Calendário & Reservas</span>
+      </button>
+      <button onclick="goToPage(5)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
+        <span class="text-[10px] text-[#00897B] font-bold block mb-1">PÁG 06</span>
+        <strong class="text-xs text-white block">CRM de Clientes</strong>
+        <span class="text-[10px] text-slate-400">Histórico & LTV</span>
+      </button>
+      <button onclick="goToPage(6)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
+        <span class="text-[10px] text-[#5C3BAA] font-bold block mb-1">PÁG 07</span>
+        <strong class="text-xs text-white block">Equipe & Metas</strong>
+        <span class="text-[10px] text-slate-400">Comissões Automáticas</span>
+      </button>
+      <button onclick="goToPage(7)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
+        <span class="text-[10px] text-[#C3168A] font-bold block mb-1">PÁG 08</span>
+        <strong class="text-xs text-white block">Serviços & Insumos</strong>
+        <span class="text-[10px] text-slate-400">Custos & Fornecedores</span>
+      </button>
+      <button onclick="goToPage(8)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
+        <span class="text-[10px] text-[#0063B1] font-bold block mb-1">PÁG 09</span>
+        <strong class="text-xs text-white block">Nuvem & Temas</strong>
+        <span class="text-[10px] text-slate-400">Modo Claro e Escuro</span>
+      </button>
+      <button onclick="goToPage(9)" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
+        <span class="text-[10px] text-[#72A824] font-bold block mb-1">PÁG 10</span>
+        <strong class="text-xs text-white block">Contracapa & CTA</strong>
+        <span class="text-[10px] text-slate-400">Demonstração & Contato</span>
+      </button>
+    </div>
+
+    <div class="text-center">
+      <button onclick="toggleThumbnails()" class="px-6 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs">
+        Fechar Sumário
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= SCRIPTS DE INICIALIZAÇÃO DA REVISTA ================= -->
+  <script>
+    let pageFlip = null;
+    let soundEnabled = true;
+    let audioCtx = null;
+
+    // Sintetizador de Som de Folhear de Papel (Web Audio API nativo, zero dependência externa)
+    function playPageFlipSound() {
+      if (!soundEnabled) return;
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+
+        const bufferSize = audioCtx.sampleRate * 0.15; // 150ms
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.3));
+        }
+
+        const noise = audioCtx.createBufferSource();
+        noise.buffer = buffer;
+
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.value = 850;
+        filter.Q.value = 1.2;
+
+        const gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.25, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.14);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        noise.start();
+      } catch (e) {
+        console.warn("Audio feedback error:", e);
+      }
+    }
+
+    function initMagazine() {
+      const el = document.getElementById('magazine');
+      if (!el || typeof St === 'undefined' || !St.PageFlip) {
+        console.warn("St.PageFlip não disponível ou elemento ausente.");
+        return;
+      }
+
+      // Calcula dimensões ideais com base na janela
+      const winW = window.innerWidth;
+      const winH = window.innerHeight;
+      
+      let pageW = Math.min(520, Math.floor(winW * 0.44));
+      let pageH = Math.min(740, Math.floor(winH * 0.78));
+
+      // Em telas pequenas (mobile), exibe em página única
+      if (winW < 768) {
+        pageW = Math.min(420, Math.floor(winW * 0.9));
+        pageH = Math.min(640, Math.floor(winH * 0.75));
+      }
+
+      pageFlip = new St.PageFlip(el, {
+        width: pageW,
+        height: pageH,
+        size: "fixed",
+        minWidth: 320,
+        maxWidth: 600,
+        minHeight: 460,
+        maxHeight: 850,
+        maxShadowOpacity: 0.6,
+        showCover: true,
+        useMouseEvents: true,
+        usePortrait: winW < 768,
+        startPage: 0,
+        drawShadow: true,
+        flippingTime: 700
+      });
+
+      pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+
+      // Eventos
+      pageFlip.on('flip', (e) => {
+        playPageFlipSound();
+        updateCounter(e.data);
+      });
+
+      pageFlip.on('changeState', (e) => {
+        if (e.data === 'flipping') {
+          playPageFlipSound();
+        }
+      });
+
+      updateCounter(0);
+      lucide.createIcons();
+    }
+
+    function updateCounter(pageIndex) {
+      const counter = document.getElementById('page-counter');
+      if (!counter) return;
+
+      const total = 10;
+      if (pageIndex === 0) {
+        counter.textContent = `Capa (Pág 1 de ${total})`;
+      } else if (pageIndex >= total - 1) {
+        counter.textContent = `Contracapa (Pág ${total} de ${total})`;
+      } else {
+        const left = pageIndex + 1;
+        const right = Math.min(pageIndex + 2, total);
+        counter.textContent = `Páginas ${left}-${right} de ${total}`;
+      }
+    }
+
+    function flipPrev() {
+      if (pageFlip) pageFlip.flipPrev();
+    }
+
+    function flipNext() {
+      if (pageFlip) pageFlip.flipNext();
+    }
+
+    function goToPage(index) {
+      if (pageFlip) {
+        pageFlip.flip(index);
+        toggleThumbnails();
+      }
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      const icon = document.getElementById('sound-icon');
+      if (icon) {
+        icon.className = soundEnabled ? 'w-4 h-4 text-[#72A824]' : 'w-4 h-4 text-slate-500';
+      }
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    }
+
+    function toggleThumbnails() {
+      const modal = document.getElementById('modal-thumbnails');
+      if (modal) modal.classList.toggle('hidden');
+    }
+
+    // Navegação com setas do teclado
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        flipNext();
+      } else if (e.key === 'ArrowLeft') {
+        flipPrev();
+      } else if (e.key === 'Escape') {
+        const modal = document.getElementById('modal-thumbnails');
+        if (modal && !modal.classList.contains('hidden')) {
+          modal.classList.add('hidden');
+        }
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(initMagazine, 150);
+    });
+
+    window.addEventListener('resize', () => {
+      // Recalcula responsividade ao rotacionar ou redimensionar
+      if (pageFlip) {
+        pageFlip.destroy();
+        setTimeout(initMagazine, 200);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -144,20 +144,31 @@
   <div id="start-screen" class="hidden start-bg min-h-screen flex flex-col justify-between p-6 sm:p-8 md:p-10 lg:p-12 xl:p-14 w-full max-w-[1920px] mx-auto box-border">
     
     <!-- Header Adaptativo do Start -->
-    <header class="w-full flex items-center justify-between shrink-0 pb-4">
+    <header class="w-full flex items-center justify-between shrink-0 pb-4 relative z-40">
       <div class="flex items-center gap-3">
         <span class="text-2xl md:text-3xl font-light tracking-wide text-white">Visão Geral</span>
       </div>
 
-      <button onclick="handleUserHeaderClick()" class="flex items-center gap-3 text-right hover:opacity-90 transition-opacity">
-        <span>
-          <span id="header-user-name" class="block text-xl md:text-2xl font-light">Entrar</span>
-          <span id="header-user-sub" class="block text-xs md:text-sm opacity-70"></span>
-        </span>
-        <span id="header-user-avatar" class="flex items-center justify-center text-white/90 hover:text-white transition-colors">
-          <i data-lucide="log-in" class="w-6 h-6"></i>
-        </span>
-      </button>
+      <div class="flex items-center gap-3 sm:gap-4">
+        <!-- Botão de Avisos (Sino) -->
+        <button id="btn-notifications" onclick="toggleNotificationsDropdown(event, 'start')" aria-label="Avisos e Notificações" title="Avisos e Notificações" class="relative p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/90 hover:text-white transition-all flex items-center justify-center cursor-pointer">
+          <i data-lucide="bell" class="w-5 h-5"></i>
+          <span id="notif-badge" class="absolute -top-1 -right-1 flex h-4 min-w-[16px] px-1 items-center justify-center rounded-full bg-[#E51400] text-[10px] font-bold text-white shadow">
+            3
+          </span>
+        </button>
+
+        <!-- Perfil do Usuário -->
+        <button onclick="handleUserHeaderClick()" class="flex items-center gap-3 text-right hover:opacity-90 transition-opacity cursor-pointer">
+          <span>
+            <span id="header-user-name" class="block text-xl md:text-2xl font-light">Entrar</span>
+            <span id="header-user-sub" class="block text-xs md:text-sm opacity-70"></span>
+          </span>
+          <span id="header-user-avatar" class="flex items-center justify-center text-white/90 hover:text-white transition-colors">
+            <i data-lucide="log-in" class="w-6 h-6"></i>
+          </span>
+        </button>
+      </div>
     </header>
 
     <!-- Área Principal de Blocos e Gráfico (Centrada Verticalmente) -->
@@ -442,6 +453,13 @@
         </button>
         <button id="btn-action-supplier" onclick="openSupplierDialog()" class="hidden flex items-center gap-2 bg-tile-blue hover:opacity-90 px-4 py-2 text-white font-normal transition-opacity shadow-sm rounded-lg">
           <i data-lucide="plus" class="h-4 w-4"></i> Novo fornecedor
+        </button>
+        <!-- Botão de Avisos na tela interna -->
+        <button id="btn-notifications-app" onclick="toggleNotificationsDropdown(event, 'app')" aria-label="Avisos e Notificações" title="Avisos e Notificações" class="relative p-2 sm:p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/90 hover:text-white transition-all flex items-center justify-center cursor-pointer ml-1">
+          <i data-lucide="bell" class="w-5 h-5"></i>
+          <span id="notif-badge-app" class="absolute -top-1 -right-1 flex h-4 min-w-[16px] px-1 items-center justify-center rounded-full bg-[#E51400] text-[10px] font-bold text-white shadow">
+            3
+          </span>
         </button>
       </div>
     </div>
@@ -4103,6 +4121,218 @@
         });
       }
     }
+
+    // =========================================================================
+    // CENTRAL DE AVISOS / NOTIFICAÇÕES (ÍCONE DE SINO)
+    // =========================================================================
+    let systemNotifications = [
+      {
+        id: 1,
+        type: 'finance',
+        icon: 'wallet',
+        iconBg: 'bg-amber-500/15 text-amber-400',
+        title: 'Conta a pagar a vencer',
+        message: 'Material de expediente (R$ 120,00) com vencimento próximo.',
+        time: 'Hoje',
+        read: false,
+        actionApp: 'financial',
+        actionFilter: 'despesa'
+      },
+      {
+        id: 2,
+        type: 'agenda',
+        icon: 'calendar-clock',
+        iconBg: 'bg-tile-blue/20 text-sky-400',
+        title: 'Confirmação pendente',
+        message: 'Mariana Souza Lima às 16:00 aguardando retorno do cliente.',
+        time: 'Hoje · 16:00',
+        read: false,
+        actionApp: 'appointments'
+      },
+      {
+        id: 3,
+        type: 'goal',
+        icon: 'target',
+        iconBg: 'bg-[#72A824]/20 text-[#72A824]',
+        title: 'Meta do mês em 88%',
+        message: 'Excelente ritmo! Faltam apenas R$ 1.330,00 para bater a meta.',
+        time: 'Atualizado agora',
+        read: false,
+        actionApp: 'monthlyGoal'
+      }
+    ];
+
+    function updateNotificationBadges() {
+      const unreadCount = systemNotifications.filter(n => !n.read).length;
+      const badgeStart = document.getElementById('notif-badge');
+      const badgeApp = document.getElementById('notif-badge-app');
+      const pill = document.getElementById('notif-count-pill');
+
+      if (pill) {
+        pill.textContent = unreadCount > 0 ? `${unreadCount} ${unreadCount === 1 ? 'novo' : 'novos'}` : 'Nenhum novo';
+      }
+
+      [badgeStart, badgeApp].forEach(b => {
+        if (!b) return;
+        if (unreadCount > 0) {
+          b.textContent = unreadCount;
+          b.classList.remove('hidden');
+        } else {
+          b.classList.add('hidden');
+        }
+      });
+    }
+
+    function renderNotificationsList() {
+      const listContainer = document.getElementById('notif-items-list');
+      if (!listContainer) return;
+
+      if (systemNotifications.length === 0) {
+        listContainer.innerHTML = `
+          <div class="p-8 text-center text-white/50">
+            <i data-lucide="check-circle" class="w-8 h-8 mx-auto mb-2 text-emerald-400/70"></i>
+            <p class="text-xs">Tudo limpo! Não há novos avisos no momento.</p>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+      systemNotifications.forEach(item => {
+        const unreadClass = !item.read ? 'bg-white/[0.04]' : 'opacity-70';
+        const unreadDot = !item.read ? '<span class="w-2 h-2 rounded-full bg-tile-blue shrink-0"></span>' : '';
+
+        html += `
+          <div class="p-3.5 hover:bg-white/10 transition-colors flex items-start gap-3 cursor-pointer group ${unreadClass}" onclick="handleNotificationClick(${item.id})">
+            <div class="p-2 rounded-xl ${item.iconBg} shrink-0 mt-0.5">
+              <i data-lucide="${item.icon}" class="w-4 h-4"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-1 mb-0.5">
+                <h4 class="text-xs font-medium text-white truncate">${item.title}</h4>
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <span class="text-[10px] text-white/50">${item.time}</span>
+                  ${unreadDot}
+                </div>
+              </div>
+              <p class="text-[11px] text-white/70 leading-relaxed line-clamp-2">${item.message}</p>
+            </div>
+            <button onclick="dismissNotification(event, ${item.id})" title="Dispensar aviso" class="opacity-0 group-hover:opacity-100 text-white/40 hover:text-white p-1 transition-opacity cursor-pointer">
+              <i data-lucide="x" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        `;
+      });
+
+      listContainer.innerHTML = html;
+    }
+
+    function toggleNotificationsDropdown(e, source) {
+      if (e) e.stopPropagation();
+      const dropdown = document.getElementById('notif-dropdown');
+      if (!dropdown) return;
+
+      const isHidden = dropdown.classList.contains('hidden');
+      if (!isHidden) {
+        closeNotificationsDropdown();
+        return;
+      }
+
+      const btn = e.currentTarget;
+      const rect = btn.getBoundingClientRect();
+      const dropdownWidth = Math.min(380, window.innerWidth - 32);
+      
+      let left = rect.right - dropdownWidth;
+      if (left < 16) left = 16;
+      if (left + dropdownWidth > window.innerWidth - 16) {
+        left = window.innerWidth - dropdownWidth - 16;
+      }
+      
+      dropdown.style.width = `${dropdownWidth}px`;
+      dropdown.style.top = `${rect.bottom + 10}px`;
+      dropdown.style.left = `${left}px`;
+      dropdown.classList.remove('hidden');
+
+      renderNotificationsList();
+      lucide.createIcons();
+    }
+
+    function closeNotificationsDropdown() {
+      const dropdown = document.getElementById('notif-dropdown');
+      if (dropdown) dropdown.classList.add('hidden');
+    }
+
+    function handleNotificationClick(id) {
+      const item = systemNotifications.find(n => n.id === id);
+      if (!item) return;
+
+      item.read = true;
+      updateNotificationBadges();
+      closeNotificationsDropdown();
+
+      if (item.actionApp) {
+        openApp(item.actionApp, item.actionFilter);
+      }
+    }
+
+    function markAllNotificationsAsRead(e) {
+      if (e) e.stopPropagation();
+      systemNotifications.forEach(n => n.read = true);
+      updateNotificationBadges();
+      renderNotificationsList();
+      lucide.createIcons();
+    }
+
+    function dismissNotification(e, id) {
+      if (e) e.stopPropagation();
+      systemNotifications = systemNotifications.filter(n => n.id !== id);
+      updateNotificationBadges();
+      renderNotificationsList();
+      lucide.createIcons();
+    }
+
+    document.addEventListener('click', (e) => {
+      const dropdown = document.getElementById('notif-dropdown');
+      if (!dropdown || dropdown.classList.contains('hidden')) return;
+      if (!e.target.closest('#notif-dropdown') && !e.target.closest('#btn-notifications') && !e.target.closest('#btn-notifications-app')) {
+        closeNotificationsDropdown();
+      }
+    });
+
+    // Inicia contadores de aviso no carregamento
+    setTimeout(() => {
+      updateNotificationBadges();
+    }, 100);
+
 </script>
+
+  <!-- ================= CENTRAL DE AVISOS E NOTIFICAÇÕES (DROPDOWN FLUTUANTE) ================= -->
+  <div id="notif-dropdown" class="hidden fixed z-50 w-80 sm:w-96 bg-[#16181D]/95 backdrop-blur-xl border border-white/15 rounded-2xl shadow-2xl overflow-hidden transition-all duration-200">
+    <div class="p-4 border-b border-white/10 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="p-1.5 rounded-lg bg-tile-blue/20 text-tile-blue flex items-center justify-center">
+          <i data-lucide="bell" class="w-4 h-4"></i>
+        </div>
+        <h3 class="font-medium text-white text-sm">Avisos e Lembretes</h3>
+        <span id="notif-count-pill" class="text-[11px] bg-white/10 text-white/90 px-2 py-0.5 rounded-full font-medium">3 novos</span>
+      </div>
+      <button onclick="markAllNotificationsAsRead(event)" class="text-[11px] text-white/60 hover:text-white hover:underline transition-colors cursor-pointer">
+        Marcar lidos
+      </button>
+    </div>
+
+    <!-- Lista de Avisos -->
+    <div id="notif-items-list" class="max-h-80 overflow-y-auto divide-y divide-white/5 custom-scrollbar">
+      <!-- Inserido dinamicamente via JS -->
+    </div>
+
+    <div class="p-3 bg-black/40 border-t border-white/5 flex items-center justify-between text-[11px] text-white/60 px-4">
+      <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"></span> Sistema 0 Online</span>
+      <button onclick="closeNotificationsDropdown()" class="text-white/80 hover:text-white cursor-pointer hover:underline">
+        Fechar
+      </button>
+    </div>
+  </div>
+
 </body>
 </html>

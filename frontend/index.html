@@ -137,17 +137,42 @@
     }
 
   
-    /* ================= TEMA CLARO (LIGHT THEME) ================= */
+    /* ================= TEMA CLARO COMPLETO (LIGHT THEME) ================= */
     body.theme-light {
       background-color: #F8FAFC !important;
       color: #0F172A !important;
     }
-    body.theme-light .start-bg {
-      background-color: #F8FAFC !important;
-    }
+    body.theme-light .start-bg,
     body.theme-light #start-screen,
     body.theme-light #app-view {
       background-color: #F8FAFC !important;
+      color: #0F172A !important;
+    }
+
+    /* Cabeçalhos, Títulos e Textos Principais */
+    body.theme-light h1,
+    body.theme-light h2,
+    body.theme-light h3,
+    body.theme-light h4,
+    body.theme-light #app-view-title,
+    body.theme-light #app-table-title,
+    body.theme-light header span.text-white,
+    body.theme-light #header-user-name {
+      color: #0F172A !important;
+    }
+    body.theme-light #header-user-sub,
+    body.theme-light #table-subtitle,
+    body.theme-light #table-search-counter,
+    body.theme-light .text-slate-400 {
+      color: #64748B !important;
+    }
+    body.theme-light #header-user-avatar {
+      color: #0F172A !important;
+    }
+
+    /* Seta Voltar no app-view */
+    body.theme-light #btn-app-back,
+    body.theme-light #btn-app-back i {
       color: #0F172A !important;
     }
 
@@ -157,25 +182,8 @@
     body.theme-light .bg-\[\#1A1D24\] {
       background-color: #FFFFFF !important;
       border-color: #E2E8F0 !important;
-    }
-
-    /* Textos no modo claro (exceto botões com cor de destaque) */
-    body.theme-light h1,
-    body.theme-light h2,
-    body.theme-light h3,
-    body.theme-light h4,
-    body.theme-light .text-white:not(.tile *):not(.bg-tile-blue *):not(.bg-tile-lime *):not(.bg-\[\#6C757D\] *):not([class*="bg-tile-"]):not([class*="bg-rose"]):not([class*="bg-emerald"]):not([class*="bg-amber"]) {
       color: #0F172A !important;
-    }
-    body.theme-light .text-white\/90,
-    body.theme-light .text-white\/80 {
-      color: #334155 !important;
-    }
-    body.theme-light .text-white\/70,
-    body.theme-light .text-white\/60,
-    body.theme-light .text-white\/50,
-    body.theme-light .text-white\/40 {
-      color: #64748B !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
 
     /* Bordas e divisores */
@@ -190,7 +198,7 @@
       border-color: #F1F5F9 !important;
     }
 
-    /* Botões de topo e utilitários no modo claro */
+    /* Botões utilitários de topo (Sino, Tema) */
     body.theme-light #btn-notifications,
     body.theme-light #btn-notifications-app,
     body.theme-light #btn-theme-toggle,
@@ -208,60 +216,252 @@
       color: #0F172A !important;
     }
 
-    /* Central de Avisos Dropdown no modo claro */
+    /* Input de Pesquisa */
+    body.theme-light #table-search-input {
+      background-color: #FFFFFF !important;
+      border-color: #CBD5E1 !important;
+      color: #0F172A !important;
+    }
+    body.theme-light #table-search-input::placeholder {
+      color: #94A3B8 !important;
+    }
+
+    /* TABELAS NO MODO CLARO - 100% legíveis */
+    body.theme-light table {
+      color: #0F172A !important;
+    }
+    body.theme-light table thead tr {
+      border-color: #E2E8F0 !important;
+    }
+    body.theme-light table thead th {
+      color: #475569 !important;
+      font-weight: 600 !important;
+    }
+    body.theme-light table tbody tr {
+      border-color: #F1F5F9 !important;
+    }
+    body.theme-light table tbody tr:hover {
+      background-color: #F8FAFC !important;
+    }
+    body.theme-light table td {
+      color: #0F172A !important;
+    }
+    body.theme-light table td.text-white,
+    body.theme-light table td .text-white,
+    body.theme-light table td span.text-white {
+      color: #0F172A !important;
+    }
+    body.theme-light table td.text-slate-300,
+    body.theme-light table td .text-slate-300 {
+      color: #475569 !important;
+    }
+    body.theme-light table td.text-slate-400,
+    body.theme-light table td .text-slate-400,
+    body.theme-light table td.text-white\/70,
+    body.theme-light table td.text-white\/50 {
+      color: #64748B !important;
+    }
+    body.theme-light table button.text-white {
+      color: #0063B1 !important;
+      font-weight: 600 !important;
+    }
+    body.theme-light table button.text-slate-400 {
+      color: #64748B !important;
+    }
+    body.theme-light table button.bg-white\/10 {
+      background-color: #F1F5F9 !important;
+      border-color: #CBD5E1 !important;
+      color: #0F172A !important;
+    }
+
+    /* TABELA DRE NO MODO CLARO */
+    body.theme-light #app-table-body tr.border-t {
+      background-color: #F1F5F9 !important;
+      border-color: #CBD5E1 !important;
+    }
+    body.theme-light #app-table-body tr.border-t td {
+      color: #0F172A !important;
+      font-weight: 700 !important;
+    }
+
+    /* CALENDÁRIO NO MODO CLARO */
+    body.theme-light #appointments-calendar-section {
+      background-color: #FFFFFF !important;
+      border-color: #E2E8F0 !important;
+    }
+    body.theme-light #appointments-calendar-section h2 {
+      color: #0F172A !important;
+    }
+    body.theme-light #appointments-calendar-section .grid-cols-7 span {
+      color: #475569 !important;
+    }
+    body.theme-light #appointments-calendar-section button {
+      border-color: #CBD5E1 !important;
+      color: #334155 !important;
+      background-color: #FFFFFF !important;
+    }
+    body.theme-light #appointments-calendar-grid button {
+      background-color: #FFFFFF !important;
+      border-color: #E2E8F0 !important;
+    }
+    body.theme-light #appointments-calendar-grid button:hover {
+      background-color: #F8FAFC !important;
+      border-color: #0063B1 !important;
+    }
+    body.theme-light #appointments-calendar-grid button span.text-white {
+      color: #0F172A !important;
+      font-weight: 600 !important;
+    }
+    body.theme-light #appointments-calendar-grid div.cursor-not-allowed {
+      background-color: #F8FAFC !important;
+      border-color: #F1F5F9 !important;
+      color: #94A3B8 !important;
+    }
+
+    /* TILES DO START NO MODO CLARO */
+    /* Preserva cores vivas dos botões com destino colorido */
+    body.theme-light .tile.bg-tile-blue,
+    body.theme-light .tile.bg-tile-lime,
+    body.theme-light .tile.bg-\[\#6C757D\] {
+      color: #FFFFFF !important;
+    }
+    body.theme-light .tile.bg-tile-blue *,
+    body.theme-light .tile.bg-tile-lime *,
+    body.theme-light .tile.bg-\[\#6C757D\] * {
+      color: #FFFFFF !important;
+    }
+
+    /* Adapta os tiles com fundo escuro (#1A1D24) para fundo branco limpo */
+    body.theme-light .tile.bg-\[\#1A1D24\] {
+      background-color: #FFFFFF !important;
+      border-color: #CBD5E1 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+    body.theme-light .tile.bg-\[\#1A1D24\] p,
+    body.theme-light .tile.bg-\[\#1A1D24\] span.font-normal,
+    body.theme-light .tile.bg-\[\#1A1D24\] div > p {
+      color: #0F172A !important;
+    }
+    body.theme-light .tile.bg-\[\#1A1D24\] span.text-white\/90 {
+      color: #334155 !important;
+      font-weight: 500 !important;
+    }
+    body.theme-light .tile.bg-\[\#1A1D24\] .text-slate-400 {
+      color: #64748B !important;
+    }
+
+    /* DASHBOARD COMPLETO NO MODO CLARO */
+    body.theme-light #dashboard-view-section h3 {
+      color: #0F172A !important;
+    }
+    body.theme-light #dash-month-projection-box {
+      background-color: #F8FAFC !important;
+      border-color: #E2E8F0 !important;
+    }
+    body.theme-light #proj-month-name,
+    body.theme-light #proj-expense-val {
+      color: #0F172A !important;
+    }
+    body.theme-light #dash-month-selector button {
+      background-color: #F1F5F9 !important;
+      border-color: #E2E8F0 !important;
+      color: #475569 !important;
+    }
+    body.theme-light #dash-month-selector button.active {
+      background-color: #0063B1 !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-light span.font-normal.text-white {
+      color: #334155 !important;
+    }
+    body.theme-light span.w-2\.5.h-2\.5.bg-white {
+      background-color: #64748B !important;
+    }
+    body.theme-light .text-slate-300 {
+      color: #475569 !important;
+    }
+
+    /* CENTRAL DE AVISOS NO MODO CLARO */
     body.theme-light #notif-dropdown {
       background-color: rgba(255, 255, 255, 0.98) !important;
-      border-color: #E2E8F0 !important;
+      border-color: #CBD5E1 !important;
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
     }
     body.theme-light #notif-dropdown h3 {
       color: #0F172A !important;
+    }
+    body.theme-light #notif-dropdown h4 {
+      color: #0F172A !important;
+    }
+    body.theme-light #notif-dropdown p {
+      color: #475569 !important;
     }
     body.theme-light #notif-dropdown #notif-count-pill {
       background-color: #F1F5F9 !important;
       color: #475569 !important;
     }
 
-    /* Preserva texto branco em botões de ação e tiles coloridos */
-    body.theme-light .bg-tile-blue,
-    body.theme-light .bg-tile-lime,
-    body.theme-light .bg-\[\#6C757D\] {
-      color: #FFFFFF !important;
-    }
-    body.theme-light .bg-tile-blue *,
-    body.theme-light .bg-tile-lime *,
-    body.theme-light .bg-\[\#6C757D\] * {
-      color: #FFFFFF !important;
-    }
-    body.theme-light .tile span {
-      color: #FFFFFF !important;
-    }
-    body.theme-light .tile i {
-      color: #FFFFFF !important;
-    }
-
-    /* Tile Receitas no modo claro */
-    body.theme-light .tile.bg-\[\#1A1D24\] {
+    /* MODAIS NO MODO CLARO */
+    body.theme-light [id^="modal-"] > div {
       background-color: #FFFFFF !important;
-      border-color: #CBD5E1 !important;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      border-color: #E2E8F0 !important;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
     }
-    body.theme-light .tile.bg-\[\#1A1D24\] #tile-income-paid {
+    body.theme-light [id^="modal-"] h3 {
       color: #0F172A !important;
     }
-    body.theme-light .tile.bg-\[\#1A1D24\] span {
-      color: #475569 !important;
+    body.theme-light [id^="modal-"] label {
+      color: #334155 !important;
+      font-weight: 600 !important;
+    }
+    body.theme-light [id^="modal-"] input,
+    body.theme-light [id^="modal-"] select {
+      background-color: #F8FAFC !important;
+      border: 1px solid #CBD5E1 !important;
+      color: #0F172A !important;
+    }
+    body.theme-light [id^="modal-"] button[type="button"].border-white {
+      border-color: #CBD5E1 !important;
+      color: #334155 !important;
+      background-color: transparent !important;
+    }
+    body.theme-light [id^="modal-"] button[type="button"].border-white:hover {
+      background-color: #F1F5F9 !important;
+    }
+    body.theme-light [id^="modal-"] button[type="submit"].bg-white {
+      background-color: #0063B1 !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-light [id^="modal-"] button[type="submit"].bg-white:hover {
+      background-color: #005A9E !important;
     }
 
-    /* Tabelas e Hover no modo claro */
-    body.theme-light table {
+    /* TELA DE AUTENTICAÇÃO NO MODO CLARO */
+    body.theme-light #screen-auth-split .bg-black {
+      background-color: #FFFFFF !important;
+    }
+    body.theme-light #auth-title {
+      color: #0F172A !important;
+    }
+    body.theme-light #screen-auth-split label {
       color: #334155 !important;
     }
-    body.theme-light .hover\:bg-white\/5:hover,
-    body.theme-light .hover\:bg-white\/10:hover {
+    body.theme-light #screen-auth-split input {
       background-color: #F8FAFC !important;
+      border: 1px solid #CBD5E1 !important;
+      color: #0F172A !important;
     }
-
+    body.theme-light #auth-mode-link-text {
+      color: #0063B1 !important;
+    }
+    body.theme-light #auth-submit-btn {
+      background-color: #0063B1 !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-light #screen-auth-split button.border-white {
+      border-color: #CBD5E1 !important;
+      color: #334155 !important;
+    }
   </style>
 </head>
 <body class="bg-black text-white min-h-screen overflow-x-hidden selection:bg-purple-500 selection:text-white">
@@ -1813,6 +2013,14 @@
 
       grid.innerHTML = html;
       lucide.createIcons();
+
+      // Recarrega gráficos e calendários se estiverem visíveis
+      if (typeof Chart !== 'undefined' && window.dashInstances && window.dashInstances['main-fat']) {
+        initFullDashboardViewCharts();
+      }
+      if (typeof renderCalendar === 'function' && document.getElementById('appointments-calendar-grid')) {
+        renderCalendar();
+      }
     }
 
     function changeCalendarMonth(delta) {
@@ -3273,7 +3481,7 @@
               {
                 label: 'Despesas',
                 data: [42, 50, 65, 45, 55, 100, 75, 85, 90, 100, 125, 130],
-                borderColor: '#FFFFFF',
+                borderColor: isLight ? '#64748B' : '#FFFFFF',
                 backgroundColor: gradDespesa,
                 fill: true,
                 tension: 0.45,
@@ -3310,7 +3518,7 @@
                 ticks: { font: { family: '"FS Me", "Lexend", "Atkinson Hyperlegible", sans-serif', size: 10 }, color: '#94A3B8' }
               },
               y: {
-                grid: { color: 'rgba(255, 255, 255, 0.08)' },
+                grid: { color: isLight ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.08)' },
                 ticks: {
                   font: { family: '"FS Me", "Lexend", "Atkinson Hyperlegible", sans-serif', size: 10 },
                   color: '#94A3B8',
@@ -4119,9 +4327,15 @@
         gradReceita.addColorStop(0, 'rgba(0, 99, 177, 0.7)');
         gradReceita.addColorStop(1, 'rgba(0, 99, 177, 0.05)');
 
+        const isLight = document.body.classList.contains('theme-light');
         const gradDespesa = ctxFat2d.createLinearGradient(0, 0, 0, 260);
-        gradDespesa.addColorStop(0, 'rgba(255, 255, 255, 0.45)');
-        gradDespesa.addColorStop(1, 'rgba(255, 255, 255, 0.03)');
+        if (isLight) {
+          gradDespesa.addColorStop(0, 'rgba(100, 116, 139, 0.35)');
+          gradDespesa.addColorStop(1, 'rgba(100, 116, 139, 0.02)');
+        } else {
+          gradDespesa.addColorStop(0, 'rgba(255, 255, 255, 0.45)');
+          gradDespesa.addColorStop(1, 'rgba(255, 255, 255, 0.03)');
+        }
 
         window.dashInstances['main-fat'] = new Chart(mainFatCanvas, {
           type: 'line',

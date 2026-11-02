@@ -136,6 +136,132 @@
       transition: all 150ms ease;
     }
 
+  
+    /* ================= TEMA CLARO (LIGHT THEME) ================= */
+    body.theme-light {
+      background-color: #F8FAFC !important;
+      color: #0F172A !important;
+    }
+    body.theme-light .start-bg {
+      background-color: #F8FAFC !important;
+    }
+    body.theme-light #start-screen,
+    body.theme-light #app-view {
+      background-color: #F8FAFC !important;
+      color: #0F172A !important;
+    }
+
+    /* Cards e Containers no modo claro */
+    body.theme-light .bg-black,
+    body.theme-light .bg-\[\#16181D\],
+    body.theme-light .bg-\[\#1A1D24\] {
+      background-color: #FFFFFF !important;
+      border-color: #E2E8F0 !important;
+    }
+
+    /* Textos no modo claro (exceto botões com cor de destaque) */
+    body.theme-light h1,
+    body.theme-light h2,
+    body.theme-light h3,
+    body.theme-light h4,
+    body.theme-light .text-white:not(.tile *):not(.bg-tile-blue *):not(.bg-tile-lime *):not(.bg-\[\#6C757D\] *):not([class*="bg-tile-"]):not([class*="bg-rose"]):not([class*="bg-emerald"]):not([class*="bg-amber"]) {
+      color: #0F172A !important;
+    }
+    body.theme-light .text-white\/90,
+    body.theme-light .text-white\/80 {
+      color: #334155 !important;
+    }
+    body.theme-light .text-white\/70,
+    body.theme-light .text-white\/60,
+    body.theme-light .text-white\/50,
+    body.theme-light .text-white\/40 {
+      color: #64748B !important;
+    }
+
+    /* Bordas e divisores */
+    body.theme-light .border-white\/5,
+    body.theme-light .border-white\/10,
+    body.theme-light .border-white\/15,
+    body.theme-light .border-white\/20 {
+      border-color: #E2E8F0 !important;
+    }
+    body.theme-light .divide-white\/5 > * + *,
+    body.theme-light .divide-white\/10 > * + * {
+      border-color: #F1F5F9 !important;
+    }
+
+    /* Botões de topo e utilitários no modo claro */
+    body.theme-light #btn-notifications,
+    body.theme-light #btn-notifications-app,
+    body.theme-light #btn-theme-toggle,
+    body.theme-light #btn-theme-toggle-app {
+      background-color: #FFFFFF !important;
+      border-color: #CBD5E1 !important;
+      color: #334155 !important;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+    body.theme-light #btn-notifications:hover,
+    body.theme-light #btn-notifications-app:hover,
+    body.theme-light #btn-theme-toggle:hover,
+    body.theme-light #btn-theme-toggle-app:hover {
+      background-color: #F1F5F9 !important;
+      color: #0F172A !important;
+    }
+
+    /* Central de Avisos Dropdown no modo claro */
+    body.theme-light #notif-dropdown {
+      background-color: rgba(255, 255, 255, 0.98) !important;
+      border-color: #E2E8F0 !important;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+    }
+    body.theme-light #notif-dropdown h3 {
+      color: #0F172A !important;
+    }
+    body.theme-light #notif-dropdown #notif-count-pill {
+      background-color: #F1F5F9 !important;
+      color: #475569 !important;
+    }
+
+    /* Preserva texto branco em botões de ação e tiles coloridos */
+    body.theme-light .bg-tile-blue,
+    body.theme-light .bg-tile-lime,
+    body.theme-light .bg-\[\#6C757D\] {
+      color: #FFFFFF !important;
+    }
+    body.theme-light .bg-tile-blue *,
+    body.theme-light .bg-tile-lime *,
+    body.theme-light .bg-\[\#6C757D\] * {
+      color: #FFFFFF !important;
+    }
+    body.theme-light .tile span {
+      color: #FFFFFF !important;
+    }
+    body.theme-light .tile i {
+      color: #FFFFFF !important;
+    }
+
+    /* Tile Receitas no modo claro */
+    body.theme-light .tile.bg-\[\#1A1D24\] {
+      background-color: #FFFFFF !important;
+      border-color: #CBD5E1 !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    }
+    body.theme-light .tile.bg-\[\#1A1D24\] #tile-income-paid {
+      color: #0F172A !important;
+    }
+    body.theme-light .tile.bg-\[\#1A1D24\] span {
+      color: #475569 !important;
+    }
+
+    /* Tabelas e Hover no modo claro */
+    body.theme-light table {
+      color: #334155 !important;
+    }
+    body.theme-light .hover\:bg-white\/5:hover,
+    body.theme-light .hover\:bg-white\/10:hover {
+      background-color: #F8FAFC !important;
+    }
+
   </style>
 </head>
 <body class="bg-black text-white min-h-screen overflow-x-hidden selection:bg-purple-500 selection:text-white">
@@ -150,6 +276,11 @@
       </div>
 
       <div class="flex items-center gap-3 sm:gap-4">
+        <!-- Botão de Alternar Tema (Claro/Escuro) -->
+        <button id="btn-theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema" title="Alternar tema claro/escuro" class="relative p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/90 hover:text-white transition-all flex items-center justify-center cursor-pointer">
+          <i data-lucide="sun" id="theme-icon-start" class="w-5 h-5"></i>
+        </button>
+
         <!-- Botão de Avisos (Sino) -->
         <button id="btn-notifications" onclick="toggleNotificationsDropdown(event, 'start')" aria-label="Avisos e Notificações" title="Avisos e Notificações" class="relative p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/90 hover:text-white transition-all flex items-center justify-center cursor-pointer">
           <i data-lucide="bell" class="w-5 h-5"></i>
@@ -453,6 +584,10 @@
         </button>
         <button id="btn-action-supplier" onclick="openSupplierDialog()" class="hidden flex items-center gap-2 bg-tile-blue hover:opacity-90 px-4 py-2 text-white font-normal transition-opacity shadow-sm rounded-lg">
           <i data-lucide="plus" class="h-4 w-4"></i> Novo fornecedor
+        </button>
+        <!-- Botão de Alternar Tema na tela interna -->
+        <button id="btn-theme-toggle-app" onclick="toggleTheme()" aria-label="Alternar tema" title="Alternar tema claro/escuro" class="relative p-2 sm:p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/90 hover:text-white transition-all flex items-center justify-center cursor-pointer ml-1">
+          <i data-lucide="sun" id="theme-icon-app" class="w-5 h-5"></i>
         </button>
         <!-- Botão de Avisos na tela interna -->
         <button id="btn-notifications-app" onclick="toggleNotificationsDropdown(event, 'app')" aria-label="Avisos e Notificações" title="Avisos e Notificações" class="relative p-2 sm:p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/90 hover:text-white transition-all flex items-center justify-center cursor-pointer ml-1">
@@ -4298,6 +4433,48 @@
         closeNotificationsDropdown();
       }
     });
+
+
+    // =========================================================================
+    // ALTERNÂNCIA DE TEMA (CLARO / ESCURO)
+    // =========================================================================
+    let currentTheme = localStorage.getItem('s0_theme') || 'dark';
+
+    function applyTheme(theme) {
+      currentTheme = theme;
+      localStorage.setItem('s0_theme', theme);
+
+      const isLight = theme === 'light';
+      document.body.classList.toggle('theme-light', isLight);
+
+      // Atualiza ícones do botão (Sun quando escuro, Moon quando claro)
+      const iconName = isLight ? 'moon' : 'sun';
+      const tooltip = isLight ? 'Mudar para tema escuro' : 'Mudar para tema claro';
+
+      const btnStart = document.getElementById('btn-theme-toggle');
+      const btnApp = document.getElementById('btn-theme-toggle-app');
+
+      if (btnStart) {
+        btnStart.innerHTML = `<i data-lucide="${iconName}" class="w-5 h-5"></i>`;
+        btnStart.setAttribute('title', tooltip);
+      }
+      if (btnApp) {
+        btnApp.innerHTML = `<i data-lucide="${iconName}" class="w-5 h-5"></i>`;
+        btnApp.setAttribute('title', tooltip);
+      }
+
+      lucide.createIcons();
+    }
+
+    function toggleTheme() {
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      applyTheme(nextTheme);
+    }
+
+    // Inicializa o tema salvo ao carregar
+    setTimeout(() => {
+      applyTheme(currentTheme);
+    }, 50);
 
     // Inicia contadores de aviso no carregamento
     setTimeout(() => {

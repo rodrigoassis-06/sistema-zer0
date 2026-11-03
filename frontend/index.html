@@ -1874,6 +1874,60 @@
     </div>
   </div>
 
+  <!-- ================= MODAL DE FORNECEDOR ================= -->
+  <div id="modal-supplier" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm px-4">
+    <div class="w-full max-w-lg bg-black text-white p-8 md:p-10 rounded-2xl shadow-2xl border border-white/10">
+      <div class="flex items-center justify-between mb-8">
+        <h3 id="modal-supplier-title" class="text-3xl md:text-4xl font-normal text-white tracking-tight">Novo Fornecedor</h3>
+        <button type="button" onclick="closeSupplierDialog()" class="text-slate-400 hover:text-white transition-colors">
+          <i data-lucide="x" class="h-6 w-6"></i>
+        </button>
+      </div>
+
+      <div id="supplier-error" class="hidden mb-6 p-3 bg-tile-red text-white text-sm rounded-lg"></div>
+
+      <form id="form-supplier" onsubmit="handleSaveSupplier(event)" class="space-y-4">
+        <input type="hidden" id="supplier-id" value="">
+        
+        <div>
+          <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">FORNECEDOR / RAZÃO SOCIAL</label>
+          <input id="supplier-name" type="text" placeholder="Ex: Distribuidora Bella Cosméticos" required class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">CATEGORIA / INSUMO</label>
+            <input id="supplier-category" type="text" placeholder="Ex: Cosméticos, Descartáveis" class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">CONTATO PRINCIPAL</label>
+            <input id="supplier-contact" type="text" placeholder="Ex: Marcos Silva" class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">TELEFONE / WHATSAPP</label>
+            <input id="supplier-phone" type="text" placeholder="(11) 98822-1100" class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-white mb-2">CONDIÇÃO DE PAGAMENTO</label>
+            <input id="supplier-terms" type="text" placeholder="Ex: Boleto 30d, PIX" class="w-full bg-white text-slate-900 px-4 py-3 rounded-lg outline-none font-normal text-sm focus:ring-2 focus:ring-tile-blue transition-all">
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-6">
+          <button type="submit" id="supplier-submit-btn" class="bg-white text-tile-blue hover:bg-slate-100 font-semibold px-6 py-2.5 rounded-lg transition-colors text-sm">
+            Salvar Fornecedor
+          </button>
+          <button type="button" onclick="closeSupplierDialog()" class="border border-white bg-transparent text-white hover:bg-white/10 font-semibold px-6 py-2.5 rounded-lg transition-colors text-sm">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- ================= LÓGICA E ESTADO DA APLICAÇÃO ================= -->
   <script>
     const API_BASE = '/api/v1';
@@ -1890,6 +1944,12 @@
 
     // Dados Mock de Fallback (do Lovable)
     let appointments = [
+      { id: 101, date: "2026-11-02", time: "10:30", customer: "Carla Mendes", service: "Limpeza de pele", duration: 75, price: 180, status: "confirmado" },
+      { id: 102, date: "2026-11-02", time: "14:00", customer: "Carlos Eduardo Silva", service: "Consultoria / Atendimento", duration: 45, price: 150, status: "confirmado" },
+      { id: 103, date: "2026-11-02", time: "16:00", customer: "Mariana Souza Lima", service: "Procedimento Especializado", duration: 60, price: 250, status: "pendente" },
+      { id: 104, date: "2026-11-03", time: "09:30", customer: "Ana Souza", service: "Corte de cabelo", duration: 45, price: 70, status: "confirmado" },
+      { id: 105, date: "2026-11-03", time: "11:00", customer: "Bruno Lima", service: "Massagem relaxante", duration: 60, price: 150, status: "pendente" },
+      { id: 106, date: "2026-11-04", time: "15:00", customer: "Diego Rocha", service: "Manicure", duration: 40, price: 45, status: "confirmado" },
       { id: 1, date: "2026-10-29", time: "14:00", customer: "Carlos Eduardo Silva", service: "Consultoria / Atendimento Geral", duration: 45, price: 150, status: "confirmado" },
       { id: 2, date: "2026-10-29", time: "16:00", customer: "Mariana Souza Lima",  service: "Procedimento Especializado",    duration: 60, price: 250, status: "pendente" },
       { id: 3, date: "2026-10-29", time: "09:00", customer: "Ana Souza",           service: "Corte de cabelo",               duration: 45, price: 70,  status: "concluido" },
@@ -2059,8 +2119,10 @@
 
       const netReal = incPaid - expPaid;
       const netProj = netReal + incPend - expPend;
-      document.getElementById('tile-net-realized').textContent = brl(netReal);
-      document.getElementById('tile-net-projected').textContent = `proj. ${brl(netProj)}`;
+      const tNetReal = document.getElementById('tile-net-realized');
+      const tNetProj = document.getElementById('tile-net-projected');
+      if (tNetReal) tNetReal.textContent = brl(netReal);
+      if (tNetProj) tNetProj.textContent = `proj. ${brl(netProj)}`;
 
       // Clientes
       document.getElementById('tile-customers-count').textContent = customers.length;
@@ -2068,10 +2130,14 @@
       custPreview.innerHTML = customers.slice(0, 3).map(c => `<span class="text-base md:text-lg font-light truncate">${c.name}</span>`).join('');
 
       // KPIs do Dashboard interno
-      document.getElementById('kpi-dash-appts').textContent = appointments.length;
-      document.getElementById('kpi-dash-income').textContent = brl(incPaid);
-      document.getElementById('kpi-dash-expense').textContent = brl(expPaid);
-      document.getElementById('kpi-dash-net').textContent = brl(netReal);
+      const kDashAppts = document.getElementById('kpi-dash-appts');
+      const kDashInc = document.getElementById('kpi-dash-income');
+      const kDashExp = document.getElementById('kpi-dash-expense');
+      const kDashNet = document.getElementById('kpi-dash-net');
+      if (kDashAppts) kDashAppts.textContent = appointments.length;
+      if (kDashInc) kDashInc.textContent = brl(incPaid);
+      if (kDashExp) kDashExp.textContent = brl(expPaid);
+      if (kDashNet) kDashNet.textContent = brl(netReal);
       renderRecentActivities();
 
       // Atualiza também os cards exclusivos da tela de Saldo
@@ -2317,14 +2383,6 @@
 
       grid.innerHTML = html;
       lucide.createIcons();
-
-      // Recarrega gráficos e calendários se estiverem visíveis
-      if (typeof Chart !== 'undefined' && window.dashInstances && window.dashInstances['main-fat']) {
-        initFullDashboardViewCharts();
-      }
-      if (typeof renderCalendar === 'function' && document.getElementById('appointments-calendar-grid')) {
-        renderCalendar();
-      }
     }
 
     function changeCalendarMonth(delta) {
@@ -3289,7 +3347,11 @@
         } catch (e) { console.warn(e); }
       }
       updateStartTiles();
-      if (currentApp) renderAppTable(currentApp);
+      if (currentApp === 'appointments' && !selectedDayDate) {
+        renderCalendar();
+      } else if (currentApp) {
+        renderAppTable(currentApp);
+      }
     }
 
     async function completeAppointment(id) {
@@ -3324,7 +3386,11 @@
       }
 
       updateStartTiles();
-      if (currentApp) renderAppTable(currentApp);
+      if (currentApp === 'appointments' && !selectedDayDate) {
+        renderCalendar();
+      } else if (currentApp) {
+        renderAppTable(currentApp);
+      }
     }
 
     // Dialogs / Modais estilo Windows 8 Charms
@@ -3886,7 +3952,11 @@
         } catch (e) { console.warn(e); }
       }
       updateStartTiles();
-      if (currentApp) renderAppTable(currentApp);
+      if (currentApp === 'appointments' && !selectedDayDate) {
+        renderCalendar();
+      } else if (currentApp) {
+        renderAppTable(currentApp);
+      }
     }
 
     async function cancelAppointment(id) {
@@ -3903,7 +3973,11 @@
         } catch (e) { alert('Erro ao cancelar: ' + e.message); }
       }
       updateStartTiles();
-      if (currentApp) renderAppTable(currentApp);
+      if (currentApp === 'appointments' && !selectedDayDate) {
+        renderCalendar();
+      } else if (currentApp) {
+        renderAppTable(currentApp);
+      }
     }
 
     async function deleteAppointmentConfirm(id) {
@@ -3917,7 +3991,11 @@
         appointments = appointments.filter(a => a.id != id);
       }
       updateStartTiles();
-      if (currentApp) renderAppTable(currentApp);
+      if (currentApp === 'appointments' && !selectedDayDate) {
+        renderCalendar();
+      } else if (currentApp) {
+        renderAppTable(currentApp);
+      }
     }
 
     // Ações Financeiras (Alternar Pago/Pendente e Excluir)
@@ -3939,7 +4017,11 @@
         if (item) item.status = newLocalStatus;
       }
       updateStartTiles();
-      if (currentApp) renderAppTable(currentApp);
+      if (currentApp === 'appointments' && !selectedDayDate) {
+        renderCalendar();
+      } else if (currentApp) {
+        renderAppTable(currentApp);
+      }
     }
 
     async function deleteTransactionConfirm(id) {
@@ -3953,7 +4035,11 @@
         financial = financial.filter(f => f.id != id);
       }
       updateStartTiles();
-      if (currentApp) renderAppTable(currentApp);
+      if (currentApp === 'appointments' && !selectedDayDate) {
+        renderCalendar();
+      } else if (currentApp) {
+        renderAppTable(currentApp);
+      }
     }
 
         
@@ -4296,7 +4382,11 @@
         customers = customers.filter(c => c.id != id);
       }
       updateStartTiles();
-      if (currentApp) renderAppTable(currentApp);
+      if (currentApp === 'appointments' && !selectedDayDate) {
+        renderCalendar();
+      } else if (currentApp) {
+        renderAppTable(currentApp);
+      }
     }
 
     async function handleCreateCustomer(e) {

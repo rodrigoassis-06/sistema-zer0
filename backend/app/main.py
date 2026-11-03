@@ -55,6 +55,14 @@ if os.path.exists(frontend_path):
         if os.path.exists(catalogo_file):
             return FileResponse(catalogo_file)
         return serve_frontend_root()
+
+    @app.get("/catalogo.pdf")
+    @app.get("/docs/CATALOGO_SISTEMA_ZERO_16_PAGINAS.pdf")
+    def serve_catalogo_pdf():
+        docs_pdf = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "docs", "CATALOGO_SISTEMA_ZERO_16_PAGINAS.pdf"))
+        if os.path.exists(docs_pdf):
+            return FileResponse(docs_pdf, media_type="application/pdf", filename="CATALOGO_SISTEMA_ZERO_16_PAGINAS.pdf")
+        return {"error": "PDF not found"}
 else:
     @app.get("/")
     def health_check():

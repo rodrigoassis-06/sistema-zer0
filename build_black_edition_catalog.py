@@ -517,33 +517,30 @@ def build_catalog():
     pages.append(p1)
 
     # =========================================================================
-    # PÁGINA 2: COSTAS DA CAPA (PRETO SÓLIDO, NO ESQUADRO, SEM NÚMERO)
+    # PÁGINA 2: COSTAS DA CAPA (PRETO SÓLIDO + PROPÓSITO CENTRALIZADO)
     # =========================================================================
     p2 = f'''
     <div class="page page-left bg-black text-white relative w-full h-full overflow-hidden select-none">
-      <div class="w-full h-full bg-black"></div>
-    </div>
-    '''
-    pages.append(p2)
-
-    # =========================================================================
-    # PÁGINA 3: SEGUNDA CAPA (4K ULTRA HD MASTER + PROPÓSITO)
-    # =========================================================================
-    p3 = f'''
-    <div class="page page-right bg-black text-white relative w-full h-full overflow-hidden select-none">
-      <img src="{cover_4k_uri}" alt="" class="absolute inset-0 h-full w-full object-cover object-right" />
-      <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20"></div>
-
-      <div class="relative z-10 flex h-full flex-col justify-center p-10 sm:p-14">
-        <div class="max-w-md">
-          <p class="text-xs font-semibold tracking-[0.25em] text-[#38BDF8] uppercase mb-2">PROPÓSITO</p>
-          <h2 class="text-3xl sm:text-4xl font-light text-white leading-tight">
+      <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-8 sm:p-12">
+        <div class="max-w-md mx-auto space-y-3">
+          <p class="text-xs font-semibold tracking-[0.25em] text-[#38BDF8] uppercase">PROPÓSITO</p>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight">
             Menos telas.<br />
             Menos planilhas.<br />
             <span class="font-bold">Mais decisão.</span>
           </h2>
         </div>
       </div>
+    </div>
+    '''
+    pages.append(p2)
+
+    # =========================================================================
+    # PÁGINA 3: SEGUNDA CAPA (4K ULTRA HD MASTER - APENAS A FOTOGRAFIA)
+    # =========================================================================
+    p3 = f'''
+    <div class="page page-right bg-black text-white relative w-full h-full overflow-hidden select-none">
+      <img src="{cover_4k_uri}" alt="Ambiente Sistema 0" class="w-full h-full object-cover object-center select-none" />
     </div>
     '''
     pages.append(p3)

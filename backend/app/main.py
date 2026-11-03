@@ -53,7 +53,14 @@ if os.path.exists(frontend_path):
     def serve_catalogo():
         catalogo_file = os.path.join(frontend_path, "catalogo.html")
         if os.path.exists(catalogo_file):
-            return FileResponse(catalogo_file)
+            return FileResponse(
+                catalogo_file,
+                headers={
+                    "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0",
+                    "Pragma": "no-cache",
+                    "Expires": "0"
+                }
+            )
         return serve_frontend_root()
 
     @app.get("/catalogo.pdf")

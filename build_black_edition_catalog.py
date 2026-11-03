@@ -2,680 +2,864 @@ import json
 import base64
 import os
 
-# 1. Carregar a imagem de capa em base64
-cover_path = "frontend/img/cover.jpg"
-with open(cover_path, "rb") as f:
-    cover_b64 = base64.b64encode(f.read()).decode("utf-8")
-cover_uri = f"data:image/jpeg;base64,{cover_b64}"
+# 1. Carregar imagens
+cover_4k_path = "frontend/img/cover_4k.jpg"
+with open(cover_4k_path, "rb") as f:
+    cover_4k_b64 = base64.b64encode(f.read()).decode("utf-8")
+cover_4k_uri = f"data:image/jpeg;base64,{cover_4k_b64}"
 
-# 2. Carregar o script do StPageFlip
+capa_path = "frontend/img/capa_oficial.png"
+with open(capa_path, "rb") as f:
+    capa_b64 = base64.b64encode(f.read()).decode("utf-8")
+capa_uri = f"data:image/png;base64,{capa_b64}"
+
+contracapa_path = "frontend/img/contracapa_oficial.jpg"
+with open(contracapa_path, "rb") as f:
+    contracapa_b64 = base64.b64encode(f.read()).decode("utf-8")
+contracapa_uri = f"data:image/jpeg;base64,{contracapa_b64}"
+
+# 2. Carregar biblioteca StPageFlip
 with open("bundle_assets.json", "r", encoding="utf-8") as f:
     assets = json.load(f)
 pageflip_js = assets["pageflip"]
 
-# 3. Dados Oficiais dos 6 Módulos do Sistema 0
+# 3. Dados Completos e Detalhados dos 6 Módulos do Sistema 0
 modules = [
     {
-        "id": "dashboard",
-        "num": "01",
-        "name": ["DASHBOARD", "ANALÍTICO"],
-        "category": "MÓDULO DE GESTÃO ESTRATÉGICA",
-        "badge": "VISÃO 360° EM TEMPO REAL",
-        "focus": "Métricas de faturamento, ticket médio, margem líquida e produtividade.",
-        "tagline": "O cockpit de controle do seu negócio sem planilhas paralelas.",
+        "n": "01",
+        "mod": "mod-blue",
+        "color": "#0063B1",
+        "area": "Gestão estratégica",
+        "badge": "VISÃO 360°",
+        "title": ["Dashboard", "analítico."],
+        "screen": "bars",
+        "promise": "O cockpit de controle do seu negócio em tempo real.",
+        "summary": "Faturamento, ticket médio, margem líquida e produtividade da operação consolidados em uma única tela.",
         "speed": "< 250ms",
         "clicks": "1 clique",
         "architecture": "Edge Cached / Realtime",
-        "tone": "primary",
-        "color": "#0066D6",
-        "icon": "layout-grid",
-        "claims": [
-            "Consolidação automática de todos os canais de receita e custos",
-            "Gráficos preditivos com alertas antecipados de queda de margem",
-            "Indicadores de performance individual e coletiva em tempo real"
+        "diferenciais": [
+            "Consolidação automática de todos os canais de receita e custos operacionais sem intervenção manual",
+            "Gráficos preditivos com alertas antecipados de oscilação de margem e tendências de faturamento",
+            "Indicadores de performance individual por profissional e coletiva da equipe em tempo real"
         ],
-        "features": [
-            "Gráficos interativos em tempo real",
-            "DRE sintético visual em tela única",
-            "Ranking de serviços e produtos mais rentáveis",
-            "Painel de metas dinâmico com termômetro mensal",
-            "Visão multi-unidade e multi-empresa nativa"
+        "funcionalidades": [
+            "Gráficos interativos em tempo real por período customizável",
+            "DRE sintético visual com visão consolidada da empresa",
+            "Ranking automático de serviços e produtos mais rentáveis",
+            "Painel de metas dinâmico com termômetro de atingimento",
+            "Visão multi-unidade e multi-empresa nativa da plataforma"
         ],
-        "specs": {
-            "stack": "React 18 + Tailwind + FastAPI",
-            "security": "Criptografia ponta a ponta AES-256",
-            "sync": "WebSockets + Polling Inteligente",
-            "export": "Exportação em 1 clique (PDF, XLSX, CSV)"
-        },
-        "metrics": [
-            ["Tempo de consolidação de dados", "0s (Instantâneo)", "100%"],
-            ["Redução do tempo de fechamento", "-85%", "85%"],
-            ["Visibilidade de margem operacional", "100%", "100%"],
-            ["Assertividade de previsibilidade", "98,4%", "98%"],
-            ["Acesso em dispositivos móveis", "100% PWA", "100%"]
+        "stack": [
+            ("Stack Principal", "React 18 + Tailwind + FastAPI"),
+            ("Segurança", "Criptografia AES-256 de Ponta"),
+            ("Sincronização", "WebSockets em Tempo Real"),
+            ("Exportação", "PDF, Excel e CSV em 1 Clique")
         ],
-        "recommendation": "Ideal para gestores que necessitam tomar decisões diárias sem esperar o fechamento contábil."
+        "indicadores": [
+            ("Tempo de consolidação de dados", "Instantâneo (0s)", 100),
+            ("Redução do tempo de fechamento", "-85%", 85),
+            ("Visibilidade de margem operacional", "100%", 100),
+            ("Assertividade de previsibilidade", "98,4%", 98),
+            ("Acesso em dispositivos móveis", "100% PWA", 100)
+        ],
+        "recomendacao": ("Ideal para gestores que tomam ", "decisões diárias", " sem esperar o fechamento contábil.")
     },
     {
-        "id": "financeiro",
-        "num": "02",
-        "name": ["GESTÃO FINANCEIRA", "& DRE GERENCIAL"],
-        "category": "MÓDULO DE INTELIGÊNCIA FINANCEIRA",
-        "badge": "CONCILIAÇÃO & FLUXO DE CAIXA",
-        "focus": "Contas a pagar/receber, conciliação bancária, DRE e distribuição de lucro.",
-        "tagline": "Controle cirúrgico de cada centavo que entra e sai da empresa.",
+        "n": "02",
+        "mod": "mod-green",
+        "color": "#16A34A",
+        "area": "Inteligência financeira",
+        "badge": "FLUXO DE CAIXA",
+        "title": ["Gestão financeira", "& DRE gerencial."],
+        "screen": "ledger",
+        "promise": "Controle cirúrgico de cada centavo que entra e sai da empresa.",
+        "summary": "Contas a pagar e receber, conciliação bancária, DRE e distribuição de lucro com rastreabilidade total.",
         "speed": "< 300ms",
         "clicks": "2 cliques",
         "architecture": "Audit Log Imutável",
-        "tone": "accent",
-        "color": "#70B31C",
-        "icon": "wallet",
-        "claims": [
-            "DRE Gerencial por regime de caixa e competência sem retrabalho",
-            "Rastreabilidade total com comprovantes anexos em cada lançamento",
-            "Previsibilidade de inadimplência com régua de cobrança automática"
+        "diferenciais": [
+            "DRE gerencial por regime de caixa e competência sem retrabalho ou digitação dupla",
+            "Rastreabilidade total com comprovantes anexos em cada lançamento e histórico auditável",
+            "Previsibilidade de inadimplência com régua de cobrança automática e conciliação bancária"
         ],
-        "features": [
-            "Centro de custos e planos de contas personalizáveis",
-            "Importação e conciliação de extratos OFX / Open Finance",
+        "funcionalidades": [
+            "Centro de custos e planos de contas totalmente personalizáveis",
+            "Importação e conciliação de extratos OFX e Open Finance",
             "Simulador de ponto de equilíbrio e margem de contribuição",
             "Split de pagamentos e rateio automático de despesas fixas",
             "Alerta preventivo de contas a vencer via push e WhatsApp"
         ],
-        "specs": {
-            "stack": "PostgreSQL com Ledger Transacional",
-            "security": "Auditoria com assinatura SHA-256",
-            "sync": "Open Finance API / Webhooks",
-            "export": "SPED Contábil, OFX, Excel e PDF"
-        },
-        "metrics": [
-            ["Redução de atrasos e inadimplência", "-42%", "42%"],
-            ["Tempo economizado em conciliação", "12h / mês", "90%"],
-            ["Precisão de projeção de caixa a 90 dias", "96,8%", "97%"],
-            ["Conformidade fiscal e tributária", "100%", "100%"],
-            ["Auditoria de lançamentos retroativos", "100% rastreado", "100%"]
+        "stack": [
+            ("Stack Principal", "PostgreSQL Transacional"),
+            ("Segurança", "Assinatura SHA-256 por Registro"),
+            ("Sincronização", "Open Finance API e Webhooks"),
+            ("Exportação", "SPED Contábil, OFX e Excel")
         ],
-        "recommendation": "Recomendado para negócios com alto volume de transações que exigem rigor contábil e zero furos de caixa."
+        "indicadores": [
+            ("Redução de atrasos e inadimplência", "-42%", 42),
+            ("Tempo economizado em conciliação", "12h / mês", 90),
+            ("Precisão de projeção de caixa", "96,8%", 97),
+            ("Conformidade fiscal e tributária", "100%", 100),
+            ("Auditoria de lançamentos retroativos", "100% rastreado", 100)
+        ],
+        "recomendacao": ("Recomendado para operações que exigem ", "rigor contábil", " e eliminação de furos de caixa.")
     },
     {
-        "id": "agenda",
-        "num": "03",
-        "name": ["AGENDA &", "ATENDIMENTOS"],
-        "category": "MÓDULO DE FLUXO OPERACIONAL",
-        "badge": "AGENDAMENTO MULTI-PROFISSIONAL",
-        "focus": "Calendário inteligente, reservas simultâneas e confirmação automática.",
-        "tagline": "Zero conflito de horários e ocupação máxima da sua equipe.",
+        "n": "03",
+        "mod": "mod-terra",
+        "color": "#C2410C",
+        "area": "Fluxo operacional",
+        "badge": "AGENDAMENTO MULTI",
+        "title": ["Agenda &", "atendimentos."],
+        "screen": "calendar",
+        "promise": "Zero conflito de horários e ocupação máxima da sua equipe.",
+        "summary": "Calendário inteligente, reservas simultâneas, confirmação automática e cobrança de sinal.",
         "speed": "< 200ms",
         "clicks": "2 cliques",
-        "architecture": "WebSockets Realtime Sync",
-        "tone": "secondary",
-        "color": "#5C6470",
-        "icon": "calendar-days",
-        "claims": [
-            "Confirmação e lembretes automáticos por WhatsApp sem custo de API",
-            "Bloqueio anti-overbooking e gestão de salas, macas ou cadeiras",
-            "Histórico de comparecimento e cálculo imediato de no-show"
+        "architecture": "WebSockets Realtime",
+        "diferenciais": [
+            "Confirmação e lembretes automáticos por WhatsApp sem custo de API ou retrabalho de recepção",
+            "Bloqueio anti-overbooking e gestão de salas, macas ou cadeiras com capacidade simultânea",
+            "Histórico completo de comparecimento e cálculo imediato de no-show por cliente e profissional"
         ],
-        "features": [
-            "Visão diária, semanal, mensal e por profissional",
-            "Link público de autoagendamento para o cliente final",
-            "Reserva com cobrança antecipada (sinal via PIX)",
+        "funcionalidades": [
+            "Visão diária, semanal, mensal e filtro por profissional",
+            "Link público de autoagendamento 24h para clientes finais",
+            "Reserva com cobrança antecipada de sinal via PIX automático",
             "Encaixes inteligentes com fila de espera automatizada",
             "Sincronização bidirecional com Google Agenda e Apple Calendar"
         ],
-        "specs": {
-            "stack": "FullCalendar + Redis Cache Lock",
-            "security": "LGPD Compliance com termo de consentimento",
-            "sync": "Push Notifications em tempo real",
-            "export": "ICS, iCal, Relatórios de Ocupação"
-        },
-        "metrics": [
-            ["Redução da taxa de não comparecimento (No-show)", "-70%", "70%"],
-            ["Aumento na taxa de ocupação da grade", "+34%", "34%"],
-            ["Tempo gasto confirmando horários manualmente", "-95%", "95%"],
-            ["Tempo para agendar novo atendimento", "8 segundos", "99%"],
-            ["Satisfação do cliente com autoagendamento", "4.9 / 5.0", "98%"]
+        "stack": [
+            ("Stack Principal", "FullCalendar + Redis Cache Lock"),
+            ("Segurança", "LGPD com Termo de Consentimento"),
+            ("Sincronização", "Notificações Push em Tempo Real"),
+            ("Exportação", "ICS, iCal e Relatórios de Ocupação")
         ],
-        "recommendation": "Essencial para clínicas, salões, consultórios e prestadores de serviços de hora marcada."
+        "indicadores": [
+            ("Redução de no-show (faltas)", "-70%", 70),
+            ("Aumento na taxa de ocupação", "+34%", 34),
+            ("Tempo confirmando horários", "-95%", 95),
+            ("Tempo para novo atendimento", "8 segundos", 99),
+            ("Satisfação com autoagendamento", "4,9 / 5,0", 98)
+        ],
+        "recomendacao": ("Essencial para ", "clínicas, salões e consultórios", " que trabalham com hora marcada.")
     },
     {
-        "id": "crm",
-        "num": "04",
-        "name": ["CRM DE CLIENTES", "& RETENÇÃO"],
-        "category": "MÓDULO DE RELACIONAMENTO & VENDAS",
-        "badge": "HISTÓRICO 360° DO CONSUMIDOR",
-        "focus": "Ficha cadastral, histórico de consumo, LTV e funil de reativação.",
-        "tagline": "Transforme clientes esporádicos em defensores fiéis da sua marca.",
-        "speed": "< 180ms",
+        "n": "04",
+        "mod": "mod-wine",
+        "color": "#9D174D",
+        "area": "Relacionamento & vendas",
+        "badge": "LTV & RETENÇÃO",
+        "title": ["CRM de clientes", "& retenção."],
+        "screen": "people",
+        "promise": "Transforme clientes esporádicos em defensores fiéis da sua marca.",
+        "summary": "Ficha cadastral, histórico de consumo, LTV, programa de pontos e funil de reativação.",
+        "speed": "< 150ms",
         "clicks": "1 clique",
-        "architecture": "Graph Database Ready",
-        "tone": "light",
-        "color": "#FFFFFF",
-        "icon": "users",
-        "claims": [
-            "Prontuário/Dossiê unificado: compras, preferências e notas privadas",
-            "Segmentação por frequência de consumo, ticket e última visita (RFM)",
-            "Disparo de campanhas direcionadas para clientes inativos"
+        "architecture": "PostgreSQL Indexado",
+        "diferenciais": [
+            "Dossiê unificado: compras anteriores, preferências, fotos e notas privadas em tela única",
+            "Segmentação inteligente por frequência, ticket médio e última visita (RFM)",
+            "Disparo automatizado de campanhas para reativação de clientes inativos"
         ],
-        "features": [
+        "funcionalidades": [
             "Ficha digital completa com fotos de antes e depois",
-            "Cálculo automatizado do Lifetime Value (LTV) e CAC",
-            "Histórico de preferências, restrições e termos assinados",
-            "Programa de pontos e fidelidade integrado ao checkout",
-            "Integração direta com WhatsApp Web para conversa instantânea"
+            "Cálculo automático do Lifetime Value (LTV) por cliente",
+            "Histórico de preferências, restrições e ficha de anamnese",
+            "Programa de pontos e fidelidade com resgate imediato",
+            "Integração nativa com campanhas de WhatsApp e Meta Ads"
         ],
-        "specs": {
-            "stack": "PostgreSQL com Índices Full-Text Search",
-            "security": "Anonimização de dados pessoais sensíveis",
-            "sync": "Sync instantâneo com PDV e Financeiro",
-            "export": "CSV segmentado para Meta Ads e e-mail"
-        },
-        "metrics": [
-            ["Aumento de recompra em 90 dias", "+28%", "28%"],
-            ["Taxa de reativação de clientes inativos", "31,5%", "65%"],
-            ["Acesso a histórico completo do cliente", "< 1 seg", "100%"],
-            ["Retenção de clientes com fidelidade ativa", "+45%", "45%"],
-            ["NPS médio percebido pelos usuários", "89 Pontos", "89%"]
+        "stack": [
+            ("Stack Principal", "PostgreSQL com Índices Full-Text"),
+            ("Segurança", "Anonimização de Dados Sensíveis"),
+            ("Sincronização", "Instantânea com PDV e Financeiro"),
+            ("Exportação", "CSV Segmentado e Relatório RFM")
         ],
-        "recommendation": "Indicado para empresas que valorizam o relacionamento próximo e querem aumentar o faturamento por cliente."
+        "indicadores": [
+            ("Aumento de recompra em 90 dias", "+28%", 28),
+            ("Taxa de reativação de inativos", "31,5%", 65),
+            ("Acesso ao histórico completo", "< 1 seg", 100),
+            ("Retenção com fidelidade ativa", "+45%", 45),
+            ("NPS médio percebido", "89 pontos", 89)
+        ],
+        "recomendacao": ("Indicado para empresas que valorizam o ", "relacionamento próximo", " e querem faturar mais por cliente.")
     },
     {
-        "id": "equipe",
-        "num": "05",
-        "name": ["EQUIPE, METAS", "& COMISSÕES"],
-        "category": "MÓDULO DE RECURSOS HUMANOS & PERFORMANCE",
-        "badge": "RATEIO AUTOMÁTICO DE REPASSE",
-        "focus": "Comissionamento flexível, controle de acessos por cargo e produtividade.",
-        "tagline": "Transparência total que motiva colaboradores e elimina discussões.",
-        "speed": "< 220ms",
-        "clicks": "Automático",
-        "architecture": "Rule Engine Parametrizável",
-        "tone": "secondary",
-        "color": "#5C6470",
-        "icon": "user-cog",
-        "claims": [
-            "Cálculo de comissão por serviço, produto, escala de faturamento ou fixo",
-            "Painel exclusivo do profissional para conferência diária de comissão",
-            "Permissões granulares: controle o que cada colaborador pode ver e editar"
-        ],
-        "features": [
-            "Regras de comissão sobre bruto ou líquido (desconto de insumos)",
-            "Controle de ponto e registro de horários trabalhados",
-            "Fechamento de folha de repasse em 1 clique com recibo assinado",
-            "Mural de avisos internos e comunicados oficiais",
-            "Definição de metas individuais e bônus progressivos"
-        ],
-        "specs": {
-            "stack": "RBAC (Role Based Access Control) com JWT",
-            "security": "Isolamento total de faturamento geral para a equipe",
-            "sync": "Atualização no momento da conclusão da venda",
-            "export": "Holerite de Repasse, Comprovantes em PDF"
-        },
-        "metrics": [
-            ["Tempo gasto calculando comissões no mês", "De 8h para 2min", "99%"],
-            ["Erros e divergências em repasses de comissão", "0% (Zero)", "100%"],
-            ["Aumento do engajamento em metas batidas", "+22%", "22%"],
-            ["Segurança contra visualização indevida de dados", "100% RBAC", "100%"],
-            ["Satisfação dos profissionais com a transparência", "97%", "97%"]
-        ],
-        "recommendation": "Essencial para estéticas, salões, clínicas, estúdios e empresas com múltiplos profissionais comissionados."
-    },
-    {
-        "id": "estoque",
-        "num": "06",
-        "name": ["SERVIÇOS, INSUMOS", "& FORNECEDORES"],
-        "category": "MÓDULO DE CUSTOS & SUPRIMENTOS",
-        "badge": "BAIXA AUTOMÁTICA POR ATENDIMENTO",
-        "focus": "Precificação inteligente, baixa automática de estoque técnico e compras.",
-        "tagline": "Saiba o custo exato de cada serviço prestado e nunca fique sem insumo.",
-        "speed": "< 210ms",
+        "n": "05",
+        "mod": "mod-teal",
+        "color": "#0D9488",
+        "area": "Recursos humanos",
+        "badge": "GESTÃO DE REPASSES",
+        "title": ["Equipe, metas", "& comissões."],
+        "screen": "team",
+        "promise": "Transparência total que motiva colaboradores e elimina discussões.",
+        "summary": "Comissionamento flexível, controle de acessos por cargo, produtividade e fechamento em 1 clique.",
+        "speed": "< 200ms",
         "clicks": "1 clique",
-        "architecture": "FIFO / Custo Médio Ponderado",
-        "tone": "primary",
-        "color": "#0066D6",
-        "icon": "boxes",
-        "claims": [
-            "Ficha técnica com consumo fracionado de insumos por procedimento",
-            "Ponto de reposição automático com lista de compras sugerida",
-            "Controle de lotes, datas de validade e alertas de vencimento"
+        "architecture": "RBAC / Row Security",
+        "diferenciais": [
+            "Cálculo de comissão por serviço, produto, escala progressiva ou valor fixo",
+            "Painel exclusivo do profissional para conferência em tempo real pelo celular",
+            "Permissões granulares: cada colaborador visualiza apenas seus dados autorizados"
         ],
-        "features": [
-            "Cálculo de margem real descontando matéria-prima e mão de obra",
+        "funcionalidades": [
+            "Regras flexíveis de comissão sobre faturamento bruto ou líquido",
+            "Controle de ponto digital e registro de jornada",
+            "Fechamento de folha de repasse em 1 clique com recibo em PDF",
+            "Mural de comunicados internos e alinhamento de metas",
+            "Extrato individual de comissões com rastreio de cada comanda"
+        ],
+        "stack": [
+            ("Stack Principal", "RBAC com Autenticação JWT"),
+            ("Segurança", "Isolamento Estrito de Dados Financeiros"),
+            ("Sincronização", "Cálculo no Momento do Fechamento"),
+            ("Exportação", "Holerite de Repasse e Recibos em PDF")
+        ],
+        "indicadores": [
+            ("Tempo calculando comissões no mês", "De 8h para 2min", 99),
+            ("Erros em repasses de comissão", "0%", 100),
+            ("Aumento no engajamento de metas", "+22%", 22),
+            ("Segurança de permissões por cargo", "100% RBAC", 100),
+            ("Transparência percebida pela equipe", "97%", 97)
+        ],
+        "recomendacao": ("Essencial para ", "estéticas, salões e estúdios", " com profissionais comissionados.")
+    },
+    {
+        "n": "06",
+        "mod": "mod-mustard",
+        "color": "#B45309",
+        "area": "Custos & suprimentos",
+        "badge": "CONTROLE DE LOTES",
+        "title": ["Serviços, insumos", "& fornecedores."],
+        "screen": "stock",
+        "promise": "Estoque sempre certo, sem falta e sem desperdício.",
+        "summary": "Ficha técnica de serviços, consumo fracionado de insumos por atendimento e compras inteligentes.",
+        "speed": "< 180ms",
+        "clicks": "2 cliques",
+        "architecture": "Ledger Imutável",
+        "diferenciais": [
+            "Baixa automática de insumos fracionados a cada serviço concluído no sistema",
+            "Ponto de reposição automático com lista de compras sugerida baseada no histórico",
+            "Controle rigoroso de lotes, datas de validade e alertas preventivos de vencimento"
+        ],
+        "funcionalidades": [
+            "Ficha técnica com custo real por procedimento",
             "Entrada por nota fiscal XML com atualização automática de custos",
             "Auditoria de perdas, desperdícios e consumo interno",
-            "Cadastro organizado com fotos, códigos de barras e categorias",
-            "Tabela de preços diferenciada para pacotes e planos recorrentes"
+            "Comparativo de preços e histórico de pedidos por fornecedor",
+            "Inventário rápido com leitura de código de barras pelo celular"
         ],
-        "specs": {
-            "stack": "SQL Ledger com Trigger de Inventário",
-            "security": "Controle estrito de permissão para ajuste manual",
-            "sync": "Baixa imediata no encerramento da comanda",
-            "export": "Inventário Geral, Balanço Patrimonial e Curva ABC"
-        },
-        "metrics": [
-            ["Redução de perdas por validade expirada", "-65%", "65%"],
-            ["Aumento na margem de lucro por serviço precificado", "+18%", "18%"],
-            ["Faltas imprevistas de insumos no atendimento", "-90%", "90%"],
-            ["Tempo de inventário mensal", "Redução de 75%", "75%"],
-            ["Acuracidade do estoque físico vs sistêmico", "99,2%", "99%"]
+        "stack": [
+            ("Stack Principal", "PostgreSQL + Filas Assíncronas"),
+            ("Segurança", "Trilha de Auditoria por Usuário"),
+            ("Sincronização", "Baixa em Tempo Real na Comanda"),
+            ("Exportação", "Pedidos em PDF e Curva ABC em Excel")
         ],
-        "recommendation": "Indispensável para operações que utilizam insumos fracionados em cada procedimento realizado."
+        "indicadores": [
+            ("Redução de perdas por validade", "-60%", 60),
+            ("Rupturas de estoque", "-80%", 80),
+            ("Custo real por serviço visível", "100%", 100),
+            ("Economia média em compras", "+15%", 15),
+            ("Tempo de inventário mensal", "-70%", 70)
+        ],
+        "recomendacao": ("Indicado para quem quer saber o ", "custo real de cada serviço", " e parar de perder material.")
     }
 ]
 
-def render_logo():
-    return '''
-    <div class="flex items-center gap-2 select-none">
-      <div class="grid grid-cols-2 gap-0.5">
-        <span class="w-2 h-2 rounded-[1.5px] bg-[#0066D6]"></span>
-        <span class="w-2 h-2 rounded-[1.5px] bg-[#70B31C]"></span>
-        <span class="w-2 h-2 rounded-[1.5px] bg-[#5C6470]"></span>
-        <span class="w-2 h-2 rounded-[1.5px] bg-white"></span>
-      </div>
-      <div class="flex items-center gap-1.5 font-display text-xs font-bold tracking-tight text-white">
-        <span>Sistema 0</span>
-        <span class="text-[8px] uppercase tracking-widest text-[#64748B] font-mono border-l border-white/20 pl-1.5">CATÁLOGO</span>
-      </div>
-    </div>
-    '''
-
-def render_sheet_vertical(n, is_left, label, content):
-    total = 16
-    n_str = f"{n:02d}"
-    tot_str = f"{total:02d}"
-    side_class = "page-left" if is_left else "page-right"
-
-    # Rodapé adaptado para folha esquerda ou direita
-    if is_left:
-        footer = f'''
-        <div class="pointer-events-none absolute inset-x-6 bottom-2.5 flex items-center justify-between font-mono text-[8px] tracking-[0.2em] text-[#64748B] border-t border-white/5 pt-1.5">
-          <span>{n_str} / {tot_str}</span>
-          <span>SISTEMA 0 {f"· {label}" if label else ""}</span>
+# 4. Renderização dos Mockups Visuais das Telas (Design Limpo, Amplo e Legível)
+def render_screen_mockup(kind, mod_color):
+    if kind == "bars":
+        return f'''
+        <div class="flex flex-col gap-3">
+          <div class="grid grid-cols-3 gap-2.5">
+            <div class="rounded-lg p-3 bg-[#0063B1] text-white shadow-xs">
+              <div class="text-[10px] uppercase tracking-wider text-white/80 font-medium">Faturamento</div>
+              <div class="text-lg sm:text-xl font-bold mt-0.5">R$ 84.500</div>
+              <div class="text-[9px] text-emerald-300 font-semibold mt-1">↑ +18,4% no mês</div>
+            </div>
+            <div class="rounded-lg p-3 bg-slate-50 border border-slate-200">
+              <div class="text-[10px] uppercase tracking-wider text-slate-500 font-medium">Ticket Médio</div>
+              <div class="text-lg sm:text-xl font-bold text-slate-800 mt-0.5">R$ 212,00</div>
+              <div class="text-[9px] text-slate-500 font-medium mt-1">428 atendimentos</div>
+            </div>
+            <div class="rounded-lg p-3 bg-slate-50 border border-slate-200">
+              <div class="text-[10px] uppercase tracking-wider text-slate-500 font-medium">Margem Líquida</div>
+              <div class="text-lg sm:text-xl font-bold text-emerald-600 mt-0.5">31,4%</div>
+              <div class="text-[9px] text-emerald-600 font-medium mt-1">Meta: 28% (Superada)</div>
+            </div>
+          </div>
+          
+          <div class="rounded-lg bg-slate-50 border border-slate-200 p-3.5">
+            <div class="flex items-center justify-between text-xs text-slate-600 mb-2 font-medium">
+              <span>Evolução do Faturamento Mensal</span>
+              <span class="text-[10px] text-[#0063B1] font-bold">Consolidado em Tempo Real</span>
+            </div>
+            <div class="flex items-end gap-2.5 h-28 pt-2">
+              <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-[#0063B1]/40 rounded-t h-[45%]"></div><span class="text-[9px] text-slate-400 font-mono">Jan</span></div>
+              <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-[#0063B1]/50 rounded-t h-[60%]"></div><span class="text-[9px] text-slate-400 font-mono">Fev</span></div>
+              <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-[#0063B1]/60 rounded-t h-[52%]"></div><span class="text-[9px] text-slate-400 font-mono">Mar</span></div>
+              <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-[#0063B1]/75 rounded-t h-[75%]"></div><span class="text-[9px] text-slate-400 font-mono">Abr</span></div>
+              <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-[#0063B1]/85 rounded-t h-[68%]"></div><span class="text-[9px] text-slate-400 font-mono">Mai</span></div>
+              <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-[#0063B1] rounded-t h-[92%] shadow-xs"></div><span class="text-[9px] text-slate-700 font-bold font-mono">Jun</span></div>
+            </div>
+          </div>
         </div>
         '''
-    else:
-        footer = f'''
-        <div class="pointer-events-none absolute inset-x-6 bottom-2.5 flex items-center justify-between font-mono text-[8px] tracking-[0.2em] text-[#64748B] border-t border-white/5 pt-1.5">
-          <span>SISTEMA 0 {f"· {label}" if label else ""}</span>
-          <span>{n_str} / {tot_str}</span>
+
+    elif kind == "ledger":
+        return f'''
+        <div class="flex flex-col gap-3">
+          <div class="rounded-lg p-3.5 bg-emerald-50 border border-emerald-200 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] uppercase tracking-wider text-emerald-800 font-bold">Saldo Conciliado em Caixa</div>
+              <div class="text-xl sm:text-2xl font-bold text-emerald-700 mt-0.5">R$ 128.430,00</div>
+              <div class="text-[10px] text-emerald-600 font-medium mt-0.5">Projeção a 30 dias: R$ 142.100,00 (+10,6%)</div>
+            </div>
+            <div class="h-10 w-24">
+              <svg viewBox="0 0 100 30" class="h-full w-full">
+                <polyline fill="none" stroke="#16A34A" stroke-width="2.5" points="0,25 20,20 40,22 60,12 80,15 100,4" />
+              </svg>
+            </div>
+          </div>
+          
+          <div class="space-y-1.5 border border-slate-200 rounded-lg p-2.5 bg-slate-50">
+            <div class="flex items-center justify-between py-1 px-2 border-b border-slate-200 text-xs">
+              <span class="font-medium text-slate-700">Receitas de Vendas (Cartão / PIX)</span>
+              <span class="font-bold text-emerald-600">+ R$ 4.280,00</span>
+            </div>
+            <div class="flex items-center justify-between py-1 px-2 border-b border-slate-200 text-xs">
+              <span class="font-medium text-slate-700">Fornecedor Distribuidora Master</span>
+              <span class="font-bold text-red-600">- R$ 1.150,00</span>
+            </div>
+            <div class="flex items-center justify-between py-1 px-2 border-b border-slate-200 text-xs">
+              <span class="font-medium text-slate-700">Comissões de Profissionais</span>
+              <span class="font-bold text-red-600">- R$ 2.450,00</span>
+            </div>
+            <div class="flex items-center justify-between py-1 px-2 text-xs">
+              <span class="font-medium text-slate-700">Serviço Recorrente Assinatura</span>
+              <span class="font-bold text-emerald-600">+ R$ 890,00</span>
+            </div>
+          </div>
         </div>
         '''
 
+    elif kind == "calendar":
+        return f'''
+        <div class="flex flex-col gap-2.5">
+          <div class="flex items-center justify-between text-xs text-slate-600 font-medium pb-1 border-b border-slate-200">
+            <span>Visão Semanal de Atendimentos</span>
+            <span class="text-[10px] bg-orange-100 text-orange-800 font-bold px-2 py-0.5 rounded">Taxa de Ocupação: 88%</span>
+          </div>
+          <div class="grid grid-cols-5 gap-1.5">
+            <div class="flex flex-col gap-1.5 rounded bg-slate-50 border border-slate-200 p-2">
+              <div class="text-center text-[10px] font-bold text-slate-700 pb-1 border-b border-slate-200">SEG</div>
+              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">09:00</div>
+              <div class="rounded p-1 bg-orange-100 text-orange-800 text-[9px] font-semibold text-center">11:30</div>
+              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">14:00</div>
+            </div>
+            <div class="flex flex-col gap-1.5 rounded bg-slate-50 border border-slate-200 p-2">
+              <div class="text-center text-[10px] font-bold text-slate-700 pb-1 border-b border-slate-200">TER</div>
+              <div class="rounded p-1 bg-orange-100 text-orange-800 text-[9px] font-semibold text-center">10:00</div>
+              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">13:30</div>
+              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">16:00</div>
+            </div>
+            <div class="flex flex-col gap-1.5 rounded bg-slate-50 border border-slate-200 p-2">
+              <div class="text-center text-[10px] font-bold text-slate-700 pb-1 border-b border-slate-200">QUA</div>
+              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">08:30</div>
+              <div class="rounded p-1 bg-orange-100 text-orange-800 text-[9px] font-semibold text-center">11:00</div>
+              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">15:00</div>
+            </div>
+            <div class="flex flex-col gap-1.5 rounded bg-slate-50 border border-slate-200 p-2">
+              <div class="text-center text-[10px] font-bold text-slate-700 pb-1 border-b border-slate-200">QUI</div>
+              <div class="rounded p-1 bg-orange-100 text-orange-800 text-[9px] font-semibold text-center">09:30</div>
+              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">14:00</div>
+              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">17:30</div>
+            </div>
+            <div class="flex flex-col gap-1.5 rounded bg-slate-50 border border-slate-200 p-2">
+              <div class="text-center text-[10px] font-bold text-slate-700 pb-1 border-b border-slate-200">SEX</div>
+              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">08:00</div>
+              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">10:30</div>
+              <div class="rounded p-1 bg-orange-100 text-orange-800 text-[9px] font-semibold text-center">16:00</div>
+            </div>
+          </div>
+        </div>
+        '''
+
+    elif kind == "people":
+        return f'''
+        <div class="flex gap-3">
+          <div class="w-1/3 space-y-1.5 border-r border-slate-200 pr-2">
+            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Clientes VIP</div>
+            <div class="rounded p-2 bg-pink-50 border border-pink-200 text-xs font-bold text-pink-900">Mariana S.</div>
+            <div class="rounded p-2 bg-slate-50 border border-slate-200 text-xs font-medium text-slate-700">Carlos E.</div>
+            <div class="rounded p-2 bg-slate-50 border border-slate-200 text-xs font-medium text-slate-700">Fernanda M.</div>
+            <div class="rounded p-2 bg-slate-50 border border-slate-200 text-xs font-medium text-slate-700">Juliana R.</div>
+          </div>
+          <div class="flex-1 rounded-lg bg-pink-50 border border-pink-200 p-3">
+            <div class="flex items-center gap-2.5 pb-2 border-b border-pink-200">
+              <div class="w-8 h-8 rounded-full bg-pink-700 text-white font-bold flex items-center justify-center text-xs">MS</div>
+              <div>
+                <div class="text-sm font-bold text-slate-800">Mariana Silva</div>
+                <div class="text-[10px] text-pink-700 font-semibold">Cliente VIP Ouro · Desde 2021</div>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-2 mt-2.5 text-center">
+              <div class="rounded bg-white p-2 border border-pink-100">
+                <div class="text-[9px] text-slate-500 uppercase font-semibold">LTV Acumulado</div>
+                <div class="text-sm font-bold text-pink-700 mt-0.5">R$ 4.250</div>
+              </div>
+              <div class="rounded bg-white p-2 border border-pink-100">
+                <div class="text-[9px] text-slate-500 uppercase font-semibold">Visitas</div>
+                <div class="text-sm font-bold text-slate-800 mt-0.5">38</div>
+              </div>
+              <div class="rounded bg-white p-2 border border-pink-100">
+                <div class="text-[9px] text-slate-500 uppercase font-semibold">Pontos Fidelidade</div>
+                <div class="text-sm font-bold text-pink-700 mt-0.5">920 pts</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        '''
+
+    elif kind == "team":
+        return f'''
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs text-slate-600 font-medium pb-1 border-b border-slate-200">
+            <span>Ranking da Equipe no Mês</span>
+            <span class="text-[10px] bg-teal-100 text-teal-800 font-bold px-2 py-0.5 rounded">Repasse em 1 Clique</span>
+          </div>
+          <div class="space-y-2 pt-1">
+            <div class="flex items-center gap-3 p-1.5 rounded bg-slate-50 border border-slate-200">
+              <div class="w-6 h-6 rounded-full bg-teal-700 text-white font-bold text-[10px] flex items-center justify-center">1</div>
+              <div class="flex-1">
+                <div class="flex justify-between text-xs"><b>Ana Paula</b><span class="text-teal-700 font-bold">92% da Meta</span></div>
+                <div class="h-1.5 rounded-full bg-slate-200 mt-1"><div class="h-full rounded-full bg-teal-600" style="width: 92%"></div></div>
+              </div>
+              <div class="text-xs font-bold text-teal-800">R$ 2.116,00</div>
+            </div>
+            <div class="flex items-center gap-3 p-1.5 rounded bg-slate-50 border border-slate-200">
+              <div class="w-6 h-6 rounded-full bg-slate-400 text-white font-bold text-[10px] flex items-center justify-center">2</div>
+              <div class="flex-1">
+                <div class="flex justify-between text-xs"><b>Bruno Costa</b><span class="text-teal-700 font-bold">78% da Meta</span></div>
+                <div class="h-1.5 rounded-full bg-slate-200 mt-1"><div class="h-full rounded-full bg-teal-600" style="width: 78%"></div></div>
+              </div>
+              <div class="text-xs font-bold text-teal-800">R$ 1.794,00</div>
+            </div>
+            <div class="flex items-center gap-3 p-1.5 rounded bg-slate-50 border border-slate-200">
+              <div class="w-6 h-6 rounded-full bg-slate-400 text-white font-bold text-[10px] flex items-center justify-center">3</div>
+              <div class="flex-1">
+                <div class="flex justify-between text-xs"><b>Carla Mendes</b><span class="text-teal-700 font-bold">64% da Meta</span></div>
+                <div class="h-1.5 rounded-full bg-slate-200 mt-1"><div class="h-full rounded-full bg-teal-600" style="width: 64%"></div></div>
+              </div>
+              <div class="text-xs font-bold text-teal-800">R$ 1.472,00</div>
+            </div>
+          </div>
+        </div>
+        '''
+
+    elif kind == "stock":
+        return f'''
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs text-slate-600 font-medium pb-1 border-b border-slate-200">
+            <span>Controle de Estoque & Reposição</span>
+            <span class="text-[10px] bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded">Baixa Automática</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 pt-1">
+            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+              <div class="flex justify-between text-xs font-bold text-slate-800"><span>Insumo Master A</span><span class="text-amber-800">80%</span></div>
+              <div class="text-[9px] text-slate-500 mt-0.5">Validade: 12/2027 · Lote #482</div>
+              <div class="h-1.5 rounded-full bg-slate-200 mt-1.5"><div class="h-full rounded-full bg-amber-600" style="width: 80%"></div></div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-red-50 border border-red-200">
+              <div class="flex justify-between text-xs font-bold text-red-900"><span>Produto Premium B</span><span class="text-red-700">15%</span></div>
+              <div class="text-[9px] text-red-700 font-bold mt-0.5">ALERTA: Compra Sugerida</div>
+              <div class="h-1.5 rounded-full bg-red-200 mt-1.5"><div class="h-full rounded-full bg-red-600" style="width: 15%"></div></div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+              <div class="flex justify-between text-xs font-bold text-slate-800"><span>Ampola Regenerativa</span><span class="text-amber-800">65%</span></div>
+              <div class="text-[9px] text-slate-500 mt-0.5">Validade: 09/2026 · Lote #311</div>
+              <div class="h-1.5 rounded-full bg-slate-200 mt-1.5"><div class="h-full rounded-full bg-amber-600" style="width: 65%"></div></div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+              <div class="flex justify-between text-xs font-bold text-slate-800"><span>Kit Descartável Multi</span><span class="text-amber-800">95%</span></div>
+              <div class="text-[9px] text-slate-500 mt-0.5">Estoque Pleno · 140 un</div>
+              <div class="h-1.5 rounded-full bg-slate-200 mt-1.5"><div class="h-full rounded-full bg-amber-600" style="width: 95%"></div></div>
+            </div>
+          </div>
+        </div>
+        '''
+
+def render_tabs(active_idx=None):
+    tabs_html = ""
+    for i, m in enumerate(modules):
+        is_active = (i == active_idx)
+        w_class = "h-10 w-2.5 opacity-100 shadow-sm" if is_active else "h-6 w-1.5 opacity-30 hover:opacity-60"
+        tabs_html += f'<div class="{m["mod"]} rounded-l bg-mod transition-all {w_class}"></div>'
     return f'''
-    <div class="page {side_class} bg-[#0A0D14] text-[#F1F5F9] relative w-full h-full overflow-hidden select-none">
-      <div class="absolute inset-0 p-6 flex flex-col justify-between">
-        {content}
-      </div>
-      {footer}
+    <div class="pointer-events-none absolute right-0 top-[15%] flex h-[65%] flex-col justify-between z-10">
+      {tabs_html}
     </div>
     '''
 
-def build_pages():
+def build_catalog():
     pages = []
 
-    # =================== PÁGINA 01: CAPA (Lado Direito / Capa Fechada) ===================
-    p1_content = f'''
-      <img src="{cover_uri}" alt="Notebook do Sistema 0" class="absolute inset-0 h-full w-full object-cover" />
-      <div class="absolute inset-0 bg-gradient-to-t from-[#0A0D14] via-[#0A0D14]/80 to-[#0A0D14]/40"></div>
-      
-      <div class="relative z-10 flex h-full flex-col justify-between">
-        <div class="flex items-center justify-between">
-          {render_logo()}
-          <span class="font-mono text-[8px] tracking-widest uppercase text-[#94A3B8] border border-white/10 px-2 py-0.5 rounded bg-black/50 backdrop-blur-sm">EDIÇÃO TÉCNICA 2026</span>
-        </div>
-
-        <div class="my-auto">
-          <div class="inline-flex items-center gap-1.5 rounded bg-[#0066D6]/20 border border-[#0066D6]/30 px-2.5 py-0.5 text-[9px] font-mono font-bold text-[#38BDF8] mb-3">
-            <i data-lucide="sparkles" class="w-3 h-3 text-[#38BDF8]"></i>
-            CATÁLOGO DE MÓDULOS
-          </div>
-          <h1 class="text-3xl sm:text-4xl font-extralight leading-[1.08] tracking-tight text-white">
-            A gestão do seu negócio <br />
-            <span class="font-bold text-white">em dois cliques.</span>
-          </h1>
-          <p class="mt-4 text-xs text-[#94A3B8] font-light leading-relaxed">
-            Fichas técnicas dos 6 módulos essenciais — da conciliação financeira ao fluxo completo de atendimentos.
-          </p>
-        </div>
-
-        <div class="rounded-lg bg-black/40 border border-white/10 p-3 backdrop-blur-md flex items-center justify-between text-[9px] text-[#64748B]">
-          <span class="font-mono">FOLHEIE O CATÁLOGO</span>
-          <span class="font-mono text-[#0066D6] font-bold">16 PÁGINAS</span>
-        </div>
-      </div>
+    # =========================================================================
+    # PÁGINA 1: CAPA OFICIAL (ANEXO DO USUÁRIO)
+    # Lado direito: cursor de clique, Lado esquerdo: tipografia azul Sistema 0
+    # =========================================================================
+    p1 = f'''
+    <div class="page page-right bg-black text-white relative w-full h-full overflow-hidden select-none">
+      <img src="{capa_uri}" alt="Capa Sistema 0" class="w-full h-full object-cover select-none" />
+    </div>
     '''
-    pages.append(render_sheet_vertical(1, False, "", p1_content))
+    pages.append(p1)
 
-    # =================== PÁGINA 02: MANIFESTO (Lado Esquerdo do Spread) ===================
-    p2_content = f'''
-      <div class="flex items-center justify-between border-b border-white/10 pb-2">
-        {render_logo()}
-        <span class="font-mono text-[9px] uppercase tracking-wider text-[#64748B]">MANIFESTO</span>
-      </div>
+    # =========================================================================
+    # PÁGINA 2: COSTAS DA CAPA (PRETO SÓLIDO, NO ESQUADRO, SEM NÚMERO)
+    # =========================================================================
+    p2 = f'''
+    <div class="page page-left bg-black text-white relative w-full h-full overflow-hidden select-none">
+      <div class="w-full h-full bg-black"></div>
+    </div>
+    '''
+    pages.append(p2)
 
-      <div class="my-auto space-y-4">
-        <div>
-          <span class="font-mono text-[9px] uppercase tracking-widest text-[#0066D6] font-bold">BEM-VINDO</span>
-          <h2 class="mt-1 text-2xl font-extralight leading-tight text-white">
-            Menos telas.<br />Menos planilhas.<br /><span class="font-bold text-white">Mais decisão.</span>
+    # =========================================================================
+    # PÁGINA 3: SEGUNDA CAPA (4K ULTRA HD MASTER + PROPÓSITO)
+    # =========================================================================
+    p3 = f'''
+    <div class="page page-right bg-black text-white relative w-full h-full overflow-hidden select-none">
+      <img src="{cover_4k_uri}" alt="" class="absolute inset-0 h-full w-full object-cover object-right" />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20"></div>
+
+      <div class="relative z-10 flex h-full flex-col justify-center p-10 sm:p-14">
+        <div class="max-w-md">
+          <p class="text-xs font-semibold tracking-[0.25em] text-[#38BDF8] uppercase mb-2">PROPÓSITO</p>
+          <h2 class="text-3xl sm:text-4xl font-light text-white leading-tight">
+            Menos telas.<br />
+            Menos planilhas.<br />
+            <span class="font-bold">Mais decisão.</span>
           </h2>
-          <p class="mt-2.5 text-[11px] text-[#94A3B8] font-light leading-relaxed">
-            O Sistema 0 organiza finanças, rotina e operações em um único painel de blocos intuitivos. Cada ação é executada em no máximo 2 cliques.
+        </div>
+      </div>
+    </div>
+    '''
+    pages.append(p3)
+
+    # =========================================================================
+    # PÁGINAS 4 & 5: SUMÁRIO / ÍNDICE DOS MÓDULOS (DIAGRAMAÇÃO EDITORIAL)
+    # =========================================================================
+    # Pág 4: Sumário Esquerda
+    p4 = f'''
+    <div class="page page-left mod-blue bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-8 sm:p-10 flex flex-col justify-between">
+      <div class="border-b border-slate-200 pb-3">
+        <span class="text-xs font-bold uppercase tracking-[0.25em] text-[#0063B1]">Simplicidade Radical</span>
+      </div>
+
+      <div class="my-auto space-y-6">
+        <div>
+          <h2 class="text-3xl sm:text-4xl font-light text-slate-900 leading-tight">
+            Toda a gestão<br />
+            <b class="font-bold">em seis módulos.</b>
+          </h2>
+          <p class="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed font-light">
+            Eliminamos menus labirínticos e burocracia para entregar uma ferramenta veloz, ágil e focada em tomada de decisão em tempo real.
           </p>
         </div>
 
-        <div class="grid grid-cols-2 gap-2 pt-2">
-          <div class="rounded-lg p-3 bg-[#0066D6] text-white flex flex-col justify-between h-20 shadow">
-            <span class="font-mono text-[8px] opacity-75">01</span>
+        <div class="grid grid-cols-2 gap-3 pt-2">
+          <div class="rounded-xl p-3.5 bg-[#0063B1] text-white flex flex-col justify-between h-24 shadow-xs">
+            <span class="text-[10px] opacity-80 font-light">01</span>
             <div>
-              <div class="text-xl font-bold leading-none">06</div>
-              <div class="text-[9px] opacity-90">módulos integrados</div>
+              <div class="text-2xl font-bold leading-none">06</div>
+              <div class="text-[11px] opacity-90 mt-1 font-light">módulos integrados</div>
             </div>
           </div>
-          <div class="rounded-lg p-3 bg-[#161B22] border border-white/10 text-white flex flex-col justify-between h-20">
-            <span class="font-mono text-[8px] text-[#64748B]">02</span>
+          <div class="rounded-xl p-3.5 bg-slate-50 border border-slate-200 text-slate-900 flex flex-col justify-between h-24">
+            <span class="text-[10px] text-slate-400 font-light">02</span>
             <div>
-              <div class="text-xl font-bold leading-none">2</div>
-              <div class="text-[9px] text-[#94A3B8]">cliques por operação</div>
+              <div class="text-2xl font-bold leading-none">2</div>
+              <div class="text-[11px] text-slate-600 mt-1 font-light">cliques por operação</div>
             </div>
           </div>
-          <div class="rounded-lg p-3 bg-[#161B22] border border-white/10 text-white flex flex-col justify-between h-20">
-            <span class="font-mono text-[8px] text-[#64748B]">03</span>
+          <div class="rounded-xl p-3.5 bg-slate-50 border border-slate-200 text-slate-900 flex flex-col justify-between h-24">
+            <span class="text-[10px] text-slate-400 font-light">03</span>
             <div>
-              <div class="text-xl font-bold leading-none">&lt;300ms</div>
-              <div class="text-[9px] text-[#94A3B8]">tempo de resposta</div>
+              <div class="text-2xl font-bold leading-none">&lt;300ms</div>
+              <div class="text-[11px] text-slate-600 mt-1 font-light">tempo de resposta</div>
             </div>
           </div>
-          <div class="rounded-lg p-3 bg-[#70B31C] text-white flex flex-col justify-between h-20 shadow">
-            <span class="font-mono text-[8px] opacity-75">04</span>
+          <div class="rounded-xl p-3.5 bg-[#16A34A] text-white flex flex-col justify-between h-24 shadow-xs">
+            <span class="text-[10px] opacity-80 font-light">04</span>
             <div>
-              <div class="text-xl font-bold leading-none">AES-256</div>
-              <div class="text-[9px] opacity-90">criptografia de ponta</div>
+              <div class="text-2xl font-bold leading-none">AES-256</div>
+              <div class="text-[11px] opacity-90 mt-1 font-light">criptografia de ponta</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="text-[8px] text-[#64748B] font-mono">
-        FILOSOFIA OPERACIONAL ZERO BUROCRACIA
-      </div>
+    </div>
     '''
-    pages.append(render_sheet_vertical(2, True, "MANIFESTO", p2_content))
+    pages.append(p4)
 
-    # =================== PÁGINA 03: ÍNDICE (Lado Direito do Spread) ===================
-    def render_idx_card(m, i):
-        bg = m["color"]
-        is_light = m["tone"] == "light"
-        fg = "text-[#0F172A]" if is_light else "text-white"
-        sub = "text-[#475569]" if is_light else "text-white/75"
-        return f'''
-        <div class="rounded-lg p-2.5 flex flex-col justify-between h-20 shadow-sm" style="background-color: {bg};">
-          <div class="flex items-start justify-between">
-            <i data-lucide="{m['icon']}" class="w-4 h-4 {fg}"></i>
-            <span class="font-mono text-[9px] font-bold {sub}">P.{4 + i * 2:02d}</span>
+    # Pág 5: Sumário Direita (Lista dos 6 Módulos interativa)
+    buttons_html = ""
+    for i, m in enumerate(modules):
+        target_folio_click = 6 + i * 4  # Posição física da página no flipbook
+        display_num = 1 + i * 4        # Numeração editorial oficial do módulo
+        buttons_html += f'''
+        <button onclick="goToFolio({target_folio_click})" class="{m['mod']} group flex items-center gap-3.5 border-b border-slate-200 py-3 text-left w-full cursor-pointer hover:bg-slate-50 px-2 rounded-lg transition-colors">
+          <span class="text-lg font-bold text-mod w-7">{m['n']}</span>
+          <div class="flex-1">
+            <div class="text-sm font-semibold text-slate-800 group-hover:text-mod transition-colors">{' '.join(m['title']).replace('.', '')}</div>
+            <div class="text-[10px] text-slate-500 uppercase tracking-wider">{m['area']}</div>
           </div>
+          <span class="text-xs font-mono font-medium text-slate-400 group-hover:text-mod transition-colors">{display_num:02d}</span>
+        </button>
+        '''
+
+    p5 = f'''
+    <div class="page page-right mod-blue bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-8 sm:p-10 flex flex-col justify-between">
+      <div class="border-b border-slate-200 pb-3 flex justify-between items-center">
+        <span class="text-xs font-bold uppercase tracking-[0.25em] text-[#0063B1]">Sumário</span>
+        <span class="text-xs font-light text-slate-400">6 Soluções Integradas</span>
+      </div>
+
+      <div class="my-auto space-y-1">
+        <div class="mb-4">
+          <h3 class="text-2xl font-light text-slate-900">Índice dos <b class="font-bold">módulos.</b></h3>
+          <p class="text-xs text-slate-500 mt-1 font-light">Clique em qualquer módulo para navegar diretamente para ele.</p>
+        </div>
+        {buttons_html}
+      </div>
+
+      {render_tabs()}
+    </div>
+    '''
+    pages.append(p5)
+
+    # =========================================================================
+    # OS 6 MÓDULOS (4 PÁGINAS POR MÓDULO):
+    # SPREAD 1: ModuleOpening (Capa Hero à esquerda + Mockup da Tela à direita)
+    # SPREAD 2: ModuleSheet (Diferenciais e Stack à esquerda + Indicadores à direita)
+    # =========================================================================
+    for i, m in enumerate(modules):
+        p_hero = 1 + i * 4
+        p_screen = 2 + i * 4
+        p_sheet = 3 + i * 4
+        p_indic = 4 + i * 4
+
+        # ---------------------------------------------------------------------
+        # PÁGINA ESQUERDA: ModuleOpening (Hero do Módulo)
+        # ---------------------------------------------------------------------
+        po_left = f'''
+        <div class="page page-left {m['mod']} bg-mod text-white relative w-full h-full overflow-hidden select-none p-8 sm:p-10 flex flex-col justify-between">
+          <div class="flex items-center justify-between border-b border-white/20 pb-3">
+            <span class="text-xs font-bold uppercase tracking-[0.25em] text-white/90">{m['area']}</span>
+            <span class="text-[10px] font-semibold uppercase tracking-wider bg-white/20 px-2.5 py-0.5 rounded-full text-white">{m['badge']}</span>
+          </div>
+
+          <div class="my-auto space-y-4">
+            <div class="text-7xl sm:text-8xl font-bold tracking-tight text-white leading-none opacity-95">
+              {m['n']}
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-light leading-[1.1] text-white">
+              {m['title'][0]}<br />
+              <b class="font-bold">{m['title'][1]}</b>
+            </h2>
+            <p class="text-base sm:text-lg font-medium leading-snug text-white/95 pt-2">
+              {m['promise']}
+            </p>
+            <p class="text-xs sm:text-sm text-white/80 leading-relaxed font-light">
+              {m['summary']}
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-white/20 grid grid-cols-3 gap-2 text-white">
+            <div>
+              <div class="text-[9px] uppercase tracking-wider text-white/70">Resposta</div>
+              <div class="text-xs font-bold text-white mt-0.5">{m['speed']}</div>
+            </div>
+            <div>
+              <div class="text-[9px] uppercase tracking-wider text-white/70">Operação</div>
+              <div class="text-xs font-bold text-white mt-0.5">{m['clicks']}</div>
+            </div>
+            <div>
+              <div class="text-[9px] uppercase tracking-wider text-white/70">Arquitetura</div>
+              <div class="text-xs font-bold text-white mt-0.5">{m['architecture']}</div>
+            </div>
+          </div>
+
+          <div class="absolute bottom-3 left-6 text-xs text-white/50 font-light">{p_hero:02d}</div>
+        </div>
+        '''
+        pages.append(po_left)
+
+        # ---------------------------------------------------------------------
+        # PÁGINA DIREITA: ModuleOpening (Mockup da Tela - Fundo Preto)
+        # ---------------------------------------------------------------------
+        po_right = f'''
+        <div class="page page-right {m['mod']} bg-black text-white relative w-full h-full overflow-hidden select-none p-8 sm:p-10 flex flex-col justify-between">
+          <div class="border-b border-white/10 pb-3">
+            <span class="text-xs font-bold uppercase tracking-[0.2em] text-mod">Tela Operacional</span>
+          </div>
+
+          <div class="rounded-xl border border-white/10 bg-white shadow-2xl overflow-hidden flex flex-col my-auto p-4 sm:p-5">
+            {render_screen_mockup(m['screen'], m['color'])}
+          </div>
+
+          <div class="pt-3 border-t border-white/10">
+            <div class="text-xs font-semibold text-white">{m['funcionalidades'][0]}</div>
+            <div class="text-[11px] text-slate-400 font-light mt-0.5">Interface simplificada em 2 cliques, sem menus labirínticos.</div>
+          </div>
+
+          {render_tabs(i)}
+          <div class="absolute bottom-3 right-6 text-xs text-slate-500 font-light">{p_screen:02d}</div>
+        </div>
+        '''
+        pages.append(po_right)
+
+        # ---------------------------------------------------------------------
+        # PÁGINA ESQUERDA: ModuleSheet (Ficha Técnica & Diferenciais)
+        # ---------------------------------------------------------------------
+        difs_html = "".join([
+            f'<div class="flex gap-3 border-b border-slate-100 py-2.5 text-xs sm:text-sm leading-relaxed text-slate-700">'
+            f'  <span class="font-bold text-mod shrink-0 text-sm">0{k + 1}</span><span>{d}</span>'
+            f'</div>'
+            for k, d in enumerate(m['diferenciais'])
+        ])
+
+        funcs_html = "".join([
+            f'<div class="flex items-center gap-2 border-b border-slate-100 py-1.5 text-xs text-slate-700">'
+            f'  <span class="w-1.5 h-1.5 rounded-full bg-mod shrink-0"></span><span>{f}</span>'
+            f'</div>'
+            for f in m['funcionalidades']
+        ])
+
+        stack_html = "".join([
+            f'<div class="border-b border-slate-100 py-1.5">'
+            f'  <div class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">{s[0]}</div>'
+            f'  <div class="text-xs font-semibold text-slate-800">{s[1]}</div>'
+            f'</div>'
+            for s in m['stack']
+        ])
+
+        ps_left = f'''
+        <div class="page page-left {m['mod']} bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-8 sm:p-10 flex flex-col justify-between">
           <div>
-            <p class="font-mono text-[7px] uppercase tracking-wider {sub} truncate">{m['category'][:22]}</p>
-            <h4 class="text-xs font-bold leading-tight {fg} truncate">{m['name'][0]} {m['name'][1]}</h4>
-          </div>
-        </div>
-        '''
+            <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+              <span class="text-xs font-bold uppercase tracking-[0.2em] text-mod">{m['n']} · Ficha Técnica</span>
+              <span class="text-[10px] text-slate-400 uppercase tracking-widest">{m['area']}</span>
+            </div>
+            
+            <h2 class="text-2xl sm:text-3xl font-light text-slate-900 mt-3 leading-snug">
+              {m['title'][0]} <b class="font-bold">{m['title'][1]}</b>
+            </h2>
 
-    cards_html = "".join([render_idx_card(m, i) for i, m in enumerate(modules)])
-    p3_content = f'''
-      <div class="flex items-center justify-between border-b border-white/10 pb-2">
-        <div>
-          <h2 class="text-base font-bold text-white tracking-tight">Visão Geral</h2>
-          <p class="text-[9px] text-[#64748B]">Índice das fichas técnicas</p>
-        </div>
-        <span class="font-mono text-[9px] text-[#0066D6] uppercase tracking-widest font-bold">ÍNDICE</span>
-      </div>
-
-      <div class="grid grid-cols-2 gap-2 my-auto py-2">
-        {cards_html}
-      </div>
-
-      <div class="rounded bg-[#161B22] p-2 border border-white/10 text-[8px] text-[#64748B] flex items-center justify-between">
-        <span>6 Módulos com especificações completas</span>
-        <span class="font-mono text-[#0066D6]">V2.4 CLOUD</span>
-      </div>
-    '''
-    pages.append(render_sheet_vertical(3, False, "ÍNDICE", p3_content))
-
-    # =================== PÁGINAS 04 A 15: MÓDULOS (DUPLA PÁGINA SPREAD) ===================
-    for i, mod in enumerate(modules):
-        hero_p = 4 + i * 2
-        spec_p = 5 + i * 2
-
-        # ---------------- HERO (LADO ESQUERDO DO LIVRO) ----------------
-        c_hex = mod["color"]
-        is_light = mod["tone"] == "light"
-        fg_class = "text-[#0F172A]" if is_light else "text-white"
-        sub_class = "text-[#475569]" if is_light else "text-white/70"
-
-        # Mockup Vertical Compacto (cabe perfeitamente sem estourar)
-        mockup_v = f'''
-        <div class="rounded-lg border border-white/10 bg-[#0B0E14] p-3 shadow-xl">
-          <div class="mb-2 flex items-center justify-between border-b border-white/5 pb-1.5 text-[9px]">
-            <span class="font-bold text-white flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full" style="background-color: {c_hex};"></span>
-              {mod['name'][0].capitalize()}
-            </span>
-            <span class="text-[8px] font-mono text-[#64748B]">Admin Master</span>
-          </div>
-
-          <div class="grid grid-cols-3 gap-1.5">
-            <!-- Big Tile -->
-            <div class="col-span-2 rounded p-2 flex flex-col justify-between h-14" style="background-color: {c_hex};">
-              <div class="flex items-center justify-between">
-                <i data-lucide="{mod['icon']}" class="w-4 h-4 {fg_class}"></i>
-                <span class="text-[7px] font-mono {sub_class}">ONLINE</span>
-              </div>
-              <span class="font-bold text-[10px] {fg_class} truncate">{mod['name'][0].capitalize()}</span>
+            <div class="mt-4">
+              <div class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Diferenciais do Módulo</div>
+              {difs_html}
             </div>
 
-            <!-- Velocidade -->
-            <div class="rounded p-2 bg-[#161B22] border border-white/10 flex flex-col justify-between h-14">
-              <span class="text-[7px] uppercase text-[#64748B]">Velocidade</span>
-              <span class="text-[11px] font-bold text-white">{mod['speed']}</span>
-            </div>
-
-            <!-- Metric 1 -->
-            <div class="rounded p-1.5 bg-[#161B22] border border-white/10 flex flex-col justify-between h-12">
-              <span class="text-[6.5px] text-[#64748B] truncate">{mod['metrics'][0][0][:16]}</span>
-              <span class="text-[9px] font-bold text-white truncate">{mod['metrics'][0][1]}</span>
-            </div>
-
-            <!-- Metric 2 -->
-            <div class="rounded p-1.5 bg-[#161B22] border border-white/10 flex flex-col justify-between h-12">
-              <span class="text-[6.5px] text-[#64748B] truncate">{mod['metrics'][1][0][:16]}</span>
-              <span class="text-[9px] font-bold text-white truncate">{mod['metrics'][1][1]}</span>
-            </div>
-
-            <!-- Botão Novo -->
-            <div class="rounded p-1.5 bg-[#0066D6] text-white flex flex-col items-center justify-center h-12">
-              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
-              <span class="text-[7px] font-bold">Novo</span>
-            </div>
-          </div>
-        </div>
-        '''
-
-        hero_content = f'''
-          <!-- Faixa lateral colorida -->
-          <div class="absolute left-0 top-0 bottom-0 w-1.5" style="background-color: {c_hex};"></div>
-
-          <div class="flex items-center justify-between pl-2">
-            <span class="font-mono text-4xl font-extralight text-white/15 leading-none">{mod['num']}</span>
-            <span class="font-mono text-[8px] uppercase tracking-widest text-[#0066D6] font-bold">{mod['badge']}</span>
-          </div>
-
-          <div class="my-auto space-y-3 pl-2">
-            <div>
-              <p class="font-mono text-[8px] uppercase tracking-wider text-[#0066D6] font-bold">{mod['category']}</p>
-              <h2 class="text-2xl font-light text-white leading-tight mt-0.5">
-                {mod['name'][0]}<br />
-                <span class="font-bold text-white">{mod['name'][1]}</span>
-              </h2>
-              <p class="mt-2 text-xs text-white/90 font-medium leading-snug">{mod['tagline']}</p>
-              <p class="mt-1 text-[10px] text-[#94A3B8] leading-relaxed font-light">{mod['focus']}</p>
-            </div>
-
-            {mockup_v}
-
-            <!-- Specs Bar -->
-            <div class="grid grid-cols-3 gap-2 border-t border-white/10 pt-2 text-[9px]">
+            <div class="mt-4 grid grid-cols-2 gap-4">
               <div>
-                <span class="text-[7px] uppercase tracking-wider text-[#64748B] block">Resposta</span>
-                <span class="font-bold text-white">{mod['speed']}</span>
+                <div class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Funcionalidades</div>
+                {funcs_html}
               </div>
               <div>
-                <span class="text-[7px] uppercase tracking-wider text-[#64748B] block">Operação</span>
-                <span class="font-bold text-white">{mod['clicks']}</span>
-              </div>
-              <div>
-                <span class="text-[7px] uppercase tracking-wider text-[#64748B] block">Arquitetura</span>
-                <span class="font-bold text-white truncate block">{mod['architecture']}</span>
+                <div class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Arquitetura & Segurança</div>
+                {stack_html}
               </div>
             </div>
           </div>
 
-          <div class="text-[8px] text-[#64748B] font-mono pl-2">
-            APRESENTAÇÃO EXECUTIVA · PÁG {hero_p:02d}
-          </div>
+          <div class="absolute bottom-3 left-6 text-xs text-slate-400 font-light">{p_sheet:02d}</div>
+        </div>
         '''
-        pages.append(render_sheet_vertical(hero_p, True, f"{mod['name'][0]} {mod['name'][1]}", hero_content))
+        pages.append(ps_left)
 
-        # ---------------- FICHA TÉCNICA (LADO DIREITO DO LIVRO) ----------------
-        claims_html = "".join([f'''
-          <div class="flex items-start gap-2">
-            <span class="font-mono text-[9px] font-bold text-[#0066D6]">0{ci+1}</span>
-            <p class="text-[10px] text-white/90 leading-tight font-light">{c}</p>
-          </div>
-        ''' for ci, c in enumerate(mod['claims'])])
+        # ---------------------------------------------------------------------
+        # PÁGINA DIREITA: ModuleSheet (Indicadores & Recomendação com Balão Corrigido)
+        # ---------------------------------------------------------------------
+        indics_html = "".join([
+            f'<div class="space-y-1">'
+            f'  <div class="flex justify-between text-xs sm:text-sm">'
+            f'    <span class="text-slate-700 font-medium">{ind[0]}</span><b class="text-mod font-bold">{ind[1]}</b>'
+            f'  </div>'
+            f'  <div class="h-1.5 rounded-full bg-slate-100 overflow-hidden">'
+            f'    <div class="h-full rounded-full bg-mod" style="width: {ind[2]}%"></div>'
+            f'  </div>'
+            f'</div>'
+            for ind in m['indicadores']
+        ])
 
-        features_html = "".join([f'''
-          <li class="flex items-center justify-between py-1 text-[9px] text-white/80 border-b border-white/5 last:border-none">
-            <span class="truncate">{f}</span>
-            <i data-lucide="arrow-up-right" class="w-3 h-3 text-[#64748B] shrink-0"></i>
-          </li>
-        ''' for f in mod['features'][:4]])
-
-        metrics_html = "".join([f'''
+        ps_right = f'''
+        <div class="page page-right {m['mod']} bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-8 sm:p-10 flex flex-col justify-between">
           <div>
-            <div class="flex items-baseline justify-between text-[9px] mb-0.5">
-              <span class="text-[#94A3B8] text-[8px] truncate max-w-[150px]">{m[0]}</span>
-              <span class="font-bold text-white text-[9px]">{m[1]}</span>
+            <div class="flex items-center justify-between border-b border-slate-200 pb-2.5">
+              <span class="text-xs font-bold uppercase tracking-[0.2em] text-mod">Indicadores Operacionais</span>
+              <span class="text-[10px] text-slate-400 uppercase tracking-widest font-mono">Métricas Reais</span>
             </div>
-            <div class="h-1 w-full bg-[#161B22] rounded-full overflow-hidden">
-              <div class="h-full rounded-full" style="width: {m[2]}; background-color: {c_hex};"></div>
-            </div>
-          </div>
-        ''' for m in mod['metrics'][:4]])
+            
+            <h3 class="text-xl sm:text-2xl font-light text-slate-900 mt-2.5 leading-snug">
+              O ganho, <b class="font-bold">visível de relance.</b>
+            </h3>
 
-        spec_content = f'''
-          <!-- Header Ficha Técnica -->
-          <div class="flex items-center justify-between border-b border-white/10 pb-2">
-            <div>
-              <span class="font-mono text-[8px] uppercase tracking-widest text-[#0066D6] font-bold">FICHA TÉCNICA</span>
-              <h3 class="text-sm font-bold text-white leading-tight">{mod['name'][0]} {mod['name'][1]}</h3>
-            </div>
-            <span class="rounded bg-white/10 px-2 py-0.5 font-mono text-[8px] text-white uppercase font-bold">
-              ESPECIFICAÇÕES
-            </span>
-          </div>
-
-          <div class="my-auto space-y-3 py-1">
-            <!-- Diferenciais -->
-            <div>
-              <span class="text-[8px] font-mono uppercase text-[#64748B] block mb-1.5">DIFERENCIAIS DO SISTEMA</span>
-              <div class="space-y-1.5 bg-[#161B22]/60 p-2.5 rounded-lg border border-white/5">
-                {claims_html}
-              </div>
-            </div>
-
-            <!-- Funcionalidades & Arquitetura -->
-            <div class="grid grid-cols-2 gap-2">
-              <div>
-                <span class="text-[8px] font-mono uppercase text-[#64748B] block mb-1">FUNCIONALIDADES</span>
-                <ul class="space-y-0.5 bg-[#161B22]/40 p-2 rounded border border-white/5">
-                  {features_html}
-                </ul>
-              </div>
-              <div>
-                <span class="text-[8px] font-mono uppercase text-[#64748B] block mb-1">ARQUITETURA</span>
-                <div class="space-y-1 bg-[#161B22]/40 p-2 rounded border border-white/5 text-[8px]">
-                  <div><b class="text-[#64748B]">Stack:</b> <span class="text-white truncate block">{mod['specs']['stack']}</span></div>
-                  <div><b class="text-[#64748B]">Segurança:</b> <span class="text-white truncate block">{mod['specs']['security']}</span></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Indicadores Operacionais (Tabela / Barras) -->
-            <div>
-              <span class="text-[8px] font-mono uppercase text-[#64748B] block mb-1">INDICADORES DE EFICIÊNCIA</span>
-              <div class="space-y-1.5 bg-[#161B22]/60 p-2.5 rounded-lg border border-white/5">
-                {metrics_html}
-              </div>
-            </div>
-
-            <!-- Recomendação Box -->
-            <div class="rounded-lg p-2 text-[9px]" style="background-color: {c_hex}; color: {'#0F172A' if is_light else '#FFFFFF'};">
-              <span class="font-mono text-[7px] uppercase tracking-wider opacity-75 font-bold block mb-0.5">RECOMENDAÇÃO</span>
-              <p class="leading-tight font-medium">{mod['recommendation']}</p>
+            <div class="mt-4 space-y-2 pr-4">
+              {indics_html}
             </div>
           </div>
 
-          <div class="flex items-center justify-between text-[8px] text-[#64748B] border-t border-white/5 pt-1.5 font-mono">
-            <span>SISTEMA 0 ENTERPRISE</span>
-            <span>AUDITORIA AES-256</span>
+          <!-- Balão de Recomendação Redimensionado e Proporcional -->
+          <div class="rounded-xl py-3 px-3.5 bg-mod-soft border border-mod/20 mt-3 mb-1 pr-4">
+            <div class="text-2xl font-serif text-mod leading-none opacity-40 mb-1">“</div>
+            <p class="text-xs leading-relaxed text-slate-800 font-light">
+              {m['recomendacao'][0]}<b class="font-bold text-slate-900">{m['recomendacao'][1]}</b>{m['recomendacao'][2]}
+            </p>
+            <div class="mt-2 flex items-center gap-2">
+              <div class="h-0.5 w-5 bg-mod"></div>
+              <span class="text-[9px] font-bold text-slate-500 uppercase tracking-wider">Recomendação de Uso</span>
+            </div>
           </div>
+
+          {render_tabs(i)}
+          <div class="absolute bottom-3 right-6 text-xs text-slate-400 font-light">{p_indic:02d}</div>
+        </div>
         '''
-        pages.append(render_sheet_vertical(spec_p, False, f"{mod['name'][0]} {mod['name'][1]} · FICHA TÉCNICA", spec_content))
+        pages.append(ps_right)
 
-    # =================== PÁGINA 16: CONTRACAPA (Lado Esquerdo / Fechamento) ===================
-    p16_content = f'''
-      <img src="{cover_uri}" alt="" class="absolute inset-0 h-full w-full object-cover opacity-20" />
-      <div class="absolute inset-0 bg-gradient-to-t from-[#0A0D14] via-[#0A0D14]/85 to-[#0A0D14]/60"></div>
-      
-      <div class="relative z-10 flex h-full flex-col items-center justify-center text-center p-4">
-        {render_logo()}
-        <h2 class="mt-4 text-2xl font-extralight text-white leading-tight">
-          Seu negócio inteiro,<br />
-          <span class="font-bold text-white">em um só painel.</span>
-        </h2>
-        <p class="mt-2 text-[11px] text-[#94A3B8] max-w-xs font-light">
-          Solicite uma demonstração ao vivo e descubra como o Sistema 0 substitui até 5 sistemas legados.
-        </p>
-
-        <div class="mt-6 flex flex-col gap-2 w-full max-w-xs">
-          <a href="/" class="py-2 rounded-lg bg-white text-[#0F172A] font-bold text-xs hover:bg-slate-200 transition-all shadow text-center">
-            Entrar no Sistema
-          </a>
-          <a href="/" class="py-2 rounded-lg border border-white/20 text-white font-medium text-xs hover:bg-white/10 transition-all text-center">
-            Agendar Demonstração
-          </a>
-        </div>
-
-        <div class="mt-8 text-[9px] text-[#64748B] space-y-1">
-          <p>contato@sistema-zero.com.br · WhatsApp Oficial</p>
-          <p class="font-mono text-[8px]">© 2026 SISTEMA ZERO · TODOS OS DIREITOS RESERVADOS</p>
-        </div>
-      </div>
+    # =========================================================================
+    # PÁGINA FINAL: CONTRACAPA OFICIAL (IMAGEM OFICIAL ENVIADA PELO USUÁRIO)
+    # =========================================================================
+    p_cover_end = f'''
+    <div class="page page-left bg-[#0063B1] text-white relative w-full h-full overflow-hidden select-none">
+      <img src="{contracapa_uri}" alt="Contracapa Sistema 0" class="w-full h-full object-cover select-none" />
+    </div>
     '''
-    pages.append(render_sheet_vertical(16, True, "ENCERRAMENTO", p16_content))
+    pages.append(p_cover_end)
 
-    return "\n".join(pages)
+    return pages
 
-# 4. Montar o HTML completo com StPageFlip para Catálogo Aberto em 2 Páginas
-html_content = f'''<!DOCTYPE html>
+# 5. Gerar o HTML Completo com o Flipbook Interativo 3D
+def generate_html():
+    catalog_pages = build_catalog()
+    pages_html = "\n".join(catalog_pages)
+    total_pages = len(catalog_pages)
+
+    html_content = f'''<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sistema 0 — Catálogo Digital Oficial (16 Páginas)</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Catálogo Digital — Sistema 0</title>
 
-  <!-- Fontes Oficiais -->
+  <!-- Fontes Oficiais do Sistema (Lexend & Atkinson) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -688,7 +872,7 @@ html_content = f'''<!DOCTYPE html>
         extend: {{
           fontFamily: {{
             display: ['"Lexend"', 'sans-serif'],
-            sans: ['"Atkinson Hyperlegible"', '"Lexend"', 'sans-serif'],
+            sans: ['"Lexend"', '"Atkinson Hyperlegible"', 'sans-serif'],
           }}
         }}
       }}
@@ -699,298 +883,293 @@ html_content = f'''<!DOCTYPE html>
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
+    /* Definições de Cores e Tokens do Lovable */
+    :root {{
+      --mod-blue: #0063B1;
+      --mod-blue-soft: #EBF3FC;
+
+      --mod-green: #16A34A;
+      --mod-green-soft: #F0FDF4;
+
+      --mod-terra: #C2410C;
+      --mod-terra-soft: #FFF7ED;
+
+      --mod-wine: #9D174D;
+      --mod-wine-soft: #FDF2F8;
+
+      --mod-teal: #0D9488;
+      --mod-teal-soft: #F0FDFA;
+
+      --mod-mustard: #B45309;
+      --mod-mustard-soft: #FFFBEB;
+
+      --mod-ink: #0F172A;
+      --mod-ink-soft: #F8FAFC;
+    }}
+
+    .mod-blue {{ --mod: var(--mod-blue); --mod-soft: var(--mod-blue-soft); }}
+    .mod-green {{ --mod: var(--mod-green); --mod-soft: var(--mod-green-soft); }}
+    .mod-terra {{ --mod: var(--mod-terra); --mod-soft: var(--mod-terra-soft); }}
+    .mod-wine {{ --mod: var(--mod-wine); --mod-soft: var(--mod-wine-soft); }}
+    .mod-teal {{ --mod: var(--mod-teal); --mod-soft: var(--mod-teal-soft); }}
+    .mod-mustard {{ --mod: var(--mod-mustard); --mod-soft: var(--mod-mustard-soft); }}
+    .mod-ink {{ --mod: var(--mod-ink); --mod-soft: var(--mod-ink-soft); }}
+
+    .bg-mod {{ background-color: var(--mod); }}
+    .text-mod {{ color: var(--mod); }}
+    .bg-mod-soft {{ background-color: var(--mod-soft); }}
+
     body {{
-      font-family: 'Atkinson Hyperlegible', sans-serif;
-      background-color: #06080C;
-      color: #F8FAFC;
+      font-family: 'Lexend', 'Atkinson Hyperlegible', sans-serif;
+      background-color: #F1F4F9; /* Branco Gelo Sólido Editorial */
+      color: #0F172A;
       overflow: hidden;
       user-select: none;
     }}
 
-    .bg-stage-pattern {{
-      background-color: #06080C;
-      background-image: 
-        radial-gradient(circle at 50% 30%, rgba(0, 102, 214, 0.15) 0%, transparent 60%),
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 100% 100%, 40px 40px, 40px 40px;
-    }}
-
-    /* Efeito de Livro e Dobra Central (Spine) */
     .flip-book {{
-      box-shadow: 0 35px 80px -15px rgba(0, 0, 0, 0.98), 0 0 50px rgba(0, 102, 214, 0.15);
+      box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.25), 0 0 1px rgba(0, 0, 0, 0.1);
       margin: 0 auto;
+      border-radius: 4px;
     }}
 
     .page {{
-      background-color: #0A0D14;
-      color: #F1F5F9;
       overflow: hidden;
       position: relative;
     }}
 
     .page-left {{
-      box-shadow: inset -15px 0 25px -10px rgba(0, 0, 0, 0.85);
-      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: inset -12px 0 16px -6px rgba(0, 0, 0, 0.10);
+      border-right: 1px solid rgba(0, 0, 0, 0.05);
     }}
 
     .page-right {{
-      box-shadow: inset 15px 0 25px -10px rgba(0, 0, 0, 0.85);
-      border-left: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: inset 12px 0 16px -6px rgba(0, 0, 0, 0.10);
+      border-left: 1px solid rgba(0, 0, 0, 0.05);
     }}
   </style>
 </head>
-<body class="h-screen w-screen flex flex-col justify-between bg-stage-pattern">
+<body class="h-screen w-screen flex flex-col justify-between bg-[#F1F4F9]">
 
-  <!-- ================= TOP HEADER ================= -->
-  <header class="h-14 px-6 flex items-center justify-between border-b border-white/10 bg-black/60 backdrop-blur-md z-30">
+  <!-- ================= TOP HEADER LIMPO EM BRANCO GELO ================= -->
+  <header class="h-14 px-6 flex items-center justify-between border-b border-slate-200 bg-white/70 backdrop-blur-md z-30">
     <div class="flex items-center gap-3">
-      <a href="/" class="flex items-center gap-1.5 px-3 py-1 rounded-md bg-white/10 hover:bg-white/15 text-white text-xs border border-white/10 transition-colors">
-        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> <span>Voltar ao Sistema</span>
+      <a href="/" class="flex items-center gap-1.5 px-3 py-1 rounded-md bg-white hover:bg-slate-100 text-slate-700 text-xs border border-slate-200 transition-colors shadow-2xs">
+        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> <span>Voltar</span>
       </a>
-      <div class="h-4 w-[1px] bg-white/15"></div>
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-[#0066D6] animate-pulse"></span>
-        <span class="font-display font-bold text-xs sm:text-sm text-white tracking-wide">SISTEMA 0 • CATÁLOGO DIGITAL (16 PÁGINAS)</span>
-      </div>
+      <div class="h-4 w-[1px] bg-slate-200"></div>
+      <span class="font-display font-medium text-xs text-slate-800 tracking-wide uppercase">Catálogo Digital — Sistema 0</span>
     </div>
 
     <!-- Controles Rápidos -->
-    <div class="flex items-center gap-3">
-      <span id="page-indicator" class="font-mono text-xs text-slate-300 bg-white/5 border border-white/10 px-3 py-1 rounded">
-        Carregando...
+    <div class="flex items-center gap-2">
+      <span id="page-indicator" class="font-sans text-xs text-slate-500 bg-white border border-slate-200 px-3 py-1 rounded shadow-2xs font-light">
+        1 / {total_pages}
       </span>
-      <button onclick="toggleThumbnails()" class="px-3 py-1 text-xs rounded bg-white/10 hover:bg-white/20 text-white flex items-center gap-1.5 transition-colors">
+      <button onclick="goToFolio(4)" class="px-3 py-1 text-xs rounded bg-white hover:bg-slate-100 text-slate-700 flex items-center gap-1.5 transition-colors border border-slate-200 shadow-2xs cursor-pointer">
         <i data-lucide="grid" class="w-3.5 h-3.5"></i> <span>Sumário</span>
       </button>
-      <a href="/catalogo.pdf" download="CATALOGO_SISTEMA_ZERO_16_PAGINAS.pdf" class="px-3 py-1 text-xs rounded bg-[#0066D6] hover:bg-blue-600 text-white flex items-center gap-1.5 font-medium transition-colors shadow">
-        <i data-lucide="download" class="w-3.5 h-3.5"></i> <span>Baixar PDF</span>
+      <a href="/catalogo.pdf" download class="px-3 py-1 text-xs rounded bg-[#0063B1] hover:bg-blue-700 text-white flex items-center gap-1.5 font-medium transition-colors shadow">
+        <i data-lucide="download" class="w-3.5 h-3.5"></i> <span>PDF</span>
       </a>
     </div>
   </header>
 
-  <!-- ================= PALCO CENTRAL (FLIPBOOK DIGITAL) ================= -->
-  <main class="flex-1 flex items-center justify-center p-2 sm:p-6 overflow-hidden relative">
-    <!-- Botão Folhear Anterior -->
-    <button onclick="flipPrev()" class="absolute left-6 z-20 w-12 h-12 rounded-full bg-white/10 hover:bg-white/25 border border-white/20 text-white flex items-center justify-center transition-all hover:scale-110 shadow-2xl backdrop-blur-md">
-      <i data-lucide="chevron-left" class="w-6 h-6"></i>
+  <!-- ================= PALCO CENTRAL (LIVRO DIGITAL) ================= -->
+  <main class="flex-1 flex items-center justify-center p-2 sm:p-4 overflow-hidden relative">
+    <button onclick="flipPrev()" class="hidden md:flex absolute left-4 lg:left-6 z-20 w-11 h-11 rounded-full bg-white/80 hover:bg-white border border-slate-200 text-slate-700 items-center justify-center transition-all hover:scale-105 shadow-md cursor-pointer">
+      <i data-lucide="chevron-left" class="w-5 h-5"></i>
     </button>
 
-    <!-- LIVRO DIGITAL FOLHEÁVEL (DUPLA PÁGINA) -->
     <div id="book-container" class="flip-book">
-      {build_pages()}
+      {pages_html}
     </div>
 
-    <!-- Botão Folhear Próximo -->
-    <button onclick="flipNext()" class="absolute right-6 z-20 w-12 h-12 rounded-full bg-white/10 hover:bg-white/25 border border-white/20 text-white flex items-center justify-center transition-all hover:scale-110 shadow-2xl backdrop-blur-md">
-      <i data-lucide="chevron-right" class="w-6 h-6"></i>
+    <button onclick="flipNext()" class="hidden md:flex absolute right-4 lg:right-6 z-20 w-11 h-11 rounded-full bg-white/80 hover:bg-white border border-slate-200 text-slate-700 items-center justify-center transition-all hover:scale-105 shadow-md cursor-pointer">
+      <i data-lucide="chevron-right" class="w-5 h-5"></i>
     </button>
   </main>
 
-  <!-- ================= BARRA INFERIOR DE NAVEGAÇÃO ================= -->
-  <footer class="h-14 px-6 flex items-center justify-between border-t border-white/10 bg-black/70 backdrop-blur-md z-30">
-    <div class="text-[11px] text-slate-400 flex items-center gap-2">
-      <i data-lucide="book-open" class="w-3.5 h-3.5 text-[#0066D6]"></i>
-      <span>Arraste os cantos da folha ou use as setas do teclado para folhear.</span>
+  <!-- ================= BARRA INFERIOR (LEITURA EDITORIAL) ================= -->
+  <footer class="h-12 px-4 sm:px-6 flex items-center justify-between border-t border-slate-200 bg-white/60 text-slate-500 text-xs">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+      <span class="text-[11px] font-light">Deslize com o dedo ou use as setas para folhear</span>
     </div>
-
-    <!-- Atalhos de Páginas -->
-    <div class="flex items-center gap-1.5 overflow-x-auto">
-      <button onclick="goToPage(0)" class="px-2.5 py-1 text-[11px] rounded bg-white/5 hover:bg-white/10 text-slate-300">Capa</button>
-      <button onclick="goToPage(1)" class="px-2.5 py-1 text-[11px] rounded bg-white/5 hover:bg-white/10 text-slate-300">Manifesto & Índice</button>
-      <button onclick="goToPage(3)" class="px-2.5 py-1 text-[11px] rounded bg-white/5 hover:bg-white/10 text-slate-300">Mód. 1</button>
-      <button onclick="goToPage(5)" class="px-2.5 py-1 text-[11px] rounded bg-white/5 hover:bg-white/10 text-slate-300">Mód. 2</button>
-      <button onclick="goToPage(7)" class="px-2.5 py-1 text-[11px] rounded bg-white/5 hover:bg-white/10 text-slate-300">Mód. 3</button>
-      <button onclick="goToPage(9)" class="px-2.5 py-1 text-[11px] rounded bg-white/5 hover:bg-white/10 text-slate-300">Mód. 4</button>
-      <button onclick="goToPage(11)" class="px-2.5 py-1 text-[11px] rounded bg-white/5 hover:bg-white/10 text-slate-300">Mód. 5</button>
-      <button onclick="goToPage(13)" class="px-2.5 py-1 text-[11px] rounded bg-white/5 hover:bg-white/10 text-slate-300">Mód. 6</button>
-      <button onclick="goToPage(15)" class="px-2.5 py-1 text-[11px] rounded bg-white/5 hover:bg-white/10 text-slate-300">Final</button>
-    </div>
-
-    <div class="flex items-center gap-3">
-      <button onclick="toggleFullscreen()" class="p-1.5 rounded hover:bg-white/10 text-slate-300" title="Tela Cheia">
-        <i data-lucide="maximize" class="w-4 h-4"></i>
-      </button>
+    <div class="flex items-center gap-3 sm:gap-4">
+      <button onclick="goToPage(0)" class="text-[11px] text-slate-600 hover:text-blue-600 font-light cursor-pointer">Capa</button>
+      <button onclick="goToFolio(4)" class="text-[11px] text-slate-600 hover:text-blue-600 font-light cursor-pointer">Sumário</button>
+      <button onclick="goToPage({total_pages - 1})" class="text-[11px] text-slate-600 hover:text-blue-600 font-light cursor-pointer">Contracapa</button>
     </div>
   </footer>
 
-  <!-- ================= MODAL SUMÁRIO ================= -->
-  <div id="modal-thumbnails" class="fixed inset-0 bg-black/85 backdrop-blur-lg z-50 hidden flex flex-col justify-between p-6">
-    <div class="flex items-center justify-between border-b border-white/10 pb-4">
-      <div class="flex items-center gap-2">
-        <i data-lucide="grid" class="w-5 h-5 text-[#0066D6]"></i>
-        <h3 class="font-display font-bold text-lg text-white">Sumário Completo das 16 Páginas</h3>
-      </div>
-      <button onclick="toggleThumbnails()" class="p-2 rounded-full hover:bg-white/10 text-white">
-        <i data-lucide="x" class="w-6 h-6"></i>
-      </button>
-    </div>
-
-    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 overflow-y-auto my-6 p-2" id="thumbnails-grid">
-      <!-- Injetado via JS -->
-    </div>
-
-    <div class="text-center text-xs text-slate-500">
-      Clique em qualquer página para saltar diretamente para ela.
-    </div>
-  </div>
-
-  <!-- STPAGEFLIP INLINE LIBRARY -->
+  <!-- SCRIPT DO MOTOR STPAGEFLIP -->
   <script>
     {pageflip_js}
   </script>
 
-  <!-- CONTROLADOR DO FLIPBOOK -->
   <script>
     let pageFlip = null;
+    const totalPages = {total_pages};
 
-    function initFlipbook() {{
-      lucide.createIcons();
-      const container = document.getElementById('book-container');
-      
+    function initBook() {{
+      const container = document.getElementById("book-container");
+      if (!container) return;
+
       const vh = window.innerHeight;
       const vw = window.innerWidth;
       
-      // Proporção de página de revista / catálogo (1 : 1.4)
-      let height = Math.min(760, vh - 160);
-      let width = Math.round(height / 1.4);
+      let width, height;
 
-      if (vw < 1100) {{
-        width = Math.min(420, (vw - 80) / 2);
-        height = Math.round(width * 1.4);
+      if (vw < 768) {{
+        // Celular: 1 página por vez, ajustada à largura da tela
+        width = Math.min(460, vw - 24);
+        height = Math.min(Math.round(width * 1.414), vh - 125);
+        width = Math.round(height / 1.414);
+      }} else if (vw < 1100) {{
+        // Tablet: 2 páginas ajustadas
+        width = Math.min(420, (vw - 60) / 2);
+        height = Math.round(width * 1.414);
+      }} else {{
+        // Desktop: 2 páginas editoriais completas
+        height = Math.min(780, vh - 150);
+        width = Math.round(height / 1.414);
       }}
 
       pageFlip = new St.PageFlip(container, {{
         width: width,
         height: height,
         size: 'fixed',
-        minWidth: 280,
+        minWidth: 260,
         maxWidth: 600,
-        minHeight: 400,
+        minHeight: 360,
         maxHeight: 850,
-        maxShadowOpacity: 0.8,
+        maxShadowOpacity: 0.35,
         showCover: true,
+        usePortrait: true,
         mobileScrollSupport: false,
         useMouseEvents: true,
+        clickEventForward: true,
+        swipeDistance: 25,
         drawShadow: true,
-        flippingTime: 700
+        flippingTime: 380
       }});
 
-      pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+      pageFlip.loadFromHTML(document.querySelectorAll(".page"));
 
-      updatePageIndicator(0);
-
-      pageFlip.on('flip', (e) => {{
-        updatePageIndicator(e.data);
+      pageFlip.on("flip", (e) => {{
+        updateIndicator(e.data);
       }});
 
-      renderThumbnailsGrid();
+      updateIndicator(0);
+      setupTouchGestures();
     }}
 
-    function updatePageIndicator(pageIdx) {{
-      const total = 16;
-      const indicator = document.getElementById('page-indicator');
-      if (pageIdx === 0) {{
-        indicator.innerText = 'Capa (Pág. 1 de 16)';
-      }} else if (pageIdx >= total - 1) {{
-        indicator.innerText = `Contracapa (Pág. ${{total}} de ${{total}})`;
+    function setupTouchGestures() {{
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let touchStartTime = 0;
+
+      const mainArea = document.querySelector("main") || document.body;
+
+      mainArea.addEventListener("touchstart", (e) => {{
+        if (e.touches.length === 1) {{
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          touchStartTime = Date.now();
+        }}
+      }}, {{ passive: true }});
+
+      mainArea.addEventListener("touchend", (e) => {{
+        if (e.changedTouches.length === 1) {{
+          const deltaX = e.changedTouches[0].clientX - touchStartX;
+          const deltaY = e.changedTouches[0].clientY - touchStartY;
+          const elapsed = Date.now() - touchStartTime;
+
+          // Se deslizou mais de 35px horizontalmente com predomínio sobre o vertical em até 800ms
+          if (Math.abs(deltaX) > 35 && Math.abs(deltaX) > Math.abs(deltaY) * 1.1 && elapsed < 800) {{
+            if (deltaX < 0) {{
+              flipNext();
+            }} else {{
+              flipPrev();
+            }}
+          }}
+        }}
+      }}, {{ passive: true }});
+    }}
+
+    function updateIndicator(pageNum) {{
+      const ind = document.getElementById("page-indicator");
+      if (!ind) return;
+      const isPortrait = pageFlip ? pageFlip.getOrientation() === 'portrait' : window.innerWidth < 768;
+
+      if (pageNum === 0) {{
+        ind.innerText = "Capa / " + totalPages;
+      }} else if (pageNum >= totalPages - 1) {{
+        ind.innerText = "Contracapa / " + totalPages;
+      }} else if (isPortrait) {{
+        if (pageNum === 1) ind.innerText = "Verso Capa";
+        else if (pageNum === 2) ind.innerText = "Segunda Capa";
+        else if (pageNum === 3 || pageNum === 4) ind.innerText = "Sumário";
+        else {{
+          const p = pageNum - 4;
+          ind.innerText = `Pág. ${{String(p).padStart(2, '0')}} / 24`;
+        }}
       }} else {{
-        const p1 = pageIdx + 1;
-        const p2 = Math.min(pageIdx + 2, total);
-        indicator.innerText = `Páginas ${{p1}}-${{p2}} de ${{total}}`;
+        if (pageNum < 5) {{
+          if (pageNum === 1) ind.innerText = "Segunda Capa";
+          else ind.innerText = "Sumário";
+        }} else {{
+          const p1 = pageNum - 4;
+          const p2 = Math.min(pageNum - 3, 24);
+          ind.innerText = `Pág. ${{String(p1).padStart(2, '0')}}–${{String(p2).padStart(2, '0')}}`;
+        }}
       }}
-    }}
-
-    function flipNext() {{
-      if (pageFlip) pageFlip.flipNext();
     }}
 
     function flipPrev() {{
       if (pageFlip) pageFlip.flipPrev();
     }}
 
-    function goToPage(pageIndex) {{
-      if (pageFlip) {{
-        pageFlip.flip(pageIndex);
-        const modal = document.getElementById('modal-thumbnails');
-        if (modal) modal.classList.add('hidden');
-      }}
+    function flipNext() {{
+      if (pageFlip) pageFlip.flipNext();
     }}
 
-    function toggleFullscreen() {{
-      if (!document.fullscreenElement) {{
-        document.documentElement.requestFullscreen();
-      }} else {{
-        if (document.exitFullscreen) {{
-          document.exitFullscreen();
-        }}
-      }}
+    function goToPage(n) {{
+      if (pageFlip) pageFlip.flip(n);
     }}
 
-    function toggleThumbnails() {{
-      const modal = document.getElementById('modal-thumbnails');
-      modal.classList.toggle('hidden');
+    function goToFolio(f) {{
+      const pageIndex = Math.max(0, Math.min(totalPages - 1, f - 1));
+      if (pageFlip) pageFlip.flip(pageIndex);
     }}
 
-    function renderThumbnailsGrid() {{
-      const grid = document.getElementById('thumbnails-grid');
-      if (!grid) return;
-
-      const titles = [
-        "01. Capa Oficial",
-        "02. Manifesto",
-        "03. Índice dos Módulos",
-        "04. Hero: Dashboard",
-        "05. Ficha: Dashboard",
-        "06. Hero: Financeiro",
-        "07. Ficha: Financeiro",
-        "08. Hero: Agenda",
-        "09. Ficha: Agenda",
-        "10. Hero: CRM",
-        "11. Ficha: CRM",
-        "12. Hero: Equipe",
-        "13. Ficha: Equipe",
-        "14. Hero: Insumos",
-        "15. Ficha: Insumos",
-        "16. Contracapa"
-      ];
-
-      grid.innerHTML = titles.map((t, idx) => `
-        <button onclick="goToPage(${{idx}})" class="p-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-left transition-all hover:scale-105">
-          <span class="text-[10px] text-[#0066D6] font-mono font-bold block mb-1">PÁG ${{idx + 1}}</span>
-          <strong class="text-xs text-white block truncate">${{t}}</strong>
-          <span class="text-[9px] text-slate-500">Clique para abrir</span>
-        </button>
-      `).join('');
-    }}
-
-    window.addEventListener('keydown', (e) => {{
-      if (e.key === 'ArrowRight' || e.key === ' ') flipNext();
-      if (e.key === 'ArrowLeft') flipPrev();
-      if (e.key === 'Escape') {{
-        const modal = document.getElementById('modal-thumbnails');
-        if (modal) modal.classList.add('hidden');
-      }}
+    document.addEventListener("keydown", (e) => {{
+      if (e.key === "ArrowLeft") flipPrev();
+      if (e.key === "ArrowRight") flipNext();
     }});
 
-    window.addEventListener('DOMContentLoaded', () => {{
-      setTimeout(initFlipbook, 100);
-    }});
-
-    window.addEventListener('resize', () => {{
+    window.addEventListener("resize", () => {{
       if (pageFlip) {{
         try {{
           pageFlip.destroy();
-          setTimeout(initFlipbook, 150);
+          setTimeout(initBook, 150);
         }} catch(e) {{}}
       }}
+    }});
+
+    window.addEventListener("DOMContentLoaded", () => {{
+      initBook();
+      lucide.createIcons();
     }});
   </script>
 </body>
 </html>
 '''
+    return html_content
 
-with open("frontend/catalogo.html", "w", encoding="utf-8") as f:
-    f.write(html_content)
-
-print("CATALOGO DIGITAL FOLHEÁVEL VERTICAL RECONSTRUÍDO COM SUCESSO!")
+if __name__ == "__main__":
+    html = generate_html()
+    with open("frontend/catalogo.html", "w", encoding="utf-8") as f:
+        f.write(html)
+    print("CATÁLOGO RECOMPILADO COM DESIGN EDITORIAL E INFORMAÇÕES COMPLETAS!")

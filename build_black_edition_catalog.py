@@ -18,6 +18,16 @@ with open(contracapa_path, "rb") as f:
     contracapa_b64 = base64.b64encode(f.read()).decode("utf-8")
 contracapa_uri = f"data:image/jpeg;base64,{contracapa_b64}"
 
+logo_dark_path = "frontend/img/logo/habitat_dark.png"
+with open(logo_dark_path, "rb") as f:
+    logo_dark_b64 = base64.b64encode(f.read()).decode("utf-8")
+logo_dark_uri = f"data:image/png;base64,{logo_dark_b64}"
+
+logo_white_path = "frontend/img/logo/habitat_white.png"
+with open(logo_white_path, "rb") as f:
+    logo_white_b64 = base64.b64encode(f.read()).decode("utf-8")
+logo_white_uri = f"data:image/png;base64,{logo_white_b64}"
+
 # 2. Carregar biblioteca StPageFlip
 with open("bundle_assets.json", "r", encoding="utf-8") as f:
     assets = json.load(f)
@@ -531,6 +541,9 @@ def build_catalog():
           </h2>
         </div>
       </div>
+      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 pointer-events-none opacity-30">
+        <img src="{logo_white_uri}" alt="Habitat Media" class="h-3.5 sm:h-4 w-auto object-contain select-none" />
+      </div>
     </div>
     '''
     pages.append(p2)
@@ -598,6 +611,9 @@ def build_catalog():
         </div>
       </div>
 
+      <div class="absolute bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-25">
+        <img src="{logo_dark_uri}" alt="Habitat Media" class="h-3 sm:h-3.5 w-auto object-contain select-none" />
+      </div>
     </div>
     '''
     pages.append(p4)
@@ -634,6 +650,9 @@ def build_catalog():
       </div>
 
       {render_tabs()}
+      <div class="absolute bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-25">
+        <img src="{logo_dark_uri}" alt="Habitat Media" class="h-3 sm:h-3.5 w-auto object-contain select-none" />
+      </div>
     </div>
     '''
     pages.append(p5)
@@ -691,6 +710,9 @@ def build_catalog():
           </div>
 
           <div class="absolute bottom-3 left-6 text-xs text-white/50 font-light">{p_hero:02d}</div>
+          <div class="absolute bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-30">
+            <img src="{logo_white_uri}" alt="Habitat Media" class="h-3 sm:h-3.5 w-auto object-contain select-none" />
+          </div>
         </div>
         '''
         pages.append(po_left)
@@ -715,6 +737,9 @@ def build_catalog():
 
           {render_tabs(i)}
           <div class="absolute bottom-3 right-6 text-xs text-slate-500 font-light">{p_screen:02d}</div>
+          <div class="absolute bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-25">
+            <img src="{logo_white_uri}" alt="Habitat Media" class="h-3 sm:h-3.5 w-auto object-contain select-none" />
+          </div>
         </div>
         '''
         pages.append(po_right)
@@ -774,6 +799,9 @@ def build_catalog():
           </div>
 
           <div class="absolute bottom-3 left-6 text-xs text-slate-400 font-light">{p_sheet:02d}</div>
+          <div class="absolute bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-25">
+            <img src="{logo_dark_uri}" alt="Habitat Media" class="h-3 sm:h-3.5 w-auto object-contain select-none" />
+          </div>
         </div>
         '''
         pages.append(ps_left)
@@ -824,6 +852,9 @@ def build_catalog():
 
           {render_tabs(i)}
           <div class="absolute bottom-3 right-6 text-xs text-slate-400 font-light">{p_indic:02d}</div>
+          <div class="absolute bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-25">
+            <img src="{logo_dark_uri}" alt="Habitat Media" class="h-3 sm:h-3.5 w-auto object-contain select-none" />
+          </div>
         </div>
         '''
         pages.append(ps_right)

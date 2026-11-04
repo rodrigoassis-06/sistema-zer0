@@ -959,6 +959,16 @@ def generate_html():
       box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.25), 0 0 1px rgba(0, 0, 0, 0.1);
       margin: 0 auto;
       border-radius: 4px;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.98);
+      transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+    }}
+
+    .flip-book.ready {{
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
     }}
 
     .page {{
@@ -992,7 +1002,7 @@ def generate_html():
     <!-- Controles Rápidos -->
     <div class="flex items-center gap-2">
       <span id="page-indicator" class="font-sans text-xs text-slate-500 bg-white border border-slate-200 px-3 py-1 rounded shadow-2xs font-light">
-        1 / {total_pages}
+        Capa / {total_pages}
       </span>
       <button onclick="goToFolio(4)" class="px-3 py-1 text-xs rounded bg-white hover:bg-slate-100 text-slate-700 flex items-center gap-1.5 transition-colors border border-slate-200 shadow-2xs cursor-pointer">
         <i data-lucide="grid" class="w-3.5 h-3.5"></i> <span>Sumário</span>
@@ -1005,6 +1015,12 @@ def generate_html():
 
   <!-- ================= PALCO CENTRAL (LIVRO DIGITAL) ================= -->
   <main class="flex-1 flex items-center justify-center p-2 sm:p-4 overflow-hidden relative">
+    <!-- Loader elegante de inicialização (elimina qualquer flash de tela) -->
+    <div id="book-loader" class="absolute inset-0 flex flex-col items-center justify-center bg-[#F1F4F9] z-20 transition-opacity duration-300 pointer-events-none">
+      <div class="w-8 h-8 rounded-full border-2 border-slate-300 border-t-[#0063B1] animate-spin mb-3"></div>
+      <p class="text-[11px] font-medium text-slate-500 tracking-widest uppercase">Carregando catálogo...</p>
+    </div>
+
     <button onclick="flipPrev()" class="hidden md:flex absolute left-4 lg:left-6 z-20 w-11 h-11 rounded-full bg-white/80 hover:bg-white border border-slate-200 text-slate-700 items-center justify-center transition-all hover:scale-105 shadow-md cursor-pointer">
       <i data-lucide="chevron-left" class="w-5 h-5"></i>
     </button>
@@ -1043,6 +1059,10 @@ def generate_html():
     function initBook() {{
       const container = document.getElementById("book-container");
       if (!container) return;
+
+      if (window.lucide && typeof lucide.createIcons === 'function') {{
+        lucide.createIcons();
+      }}
 
       const vh = window.innerHeight;
       const vw = window.innerWidth;
@@ -1091,6 +1111,16 @@ def generate_html():
 
       updateIndicator(0);
       setupTouchGestures();
+
+      // Suaviza a entrada do livro montado, eliminando qualquer flash de tela (FOUC)
+      requestAnimationFrame(() => {{
+        container.classList.add("ready");
+        const loader = document.getElementById("book-loader");
+        if (loader) {{
+          loader.style.opacity = "0";
+          setTimeout(() => {{ if (loader) loader.remove(); }}, 320);
+        }}
+      }});
     }}
 
     function setupTouchGestures() {{
@@ -1188,7 +1218,6 @@ def generate_html():
 
     window.addEventListener("DOMContentLoaded", () => {{
       initBook();
-      lucide.createIcons();
     }});
   </script>
 </body>

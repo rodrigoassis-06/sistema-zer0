@@ -563,56 +563,56 @@ def build_catalog():
     # =========================================================================
     # Pág 4: Sumário Esquerda
     p4 = f'''
-    <div class="page page-left mod-blue bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-4 sm:p-7 md:p-10 flex flex-col justify-between">
+    <div class="page page-left mod-blue bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-4 sm:p-7 md:p-10 pb-8 sm:pb-10 flex flex-col justify-between">
       <div class="border-b border-slate-200 pb-2 sm:pb-3">
         <span class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] text-[#0063B1]">Simplicidade Radical</span>
       </div>
 
-      <div class="my-auto space-y-4 sm:space-y-6">
+      <div class="my-auto space-y-3 sm:space-y-6">
         <div>
-          <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-slate-900 leading-tight">
+          <h2 class="text-xl sm:text-3xl md:text-4xl font-light text-slate-900 leading-tight">
             Toda a gestão<br />
             <b class="font-bold">em seis módulos.</b>
           </h2>
-          <p class="mt-2 sm:mt-3 text-[11px] sm:text-sm text-slate-600 leading-relaxed font-light">
+          <p class="mt-1.5 sm:mt-3 text-[11px] sm:text-sm text-slate-600 leading-relaxed font-light">
             Eliminamos menus labirínticos e burocracia para entregar uma ferramenta veloz, ágil e focada em tomada de decisão em tempo real.
           </p>
         </div>
 
-        <div class="grid grid-cols-2 gap-2 sm:gap-3 pt-1 sm:pt-2">
-          <div class="rounded-xl p-2.5 sm:p-3.5 bg-[#0063B1] text-white flex flex-col justify-between h-20 sm:h-24 shadow-xs">
-            <span class="text-[9px] sm:text-[10px] opacity-80 font-light">01</span>
+        <div class="grid grid-cols-2 gap-2 sm:gap-3 pt-1">
+          <div class="rounded-xl p-2 sm:p-3.5 bg-[#0063B1] text-white flex flex-col justify-between h-18 sm:h-24 shadow-xs">
+            <span class="text-[8px] sm:text-[10px] opacity-80 font-light">01</span>
             <div>
-              <div class="text-xl sm:text-2xl font-bold leading-none">06</div>
-              <div class="text-[10px] sm:text-[11px] opacity-90 mt-1 font-light">módulos integrados</div>
+              <div class="text-lg sm:text-2xl font-bold leading-none">06</div>
+              <div class="text-[9px] sm:text-[11px] opacity-90 mt-0.5 sm:mt-1 font-light">módulos integrados</div>
             </div>
           </div>
-          <div class="rounded-xl p-2.5 sm:p-3.5 bg-slate-50 border border-slate-200 text-slate-900 flex flex-col justify-between h-20 sm:h-24">
-            <span class="text-[9px] sm:text-[10px] text-slate-400 font-light">02</span>
+          <div class="rounded-xl p-2 sm:p-3.5 bg-slate-50 border border-slate-200 text-slate-900 flex flex-col justify-between h-18 sm:h-24">
+            <span class="text-[8px] sm:text-[10px] text-slate-400 font-light">02</span>
             <div>
-              <div class="text-xl sm:text-2xl font-bold leading-none">2</div>
-              <div class="text-[10px] sm:text-[11px] text-slate-600 mt-1 font-light">cliques por operação</div>
+              <div class="text-lg sm:text-2xl font-bold leading-none">2</div>
+              <div class="text-[9px] sm:text-[11px] text-slate-600 mt-0.5 sm:mt-1 font-light">cliques por operação</div>
             </div>
           </div>
-          <div class="rounded-xl p-2.5 sm:p-3.5 bg-slate-50 border border-slate-200 text-slate-900 flex flex-col justify-between h-20 sm:h-24">
-            <span class="text-[9px] sm:text-[10px] text-slate-400 font-light">03</span>
+          <div class="rounded-xl p-2 sm:p-3.5 bg-slate-50 border border-slate-200 text-slate-900 flex flex-col justify-between h-18 sm:h-24">
+            <span class="text-[8px] sm:text-[10px] text-slate-400 font-light">03</span>
             <div>
-              <div class="text-xl sm:text-2xl font-bold leading-none">&lt;300ms</div>
-              <div class="text-[10px] sm:text-[11px] text-slate-600 mt-1 font-light">tempo de resposta</div>
+              <div class="text-lg sm:text-2xl font-bold leading-none">&lt;300ms</div>
+              <div class="text-[9px] sm:text-[11px] text-slate-600 mt-0.5 sm:mt-1 font-light">tempo de resposta</div>
             </div>
           </div>
-          <div class="rounded-xl p-2.5 sm:p-3.5 bg-[#16A34A] text-white flex flex-col justify-between h-20 sm:h-24 shadow-xs">
-            <span class="text-[9px] sm:text-[10px] opacity-80 font-light">04</span>
+          <div class="rounded-xl p-2 sm:p-3.5 bg-[#16A34A] text-white flex flex-col justify-between h-18 sm:h-24 shadow-xs">
+            <span class="text-[8px] sm:text-[10px] opacity-80 font-light">04</span>
             <div>
-              <div class="text-xl sm:text-2xl font-bold leading-none">AES-256</div>
-              <div class="text-[10px] sm:text-[11px] opacity-90 mt-1 font-light">criptografia de ponta</div>
+              <div class="text-lg sm:text-2xl font-bold leading-none">AES-256</div>
+              <div class="text-[9px] sm:text-[11px] opacity-90 mt-0.5 sm:mt-1 font-light">criptografia de ponta</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="absolute bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-25">
-        <img src="{logo_dark_uri}" alt="Habitat Media" class="h-3 sm:h-3.5 w-auto object-contain select-none" />
+      <div class="absolute bottom-2 sm:bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-20">
+        <img src="{logo_dark_uri}" alt="Habitat Media" class="h-2.5 sm:h-3.5 w-auto object-contain select-none" />
       </div>
     </div>
     '''
@@ -624,34 +624,34 @@ def build_catalog():
         target_folio_click = 6 + i * 4  # Posição física da página no flipbook
         display_num = 1 + i * 4        # Numeração editorial oficial do módulo
         buttons_html += f'''
-        <button onclick="goToFolio({target_folio_click})" class="{m['mod']} group flex items-center gap-2 sm:gap-3.5 border-b border-slate-200 py-1.5 sm:py-3 text-left w-full cursor-pointer hover:bg-slate-50 px-1.5 sm:px-2 rounded-lg transition-colors">
-          <span class="text-sm sm:text-lg font-bold text-mod w-5 sm:w-7">{m['n']}</span>
+        <button onclick="goToFolio({target_folio_click})" class="{m['mod']} group flex items-center gap-2 sm:gap-3.5 border-b border-slate-100 py-1.5 sm:py-2.5 text-left w-full cursor-pointer hover:bg-slate-50 px-1 sm:px-2 rounded-lg transition-colors">
+          <span class="text-xs sm:text-base font-bold text-mod w-5 sm:w-7">{m['n']}</span>
           <div class="flex-1">
-            <div class="text-xs sm:text-sm font-semibold text-slate-800 group-hover:text-mod transition-colors">{' '.join(m['title']).replace('.', '')}</div>
-            <div class="text-[9px] sm:text-[10px] text-slate-500 uppercase tracking-wider">{m['area']}</div>
+            <div class="text-[11px] sm:text-sm font-semibold text-slate-800 group-hover:text-mod transition-colors">{' '.join(m['title']).replace('.', '')}</div>
+            <div class="text-[8px] sm:text-[10px] text-slate-500 uppercase tracking-wider">{m['area']}</div>
           </div>
-          <span class="text-[11px] sm:text-xs font-mono font-medium text-slate-400 group-hover:text-mod transition-colors">{display_num:02d}</span>
+          <span class="text-[10px] sm:text-xs font-mono font-medium text-slate-400 group-hover:text-mod transition-colors">{display_num:02d}</span>
         </button>
         '''
 
     p5 = f'''
-    <div class="page page-right mod-blue bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-4 sm:p-7 md:p-10 flex flex-col justify-between">
+    <div class="page page-right mod-blue bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-4 sm:p-7 md:p-10 pb-8 sm:pb-10 flex flex-col justify-between">
       <div class="border-b border-slate-200 pb-2 sm:pb-3 flex justify-between items-center">
         <span class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] text-[#0063B1]">Sumário</span>
-        <span class="text-[10px] sm:text-xs font-light text-slate-400">6 Soluções Integradas</span>
+        <span class="text-[9px] sm:text-xs font-light text-slate-400">6 Soluções Integradas</span>
       </div>
 
-      <div class="my-auto space-y-1">
-        <div class="mb-2 sm:mb-4">
-          <h3 class="text-xl sm:text-2xl font-light text-slate-900">Índice dos <b class="font-bold">módulos.</b></h3>
-          <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5 sm:mt-1 font-light">Clique em qualquer módulo para navegar diretamente para ele.</p>
+      <div class="my-auto space-y-0.5 sm:space-y-1">
+        <div class="mb-1.5 sm:mb-3">
+          <h3 class="text-lg sm:text-2xl font-light text-slate-900">Índice dos <b class="font-bold">módulos.</b></h3>
+          <p class="text-[10px] sm:text-xs text-slate-500 mt-0.5 font-light">Clique em qualquer módulo para navegar diretamente para ele.</p>
         </div>
         {buttons_html}
       </div>
 
       {render_tabs()}
-      <div class="absolute bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-25">
-        <img src="{logo_dark_uri}" alt="Habitat Media" class="h-3 sm:h-3.5 w-auto object-contain select-none" />
+      <div class="absolute bottom-2 sm:bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-20">
+        <img src="{logo_dark_uri}" alt="Habitat Media" class="h-2.5 sm:h-3.5 w-auto object-contain select-none" />
       </div>
     </div>
     '''
@@ -672,21 +672,21 @@ def build_catalog():
         # PÁGINA ESQUERDA: ModuleOpening (Hero do Módulo)
         # ---------------------------------------------------------------------
         po_left = f'''
-        <div class="page page-left {m['mod']} bg-mod text-white relative w-full h-full overflow-hidden select-none p-4 sm:p-7 md:p-10 flex flex-col justify-between">
+        <div class="page page-left {m['mod']} bg-mod text-white relative w-full h-full overflow-hidden select-none p-4 sm:p-7 md:p-10 pb-8 sm:pb-10 flex flex-col justify-between">
           <div class="flex items-center justify-between border-b border-white/20 pb-2 sm:pb-3">
-            <span class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] text-white/90">{m['area']}</span>
-            <span class="text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider bg-white/20 px-2 sm:px-2.5 py-0.5 rounded-full text-white">{m['badge']}</span>
+            <span class="text-[9px] sm:text-xs font-bold uppercase tracking-[0.25em] text-white/90">{m['area']}</span>
+            <span class="text-[8px] sm:text-[10px] font-semibold uppercase tracking-wider bg-white/20 px-2 sm:px-2.5 py-0.5 rounded-full text-white">{m['badge']}</span>
           </div>
 
           <div class="my-auto space-y-2 sm:space-y-4">
-            <div class="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight text-white leading-none opacity-95">
+            <div class="text-4xl sm:text-7xl md:text-8xl font-bold tracking-tight text-white leading-none opacity-95">
               {m['n']}
             </div>
             <h2 class="text-xl sm:text-3xl md:text-4xl font-light leading-[1.1] text-white">
               {m['title'][0]}<br />
               <b class="font-bold">{m['title'][1]}</b>
             </h2>
-            <p class="text-xs sm:text-base md:text-lg font-medium leading-snug text-white/95 pt-1 sm:pt-2">
+            <p class="text-xs sm:text-base md:text-lg font-medium leading-snug text-white/95 pt-0.5 sm:pt-2">
               {m['promise']}
             </p>
             <p class="text-[10px] sm:text-xs md:text-sm text-white/80 leading-relaxed font-light">
@@ -696,22 +696,22 @@ def build_catalog():
 
           <div class="pt-2 sm:pt-4 border-t border-white/20 grid grid-cols-3 gap-1.5 sm:gap-2 text-white">
             <div>
-              <div class="text-[8px] sm:text-[9px] uppercase tracking-wider text-white/70">Resposta</div>
-              <div class="text-[11px] sm:text-xs font-bold text-white mt-0.5">{m['speed']}</div>
+              <div class="text-[7px] sm:text-[9px] uppercase tracking-wider text-white/70">Resposta</div>
+              <div class="text-[10px] sm:text-xs font-bold text-white mt-0.5">{m['speed']}</div>
             </div>
             <div>
-              <div class="text-[8px] sm:text-[9px] uppercase tracking-wider text-white/70">Operação</div>
-              <div class="text-[11px] sm:text-xs font-bold text-white mt-0.5">{m['clicks']}</div>
+              <div class="text-[7px] sm:text-[9px] uppercase tracking-wider text-white/70">Operação</div>
+              <div class="text-[10px] sm:text-xs font-bold text-white mt-0.5">{m['clicks']}</div>
             </div>
             <div>
-              <div class="text-[8px] sm:text-[9px] uppercase tracking-wider text-white/70">Arquitetura</div>
-              <div class="text-[11px] sm:text-xs font-bold text-white mt-0.5">{m['architecture']}</div>
+              <div class="text-[7px] sm:text-[9px] uppercase tracking-wider text-white/70">Arquitetura</div>
+              <div class="text-[10px] sm:text-xs font-bold text-white mt-0.5">{m['architecture']}</div>
             </div>
           </div>
 
-          <div class="absolute bottom-3 left-6 text-xs text-white/50 font-light">{p_hero:02d}</div>
-          <div class="absolute bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-30">
-            <img src="{logo_white_uri}" alt="Habitat Media" class="h-3 sm:h-3.5 w-auto object-contain select-none" />
+          <div class="absolute bottom-2.5 left-5 text-[10px] sm:text-xs text-white/50 font-light">{p_hero:02d}</div>
+          <div class="absolute bottom-2 sm:bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-25">
+            <img src="{logo_white_uri}" alt="Habitat Media" class="h-2.5 sm:h-3.5 w-auto object-contain select-none" />
           </div>
         </div>
         '''
@@ -721,24 +721,24 @@ def build_catalog():
         # PÁGINA DIREITA: ModuleOpening (Mockup da Tela - Fundo Preto)
         # ---------------------------------------------------------------------
         po_right = f'''
-        <div class="page page-right {m['mod']} bg-black text-white relative w-full h-full overflow-hidden select-none p-4 sm:p-7 md:p-10 flex flex-col justify-between">
+        <div class="page page-right {m['mod']} bg-black text-white relative w-full h-full overflow-hidden select-none p-4 sm:p-7 md:p-10 pb-8 sm:pb-10 flex flex-col justify-between">
           <div class="border-b border-white/10 pb-2 sm:pb-3">
-            <span class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-mod">Tela Operacional</span>
+            <span class="text-[9px] sm:text-xs font-bold uppercase tracking-[0.2em] text-mod">Tela Operacional</span>
           </div>
 
-          <div class="rounded-xl border border-white/10 bg-white shadow-2xl overflow-hidden flex flex-col my-auto p-2 sm:p-4 md:p-5">
+          <div class="rounded-xl border border-white/10 bg-white shadow-2xl overflow-hidden flex flex-col my-auto p-2 sm:p-4 md:p-5 max-h-[58%] sm:max-h-[64%]">
             {render_screen_mockup(m['screen'], m['color'])}
           </div>
 
-          <div class="pt-2 sm:pt-3 border-t border-white/10">
-            <div class="text-xs sm:text-sm font-semibold text-white">{m['funcionalidades'][0]}</div>
-            <div class="text-[10px] sm:text-[11px] text-slate-400 font-light mt-0.5">Interface simplificada em 2 cliques, sem menus labirínticos.</div>
+          <div class="pt-1.5 sm:pt-3 border-t border-white/10">
+            <div class="text-[11px] sm:text-sm font-semibold text-white truncate">{m['funcionalidades'][0]}</div>
+            <div class="text-[9px] sm:text-[11px] text-slate-400 font-light mt-0.5">Interface simplificada em 2 cliques, sem menus labirínticos.</div>
           </div>
 
           {render_tabs(i)}
-          <div class="absolute bottom-3 right-6 text-xs text-slate-500 font-light">{p_screen:02d}</div>
-          <div class="absolute bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-25">
-            <img src="{logo_white_uri}" alt="Habitat Media" class="h-3 sm:h-3.5 w-auto object-contain select-none" />
+          <div class="absolute bottom-2.5 right-5 text-[10px] sm:text-xs text-slate-500 font-light">{p_screen:02d}</div>
+          <div class="absolute bottom-2 sm:bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-20">
+            <img src="{logo_white_uri}" alt="Habitat Media" class="h-2.5 sm:h-3.5 w-auto object-contain select-none" />
           </div>
         </div>
         '''
@@ -748,59 +748,59 @@ def build_catalog():
         # PÁGINA ESQUERDA: ModuleSheet (Ficha Técnica & Diferenciais)
         # ---------------------------------------------------------------------
         difs_html = "".join([
-            f'<div class="flex gap-2 sm:gap-3 border-b border-slate-100 py-1.5 sm:py-2 text-[11px] sm:text-sm leading-relaxed text-slate-700">'
-            f'  <span class="font-bold text-mod shrink-0 text-xs sm:text-sm">0{k + 1}</span><span>{d}</span>'
+            f'<div class="flex gap-2 sm:gap-3 border-b border-slate-100 py-1 sm:py-2 text-[10px] sm:text-sm leading-relaxed text-slate-700">'
+            f'  <span class="font-bold text-mod shrink-0 text-[10px] sm:text-sm">0{k + 1}</span><span>{d}</span>'
             f'</div>'
             for k, d in enumerate(m['diferenciais'])
         ])
 
         funcs_html = "".join([
-            f'<div class="flex items-center gap-1.5 sm:gap-2 border-b border-slate-100 py-1 sm:py-1.5 text-[10px] sm:text-xs text-slate-700">'
+            f'<div class="flex items-center gap-1.5 sm:gap-2 border-b border-slate-100 py-0.5 sm:py-1.5 text-[9px] sm:text-xs text-slate-700">'
             f'  <span class="w-1.5 h-1.5 rounded-full bg-mod shrink-0"></span><span>{f}</span>'
             f'</div>'
             for f in m['funcionalidades']
         ])
 
         stack_html = "".join([
-            f'<div class="border-b border-slate-100 py-1 sm:py-1.5">'
+            f'<div class="border-b border-slate-100 py-0.5 sm:py-1.5">'
             f'  <div class="text-[8px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-semibold">{s[0]}</div>'
-            f'  <div class="text-[10px] sm:text-xs font-semibold text-slate-800">{s[1]}</div>'
+            f'  <div class="text-[9px] sm:text-xs font-semibold text-slate-800">{s[1]}</div>'
             f'</div>'
             for s in m['stack']
         ])
 
         ps_left = f'''
-        <div class="page page-left {m['mod']} bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-4 sm:p-7 md:p-10 flex flex-col justify-between">
+        <div class="page page-left {m['mod']} bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-4 sm:p-7 md:p-10 pb-8 sm:pb-10 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between border-b border-slate-200 pb-2 sm:pb-3">
-              <span class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-mod">{m['n']} · Ficha Técnica</span>
-              <span class="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-widest">{m['area']}</span>
+              <span class="text-[9px] sm:text-xs font-bold uppercase tracking-[0.2em] text-mod">{m['n']} · Ficha Técnica</span>
+              <span class="text-[8px] sm:text-[10px] text-slate-400 uppercase tracking-widest">{m['area']}</span>
             </div>
             
-            <h2 class="text-xl sm:text-2xl md:text-3xl font-light text-slate-900 mt-2 sm:mt-3 leading-snug">
+            <h2 class="text-lg sm:text-2xl md:text-3xl font-light text-slate-900 mt-1.5 sm:mt-3 leading-snug">
               {m['title'][0]} <b class="font-bold">{m['title'][1]}</b>
             </h2>
 
-            <div class="mt-2 sm:mt-4">
-              <div class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5 sm:mb-1">Diferenciais do Módulo</div>
+            <div class="mt-1.5 sm:mt-4">
+              <div class="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5 sm:mb-1">Diferenciais do Módulo</div>
               {difs_html}
             </div>
 
-            <div class="mt-2 sm:mt-4 grid grid-cols-2 gap-2 sm:gap-4">
+            <div class="mt-1.5 sm:mt-4 grid grid-cols-2 gap-2 sm:gap-4">
               <div>
-                <div class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5 sm:mb-1">Funcionalidades</div>
+                <div class="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5 sm:mb-1">Funcionalidades</div>
                 {funcs_html}
               </div>
               <div>
-                <div class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5 sm:mb-1">Arquitetura & Segurança</div>
+                <div class="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5 sm:mb-1">Arquitetura & Segurança</div>
                 {stack_html}
               </div>
             </div>
           </div>
 
-          <div class="absolute bottom-3 left-6 text-xs text-slate-400 font-light">{p_sheet:02d}</div>
-          <div class="absolute bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-25">
-            <img src="{logo_dark_uri}" alt="Habitat Media" class="h-3 sm:h-3.5 w-auto object-contain select-none" />
+          <div class="absolute bottom-2.5 left-5 text-[10px] sm:text-xs text-slate-400 font-light">{p_sheet:02d}</div>
+          <div class="absolute bottom-2 sm:bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-20">
+            <img src="{logo_dark_uri}" alt="Habitat Media" class="h-2.5 sm:h-3.5 w-auto object-contain select-none" />
           </div>
         </div>
         '''
@@ -811,7 +811,7 @@ def build_catalog():
         # ---------------------------------------------------------------------
         indics_html = "".join([
             f'<div class="space-y-0.5 sm:space-y-1">'
-            f'  <div class="flex justify-between text-[11px] sm:text-sm">'
+            f'  <div class="flex justify-between text-[10px] sm:text-sm">'
             f'    <span class="text-slate-700 font-medium">{ind[0]}</span><b class="text-mod font-bold">{ind[1]}</b>'
             f'  </div>'
             f'  <div class="h-1 sm:h-1.5 rounded-full bg-slate-100 overflow-hidden">'
@@ -822,38 +822,38 @@ def build_catalog():
         ])
 
         ps_right = f'''
-        <div class="page page-right {m['mod']} bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-4 sm:p-7 md:p-10 flex flex-col justify-between">
+        <div class="page page-right {m['mod']} bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-4 sm:p-7 md:p-10 pb-8 sm:pb-10 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between border-b border-slate-200 pb-2 sm:pb-2.5">
-              <span class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-mod">Indicadores Operacionais</span>
-              <span class="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-widest font-mono">Métricas Reais</span>
+              <span class="text-[9px] sm:text-xs font-bold uppercase tracking-[0.2em] text-mod">Indicadores Operacionais</span>
+              <span class="text-[8px] sm:text-[10px] text-slate-400 uppercase tracking-widest font-mono">Métricas Reais</span>
             </div>
             
-            <h3 class="text-lg sm:text-xl md:text-2xl font-light text-slate-900 mt-1.5 sm:mt-2.5 leading-snug">
+            <h3 class="text-base sm:text-xl md:text-2xl font-light text-slate-900 mt-1 sm:mt-2.5 leading-snug">
               O ganho, <b class="font-bold">visível de relance.</b>
             </h3>
 
-            <div class="mt-2 sm:mt-4 space-y-1.5 sm:space-y-2 pr-2 sm:pr-4">
+            <div class="mt-1.5 sm:mt-4 space-y-1 sm:space-y-2 pr-1 sm:pr-4">
               {indics_html}
             </div>
           </div>
 
           <!-- Balão de Recomendação Redimensionado e Proporcional -->
-          <div class="rounded-xl py-2 px-2.5 sm:py-3 sm:px-3.5 bg-mod-soft border border-mod/20 mt-2 sm:mt-3 mb-1 pr-3 sm:pr-4">
-            <div class="text-xl sm:text-2xl font-serif text-mod leading-none opacity-40 mb-0.5 sm:mb-1">“</div>
-            <p class="text-[11px] sm:text-xs leading-relaxed text-slate-800 font-light">
+          <div class="rounded-xl py-1.5 px-2 sm:py-3 sm:px-3.5 bg-mod-soft border border-mod/20 mt-1.5 sm:mt-3 mb-1 pr-2 sm:pr-4">
+            <div class="text-lg sm:text-2xl font-serif text-mod leading-none opacity-40 mb-0.5">“</div>
+            <p class="text-[10px] sm:text-xs leading-relaxed text-slate-800 font-light">
               {m['recomendacao'][0]}<b class="font-bold text-slate-900">{m['recomendacao'][1]}</b>{m['recomendacao'][2]}
             </p>
             <div class="mt-1 sm:mt-2 flex items-center gap-1.5 sm:gap-2">
               <div class="h-0.5 w-4 sm:w-5 bg-mod"></div>
-              <span class="text-[8px] sm:text-[9px] font-bold text-slate-500 uppercase tracking-wider">Recomendação de Uso</span>
+              <span class="text-[7px] sm:text-[9px] font-bold text-slate-500 uppercase tracking-wider">Recomendação de Uso</span>
             </div>
           </div>
 
           {render_tabs(i)}
-          <div class="absolute bottom-3 right-6 text-xs text-slate-400 font-light">{p_indic:02d}</div>
-          <div class="absolute bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-25">
-            <img src="{logo_dark_uri}" alt="Habitat Media" class="h-3 sm:h-3.5 w-auto object-contain select-none" />
+          <div class="absolute bottom-2.5 right-5 text-[10px] sm:text-xs text-slate-400 font-light">{p_indic:02d}</div>
+          <div class="absolute bottom-2 sm:bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-20">
+            <img src="{logo_dark_uri}" alt="Habitat Media" class="h-2.5 sm:h-3.5 w-auto object-contain select-none" />
           </div>
         </div>
         '''
@@ -990,28 +990,24 @@ def generate_html():
 <body class="h-screen w-screen flex flex-col justify-between bg-[#F1F4F9]">
 
   <!-- ================= TOP HEADER LIMPO EM BRANCO GELO ================= -->
-  <header class="h-14 px-6 flex items-center justify-between border-b border-slate-200 bg-white/70 backdrop-blur-md z-30">
-    <div class="flex items-center gap-3">
-      <a href="/" class="flex items-center gap-1.5 px-3 py-1 rounded-md bg-white hover:bg-slate-100 text-slate-700 text-xs border border-slate-200 transition-colors shadow-2xs">
-        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> <span>Voltar</span>
+  <header class="h-12 sm:h-14 px-3 sm:px-6 flex items-center justify-between border-b border-slate-200 bg-white/80 backdrop-blur-md z-30 shrink-0">
+    <div class="flex items-center gap-1.5 sm:gap-3 min-w-0">
+      <a href="/" class="flex items-center gap-1 px-2 py-1 rounded bg-white hover:bg-slate-100 text-slate-700 text-xs border border-slate-200 transition-colors shadow-2xs shrink-0" title="Voltar ao início">
+        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Voltar</span>
       </a>
-      <div class="h-4 w-[1px] bg-slate-200"></div>
-      <span class="font-display font-medium text-xs text-slate-800 tracking-wide uppercase">Catálogo Digital — Sistema 0</span>
+      <span class="font-display font-semibold text-xs text-slate-800 tracking-wide uppercase truncate">Sistema 0</span>
     </div>
 
     <!-- Controles Rápidos -->
-    <div class="flex items-center gap-1.5 sm:gap-2">
-      <span id="page-indicator" class="font-sans text-xs text-slate-500 bg-white border border-slate-200 px-2 sm:px-3 py-1 rounded shadow-2xs font-light">
+    <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+      <span id="page-indicator" class="font-sans text-[11px] sm:text-xs text-slate-600 bg-white border border-slate-200 px-2 sm:px-3 py-0.5 sm:py-1 rounded shadow-2xs font-medium whitespace-nowrap">
         Capa / {total_pages}
       </span>
-      <button id="btn-toggle-spread" onclick="toggleSpreadMode()" class="px-2 sm:px-2.5 py-1 text-xs rounded bg-white hover:bg-slate-100 text-[#0063B1] flex items-center gap-1 sm:gap-1.5 transition-colors border border-slate-200 shadow-2xs cursor-pointer font-medium" title="Alternar entre 1 página ou 2 páginas">
-        <i data-lucide="book-open" class="w-3.5 h-3.5"></i> <span id="label-toggle-spread">1 Pág</span>
+      <button onclick="goToFolio(4)" class="hidden sm:flex px-2.5 sm:px-3 py-1 text-xs rounded bg-white hover:bg-slate-100 text-slate-700 items-center gap-1 transition-colors border border-slate-200 shadow-2xs cursor-pointer" title="Ir para o Sumário">
+        <i data-lucide="grid" class="w-3.5 h-3.5"></i> <span>Sumário</span>
       </button>
-      <button onclick="goToFolio(4)" class="px-2 sm:px-3 py-1 text-xs rounded bg-white hover:bg-slate-100 text-slate-700 flex items-center gap-1 sm:gap-1.5 transition-colors border border-slate-200 shadow-2xs cursor-pointer">
-        <i data-lucide="grid" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Sumário</span>
-      </button>
-      <a href="/catalogo.pdf" download class="px-2 sm:px-3 py-1 text-xs rounded bg-[#0063B1] hover:bg-blue-700 text-white flex items-center gap-1 sm:gap-1.5 font-medium transition-colors shadow">
-        <i data-lucide="download" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">PDF</span>
+      <a href="/catalogo.pdf" download class="px-2.5 sm:px-3 py-1 text-xs rounded bg-[#0063B1] hover:bg-blue-700 text-white flex items-center gap-1 font-medium transition-colors shadow">
+        <i data-lucide="download" class="w-3.5 h-3.5"></i> <span>PDF</span>
       </a>
     </div>
   </header>
@@ -1038,15 +1034,15 @@ def generate_html():
   </main>
 
   <!-- ================= BARRA INFERIOR (LEITURA EDITORIAL) ================= -->
-  <footer class="h-12 px-4 sm:px-6 flex items-center justify-between border-t border-slate-200 bg-white/60 text-slate-500 text-xs">
-    <div class="flex items-center gap-2">
+  <footer class="h-10 sm:h-12 px-3 sm:px-6 flex items-center justify-between border-t border-slate-200 bg-white/60 text-slate-500 text-xs shrink-0">
+    <div class="flex items-center gap-1.5 sm:gap-2">
       <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-      <span class="text-[11px] font-light">Deslize com o dedo ou use as setas para folhear</span>
+      <span class="text-[10px] sm:text-[11px] font-light">Deslize com o dedo ou use as setas</span>
     </div>
-    <div class="flex items-center gap-3 sm:gap-4">
-      <button onclick="goToPage(0)" class="text-[11px] text-slate-600 hover:text-blue-600 font-light cursor-pointer">Capa</button>
-      <button onclick="goToFolio(4)" class="text-[11px] text-slate-600 hover:text-blue-600 font-light cursor-pointer">Sumário</button>
-      <button onclick="goToPage({total_pages - 1})" class="text-[11px] text-slate-600 hover:text-blue-600 font-light cursor-pointer">Contracapa</button>
+    <div class="flex items-center gap-2 sm:gap-4">
+      <button onclick="goToPage(0)" class="text-[10px] sm:text-[11px] text-slate-600 hover:text-blue-600 font-light cursor-pointer">Capa</button>
+      <button onclick="goToFolio(4)" class="text-[10px] sm:text-[11px] text-slate-600 hover:text-blue-600 font-light cursor-pointer">Sumário</button>
+      <button onclick="goToPage({total_pages - 1})" class="text-[10px] sm:text-[11px] text-slate-600 hover:text-blue-600 font-light cursor-pointer">Contracapa</button>
     </div>
   </footer>
 
@@ -1059,23 +1055,6 @@ def generate_html():
     let pageFlip = null;
     const totalPages = {total_pages};
 
-    // Controle de modo de visualização:
-    // Por padrão (true), o catálogo exibe o Spread Completo (2 páginas lado a lado),
-    // exatamente como no desktop, eliminando a sensação de visualização "reduzida pela metade".
-    // O usuário pode alternar para "1 Pág" (modo foco) a qualquer momento no cabeçalho.
-    let isSpreadMode = true;
-
-    function toggleSpreadMode() {{
-      isSpreadMode = !isSpreadMode;
-      const curPage = pageFlip ? pageFlip.getCurrentPageIndex() : 0;
-      if (pageFlip) {{
-        try {{
-          pageFlip.destroy();
-        }} catch(e) {{}}
-      }}
-      setTimeout(() => initBook(curPage), 50);
-    }}
-
     function initBook(startPage = 0) {{
       const container = document.getElementById("book-container");
       if (!container) return;
@@ -1086,47 +1065,44 @@ def generate_html():
 
       const vh = window.innerHeight;
       const vw = window.innerWidth;
-      const isMobile = vw < 768;
+      // No celular vertical (portrait), forçamos o modo 1 página para visualização ampla e legível
+      const isMobilePortrait = vw < 768 && vh > vw;
 
       let width, height;
-      const useDoublePage = !isMobile || isSpreadMode;
 
-      if (useDoublePage) {{
-        // Modo 2 Páginas Lado a Lado (Spread Duplo Completo):
-        // Enquadra perfeitamente as duas páginas na tela do celular ou computador
-        const availW = isMobile ? (vw - 8) : Math.min(vw - 60, 1400);
-        const availH = isMobile ? (vh - 105) : (vh - 140);
-
-        let singleW = Math.floor(availW / 2);
+      if (isMobilePortrait) {{
+        // Modo 1 Página no Celular Vertical: Preenche a largura útil da tela com margem lateral segura
+        const maxW = Math.min(vw - 16, 520);
+        const maxH = vh - 105;
+        let w = maxW;
+        let h = Math.round(w * 1.414);
+        if (h > maxH) {{
+          h = maxH;
+          w = Math.round(h / 1.414);
+        }}
+        width = Math.max(260, w);
+        height = Math.max(368, h);
+      }} else if (vw < 1024) {{
+        // Tablets ou Celular na Horizontal (Landscape): 2 Páginas lado a lado
+        const maxW = vw - 24;
+        const maxH = vh - 110;
+        let singleW = Math.floor(maxW / 2);
         let calcH = Math.floor(singleW * 1.414);
-
-        if (calcH > availH) {{
-          calcH = availH;
+        if (calcH > maxH) {{
+          calcH = maxH;
           singleW = Math.floor(calcH / 1.414);
         }}
-
-        width = Math.max(160, singleW);
-        height = Math.max(226, calcH);
+        width = Math.max(180, singleW);
+        height = Math.max(255, calcH);
       }} else {{
-        // Modo 1 Página Grande (Foco preenchendo a tela no celular):
-        const availW = Math.min(vw - 12, 540);
-        const availH = vh - 105;
-
-        let singleW = availW;
-        let calcH = Math.floor(singleW * 1.414);
-
-        if (calcH > availH) {{
-          calcH = availH;
-          singleW = Math.floor(calcH / 1.414);
+        // Desktop: Visualização Editorial Imersiva 2 Páginas Lado a Lado
+        const maxH = Math.min(820, vh - 130);
+        let singleW = Math.round(maxH / 1.414);
+        if (singleW * 2 > vw - 60) {{
+          singleW = Math.floor((vw - 60) / 2);
         }}
-
-        width = Math.max(260, singleW);
-        height = Math.max(368, calcH);
-      }}
-
-      const btnLabel = document.getElementById("label-toggle-spread");
-      if (btnLabel) {{
-        btnLabel.innerText = useDoublePage ? "1 Pág" : "2 Págs";
+        width = singleW;
+        height = Math.round(singleW * 1.414);
       }}
 
       pageFlip = new St.PageFlip(container, {{
@@ -1135,11 +1111,11 @@ def generate_html():
         size: 'fixed',
         minWidth: 150,
         maxWidth: 750,
-        minHeight: 210,
+        minHeight: 200,
         maxHeight: 1000,
         maxShadowOpacity: 0.35,
-        showCover: true,
-        usePortrait: !useDoublePage,
+        showCover: !isMobilePortrait,
+        usePortrait: isMobilePortrait,
         mobileScrollSupport: false,
         useMouseEvents: true,
         clickEventForward: true,

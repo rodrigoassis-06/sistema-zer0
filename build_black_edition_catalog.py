@@ -281,37 +281,37 @@ modules = [
 def render_screen_mockup(kind, mod_color):
     if kind == "bars":
         return f'''
-        <div class="flex flex-col gap-3">
-          <div class="grid grid-cols-3 gap-2.5">
-            <div class="rounded-lg p-3 bg-[#0063B1] text-white shadow-xs">
-              <div class="text-[10px] uppercase tracking-wider text-white/80 font-medium">Faturamento</div>
-              <div class="text-lg sm:text-xl font-bold mt-0.5">R$ 84.500</div>
-              <div class="text-[9px] text-emerald-300 font-semibold mt-1">↑ +18,4% no mês</div>
+        <div class="flex flex-col gap-1 sm:gap-3">
+          <div class="grid grid-cols-3 gap-1 sm:gap-2.5">
+            <div class="rounded p-1 sm:p-3 bg-[#0063B1] text-white shadow-xs">
+              <div class="text-[7px] sm:text-[10px] uppercase tracking-wider text-white/80 font-medium">Faturamento</div>
+              <div class="text-[10px] sm:text-xl font-bold mt-0.5">R$ 84.500</div>
+              <div class="text-[6px] sm:text-[9px] text-emerald-300 font-semibold mt-0.5">↑ +18,4%</div>
             </div>
-            <div class="rounded-lg p-3 bg-slate-50 border border-slate-200">
-              <div class="text-[10px] uppercase tracking-wider text-slate-500 font-medium">Ticket Médio</div>
-              <div class="text-lg sm:text-xl font-bold text-slate-800 mt-0.5">R$ 212,00</div>
-              <div class="text-[9px] text-slate-500 font-medium mt-1">428 atendimentos</div>
+            <div class="rounded p-1 sm:p-3 bg-slate-50 border border-slate-200">
+              <div class="text-[7px] sm:text-[10px] uppercase tracking-wider text-slate-500 font-medium">Ticket Médio</div>
+              <div class="text-[10px] sm:text-xl font-bold text-slate-800 mt-0.5">R$ 212,00</div>
+              <div class="text-[6px] sm:text-[9px] text-slate-500 font-medium mt-0.5">428 atend.</div>
             </div>
-            <div class="rounded-lg p-3 bg-slate-50 border border-slate-200">
-              <div class="text-[10px] uppercase tracking-wider text-slate-500 font-medium">Margem Líquida</div>
-              <div class="text-lg sm:text-xl font-bold text-emerald-600 mt-0.5">31,4%</div>
-              <div class="text-[9px] text-emerald-600 font-medium mt-1">Meta: 28% (Superada)</div>
+            <div class="rounded p-1 sm:p-3 bg-slate-50 border border-slate-200">
+              <div class="text-[7px] sm:text-[10px] uppercase tracking-wider text-slate-500 font-medium">Margem Líq.</div>
+              <div class="text-[10px] sm:text-xl font-bold text-emerald-600 mt-0.5">31,4%</div>
+              <div class="text-[6px] sm:text-[9px] text-emerald-600 font-medium mt-0.5">Meta: 28%</div>
             </div>
           </div>
           
-          <div class="rounded-lg bg-slate-50 border border-slate-200 p-3.5">
-            <div class="flex items-center justify-between text-xs text-slate-600 mb-2 font-medium">
-              <span>Evolução do Faturamento Mensal</span>
-              <span class="text-[10px] text-[#0063B1] font-bold">Consolidado em Tempo Real</span>
+          <div class="rounded bg-slate-50 border border-slate-200 p-1 sm:p-3.5">
+            <div class="flex items-center justify-between text-[8px] sm:text-xs text-slate-600 mb-1 font-medium">
+              <span>Evolução do Faturamento</span>
+              <span class="text-[7px] sm:text-[10px] text-[#0063B1] font-bold">Consolidado</span>
             </div>
-            <div class="flex items-end gap-2.5 h-28 pt-2">
-              <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-[#0063B1]/40 rounded-t h-[45%]"></div><span class="text-[9px] text-slate-400 font-mono">Jan</span></div>
-              <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-[#0063B1]/50 rounded-t h-[60%]"></div><span class="text-[9px] text-slate-400 font-mono">Fev</span></div>
-              <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-[#0063B1]/60 rounded-t h-[52%]"></div><span class="text-[9px] text-slate-400 font-mono">Mar</span></div>
-              <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-[#0063B1]/75 rounded-t h-[75%]"></div><span class="text-[9px] text-slate-400 font-mono">Abr</span></div>
-              <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-[#0063B1]/85 rounded-t h-[68%]"></div><span class="text-[9px] text-slate-400 font-mono">Mai</span></div>
-              <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-[#0063B1] rounded-t h-[92%] shadow-xs"></div><span class="text-[9px] text-slate-700 font-bold font-mono">Jun</span></div>
+            <div class="flex items-end gap-1 sm:gap-2.5 h-14 sm:h-28 pt-1">
+              <div class="flex-1 flex flex-col items-center gap-0.5"><div class="w-full bg-[#0063B1]/40 rounded-t h-[45%]"></div><span class="text-[6px] sm:text-[9px] text-slate-400 font-mono">Jan</span></div>
+              <div class="flex-1 flex flex-col items-center gap-0.5"><div class="w-full bg-[#0063B1]/50 rounded-t h-[60%]"></div><span class="text-[6px] sm:text-[9px] text-slate-400 font-mono">Fev</span></div>
+              <div class="flex-1 flex flex-col items-center gap-0.5"><div class="w-full bg-[#0063B1]/60 rounded-t h-[52%]"></div><span class="text-[6px] sm:text-[9px] text-slate-400 font-mono">Mar</span></div>
+              <div class="flex-1 flex flex-col items-center gap-0.5"><div class="w-full bg-[#0063B1]/75 rounded-t h-[75%]"></div><span class="text-[6px] sm:text-[9px] text-slate-400 font-mono">Abr</span></div>
+              <div class="flex-1 flex flex-col items-center gap-0.5"><div class="w-full bg-[#0063B1]/85 rounded-t h-[68%]"></div><span class="text-[6px] sm:text-[9px] text-slate-400 font-mono">Mai</span></div>
+              <div class="flex-1 flex flex-col items-center gap-0.5"><div class="w-full bg-[#0063B1] rounded-t h-[92%] shadow-xs"></div><span class="text-[6px] sm:text-[9px] text-slate-700 font-bold font-mono">Jun</span></div>
             </div>
           </div>
         </div>
@@ -319,36 +319,32 @@ def render_screen_mockup(kind, mod_color):
 
     elif kind == "ledger":
         return f'''
-        <div class="flex flex-col gap-3">
-          <div class="rounded-lg p-3.5 bg-emerald-50 border border-emerald-200 flex items-center justify-between">
+        <div class="flex flex-col gap-1 sm:gap-3">
+          <div class="rounded p-1.5 sm:p-3.5 bg-emerald-50 border border-emerald-200 flex items-center justify-between">
             <div>
-              <div class="text-[10px] uppercase tracking-wider text-emerald-800 font-bold">Saldo Conciliado em Caixa</div>
-              <div class="text-xl sm:text-2xl font-bold text-emerald-700 mt-0.5">R$ 128.430,00</div>
-              <div class="text-[10px] text-emerald-600 font-medium mt-0.5">Projeção a 30 dias: R$ 142.100,00 (+10,6%)</div>
+              <div class="text-[7px] sm:text-[10px] uppercase tracking-wider text-emerald-800 font-bold">Saldo em Caixa</div>
+              <div class="text-xs sm:text-2xl font-bold text-emerald-700 mt-0.5">R$ 128.430,00</div>
+              <div class="text-[6px] sm:text-[10px] text-emerald-600 font-medium">Projeção 30d: +10,6%</div>
             </div>
-            <div class="h-10 w-24">
+            <div class="h-6 sm:h-10 w-16 sm:w-24">
               <svg viewBox="0 0 100 30" class="h-full w-full">
                 <polyline fill="none" stroke="#16A34A" stroke-width="2.5" points="0,25 20,20 40,22 60,12 80,15 100,4" />
               </svg>
             </div>
           </div>
           
-          <div class="space-y-1.5 border border-slate-200 rounded-lg p-2.5 bg-slate-50">
-            <div class="flex items-center justify-between py-1 px-2 border-b border-slate-200 text-xs">
+          <div class="space-y-0.5 sm:space-y-1 border border-slate-200 rounded p-1 sm:p-2.5 bg-slate-50">
+            <div class="flex items-center justify-between py-0.5 sm:py-1 px-1 border-b border-slate-200 text-[7px] sm:text-xs">
               <span class="font-medium text-slate-700">Receitas de Vendas (Cartão / PIX)</span>
               <span class="font-bold text-emerald-600">+ R$ 4.280,00</span>
             </div>
-            <div class="flex items-center justify-between py-1 px-2 border-b border-slate-200 text-xs">
-              <span class="font-medium text-slate-700">Fornecedor Distribuidora Master</span>
+            <div class="flex items-center justify-between py-0.5 sm:py-1 px-1 border-b border-slate-200 text-[7px] sm:text-xs">
+              <span class="font-medium text-slate-700">Fornecedor Distribuidora</span>
               <span class="font-bold text-red-600">- R$ 1.150,00</span>
             </div>
-            <div class="flex items-center justify-between py-1 px-2 border-b border-slate-200 text-xs">
+            <div class="flex items-center justify-between py-0.5 sm:py-1 px-1 text-[7px] sm:text-xs">
               <span class="font-medium text-slate-700">Comissões de Profissionais</span>
               <span class="font-bold text-red-600">- R$ 2.450,00</span>
-            </div>
-            <div class="flex items-center justify-between py-1 px-2 text-xs">
-              <span class="font-medium text-slate-700">Serviço Recorrente Assinatura</span>
-              <span class="font-bold text-emerald-600">+ R$ 890,00</span>
             </div>
           </div>
         </div>
@@ -356,41 +352,36 @@ def render_screen_mockup(kind, mod_color):
 
     elif kind == "calendar":
         return f'''
-        <div class="flex flex-col gap-2.5">
-          <div class="flex items-center justify-between text-xs text-slate-600 font-medium pb-1 border-b border-slate-200">
+        <div class="flex flex-col gap-1 sm:gap-2.5">
+          <div class="flex items-center justify-between text-[7px] sm:text-xs text-slate-600 font-medium pb-0.5 border-b border-slate-200">
             <span>Visão Semanal de Atendimentos</span>
-            <span class="text-[10px] bg-orange-100 text-orange-800 font-bold px-2 py-0.5 rounded">Taxa de Ocupação: 88%</span>
+            <span class="text-[6px] sm:text-[10px] bg-orange-100 text-orange-800 font-bold px-1.5 py-0.5 rounded">Ocupação: 88%</span>
           </div>
-          <div class="grid grid-cols-5 gap-1.5">
-            <div class="flex flex-col gap-1.5 rounded bg-slate-50 border border-slate-200 p-2">
-              <div class="text-center text-[10px] font-bold text-slate-700 pb-1 border-b border-slate-200">SEG</div>
-              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">09:00</div>
-              <div class="rounded p-1 bg-orange-100 text-orange-800 text-[9px] font-semibold text-center">11:30</div>
-              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">14:00</div>
+          <div class="grid grid-cols-5 gap-0.5 sm:gap-1.5">
+            <div class="flex flex-col gap-0.5 sm:gap-1.5 rounded bg-slate-50 border border-slate-200 p-0.5 sm:p-2">
+              <div class="text-center text-[7px] sm:text-[10px] font-bold text-slate-700 pb-0.5 border-b border-slate-200">SEG</div>
+              <div class="rounded p-0.5 sm:p-1 bg-orange-600 text-white text-[6px] sm:text-[9px] font-bold text-center">09:00</div>
+              <div class="rounded p-0.5 sm:p-1 bg-orange-100 text-orange-800 text-[6px] sm:text-[9px] font-semibold text-center">11:30</div>
             </div>
-            <div class="flex flex-col gap-1.5 rounded bg-slate-50 border border-slate-200 p-2">
-              <div class="text-center text-[10px] font-bold text-slate-700 pb-1 border-b border-slate-200">TER</div>
-              <div class="rounded p-1 bg-orange-100 text-orange-800 text-[9px] font-semibold text-center">10:00</div>
-              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">13:30</div>
-              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">16:00</div>
+            <div class="flex flex-col gap-0.5 sm:gap-1.5 rounded bg-slate-50 border border-slate-200 p-0.5 sm:p-2">
+              <div class="text-center text-[7px] sm:text-[10px] font-bold text-slate-700 pb-0.5 border-b border-slate-200">TER</div>
+              <div class="rounded p-0.5 sm:p-1 bg-orange-100 text-orange-800 text-[6px] sm:text-[9px] font-semibold text-center">10:00</div>
+              <div class="rounded p-0.5 sm:p-1 bg-orange-600 text-white text-[6px] sm:text-[9px] font-bold text-center">13:30</div>
             </div>
-            <div class="flex flex-col gap-1.5 rounded bg-slate-50 border border-slate-200 p-2">
-              <div class="text-center text-[10px] font-bold text-slate-700 pb-1 border-b border-slate-200">QUA</div>
-              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">08:30</div>
-              <div class="rounded p-1 bg-orange-100 text-orange-800 text-[9px] font-semibold text-center">11:00</div>
-              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">15:00</div>
+            <div class="flex flex-col gap-0.5 sm:gap-1.5 rounded bg-slate-50 border border-slate-200 p-0.5 sm:p-2">
+              <div class="text-center text-[7px] sm:text-[10px] font-bold text-slate-700 pb-0.5 border-b border-slate-200">QUA</div>
+              <div class="rounded p-0.5 sm:p-1 bg-orange-600 text-white text-[6px] sm:text-[9px] font-bold text-center">08:30</div>
+              <div class="rounded p-0.5 sm:p-1 bg-orange-100 text-orange-800 text-[6px] sm:text-[9px] font-semibold text-center">11:00</div>
             </div>
-            <div class="flex flex-col gap-1.5 rounded bg-slate-50 border border-slate-200 p-2">
-              <div class="text-center text-[10px] font-bold text-slate-700 pb-1 border-b border-slate-200">QUI</div>
-              <div class="rounded p-1 bg-orange-100 text-orange-800 text-[9px] font-semibold text-center">09:30</div>
-              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">14:00</div>
-              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">17:30</div>
+            <div class="flex flex-col gap-0.5 sm:gap-1.5 rounded bg-slate-50 border border-slate-200 p-0.5 sm:p-2">
+              <div class="text-center text-[7px] sm:text-[10px] font-bold text-slate-700 pb-0.5 border-b border-slate-200">QUI</div>
+              <div class="rounded p-0.5 sm:p-1 bg-orange-100 text-orange-800 text-[6px] sm:text-[9px] font-semibold text-center">09:30</div>
+              <div class="rounded p-0.5 sm:p-1 bg-orange-600 text-white text-[6px] sm:text-[9px] font-bold text-center">14:00</div>
             </div>
-            <div class="flex flex-col gap-1.5 rounded bg-slate-50 border border-slate-200 p-2">
-              <div class="text-center text-[10px] font-bold text-slate-700 pb-1 border-b border-slate-200">SEX</div>
-              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">08:00</div>
-              <div class="rounded p-1 bg-orange-600 text-white text-[9px] font-bold text-center">10:30</div>
-              <div class="rounded p-1 bg-orange-100 text-orange-800 text-[9px] font-semibold text-center">16:00</div>
+            <div class="flex flex-col gap-0.5 sm:gap-1.5 rounded bg-slate-50 border border-slate-200 p-0.5 sm:p-2">
+              <div class="text-center text-[7px] sm:text-[10px] font-bold text-slate-700 pb-0.5 border-b border-slate-200">SEX</div>
+              <div class="rounded p-0.5 sm:p-1 bg-orange-600 text-white text-[6px] sm:text-[9px] font-bold text-center">08:00</div>
+              <div class="rounded p-0.5 sm:p-1 bg-orange-100 text-orange-800 text-[6px] sm:text-[9px] font-semibold text-center">10:30</div>
             </div>
           </div>
         </div>
@@ -398,34 +389,33 @@ def render_screen_mockup(kind, mod_color):
 
     elif kind == "people":
         return f'''
-        <div class="flex gap-3">
-          <div class="w-1/3 space-y-1.5 border-r border-slate-200 pr-2">
-            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Clientes VIP</div>
-            <div class="rounded p-2 bg-pink-50 border border-pink-200 text-xs font-bold text-pink-900">Mariana S.</div>
-            <div class="rounded p-2 bg-slate-50 border border-slate-200 text-xs font-medium text-slate-700">Carlos E.</div>
-            <div class="rounded p-2 bg-slate-50 border border-slate-200 text-xs font-medium text-slate-700">Fernanda M.</div>
-            <div class="rounded p-2 bg-slate-50 border border-slate-200 text-xs font-medium text-slate-700">Juliana R.</div>
+        <div class="flex gap-1.5 sm:gap-3">
+          <div class="w-1/3 space-y-0.5 sm:space-y-1.5 border-r border-slate-200 pr-1 sm:pr-2">
+            <div class="text-[7px] sm:text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">VIP</div>
+            <div class="rounded p-1 sm:p-2 bg-pink-50 border border-pink-200 text-[7px] sm:text-xs font-bold text-pink-900 truncate">Mariana S.</div>
+            <div class="rounded p-1 sm:p-2 bg-slate-50 border border-slate-200 text-[7px] sm:text-xs font-medium text-slate-700 truncate">Carlos E.</div>
+            <div class="rounded p-1 sm:p-2 bg-slate-50 border border-slate-200 text-[7px] sm:text-xs font-medium text-slate-700 truncate">Fernanda M.</div>
           </div>
-          <div class="flex-1 rounded-lg bg-pink-50 border border-pink-200 p-3">
-            <div class="flex items-center gap-2.5 pb-2 border-b border-pink-200">
-              <div class="w-8 h-8 rounded-full bg-pink-700 text-white font-bold flex items-center justify-center text-xs">MS</div>
+          <div class="flex-1 rounded bg-pink-50 border border-pink-200 p-1 sm:p-3">
+            <div class="flex items-center gap-1 sm:gap-2.5 pb-1 border-b border-pink-200">
+              <div class="w-5 h-5 sm:w-8 sm:h-8 rounded-full bg-pink-700 text-white font-bold flex items-center justify-center text-[8px] sm:text-xs">MS</div>
               <div>
-                <div class="text-sm font-bold text-slate-800">Mariana Silva</div>
-                <div class="text-[10px] text-pink-700 font-semibold">Cliente VIP Ouro · Desde 2021</div>
+                <div class="text-[8px] sm:text-sm font-bold text-slate-800">Mariana Silva</div>
+                <div class="text-[6px] sm:text-[10px] text-pink-700 font-semibold">Cliente VIP Ouro</div>
               </div>
             </div>
-            <div class="grid grid-cols-3 gap-2 mt-2.5 text-center">
-              <div class="rounded bg-white p-2 border border-pink-100">
-                <div class="text-[9px] text-slate-500 uppercase font-semibold">LTV Acumulado</div>
-                <div class="text-sm font-bold text-pink-700 mt-0.5">R$ 4.250</div>
+            <div class="grid grid-cols-3 gap-1 sm:gap-2 mt-1 sm:mt-2.5 text-center">
+              <div class="rounded bg-white p-0.5 sm:p-2 border border-pink-100">
+                <div class="text-[6px] sm:text-[9px] text-slate-500 uppercase font-semibold">LTV</div>
+                <div class="text-[8px] sm:text-sm font-bold text-pink-700">R$ 4.250</div>
               </div>
-              <div class="rounded bg-white p-2 border border-pink-100">
-                <div class="text-[9px] text-slate-500 uppercase font-semibold">Visitas</div>
-                <div class="text-sm font-bold text-slate-800 mt-0.5">38</div>
+              <div class="rounded bg-white p-0.5 sm:p-2 border border-pink-100">
+                <div class="text-[6px] sm:text-[9px] text-slate-500 uppercase font-semibold">Visitas</div>
+                <div class="text-[8px] sm:text-sm font-bold text-slate-800">38</div>
               </div>
-              <div class="rounded bg-white p-2 border border-pink-100">
-                <div class="text-[9px] text-slate-500 uppercase font-semibold">Pontos Fidelidade</div>
-                <div class="text-sm font-bold text-pink-700 mt-0.5">920 pts</div>
+              <div class="rounded bg-white p-0.5 sm:p-2 border border-pink-100">
+                <div class="text-[6px] sm:text-[9px] text-slate-500 uppercase font-semibold">Pontos</div>
+                <div class="text-[8px] sm:text-sm font-bold text-pink-700">920</div>
               </div>
             </div>
           </div>
@@ -434,35 +424,27 @@ def render_screen_mockup(kind, mod_color):
 
     elif kind == "team":
         return f'''
-        <div class="space-y-2">
-          <div class="flex items-center justify-between text-xs text-slate-600 font-medium pb-1 border-b border-slate-200">
-            <span>Ranking da Equipe no Mês</span>
-            <span class="text-[10px] bg-teal-100 text-teal-800 font-bold px-2 py-0.5 rounded">Repasse em 1 Clique</span>
+        <div class="space-y-1 sm:space-y-2">
+          <div class="flex items-center justify-between text-[7px] sm:text-xs text-slate-600 font-medium pb-0.5 border-b border-slate-200">
+            <span>Ranking da Equipe</span>
+            <span class="text-[6px] sm:text-[10px] bg-teal-100 text-teal-800 font-bold px-1.5 py-0.5 rounded">Em 1 Clique</span>
           </div>
-          <div class="space-y-2 pt-1">
-            <div class="flex items-center gap-3 p-1.5 rounded bg-slate-50 border border-slate-200">
-              <div class="w-6 h-6 rounded-full bg-teal-700 text-white font-bold text-[10px] flex items-center justify-center">1</div>
-              <div class="flex-1">
-                <div class="flex justify-between text-xs"><b>Ana Paula</b><span class="text-teal-700 font-bold">92% da Meta</span></div>
-                <div class="h-1.5 rounded-full bg-slate-200 mt-1"><div class="h-full rounded-full bg-teal-600" style="width: 92%"></div></div>
+          <div class="space-y-1 sm:space-y-2 pt-0.5">
+            <div class="flex items-center gap-1.5 sm:gap-3 p-1 sm:p-1.5 rounded bg-slate-50 border border-slate-200">
+              <div class="w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-teal-700 text-white font-bold text-[7px] sm:text-[10px] flex items-center justify-center">1</div>
+              <div class="flex-1 min-w-0">
+                <div class="flex justify-between text-[7px] sm:text-xs"><b>Ana Paula</b><span class="text-teal-700 font-bold">92%</span></div>
+                <div class="h-1 sm:h-1.5 rounded-full bg-slate-200 mt-0.5"><div class="h-full rounded-full bg-teal-600" style="width: 92%"></div></div>
               </div>
-              <div class="text-xs font-bold text-teal-800">R$ 2.116,00</div>
+              <div class="text-[7px] sm:text-xs font-bold text-teal-800">R$ 2.116</div>
             </div>
-            <div class="flex items-center gap-3 p-1.5 rounded bg-slate-50 border border-slate-200">
-              <div class="w-6 h-6 rounded-full bg-slate-400 text-white font-bold text-[10px] flex items-center justify-center">2</div>
-              <div class="flex-1">
-                <div class="flex justify-between text-xs"><b>Bruno Costa</b><span class="text-teal-700 font-bold">78% da Meta</span></div>
-                <div class="h-1.5 rounded-full bg-slate-200 mt-1"><div class="h-full rounded-full bg-teal-600" style="width: 78%"></div></div>
+            <div class="flex items-center gap-1.5 sm:gap-3 p-1 sm:p-1.5 rounded bg-slate-50 border border-slate-200">
+              <div class="w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-slate-400 text-white font-bold text-[7px] sm:text-[10px] flex items-center justify-center">2</div>
+              <div class="flex-1 min-w-0">
+                <div class="flex justify-between text-[7px] sm:text-xs"><b>Bruno Costa</b><span class="text-teal-700 font-bold">78%</span></div>
+                <div class="h-1 sm:h-1.5 rounded-full bg-slate-200 mt-0.5"><div class="h-full rounded-full bg-teal-600" style="width: 78%"></div></div>
               </div>
-              <div class="text-xs font-bold text-teal-800">R$ 1.794,00</div>
-            </div>
-            <div class="flex items-center gap-3 p-1.5 rounded bg-slate-50 border border-slate-200">
-              <div class="w-6 h-6 rounded-full bg-slate-400 text-white font-bold text-[10px] flex items-center justify-center">3</div>
-              <div class="flex-1">
-                <div class="flex justify-between text-xs"><b>Carla Mendes</b><span class="text-teal-700 font-bold">64% da Meta</span></div>
-                <div class="h-1.5 rounded-full bg-slate-200 mt-1"><div class="h-full rounded-full bg-teal-600" style="width: 64%"></div></div>
-              </div>
-              <div class="text-xs font-bold text-teal-800">R$ 1.472,00</div>
+              <div class="text-[7px] sm:text-xs font-bold text-teal-800">R$ 1.794</div>
             </div>
           </div>
         </div>
@@ -470,31 +452,19 @@ def render_screen_mockup(kind, mod_color):
 
     elif kind == "stock":
         return f'''
-        <div class="space-y-2">
-          <div class="flex items-center justify-between text-xs text-slate-600 font-medium pb-1 border-b border-slate-200">
+        <div class="space-y-1 sm:space-y-2">
+          <div class="flex items-center justify-between text-[7px] sm:text-xs text-slate-600 font-medium pb-0.5 border-b border-slate-200">
             <span>Controle de Estoque & Reposição</span>
-            <span class="text-[10px] bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded">Baixa Automática</span>
+            <span class="text-[6px] sm:text-[10px] bg-amber-100 text-amber-900 font-bold px-1.5 py-0.5 rounded">Automático</span>
           </div>
-          <div class="grid grid-cols-2 gap-2 pt-1">
-            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
-              <div class="flex justify-between text-xs font-bold text-slate-800"><span>Insumo Master A</span><span class="text-amber-800">80%</span></div>
-              <div class="text-[9px] text-slate-500 mt-0.5">Validade: 12/2027 · Lote #482</div>
-              <div class="h-1.5 rounded-full bg-slate-200 mt-1.5"><div class="h-full rounded-full bg-amber-600" style="width: 80%"></div></div>
+          <div class="grid grid-cols-2 gap-1 sm:gap-2 pt-0.5">
+            <div class="p-1 sm:p-2.5 rounded bg-slate-50 border border-slate-200">
+              <div class="flex justify-between text-[7px] sm:text-xs font-bold text-slate-800"><span>Insumo A</span><span class="text-amber-800">80%</span></div>
+              <div class="h-1 sm:h-1.5 rounded-full bg-slate-200 mt-1"><div class="h-full rounded-full bg-amber-600" style="width: 80%"></div></div>
             </div>
-            <div class="p-2.5 rounded-lg bg-red-50 border border-red-200">
-              <div class="flex justify-between text-xs font-bold text-red-900"><span>Produto Premium B</span><span class="text-red-700">15%</span></div>
-              <div class="text-[9px] text-red-700 font-bold mt-0.5">ALERTA: Compra Sugerida</div>
-              <div class="h-1.5 rounded-full bg-red-200 mt-1.5"><div class="h-full rounded-full bg-red-600" style="width: 15%"></div></div>
-            </div>
-            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
-              <div class="flex justify-between text-xs font-bold text-slate-800"><span>Ampola Regenerativa</span><span class="text-amber-800">65%</span></div>
-              <div class="text-[9px] text-slate-500 mt-0.5">Validade: 09/2026 · Lote #311</div>
-              <div class="h-1.5 rounded-full bg-slate-200 mt-1.5"><div class="h-full rounded-full bg-amber-600" style="width: 65%"></div></div>
-            </div>
-            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
-              <div class="flex justify-between text-xs font-bold text-slate-800"><span>Kit Descartável Multi</span><span class="text-amber-800">95%</span></div>
-              <div class="text-[9px] text-slate-500 mt-0.5">Estoque Pleno · 140 un</div>
-              <div class="h-1.5 rounded-full bg-slate-200 mt-1.5"><div class="h-full rounded-full bg-amber-600" style="width: 95%"></div></div>
+            <div class="p-1 sm:p-2.5 rounded bg-red-50 border border-red-200">
+              <div class="flex justify-between text-[7px] sm:text-xs font-bold text-red-900"><span>Produto B</span><span class="text-red-700">15%</span></div>
+              <div class="h-1 sm:h-1.5 rounded-full bg-red-200 mt-1"><div class="h-full rounded-full bg-red-600" style="width: 15%"></div></div>
             </div>
           </div>
         </div>
@@ -563,56 +533,56 @@ def build_catalog():
     # =========================================================================
     # Pág 4: Sumário Esquerda
     p4 = f'''
-    <div class="page page-left mod-blue bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-4 sm:p-7 md:p-10 pb-8 sm:pb-10 flex flex-col justify-between">
-      <div class="border-b border-slate-200 pb-2 sm:pb-3">
-        <span class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] text-[#0063B1]">Simplicidade Radical</span>
+    <div class="page page-left mod-blue bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-2 sm:p-7 md:p-10 pb-3 sm:pb-8 flex flex-col justify-between">
+      <div class="border-b border-slate-200 pb-1 sm:pb-3">
+        <span class="text-[8px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#0063B1]">Simplicidade Radical</span>
       </div>
 
-      <div class="my-auto space-y-3 sm:space-y-6">
+      <div class="my-auto space-y-1 sm:space-y-4">
         <div>
-          <h2 class="text-xl sm:text-3xl md:text-4xl font-light text-slate-900 leading-tight">
+          <h2 class="text-xs sm:text-3xl font-light text-slate-900 leading-tight">
             Toda a gestão<br />
             <b class="font-bold">em seis módulos.</b>
           </h2>
-          <p class="mt-1.5 sm:mt-3 text-[11px] sm:text-sm text-slate-600 leading-relaxed font-light">
-            Eliminamos menus labirínticos e burocracia para entregar uma ferramenta veloz, ágil e focada em tomada de decisão em tempo real.
+          <p class="mt-0.5 sm:mt-2 text-[7px] sm:text-sm text-slate-600 leading-snug line-clamp-2 sm:line-clamp-none font-light">
+            Eliminamos menus labirínticos e burocracia para entregar uma ferramenta veloz e ágil.
           </p>
         </div>
 
-        <div class="grid grid-cols-2 gap-2 sm:gap-3 pt-1">
-          <div class="rounded-xl p-2 sm:p-3.5 bg-[#0063B1] text-white flex flex-col justify-between h-18 sm:h-24 shadow-xs">
-            <span class="text-[8px] sm:text-[10px] opacity-80 font-light">01</span>
+        <div class="grid grid-cols-2 gap-1 sm:gap-2.5 pt-0.5">
+          <div class="rounded p-1 sm:p-3 bg-[#0063B1] text-white flex flex-col justify-between h-10 sm:h-22 shadow-xs">
+            <span class="text-[6px] sm:text-[10px] opacity-80 font-light">01</span>
             <div>
-              <div class="text-lg sm:text-2xl font-bold leading-none">06</div>
-              <div class="text-[9px] sm:text-[11px] opacity-90 mt-0.5 sm:mt-1 font-light">módulos integrados</div>
+              <div class="text-[10px] sm:text-2xl font-bold leading-none">06</div>
+              <div class="text-[6px] sm:text-[10px] opacity-90 mt-0.5 font-light">módulos</div>
             </div>
           </div>
-          <div class="rounded-xl p-2 sm:p-3.5 bg-slate-50 border border-slate-200 text-slate-900 flex flex-col justify-between h-18 sm:h-24">
-            <span class="text-[8px] sm:text-[10px] text-slate-400 font-light">02</span>
+          <div class="rounded p-1 sm:p-3 bg-slate-50 border border-slate-200 text-slate-900 flex flex-col justify-between h-10 sm:h-22">
+            <span class="text-[6px] sm:text-[10px] text-slate-400 font-light">02</span>
             <div>
-              <div class="text-lg sm:text-2xl font-bold leading-none">2</div>
-              <div class="text-[9px] sm:text-[11px] text-slate-600 mt-0.5 sm:mt-1 font-light">cliques por operação</div>
+              <div class="text-[10px] sm:text-2xl font-bold leading-none">2</div>
+              <div class="text-[6px] sm:text-[10px] text-slate-600 mt-0.5 font-light">cliques</div>
             </div>
           </div>
-          <div class="rounded-xl p-2 sm:p-3.5 bg-slate-50 border border-slate-200 text-slate-900 flex flex-col justify-between h-18 sm:h-24">
-            <span class="text-[8px] sm:text-[10px] text-slate-400 font-light">03</span>
+          <div class="rounded p-1 sm:p-3 bg-slate-50 border border-slate-200 text-slate-900 flex flex-col justify-between h-10 sm:h-22">
+            <span class="text-[6px] sm:text-[10px] text-slate-400 font-light">03</span>
             <div>
-              <div class="text-lg sm:text-2xl font-bold leading-none">&lt;300ms</div>
-              <div class="text-[9px] sm:text-[11px] text-slate-600 mt-0.5 sm:mt-1 font-light">tempo de resposta</div>
+              <div class="text-[10px] sm:text-2xl font-bold leading-none">&lt;300ms</div>
+              <div class="text-[6px] sm:text-[10px] text-slate-600 mt-0.5 font-light">resposta</div>
             </div>
           </div>
-          <div class="rounded-xl p-2 sm:p-3.5 bg-[#16A34A] text-white flex flex-col justify-between h-18 sm:h-24 shadow-xs">
-            <span class="text-[8px] sm:text-[10px] opacity-80 font-light">04</span>
+          <div class="rounded p-1 sm:p-3 bg-[#16A34A] text-white flex flex-col justify-between h-10 sm:h-22 shadow-xs">
+            <span class="text-[6px] sm:text-[10px] opacity-80 font-light">04</span>
             <div>
-              <div class="text-lg sm:text-2xl font-bold leading-none">AES-256</div>
-              <div class="text-[9px] sm:text-[11px] opacity-90 mt-0.5 sm:mt-1 font-light">criptografia de ponta</div>
+              <div class="text-[10px] sm:text-2xl font-bold leading-none">AES-256</div>
+              <div class="text-[6px] sm:text-[10px] opacity-90 mt-0.5 font-light">segurança</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="absolute bottom-2 sm:bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-20">
-        <img src="{logo_dark_uri}" alt="Habitat Media" class="h-2.5 sm:h-3.5 w-auto object-contain select-none" />
+      <div class="absolute bottom-1 sm:bottom-2 left-1/2 -translate-x-1/2 pointer-events-none opacity-20">
+        <img src="{logo_dark_uri}" alt="Habitat Media" class="h-2 sm:h-3 w-auto object-contain select-none" />
       </div>
     </div>
     '''
@@ -624,34 +594,32 @@ def build_catalog():
         target_folio_click = 6 + i * 4  # Posição física da página no flipbook
         display_num = 1 + i * 4        # Numeração editorial oficial do módulo
         buttons_html += f'''
-        <button onclick="goToFolio({target_folio_click})" class="{m['mod']} group flex items-center gap-2 sm:gap-3.5 border-b border-slate-100 py-1.5 sm:py-2.5 text-left w-full cursor-pointer hover:bg-slate-50 px-1 sm:px-2 rounded-lg transition-colors">
-          <span class="text-xs sm:text-base font-bold text-mod w-5 sm:w-7">{m['n']}</span>
-          <div class="flex-1">
-            <div class="text-[11px] sm:text-sm font-semibold text-slate-800 group-hover:text-mod transition-colors">{' '.join(m['title']).replace('.', '')}</div>
-            <div class="text-[8px] sm:text-[10px] text-slate-500 uppercase tracking-wider">{m['area']}</div>
+        <button onclick="goToFolio({target_folio_click})" class="{m['mod']} group flex items-center gap-1 sm:gap-2.5 border-b border-slate-100 py-0.5 sm:py-2 text-left w-full cursor-pointer hover:bg-slate-50 px-1 rounded transition-colors">
+          <span class="text-[10px] sm:text-base font-bold text-mod w-4 sm:w-6">{m['n']}</span>
+          <div class="flex-1 min-w-0">
+            <div class="text-[8px] sm:text-xs font-semibold text-slate-800 group-hover:text-mod transition-colors truncate">{' '.join(m['title']).replace('.', '')}</div>
           </div>
-          <span class="text-[10px] sm:text-xs font-mono font-medium text-slate-400 group-hover:text-mod transition-colors">{display_num:02d}</span>
+          <span class="text-[7px] sm:text-xs font-mono font-medium text-slate-400 group-hover:text-mod transition-colors">{display_num:02d}</span>
         </button>
         '''
 
     p5 = f'''
-    <div class="page page-right mod-blue bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-4 sm:p-7 md:p-10 pb-8 sm:pb-10 flex flex-col justify-between">
-      <div class="border-b border-slate-200 pb-2 sm:pb-3 flex justify-between items-center">
-        <span class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] text-[#0063B1]">Sumário</span>
-        <span class="text-[9px] sm:text-xs font-light text-slate-400">6 Soluções Integradas</span>
+    <div class="page page-right mod-blue bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-2 sm:p-7 md:p-10 pb-3 sm:pb-8 flex flex-col justify-between">
+      <div class="border-b border-slate-200 pb-1 sm:pb-2.5 flex justify-between items-center">
+        <span class="text-[8px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#0063B1]">Sumário</span>
+        <span class="text-[7px] sm:text-xs font-light text-slate-400">6 Módulos</span>
       </div>
 
-      <div class="my-auto space-y-0.5 sm:space-y-1">
-        <div class="mb-1.5 sm:mb-3">
-          <h3 class="text-lg sm:text-2xl font-light text-slate-900">Índice dos <b class="font-bold">módulos.</b></h3>
-          <p class="text-[10px] sm:text-xs text-slate-500 mt-0.5 font-light">Clique em qualquer módulo para navegar diretamente para ele.</p>
+      <div class="my-auto space-y-0.5">
+        <div class="mb-0.5 sm:mb-2">
+          <h3 class="text-xs sm:text-xl font-light text-slate-900">Índice dos <b class="font-bold">módulos.</b></h3>
         </div>
         {buttons_html}
       </div>
 
       {render_tabs()}
-      <div class="absolute bottom-2 sm:bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-20">
-        <img src="{logo_dark_uri}" alt="Habitat Media" class="h-2.5 sm:h-3.5 w-auto object-contain select-none" />
+      <div class="absolute bottom-1 sm:bottom-2 left-1/2 -translate-x-1/2 pointer-events-none opacity-20">
+        <img src="{logo_dark_uri}" alt="Habitat Media" class="h-2 sm:h-3 w-auto object-contain select-none" />
       </div>
     </div>
     '''
@@ -672,46 +640,46 @@ def build_catalog():
         # PÁGINA ESQUERDA: ModuleOpening (Hero do Módulo)
         # ---------------------------------------------------------------------
         po_left = f'''
-        <div class="page page-left {m['mod']} bg-mod text-white relative w-full h-full overflow-hidden select-none p-4 sm:p-7 md:p-10 pb-8 sm:pb-10 flex flex-col justify-between">
-          <div class="flex items-center justify-between border-b border-white/20 pb-2 sm:pb-3">
-            <span class="text-[9px] sm:text-xs font-bold uppercase tracking-[0.25em] text-white/90">{m['area']}</span>
-            <span class="text-[8px] sm:text-[10px] font-semibold uppercase tracking-wider bg-white/20 px-2 sm:px-2.5 py-0.5 rounded-full text-white">{m['badge']}</span>
+        <div class="page page-left {m['mod']} bg-mod text-white relative w-full h-full overflow-hidden select-none p-2 sm:p-7 md:p-10 pb-3 sm:pb-8 flex flex-col justify-between">
+          <div class="flex items-center justify-between border-b border-white/20 pb-1 sm:pb-3">
+            <span class="text-[8px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white/90">{m['area']}</span>
+            <span class="text-[7px] sm:text-[10px] font-semibold uppercase tracking-wider bg-white/20 px-1.5 sm:px-2.5 py-0.5 rounded-full text-white">{m['badge']}</span>
           </div>
 
-          <div class="my-auto space-y-2 sm:space-y-4">
-            <div class="text-4xl sm:text-7xl md:text-8xl font-bold tracking-tight text-white leading-none opacity-95">
+          <div class="my-auto space-y-1 sm:space-y-4">
+            <div class="text-3xl sm:text-7xl md:text-8xl font-bold tracking-tight text-white leading-none opacity-95">
               {m['n']}
             </div>
-            <h2 class="text-xl sm:text-3xl md:text-4xl font-light leading-[1.1] text-white">
+            <h2 class="text-xs sm:text-3xl md:text-4xl font-light leading-[1.1] text-white">
               {m['title'][0]}<br />
               <b class="font-bold">{m['title'][1]}</b>
             </h2>
-            <p class="text-xs sm:text-base md:text-lg font-medium leading-snug text-white/95 pt-0.5 sm:pt-2">
+            <p class="text-[9px] sm:text-base md:text-lg font-medium leading-tight text-white/95 pt-0.5 sm:pt-2">
               {m['promise']}
             </p>
-            <p class="text-[10px] sm:text-xs md:text-sm text-white/80 leading-relaxed font-light">
+            <p class="text-[8px] sm:text-xs md:text-sm text-white/80 leading-snug line-clamp-2 sm:line-clamp-none font-light">
               {m['summary']}
             </p>
           </div>
 
-          <div class="pt-2 sm:pt-4 border-t border-white/20 grid grid-cols-3 gap-1.5 sm:gap-2 text-white">
+          <div class="pt-1 sm:pt-4 border-t border-white/20 grid grid-cols-3 gap-1 sm:gap-2 text-white">
             <div>
-              <div class="text-[7px] sm:text-[9px] uppercase tracking-wider text-white/70">Resposta</div>
-              <div class="text-[10px] sm:text-xs font-bold text-white mt-0.5">{m['speed']}</div>
+              <div class="text-[6px] sm:text-[9px] uppercase tracking-wider text-white/70">Resposta</div>
+              <div class="text-[8px] sm:text-xs font-bold text-white mt-0.5">{m['speed']}</div>
             </div>
             <div>
-              <div class="text-[7px] sm:text-[9px] uppercase tracking-wider text-white/70">Operação</div>
-              <div class="text-[10px] sm:text-xs font-bold text-white mt-0.5">{m['clicks']}</div>
+              <div class="text-[6px] sm:text-[9px] uppercase tracking-wider text-white/70">Operação</div>
+              <div class="text-[8px] sm:text-xs font-bold text-white mt-0.5">{m['clicks']}</div>
             </div>
             <div>
-              <div class="text-[7px] sm:text-[9px] uppercase tracking-wider text-white/70">Arquitetura</div>
-              <div class="text-[10px] sm:text-xs font-bold text-white mt-0.5">{m['architecture']}</div>
+              <div class="text-[6px] sm:text-[9px] uppercase tracking-wider text-white/70">Arquitetura</div>
+              <div class="text-[8px] sm:text-xs font-bold text-white mt-0.5">{m['architecture']}</div>
             </div>
           </div>
 
-          <div class="absolute bottom-2.5 left-5 text-[10px] sm:text-xs text-white/50 font-light">{p_hero:02d}</div>
-          <div class="absolute bottom-2 sm:bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-25">
-            <img src="{logo_white_uri}" alt="Habitat Media" class="h-2.5 sm:h-3.5 w-auto object-contain select-none" />
+          <div class="absolute bottom-1.5 left-3 sm:left-5 text-[8px] sm:text-xs text-white/50 font-light">{p_hero:02d}</div>
+          <div class="absolute bottom-1 sm:bottom-2 left-1/2 -translate-x-1/2 pointer-events-none opacity-20">
+            <img src="{logo_white_uri}" alt="Habitat Media" class="h-2 sm:h-3 w-auto object-contain select-none" />
           </div>
         </div>
         '''
@@ -721,24 +689,24 @@ def build_catalog():
         # PÁGINA DIREITA: ModuleOpening (Mockup da Tela - Fundo Preto)
         # ---------------------------------------------------------------------
         po_right = f'''
-        <div class="page page-right {m['mod']} bg-black text-white relative w-full h-full overflow-hidden select-none p-4 sm:p-7 md:p-10 pb-8 sm:pb-10 flex flex-col justify-between">
-          <div class="border-b border-white/10 pb-2 sm:pb-3">
-            <span class="text-[9px] sm:text-xs font-bold uppercase tracking-[0.2em] text-mod">Tela Operacional</span>
+        <div class="page page-right {m['mod']} bg-black text-white relative w-full h-full overflow-hidden select-none p-2 sm:p-7 md:p-10 pb-3 sm:pb-8 flex flex-col justify-between">
+          <div class="border-b border-white/10 pb-1 sm:pb-3 flex justify-between items-center">
+            <span class="text-[8px] sm:text-xs font-bold uppercase tracking-[0.2em] text-mod">Tela Operacional</span>
+            <span class="text-[7px] sm:text-[10px] text-white/40 uppercase">2 Cliques</span>
           </div>
 
-          <div class="rounded-xl border border-white/10 bg-white shadow-2xl overflow-hidden flex flex-col my-auto p-2 sm:p-4 md:p-5 max-h-[58%] sm:max-h-[64%]">
+          <div class="rounded-lg sm:rounded-xl border border-white/10 bg-white shadow-2xl overflow-hidden flex flex-col my-auto p-1.5 sm:p-4">
             {render_screen_mockup(m['screen'], m['color'])}
           </div>
 
-          <div class="pt-1.5 sm:pt-3 border-t border-white/10">
-            <div class="text-[11px] sm:text-sm font-semibold text-white truncate">{m['funcionalidades'][0]}</div>
-            <div class="text-[9px] sm:text-[11px] text-slate-400 font-light mt-0.5">Interface simplificada em 2 cliques, sem menus labirínticos.</div>
+          <div class="pt-1 sm:pt-3 border-t border-white/10">
+            <div class="text-[8px] sm:text-sm font-semibold text-white truncate">{m['funcionalidades'][0]}</div>
           </div>
 
           {render_tabs(i)}
-          <div class="absolute bottom-2.5 right-5 text-[10px] sm:text-xs text-slate-500 font-light">{p_screen:02d}</div>
-          <div class="absolute bottom-2 sm:bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-20">
-            <img src="{logo_white_uri}" alt="Habitat Media" class="h-2.5 sm:h-3.5 w-auto object-contain select-none" />
+          <div class="absolute bottom-1.5 right-3 sm:right-5 text-[8px] sm:text-xs text-slate-500 font-light">{p_screen:02d}</div>
+          <div class="absolute bottom-1 sm:bottom-2 left-1/2 -translate-x-1/2 pointer-events-none opacity-20">
+            <img src="{logo_white_uri}" alt="Habitat Media" class="h-2 sm:h-3 w-auto object-contain select-none" />
           </div>
         </div>
         '''
@@ -748,59 +716,59 @@ def build_catalog():
         # PÁGINA ESQUERDA: ModuleSheet (Ficha Técnica & Diferenciais)
         # ---------------------------------------------------------------------
         difs_html = "".join([
-            f'<div class="flex gap-2 sm:gap-3 border-b border-slate-100 py-1 sm:py-2 text-[10px] sm:text-sm leading-relaxed text-slate-700">'
-            f'  <span class="font-bold text-mod shrink-0 text-[10px] sm:text-sm">0{k + 1}</span><span>{d}</span>'
+            f'<div class="flex gap-1.5 sm:gap-3 border-b border-slate-100 py-0.5 sm:py-2 text-[8px] sm:text-sm leading-tight text-slate-700">'
+            f'  <span class="font-bold text-mod shrink-0 text-[8px] sm:text-sm">0{k + 1}</span><span>{d}</span>'
             f'</div>'
             for k, d in enumerate(m['diferenciais'])
         ])
 
         funcs_html = "".join([
-            f'<div class="flex items-center gap-1.5 sm:gap-2 border-b border-slate-100 py-0.5 sm:py-1.5 text-[9px] sm:text-xs text-slate-700">'
-            f'  <span class="w-1.5 h-1.5 rounded-full bg-mod shrink-0"></span><span>{f}</span>'
+            f'<div class="flex items-center gap-1 sm:gap-2 border-b border-slate-100 py-0.5 sm:py-1.5 text-[7px] sm:text-xs text-slate-700">'
+            f'  <span class="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-mod shrink-0"></span><span class="truncate">{f}</span>'
             f'</div>'
             for f in m['funcionalidades']
         ])
 
         stack_html = "".join([
             f'<div class="border-b border-slate-100 py-0.5 sm:py-1.5">'
-            f'  <div class="text-[8px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-semibold">{s[0]}</div>'
-            f'  <div class="text-[9px] sm:text-xs font-semibold text-slate-800">{s[1]}</div>'
+            f'  <div class="text-[6px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-semibold">{s[0]}</div>'
+            f'  <div class="text-[7px] sm:text-xs font-semibold text-slate-800 truncate">{s[1]}</div>'
             f'</div>'
             for s in m['stack']
         ])
 
         ps_left = f'''
-        <div class="page page-left {m['mod']} bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-4 sm:p-7 md:p-10 pb-8 sm:pb-10 flex flex-col justify-between">
+        <div class="page page-left {m['mod']} bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-2 sm:p-7 md:p-10 pb-3 sm:pb-8 flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between border-b border-slate-200 pb-2 sm:pb-3">
-              <span class="text-[9px] sm:text-xs font-bold uppercase tracking-[0.2em] text-mod">{m['n']} · Ficha Técnica</span>
-              <span class="text-[8px] sm:text-[10px] text-slate-400 uppercase tracking-widest">{m['area']}</span>
+            <div class="flex items-center justify-between border-b border-slate-200 pb-1 sm:pb-3">
+              <span class="text-[8px] sm:text-xs font-bold uppercase tracking-[0.2em] text-mod">{m['n']} · Ficha Técnica</span>
+              <span class="text-[7px] sm:text-[10px] text-slate-400 uppercase tracking-widest">{m['area']}</span>
             </div>
             
-            <h2 class="text-lg sm:text-2xl md:text-3xl font-light text-slate-900 mt-1.5 sm:mt-3 leading-snug">
+            <h2 class="text-xs sm:text-2xl md:text-3xl font-light text-slate-900 mt-1 sm:mt-3 leading-snug">
               {m['title'][0]} <b class="font-bold">{m['title'][1]}</b>
             </h2>
 
-            <div class="mt-1.5 sm:mt-4">
-              <div class="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5 sm:mb-1">Diferenciais do Módulo</div>
+            <div class="mt-1 sm:mt-4">
+              <div class="text-[7px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5 sm:mb-1">Diferenciais do Módulo</div>
               {difs_html}
             </div>
 
-            <div class="mt-1.5 sm:mt-4 grid grid-cols-2 gap-2 sm:gap-4">
+            <div class="mt-1 sm:mt-4 grid grid-cols-2 gap-1.5 sm:gap-4">
               <div>
-                <div class="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5 sm:mb-1">Funcionalidades</div>
+                <div class="text-[7px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5 sm:mb-1">Funcionalidades</div>
                 {funcs_html}
               </div>
               <div>
-                <div class="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5 sm:mb-1">Arquitetura & Segurança</div>
+                <div class="text-[7px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5 sm:mb-1">Arquitetura & Segurança</div>
                 {stack_html}
               </div>
             </div>
           </div>
 
-          <div class="absolute bottom-2.5 left-5 text-[10px] sm:text-xs text-slate-400 font-light">{p_sheet:02d}</div>
-          <div class="absolute bottom-2 sm:bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-20">
-            <img src="{logo_dark_uri}" alt="Habitat Media" class="h-2.5 sm:h-3.5 w-auto object-contain select-none" />
+          <div class="absolute bottom-1.5 left-3 sm:left-5 text-[8px] sm:text-xs text-slate-400 font-light">{p_sheet:02d}</div>
+          <div class="absolute bottom-1 sm:bottom-2 left-1/2 -translate-x-1/2 pointer-events-none opacity-20">
+            <img src="{logo_dark_uri}" alt="Habitat Media" class="h-2 sm:h-3 w-auto object-contain select-none" />
           </div>
         </div>
         '''
@@ -811,8 +779,8 @@ def build_catalog():
         # ---------------------------------------------------------------------
         indics_html = "".join([
             f'<div class="space-y-0.5 sm:space-y-1">'
-            f'  <div class="flex justify-between text-[10px] sm:text-sm">'
-            f'    <span class="text-slate-700 font-medium">{ind[0]}</span><b class="text-mod font-bold">{ind[1]}</b>'
+            f'  <div class="flex justify-between text-[8px] sm:text-sm">'
+            f'    <span class="text-slate-700 font-medium truncate">{ind[0]}</span><b class="text-mod font-bold ml-1">{ind[1]}</b>'
             f'  </div>'
             f'  <div class="h-1 sm:h-1.5 rounded-full bg-slate-100 overflow-hidden">'
             f'    <div class="h-full rounded-full bg-mod" style="width: {ind[2]}%"></div>'
@@ -822,38 +790,38 @@ def build_catalog():
         ])
 
         ps_right = f'''
-        <div class="page page-right {m['mod']} bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-4 sm:p-7 md:p-10 pb-8 sm:pb-10 flex flex-col justify-between">
+        <div class="page page-right {m['mod']} bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-2 sm:p-7 md:p-10 pb-3 sm:pb-8 flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between border-b border-slate-200 pb-2 sm:pb-2.5">
-              <span class="text-[9px] sm:text-xs font-bold uppercase tracking-[0.2em] text-mod">Indicadores Operacionais</span>
-              <span class="text-[8px] sm:text-[10px] text-slate-400 uppercase tracking-widest font-mono">Métricas Reais</span>
+            <div class="flex items-center justify-between border-b border-slate-200 pb-1 sm:pb-2.5">
+              <span class="text-[8px] sm:text-xs font-bold uppercase tracking-[0.2em] text-mod">Indicadores Operacionais</span>
+              <span class="text-[7px] sm:text-[10px] text-slate-400 uppercase tracking-widest font-mono">Métricas</span>
             </div>
             
-            <h3 class="text-base sm:text-xl md:text-2xl font-light text-slate-900 mt-1 sm:mt-2.5 leading-snug">
+            <h3 class="text-xs sm:text-xl md:text-2xl font-light text-slate-900 mt-1 sm:mt-2.5 leading-snug">
               O ganho, <b class="font-bold">visível de relance.</b>
             </h3>
 
-            <div class="mt-1.5 sm:mt-4 space-y-1 sm:space-y-2 pr-1 sm:pr-4">
+            <div class="mt-1 sm:mt-4 space-y-0.5 sm:space-y-2 pr-1 sm:pr-4">
               {indics_html}
             </div>
           </div>
 
           <!-- Balão de Recomendação Redimensionado e Proporcional -->
-          <div class="rounded-xl py-1.5 px-2 sm:py-3 sm:px-3.5 bg-mod-soft border border-mod/20 mt-1.5 sm:mt-3 mb-1 pr-2 sm:pr-4">
-            <div class="text-lg sm:text-2xl font-serif text-mod leading-none opacity-40 mb-0.5">“</div>
-            <p class="text-[10px] sm:text-xs leading-relaxed text-slate-800 font-light">
+          <div class="rounded-lg py-1 px-1.5 sm:py-3 sm:px-3.5 bg-mod-soft border border-mod/20 mt-1 sm:mt-3 mb-0.5 pr-1 sm:pr-4">
+            <div class="text-sm sm:text-2xl font-serif text-mod leading-none opacity-40 mb-0.5">“</div>
+            <p class="text-[7px] sm:text-xs leading-tight text-slate-800 font-light">
               {m['recomendacao'][0]}<b class="font-bold text-slate-900">{m['recomendacao'][1]}</b>{m['recomendacao'][2]}
             </p>
-            <div class="mt-1 sm:mt-2 flex items-center gap-1.5 sm:gap-2">
-              <div class="h-0.5 w-4 sm:w-5 bg-mod"></div>
-              <span class="text-[7px] sm:text-[9px] font-bold text-slate-500 uppercase tracking-wider">Recomendação de Uso</span>
+            <div class="mt-0.5 sm:mt-2 flex items-center gap-1 sm:gap-2">
+              <div class="h-0.5 w-3 sm:w-5 bg-mod"></div>
+              <span class="text-[6px] sm:text-[9px] font-bold text-slate-500 uppercase tracking-wider">Recomendação</span>
             </div>
           </div>
 
           {render_tabs(i)}
-          <div class="absolute bottom-2.5 right-5 text-[10px] sm:text-xs text-slate-400 font-light">{p_indic:02d}</div>
-          <div class="absolute bottom-2 sm:bottom-2.5 left-1/2 -translate-x-1/2 pointer-events-none opacity-20">
-            <img src="{logo_dark_uri}" alt="Habitat Media" class="h-2.5 sm:h-3.5 w-auto object-contain select-none" />
+          <div class="absolute bottom-1.5 right-3 sm:right-5 text-[8px] sm:text-xs text-slate-400 font-light">{p_indic:02d}</div>
+          <div class="absolute bottom-1 sm:bottom-2 left-1/2 -translate-x-1/2 pointer-events-none opacity-20">
+            <img src="{logo_dark_uri}" alt="Habitat Media" class="h-2 sm:h-3 w-auto object-contain select-none" />
           </div>
         </div>
         '''
@@ -1065,45 +1033,24 @@ def generate_html():
 
       const vh = window.innerHeight;
       const vw = window.innerWidth;
-      // No celular vertical (portrait), forçamos o modo 1 página para visualização ampla e legível
-      const isMobilePortrait = vw < 768 && vh > vw;
+      const isMobile = vw < 768;
 
       let width, height;
 
-      if (isMobilePortrait) {{
-        // Modo 1 Página no Celular Vertical: Preenche a largura útil da tela com margem lateral segura
-        const maxW = Math.min(vw - 16, 520);
-        const maxH = vh - 105;
-        let w = maxW;
-        let h = Math.round(w * 1.414);
-        if (h > maxH) {{
-          h = maxH;
-          w = Math.round(h / 1.414);
-        }}
-        width = Math.max(260, w);
-        height = Math.max(368, h);
-      }} else if (vw < 1024) {{
-        // Tablets ou Celular na Horizontal (Landscape): 2 Páginas lado a lado
-        const maxW = vw - 24;
-        const maxH = vh - 110;
-        let singleW = Math.floor(maxW / 2);
-        let calcH = Math.floor(singleW * 1.414);
-        if (calcH > maxH) {{
-          calcH = maxH;
-          singleW = Math.floor(calcH / 1.414);
-        }}
-        width = Math.max(180, singleW);
-        height = Math.max(255, calcH);
-      }} else {{
-        // Desktop: Visualização Editorial Imersiva 2 Páginas Lado a Lado
-        const maxH = Math.min(820, vh - 130);
-        let singleW = Math.round(maxH / 1.414);
-        if (singleW * 2 > vw - 60) {{
-          singleW = Math.floor((vw - 60) / 2);
-        }}
-        width = singleW;
-        height = Math.round(singleW * 1.414);
+      // Sempre exibe as 2 Páginas Lado a Lado (Spread Duplo Completo de Revista):
+      const availW = isMobile ? (vw - 8) : Math.min(vw - 60, 1400);
+      const availH = isMobile ? (vh - 90) : (vh - 120);
+
+      let singleW = Math.floor(availW / 2);
+      let calcH = Math.floor(singleW * 1.414);
+
+      if (calcH > availH) {{
+        calcH = availH;
+        singleW = Math.floor(calcH / 1.414);
       }}
+
+      width = Math.max(150, singleW);
+      height = Math.max(212, calcH);
 
       pageFlip = new St.PageFlip(container, {{
         width: width,
@@ -1114,8 +1061,8 @@ def generate_html():
         minHeight: 200,
         maxHeight: 1000,
         maxShadowOpacity: 0.35,
-        showCover: !isMobilePortrait,
-        usePortrait: isMobilePortrait,
+        showCover: true,
+        usePortrait: false,
         mobileScrollSupport: false,
         useMouseEvents: true,
         clickEventForward: true,

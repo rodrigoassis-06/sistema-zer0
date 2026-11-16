@@ -885,10 +885,10 @@ def build_catalog():
         pages.append(ps_right)
 
     # =========================================================================
-    # PÁGINA FINAL: CONTRACAPA OFICIAL (IMAGEM OFICIAL ENVIADA PELO USUÁRIO)
+    # PÁGINA FINAL: CONTRACAPA OFICIAL (DESIGN CLEAN BRANCO E CINZA)
     # =========================================================================
     p_cover_end = f'''
-    <div class="page page-left bg-[#0063B1] text-white relative w-full h-full overflow-hidden select-none">
+    <div class="page page-left bg-white text-slate-900 relative w-full h-full overflow-hidden select-none">
       <img src="{contracapa_uri}" alt="Contracapa Sistema 0" class="w-full h-full object-cover select-none" />
     </div>
     '''

@@ -730,62 +730,104 @@ def build_catalog():
         pages.append(po_right)
 
         # ---------------------------------------------------------------------
-        # PÁGINA ESQUERDA: ModuleSheet (Ficha Técnica & Diferenciais)
+        # PÁGINA ESQUERDA: ModuleSheet (Layout Mosaico de Blocos - Estilo L3)
+        # Páginas do Catálogo: 3, 7, 11, 15, 19, 23
         # ---------------------------------------------------------------------
-        difs_html = "".join([
-            f'<div class="flex gap-1.5 sm:gap-3 border-b border-slate-100 py-0.5 sm:py-2 text-[8px] sm:text-sm leading-tight text-slate-700">'
-            f'  <span class="font-bold text-mod shrink-0 text-[8px] sm:text-sm">0{k + 1}</span><span>{d}</span>'
-            f'</div>'
-            for k, d in enumerate(m['diferenciais'])
-        ])
-
-        funcs_html = "".join([
-            f'<div class="flex items-center gap-1 sm:gap-2 border-b border-slate-100 py-0.5 sm:py-1.5 text-[7px] sm:text-xs text-slate-700">'
-            f'  <span class="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-mod shrink-0"></span><span class="truncate">{f}</span>'
-            f'</div>'
+        funcs_mosaic = "".join([
+            f'<p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">'
+            f'  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: {m["accent_light"]};">•</span>'
+            f'  <span class="truncate">{f}</span>'
+            f'</p>'
             for f in m['funcionalidades']
         ])
 
-        stack_html = "".join([
-            f'<div class="border-b border-slate-100 py-0.5 sm:py-1.5">'
-            f'  <div class="text-[6px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-semibold">{s[0]}</div>'
-            f'  <div class="text-[7px] sm:text-xs font-semibold text-slate-800 truncate">{s[1]}</div>'
+        tech_icons = [
+            '<svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>',
+            '<svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>',
+            '<svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>',
+            '<svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>'
+        ]
+
+        tech_cards = "".join([
+            f'<div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">'
+            f'  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: {m["accent_light"]}; color: {m["accent_dark"]};">'
+            f'    {tech_icons[idx]}'
+            f'  </div>'
+            f'  <div>'
+            f'    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">{s[0]}</div>'
+            f'    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">{s[1]}</div>'
+            f'  </div>'
             f'</div>'
-            for s in m['stack']
+            for idx, s in enumerate(m['stack'])
         ])
 
         ps_left = f'''
-        <div class="page page-left {m['mod']} bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-2 sm:p-7 md:p-10 pb-3 sm:pb-8 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-200 pb-1 sm:pb-3">
-              <span class="text-[8px] sm:text-xs font-bold uppercase tracking-[0.2em] text-mod">{m['n']} · Ficha Técnica</span>
-              <span class="text-[7px] sm:text-[10px] text-slate-400 uppercase tracking-widest">{m['area']}</span>
-            </div>
-            
-            <h2 class="text-xs sm:text-2xl md:text-3xl font-light text-slate-900 mt-1 sm:mt-3 leading-snug">
-              {m['title'][0]} <b class="font-bold">{m['title'][1]}</b>
-            </h2>
-
-            <div class="mt-1 sm:mt-4">
-              <div class="text-[7px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5 sm:mb-1">Diferenciais do Módulo</div>
-              {difs_html}
+        <div class="page page-left {m['mod']} bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-3 sm:p-7 md:p-8 flex flex-col justify-between">
+          <div class="flex-1 flex flex-col">
+            <!-- KICKER (CABEÇALHO) -->
+            <div class="flex items-center justify-between border-b border-slate-200 pb-1 sm:pb-2">
+              <span class="text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.2em]" style="color: {m['color']};">{m['n']} · FICHA TÉCNICA</span>
+              <span class="text-[7px] sm:text-[9px] text-slate-400 font-semibold uppercase tracking-widest">{m['area']}</span>
             </div>
 
-            <div class="mt-1 sm:mt-4 grid grid-cols-2 gap-1.5 sm:gap-4">
-              <div>
-                <div class="text-[7px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5 sm:mb-1">Funcionalidades</div>
-                {funcs_html}
+            <!-- TÍTULO DA PÁGINA -->
+            <div class="mt-2 sm:mt-3">
+              <h2 class="text-xs sm:text-2xl font-light text-slate-900 leading-tight">
+                {m['title'][0]} <b class="font-extrabold">{m['title'][1]}</b>
+              </h2>
+            </div>
+
+            <!-- MOSAICO DE BLOCOS (GRID 4x4) -->
+            <div class="mt-2 sm:mt-3.5 grid flex-1 grid-cols-4 grid-rows-4 gap-1.5 sm:gap-2">
+              <!-- BLOCO 1: DIFERENCIAL 01 (DESTAQUE PRINCIPAL) -->
+              <div class="col-span-2 row-span-2 flex flex-col justify-between rounded-lg p-2.5 sm:p-3.5 text-white shadow-xs" style="background-color: {m['color']};">
+                <div class="flex items-start justify-between">
+                  <span class="text-xl sm:text-3xl font-extrabold leading-none">01</span>
+                  <svg class="size-4 sm:size-5 opacity-80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                  </svg>
+                </div>
+                <p class="text-[7.5px] sm:text-[10px] font-semibold leading-snug mt-2">
+                  {m['diferenciais'][0]}
+                </p>
               </div>
-              <div>
-                <div class="text-[7px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5 sm:mb-1">Arquitetura & Segurança</div>
-                {stack_html}
+
+              <!-- BLOCO 2: DIFERENCIAL 02 (DESTAQUE SUAVE) -->
+              <div class="col-span-2 rounded-lg p-2 sm:p-2.5 flex flex-col justify-center border border-slate-100" style="background-color: {m['accent_light']}44;">
+                <b class="text-[7.5px] sm:text-[10px] font-bold" style="color: {m['color']};">02</b>
+                <p class="text-[7px] sm:text-[9.5px] text-slate-700 leading-snug line-clamp-2 mt-0.5">
+                  {m['diferenciais'][1]}
+                </p>
               </div>
+
+              <!-- BLOCO 3: DIFERENCIAL 03 (DESTAQUE SUAVE) -->
+              <div class="col-span-2 rounded-lg p-2 sm:p-2.5 flex flex-col justify-center border border-slate-100" style="background-color: {m['accent_light']}44;">
+                <b class="text-[7.5px] sm:text-[10px] font-bold" style="color: {m['color']};">03</b>
+                <p class="text-[7px] sm:text-[9.5px] text-slate-700 leading-snug line-clamp-2 mt-0.5">
+                  {m['diferenciais'][2]}
+                </p>
+              </div>
+
+              <!-- BLOCO 4: FUNCIONALIDADES (BLOCO ESCURO) -->
+              <div class="col-span-2 row-span-2 rounded-lg bg-[#0B0F17] p-2 sm:p-3 text-white flex flex-col justify-between shadow-xs">
+                <div>
+                  <div class="mb-1 text-[6.5px] sm:text-[8px] font-bold tracking-[0.2em] text-white/50 uppercase">Funcionalidades</div>
+                  <div class="space-y-0.5 sm:space-y-1">
+                    {funcs_mosaic}
+                  </div>
+                </div>
+              </div>
+
+              <!-- BLOCO 5: ARQUITETURA & SEGURANÇA (4 CARTÕES TÉCNICOS COM ÍCONES) -->
+              {tech_cards}
             </div>
           </div>
 
-          <div class="absolute bottom-1.5 left-3 sm:left-5 text-[8px] sm:text-xs text-slate-400 font-light">{p_sheet:02d}</div>
-          <div class="absolute bottom-1 sm:bottom-2 left-1/2 -translate-x-1/2 pointer-events-none opacity-20">
-            <img src="{logo_dark_uri}" alt="Habitat Media" class="h-2 sm:h-3 w-auto object-contain select-none" />
+          <!-- FOOTER (RODAPÉ) -->
+          <div class="mt-auto pt-2 flex justify-between items-center text-[7px] sm:text-[8px] tracking-[0.2em] text-slate-400 uppercase border-t border-slate-100">
+            <span>{p_sheet:02d}</span>
+            <span class="font-bold text-slate-500">HABITAT</span>
+            <span class="w-4"></span>
           </div>
         </div>
         '''

@@ -404,69 +404,69 @@
         </div>
         
 
-        <div class="page page-left mod-blue bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-3 sm:p-7 md:p-8 flex flex-col justify-between">
-          <div class="flex-1 flex flex-col">
+        <div class="page page-left mod-blue bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-4 sm:p-8 md:p-10 pb-4 sm:pb-6 flex flex-col justify-between">
+          <div class="flex-1 flex flex-col min-h-0">
             <!-- KICKER (CABEÇALHO) -->
-            <div class="flex items-center justify-between border-b border-slate-200 pb-1 sm:pb-2">
-              <span class="text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.2em]" style="color: #0063B1;">01 · FICHA TÉCNICA</span>
-              <span class="text-[7px] sm:text-[9px] text-slate-400 font-semibold uppercase tracking-widest">Gestão estratégica</span>
+            <div class="shrink-0 flex items-center justify-between border-b border-slate-200 pb-1.5 sm:pb-3">
+              <span class="text-[9px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.2em]" style="color: #0063B1;">01 · FICHA TÉCNICA</span>
+              <span class="text-[8px] sm:text-[11px] text-slate-400 font-semibold uppercase tracking-widest">Gestão estratégica</span>
             </div>
 
-            <!-- TÍTULO DA PÁGINA -->
-            <div class="mt-2 sm:mt-3">
-              <h2 class="text-xs sm:text-2xl font-light text-slate-900 leading-tight">
+            <!-- TÍTULO DA PÁGINA (MAIOR E COM MAIS PRESENÇA) -->
+            <div class="shrink-0 mt-2 sm:mt-4">
+              <h2 class="text-sm sm:text-3xl md:text-4xl font-light text-slate-900 leading-tight">
                 Dashboard <b class="font-extrabold">analítico.</b>
               </h2>
             </div>
 
-            <!-- MOSAICO DE BLOCOS (GRID 4x4) -->
-            <div class="mt-2 sm:mt-3.5 grid flex-1 grid-cols-4 grid-rows-4 gap-1.5 sm:gap-2">
-              <!-- BLOCO 1: DIFERENCIAL 01 (DESTAQUE PRINCIPAL) -->
-              <div class="col-span-2 row-span-2 flex flex-col justify-between rounded-lg p-2.5 sm:p-3.5 text-white shadow-xs" style="background-color: #0063B1;">
+            <!-- MOSAICO DE BLOCOS EXPANDIDO (GRID 4x4 PREENCHENDO O ESPAÇO) -->
+            <div class="mt-3 sm:mt-6 flex-1 min-h-0 grid grid-cols-4 grid-rows-4 gap-2 sm:gap-3.5 w-full h-full">
+              <!-- BLOCO 1: DIFERENCIAL 01 (DESTAQUE PRINCIPAL EXPANDIDO) -->
+              <div class="col-span-2 row-span-2 h-full flex flex-col justify-between rounded-xl p-3 sm:p-6 md:p-7 text-white shadow-xs" style="background-color: #0063B1;">
                 <div class="flex items-start justify-between">
-                  <span class="text-xl sm:text-3xl font-extrabold leading-none">01</span>
-                  <svg class="size-4 sm:size-5 opacity-80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <span class="text-2xl sm:text-5xl md:text-6xl font-black leading-none">01</span>
+                  <svg class="size-5 sm:size-8 opacity-85" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
                   </svg>
                 </div>
-                <p class="text-[7.5px] sm:text-[10px] font-semibold leading-snug mt-2">
+                <p class="text-[8.5px] sm:text-sm md:text-base font-semibold leading-relaxed mt-2 sm:mt-4">
                   Consolidação automática de todos os canais de receita e custos operacionais sem intervenção manual
                 </p>
               </div>
 
-              <!-- BLOCO 2: DIFERENCIAL 02 (DESTAQUE SUAVE) -->
-              <div class="col-span-2 rounded-lg p-2 sm:p-2.5 flex flex-col justify-center border border-slate-100" style="background-color: #BAE6FD44;">
-                <b class="text-[7.5px] sm:text-[10px] font-bold" style="color: #0063B1;">02</b>
-                <p class="text-[7px] sm:text-[9.5px] text-slate-700 leading-snug line-clamp-2 mt-0.5">
+              <!-- BLOCO 2: DIFERENCIAL 02 (DESTAQUE SUAVE EXPANDIDO) -->
+              <div class="col-span-2 h-full rounded-xl p-2.5 sm:p-4 md:p-5 flex flex-col justify-center border border-slate-200/60 shadow-2xs" style="background-color: #BAE6FD44;">
+                <b class="text-[8.5px] sm:text-xs md:text-sm font-bold" style="color: #0063B1;">02</b>
+                <p class="text-[8px] sm:text-xs md:text-sm text-slate-700 leading-snug line-clamp-2 mt-1">
                   Gráficos preditivos com alertas antecipados de oscilação de margem e tendências de faturamento
                 </p>
               </div>
 
-              <!-- BLOCO 3: DIFERENCIAL 03 (DESTAQUE SUAVE) -->
-              <div class="col-span-2 rounded-lg p-2 sm:p-2.5 flex flex-col justify-center border border-slate-100" style="background-color: #BAE6FD44;">
-                <b class="text-[7.5px] sm:text-[10px] font-bold" style="color: #0063B1;">03</b>
-                <p class="text-[7px] sm:text-[9.5px] text-slate-700 leading-snug line-clamp-2 mt-0.5">
+              <!-- BLOCO 3: DIFERENCIAL 03 (DESTAQUE SUAVE EXPANDIDO) -->
+              <div class="col-span-2 h-full rounded-xl p-2.5 sm:p-4 md:p-5 flex flex-col justify-center border border-slate-200/60 shadow-2xs" style="background-color: #BAE6FD44;">
+                <b class="text-[8.5px] sm:text-xs md:text-sm font-bold" style="color: #0063B1;">03</b>
+                <p class="text-[8px] sm:text-xs md:text-sm text-slate-700 leading-snug line-clamp-2 mt-1">
                   Indicadores de performance individual por profissional e coletiva da equipe em tempo real
                 </p>
               </div>
 
-              <!-- BLOCO 4: FUNCIONALIDADES (BLOCO ESCURO) -->
-              <div class="col-span-2 row-span-2 rounded-lg bg-[#0B0F17] p-2 sm:p-3 text-white flex flex-col justify-between shadow-xs">
+              <!-- BLOCO 4: FUNCIONALIDADES (BLOCO ESCURO EXPANDIDO) -->
+              <div class="col-span-2 row-span-2 h-full rounded-xl bg-[#0B0F17] p-3 sm:p-5 md:p-6 text-white flex flex-col justify-between shadow-xs">
                 <div>
-                  <div class="mb-1 text-[6.5px] sm:text-[8px] font-bold tracking-[0.2em] text-white/50 uppercase">Funcionalidades</div>
-                  <div class="space-y-0.5 sm:space-y-1">
-                    <p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #BAE6FD;">•</span>  <span class="truncate">Gráficos interativos em tempo real por período customizável</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #BAE6FD;">•</span>  <span class="truncate">DRE sintético visual com visão consolidada da empresa</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #BAE6FD;">•</span>  <span class="truncate">Ranking automático de serviços e produtos mais rentáveis</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #BAE6FD;">•</span>  <span class="truncate">Painel de metas dinâmico com termômetro de atingimento</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #BAE6FD;">•</span>  <span class="truncate">Visão multi-unidade e multi-empresa nativa da plataforma</span></p>
+                  <div class="mb-1.5 sm:mb-3 text-[7.5px] sm:text-[10px] md:text-xs font-bold tracking-[0.2em] text-white/50 uppercase">Funcionalidades</div>
+                  <div class="space-y-1 sm:space-y-2">
+                    <p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #BAE6FD;">•</span>  <span class="line-clamp-2">Gráficos interativos em tempo real por período customizável</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #BAE6FD;">•</span>  <span class="line-clamp-2">DRE sintético visual com visão consolidada da empresa</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #BAE6FD;">•</span>  <span class="line-clamp-2">Ranking automático de serviços e produtos mais rentáveis</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #BAE6FD;">•</span>  <span class="line-clamp-2">Painel de metas dinâmico com termômetro de atingimento</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #BAE6FD;">•</span>  <span class="line-clamp-2">Visão multi-unidade e multi-empresa nativa da plataforma</span></p>
                   </div>
                 </div>
               </div>
 
               <!-- BLOCO 5: ARQUITETURA & SEGURANÇA (4 CARTÕES TÉCNICOS COM ÍCONES) -->
-              <div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #BAE6FD; color: #003B6D;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Stack Principal</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">React 18 + Tailwind + FastAPI</div>  </div></div><div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #BAE6FD; color: #003B6D;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Segurança</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">Criptografia AES-256 de Ponta</div>  </div></div><div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #BAE6FD; color: #003B6D;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Sincronização</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">WebSockets em Tempo Real</div>  </div></div><div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #BAE6FD; color: #003B6D;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Exportação</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">PDF, Excel e CSV em 1 Clique</div>  </div></div>
+              <div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #BAE6FD; color: #003B6D;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Stack Principal</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">React 18 + Tailwind + FastAPI</div>  </div></div><div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #BAE6FD; color: #003B6D;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Segurança</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">Criptografia AES-256 de Ponta</div>  </div></div><div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #BAE6FD; color: #003B6D;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Sincronização</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">WebSockets em Tempo Real</div>  </div></div><div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #BAE6FD; color: #003B6D;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Exportação</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">PDF, Excel e CSV em 1 Clique</div>  </div></div>
             </div>
           </div>
 
           <!-- FOOTER (RODAPÉ) -->
-          <div class="mt-auto pt-2 flex justify-between items-center text-[7px] sm:text-[8px] tracking-[0.2em] text-slate-400 uppercase border-t border-slate-100">
+          <div class="shrink-0 mt-auto pt-2.5 sm:pt-4 flex justify-between items-center text-[8px] sm:text-[10px] tracking-[0.2em] text-slate-400 uppercase border-t border-slate-100">
             <span>03</span>
             <span class="font-bold text-slate-500">HABITAT</span>
             <span class="w-4"></span>
@@ -613,69 +613,69 @@
         </div>
         
 
-        <div class="page page-left mod-green bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-3 sm:p-7 md:p-8 flex flex-col justify-between">
-          <div class="flex-1 flex flex-col">
+        <div class="page page-left mod-green bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-4 sm:p-8 md:p-10 pb-4 sm:pb-6 flex flex-col justify-between">
+          <div class="flex-1 flex flex-col min-h-0">
             <!-- KICKER (CABEÇALHO) -->
-            <div class="flex items-center justify-between border-b border-slate-200 pb-1 sm:pb-2">
-              <span class="text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.2em]" style="color: #16A34A;">02 · FICHA TÉCNICA</span>
-              <span class="text-[7px] sm:text-[9px] text-slate-400 font-semibold uppercase tracking-widest">Inteligência financeira</span>
+            <div class="shrink-0 flex items-center justify-between border-b border-slate-200 pb-1.5 sm:pb-3">
+              <span class="text-[9px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.2em]" style="color: #16A34A;">02 · FICHA TÉCNICA</span>
+              <span class="text-[8px] sm:text-[11px] text-slate-400 font-semibold uppercase tracking-widest">Inteligência financeira</span>
             </div>
 
-            <!-- TÍTULO DA PÁGINA -->
-            <div class="mt-2 sm:mt-3">
-              <h2 class="text-xs sm:text-2xl font-light text-slate-900 leading-tight">
+            <!-- TÍTULO DA PÁGINA (MAIOR E COM MAIS PRESENÇA) -->
+            <div class="shrink-0 mt-2 sm:mt-4">
+              <h2 class="text-sm sm:text-3xl md:text-4xl font-light text-slate-900 leading-tight">
                 Gestão financeira <b class="font-extrabold">& DRE gerencial.</b>
               </h2>
             </div>
 
-            <!-- MOSAICO DE BLOCOS (GRID 4x4) -->
-            <div class="mt-2 sm:mt-3.5 grid flex-1 grid-cols-4 grid-rows-4 gap-1.5 sm:gap-2">
-              <!-- BLOCO 1: DIFERENCIAL 01 (DESTAQUE PRINCIPAL) -->
-              <div class="col-span-2 row-span-2 flex flex-col justify-between rounded-lg p-2.5 sm:p-3.5 text-white shadow-xs" style="background-color: #16A34A;">
+            <!-- MOSAICO DE BLOCOS EXPANDIDO (GRID 4x4 PREENCHENDO O ESPAÇO) -->
+            <div class="mt-3 sm:mt-6 flex-1 min-h-0 grid grid-cols-4 grid-rows-4 gap-2 sm:gap-3.5 w-full h-full">
+              <!-- BLOCO 1: DIFERENCIAL 01 (DESTAQUE PRINCIPAL EXPANDIDO) -->
+              <div class="col-span-2 row-span-2 h-full flex flex-col justify-between rounded-xl p-3 sm:p-6 md:p-7 text-white shadow-xs" style="background-color: #16A34A;">
                 <div class="flex items-start justify-between">
-                  <span class="text-xl sm:text-3xl font-extrabold leading-none">01</span>
-                  <svg class="size-4 sm:size-5 opacity-80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <span class="text-2xl sm:text-5xl md:text-6xl font-black leading-none">01</span>
+                  <svg class="size-5 sm:size-8 opacity-85" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
                   </svg>
                 </div>
-                <p class="text-[7.5px] sm:text-[10px] font-semibold leading-snug mt-2">
+                <p class="text-[8.5px] sm:text-sm md:text-base font-semibold leading-relaxed mt-2 sm:mt-4">
                   DRE gerencial por regime de caixa e competência sem retrabalho ou digitação dupla
                 </p>
               </div>
 
-              <!-- BLOCO 2: DIFERENCIAL 02 (DESTAQUE SUAVE) -->
-              <div class="col-span-2 rounded-lg p-2 sm:p-2.5 flex flex-col justify-center border border-slate-100" style="background-color: #BBF7D044;">
-                <b class="text-[7.5px] sm:text-[10px] font-bold" style="color: #16A34A;">02</b>
-                <p class="text-[7px] sm:text-[9.5px] text-slate-700 leading-snug line-clamp-2 mt-0.5">
+              <!-- BLOCO 2: DIFERENCIAL 02 (DESTAQUE SUAVE EXPANDIDO) -->
+              <div class="col-span-2 h-full rounded-xl p-2.5 sm:p-4 md:p-5 flex flex-col justify-center border border-slate-200/60 shadow-2xs" style="background-color: #BBF7D044;">
+                <b class="text-[8.5px] sm:text-xs md:text-sm font-bold" style="color: #16A34A;">02</b>
+                <p class="text-[8px] sm:text-xs md:text-sm text-slate-700 leading-snug line-clamp-2 mt-1">
                   Rastreabilidade total com comprovantes anexos em cada lançamento e histórico auditável
                 </p>
               </div>
 
-              <!-- BLOCO 3: DIFERENCIAL 03 (DESTAQUE SUAVE) -->
-              <div class="col-span-2 rounded-lg p-2 sm:p-2.5 flex flex-col justify-center border border-slate-100" style="background-color: #BBF7D044;">
-                <b class="text-[7.5px] sm:text-[10px] font-bold" style="color: #16A34A;">03</b>
-                <p class="text-[7px] sm:text-[9.5px] text-slate-700 leading-snug line-clamp-2 mt-0.5">
+              <!-- BLOCO 3: DIFERENCIAL 03 (DESTAQUE SUAVE EXPANDIDO) -->
+              <div class="col-span-2 h-full rounded-xl p-2.5 sm:p-4 md:p-5 flex flex-col justify-center border border-slate-200/60 shadow-2xs" style="background-color: #BBF7D044;">
+                <b class="text-[8.5px] sm:text-xs md:text-sm font-bold" style="color: #16A34A;">03</b>
+                <p class="text-[8px] sm:text-xs md:text-sm text-slate-700 leading-snug line-clamp-2 mt-1">
                   Previsibilidade de inadimplência com régua de cobrança automática e conciliação bancária
                 </p>
               </div>
 
-              <!-- BLOCO 4: FUNCIONALIDADES (BLOCO ESCURO) -->
-              <div class="col-span-2 row-span-2 rounded-lg bg-[#0B0F17] p-2 sm:p-3 text-white flex flex-col justify-between shadow-xs">
+              <!-- BLOCO 4: FUNCIONALIDADES (BLOCO ESCURO EXPANDIDO) -->
+              <div class="col-span-2 row-span-2 h-full rounded-xl bg-[#0B0F17] p-3 sm:p-5 md:p-6 text-white flex flex-col justify-between shadow-xs">
                 <div>
-                  <div class="mb-1 text-[6.5px] sm:text-[8px] font-bold tracking-[0.2em] text-white/50 uppercase">Funcionalidades</div>
-                  <div class="space-y-0.5 sm:space-y-1">
-                    <p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #BBF7D0;">•</span>  <span class="truncate">Centro de custos e planos de contas totalmente personalizáveis</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #BBF7D0;">•</span>  <span class="truncate">Importação e conciliação de extratos OFX e Open Finance</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #BBF7D0;">•</span>  <span class="truncate">Simulador de ponto de equilíbrio e margem de contribuição</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #BBF7D0;">•</span>  <span class="truncate">Split de pagamentos e rateio automático de despesas fixas</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #BBF7D0;">•</span>  <span class="truncate">Alerta preventivo de contas a vencer via push e WhatsApp</span></p>
+                  <div class="mb-1.5 sm:mb-3 text-[7.5px] sm:text-[10px] md:text-xs font-bold tracking-[0.2em] text-white/50 uppercase">Funcionalidades</div>
+                  <div class="space-y-1 sm:space-y-2">
+                    <p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #BBF7D0;">•</span>  <span class="line-clamp-2">Centro de custos e planos de contas totalmente personalizáveis</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #BBF7D0;">•</span>  <span class="line-clamp-2">Importação e conciliação de extratos OFX e Open Finance</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #BBF7D0;">•</span>  <span class="line-clamp-2">Simulador de ponto de equilíbrio e margem de contribuição</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #BBF7D0;">•</span>  <span class="line-clamp-2">Split de pagamentos e rateio automático de despesas fixas</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #BBF7D0;">•</span>  <span class="line-clamp-2">Alerta preventivo de contas a vencer via push e WhatsApp</span></p>
                   </div>
                 </div>
               </div>
 
               <!-- BLOCO 5: ARQUITETURA & SEGURANÇA (4 CARTÕES TÉCNICOS COM ÍCONES) -->
-              <div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #BBF7D0; color: #14532D;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Stack Principal</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">PostgreSQL Transacional</div>  </div></div><div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #BBF7D0; color: #14532D;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Segurança</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">Assinatura SHA-256 por Registro</div>  </div></div><div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #BBF7D0; color: #14532D;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Sincronização</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">Open Finance API e Webhooks</div>  </div></div><div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #BBF7D0; color: #14532D;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Exportação</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">SPED Contábil, OFX e Excel</div>  </div></div>
+              <div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #BBF7D0; color: #14532D;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Stack Principal</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">PostgreSQL Transacional</div>  </div></div><div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #BBF7D0; color: #14532D;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Segurança</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">Assinatura SHA-256 por Registro</div>  </div></div><div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #BBF7D0; color: #14532D;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Sincronização</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">Open Finance API e Webhooks</div>  </div></div><div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #BBF7D0; color: #14532D;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Exportação</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">SPED Contábil, OFX e Excel</div>  </div></div>
             </div>
           </div>
 
           <!-- FOOTER (RODAPÉ) -->
-          <div class="mt-auto pt-2 flex justify-between items-center text-[7px] sm:text-[8px] tracking-[0.2em] text-slate-400 uppercase border-t border-slate-100">
+          <div class="shrink-0 mt-auto pt-2.5 sm:pt-4 flex justify-between items-center text-[8px] sm:text-[10px] tracking-[0.2em] text-slate-400 uppercase border-t border-slate-100">
             <span>07</span>
             <span class="font-bold text-slate-500">HABITAT</span>
             <span class="w-4"></span>
@@ -826,69 +826,69 @@
         </div>
         
 
-        <div class="page page-left mod-terra bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-3 sm:p-7 md:p-8 flex flex-col justify-between">
-          <div class="flex-1 flex flex-col">
+        <div class="page page-left mod-terra bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-4 sm:p-8 md:p-10 pb-4 sm:pb-6 flex flex-col justify-between">
+          <div class="flex-1 flex flex-col min-h-0">
             <!-- KICKER (CABEÇALHO) -->
-            <div class="flex items-center justify-between border-b border-slate-200 pb-1 sm:pb-2">
-              <span class="text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.2em]" style="color: #C2410C;">03 · FICHA TÉCNICA</span>
-              <span class="text-[7px] sm:text-[9px] text-slate-400 font-semibold uppercase tracking-widest">Fluxo operacional</span>
+            <div class="shrink-0 flex items-center justify-between border-b border-slate-200 pb-1.5 sm:pb-3">
+              <span class="text-[9px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.2em]" style="color: #C2410C;">03 · FICHA TÉCNICA</span>
+              <span class="text-[8px] sm:text-[11px] text-slate-400 font-semibold uppercase tracking-widest">Fluxo operacional</span>
             </div>
 
-            <!-- TÍTULO DA PÁGINA -->
-            <div class="mt-2 sm:mt-3">
-              <h2 class="text-xs sm:text-2xl font-light text-slate-900 leading-tight">
+            <!-- TÍTULO DA PÁGINA (MAIOR E COM MAIS PRESENÇA) -->
+            <div class="shrink-0 mt-2 sm:mt-4">
+              <h2 class="text-sm sm:text-3xl md:text-4xl font-light text-slate-900 leading-tight">
                 Agenda & <b class="font-extrabold">atendimentos.</b>
               </h2>
             </div>
 
-            <!-- MOSAICO DE BLOCOS (GRID 4x4) -->
-            <div class="mt-2 sm:mt-3.5 grid flex-1 grid-cols-4 grid-rows-4 gap-1.5 sm:gap-2">
-              <!-- BLOCO 1: DIFERENCIAL 01 (DESTAQUE PRINCIPAL) -->
-              <div class="col-span-2 row-span-2 flex flex-col justify-between rounded-lg p-2.5 sm:p-3.5 text-white shadow-xs" style="background-color: #C2410C;">
+            <!-- MOSAICO DE BLOCOS EXPANDIDO (GRID 4x4 PREENCHENDO O ESPAÇO) -->
+            <div class="mt-3 sm:mt-6 flex-1 min-h-0 grid grid-cols-4 grid-rows-4 gap-2 sm:gap-3.5 w-full h-full">
+              <!-- BLOCO 1: DIFERENCIAL 01 (DESTAQUE PRINCIPAL EXPANDIDO) -->
+              <div class="col-span-2 row-span-2 h-full flex flex-col justify-between rounded-xl p-3 sm:p-6 md:p-7 text-white shadow-xs" style="background-color: #C2410C;">
                 <div class="flex items-start justify-between">
-                  <span class="text-xl sm:text-3xl font-extrabold leading-none">01</span>
-                  <svg class="size-4 sm:size-5 opacity-80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <span class="text-2xl sm:text-5xl md:text-6xl font-black leading-none">01</span>
+                  <svg class="size-5 sm:size-8 opacity-85" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
                   </svg>
                 </div>
-                <p class="text-[7.5px] sm:text-[10px] font-semibold leading-snug mt-2">
+                <p class="text-[8.5px] sm:text-sm md:text-base font-semibold leading-relaxed mt-2 sm:mt-4">
                   Confirmação e lembretes automáticos por WhatsApp sem custo de API ou retrabalho de recepção
                 </p>
               </div>
 
-              <!-- BLOCO 2: DIFERENCIAL 02 (DESTAQUE SUAVE) -->
-              <div class="col-span-2 rounded-lg p-2 sm:p-2.5 flex flex-col justify-center border border-slate-100" style="background-color: #FED7AA44;">
-                <b class="text-[7.5px] sm:text-[10px] font-bold" style="color: #C2410C;">02</b>
-                <p class="text-[7px] sm:text-[9.5px] text-slate-700 leading-snug line-clamp-2 mt-0.5">
+              <!-- BLOCO 2: DIFERENCIAL 02 (DESTAQUE SUAVE EXPANDIDO) -->
+              <div class="col-span-2 h-full rounded-xl p-2.5 sm:p-4 md:p-5 flex flex-col justify-center border border-slate-200/60 shadow-2xs" style="background-color: #FED7AA44;">
+                <b class="text-[8.5px] sm:text-xs md:text-sm font-bold" style="color: #C2410C;">02</b>
+                <p class="text-[8px] sm:text-xs md:text-sm text-slate-700 leading-snug line-clamp-2 mt-1">
                   Bloqueio anti-overbooking e gestão de salas, macas ou cadeiras com capacidade simultânea
                 </p>
               </div>
 
-              <!-- BLOCO 3: DIFERENCIAL 03 (DESTAQUE SUAVE) -->
-              <div class="col-span-2 rounded-lg p-2 sm:p-2.5 flex flex-col justify-center border border-slate-100" style="background-color: #FED7AA44;">
-                <b class="text-[7.5px] sm:text-[10px] font-bold" style="color: #C2410C;">03</b>
-                <p class="text-[7px] sm:text-[9.5px] text-slate-700 leading-snug line-clamp-2 mt-0.5">
+              <!-- BLOCO 3: DIFERENCIAL 03 (DESTAQUE SUAVE EXPANDIDO) -->
+              <div class="col-span-2 h-full rounded-xl p-2.5 sm:p-4 md:p-5 flex flex-col justify-center border border-slate-200/60 shadow-2xs" style="background-color: #FED7AA44;">
+                <b class="text-[8.5px] sm:text-xs md:text-sm font-bold" style="color: #C2410C;">03</b>
+                <p class="text-[8px] sm:text-xs md:text-sm text-slate-700 leading-snug line-clamp-2 mt-1">
                   Histórico completo de comparecimento e cálculo imediato de no-show por cliente e profissional
                 </p>
               </div>
 
-              <!-- BLOCO 4: FUNCIONALIDADES (BLOCO ESCURO) -->
-              <div class="col-span-2 row-span-2 rounded-lg bg-[#0B0F17] p-2 sm:p-3 text-white flex flex-col justify-between shadow-xs">
+              <!-- BLOCO 4: FUNCIONALIDADES (BLOCO ESCURO EXPANDIDO) -->
+              <div class="col-span-2 row-span-2 h-full rounded-xl bg-[#0B0F17] p-3 sm:p-5 md:p-6 text-white flex flex-col justify-between shadow-xs">
                 <div>
-                  <div class="mb-1 text-[6.5px] sm:text-[8px] font-bold tracking-[0.2em] text-white/50 uppercase">Funcionalidades</div>
-                  <div class="space-y-0.5 sm:space-y-1">
-                    <p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #FED7AA;">•</span>  <span class="truncate">Visão diária, semanal, mensal e filtro por profissional</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #FED7AA;">•</span>  <span class="truncate">Link público de autoagendamento 24h para clientes finais</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #FED7AA;">•</span>  <span class="truncate">Reserva com cobrança antecipada de sinal via PIX automático</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #FED7AA;">•</span>  <span class="truncate">Encaixes inteligentes com fila de espera automatizada</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #FED7AA;">•</span>  <span class="truncate">Sincronização bidirecional com Google Agenda e Apple Calendar</span></p>
+                  <div class="mb-1.5 sm:mb-3 text-[7.5px] sm:text-[10px] md:text-xs font-bold tracking-[0.2em] text-white/50 uppercase">Funcionalidades</div>
+                  <div class="space-y-1 sm:space-y-2">
+                    <p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #FED7AA;">•</span>  <span class="line-clamp-2">Visão diária, semanal, mensal e filtro por profissional</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #FED7AA;">•</span>  <span class="line-clamp-2">Link público de autoagendamento 24h para clientes finais</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #FED7AA;">•</span>  <span class="line-clamp-2">Reserva com cobrança antecipada de sinal via PIX automático</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #FED7AA;">•</span>  <span class="line-clamp-2">Encaixes inteligentes com fila de espera automatizada</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #FED7AA;">•</span>  <span class="line-clamp-2">Sincronização bidirecional com Google Agenda e Apple Calendar</span></p>
                   </div>
                 </div>
               </div>
 
               <!-- BLOCO 5: ARQUITETURA & SEGURANÇA (4 CARTÕES TÉCNICOS COM ÍCONES) -->
-              <div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #FED7AA; color: #7C2D12;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Stack Principal</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">FullCalendar + Redis Cache Lock</div>  </div></div><div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #FED7AA; color: #7C2D12;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Segurança</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">LGPD com Termo de Consentimento</div>  </div></div><div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #FED7AA; color: #7C2D12;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Sincronização</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">Notificações Push em Tempo Real</div>  </div></div><div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #FED7AA; color: #7C2D12;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Exportação</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">ICS, iCal e Relatórios de Ocupação</div>  </div></div>
+              <div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #FED7AA; color: #7C2D12;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Stack Principal</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">FullCalendar + Redis Cache Lock</div>  </div></div><div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #FED7AA; color: #7C2D12;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Segurança</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">LGPD com Termo de Consentimento</div>  </div></div><div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #FED7AA; color: #7C2D12;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Sincronização</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">Notificações Push em Tempo Real</div>  </div></div><div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #FED7AA; color: #7C2D12;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Exportação</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">ICS, iCal e Relatórios de Ocupação</div>  </div></div>
             </div>
           </div>
 
           <!-- FOOTER (RODAPÉ) -->
-          <div class="mt-auto pt-2 flex justify-between items-center text-[7px] sm:text-[8px] tracking-[0.2em] text-slate-400 uppercase border-t border-slate-100">
+          <div class="shrink-0 mt-auto pt-2.5 sm:pt-4 flex justify-between items-center text-[8px] sm:text-[10px] tracking-[0.2em] text-slate-400 uppercase border-t border-slate-100">
             <span>11</span>
             <span class="font-bold text-slate-500">HABITAT</span>
             <span class="w-4"></span>
@@ -1037,69 +1037,69 @@
         </div>
         
 
-        <div class="page page-left mod-wine bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-3 sm:p-7 md:p-8 flex flex-col justify-between">
-          <div class="flex-1 flex flex-col">
+        <div class="page page-left mod-wine bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-4 sm:p-8 md:p-10 pb-4 sm:pb-6 flex flex-col justify-between">
+          <div class="flex-1 flex flex-col min-h-0">
             <!-- KICKER (CABEÇALHO) -->
-            <div class="flex items-center justify-between border-b border-slate-200 pb-1 sm:pb-2">
-              <span class="text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.2em]" style="color: #9D174D;">04 · FICHA TÉCNICA</span>
-              <span class="text-[7px] sm:text-[9px] text-slate-400 font-semibold uppercase tracking-widest">Relacionamento & vendas</span>
+            <div class="shrink-0 flex items-center justify-between border-b border-slate-200 pb-1.5 sm:pb-3">
+              <span class="text-[9px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.2em]" style="color: #9D174D;">04 · FICHA TÉCNICA</span>
+              <span class="text-[8px] sm:text-[11px] text-slate-400 font-semibold uppercase tracking-widest">Relacionamento & vendas</span>
             </div>
 
-            <!-- TÍTULO DA PÁGINA -->
-            <div class="mt-2 sm:mt-3">
-              <h2 class="text-xs sm:text-2xl font-light text-slate-900 leading-tight">
+            <!-- TÍTULO DA PÁGINA (MAIOR E COM MAIS PRESENÇA) -->
+            <div class="shrink-0 mt-2 sm:mt-4">
+              <h2 class="text-sm sm:text-3xl md:text-4xl font-light text-slate-900 leading-tight">
                 CRM de clientes <b class="font-extrabold">& retenção.</b>
               </h2>
             </div>
 
-            <!-- MOSAICO DE BLOCOS (GRID 4x4) -->
-            <div class="mt-2 sm:mt-3.5 grid flex-1 grid-cols-4 grid-rows-4 gap-1.5 sm:gap-2">
-              <!-- BLOCO 1: DIFERENCIAL 01 (DESTAQUE PRINCIPAL) -->
-              <div class="col-span-2 row-span-2 flex flex-col justify-between rounded-lg p-2.5 sm:p-3.5 text-white shadow-xs" style="background-color: #9D174D;">
+            <!-- MOSAICO DE BLOCOS EXPANDIDO (GRID 4x4 PREENCHENDO O ESPAÇO) -->
+            <div class="mt-3 sm:mt-6 flex-1 min-h-0 grid grid-cols-4 grid-rows-4 gap-2 sm:gap-3.5 w-full h-full">
+              <!-- BLOCO 1: DIFERENCIAL 01 (DESTAQUE PRINCIPAL EXPANDIDO) -->
+              <div class="col-span-2 row-span-2 h-full flex flex-col justify-between rounded-xl p-3 sm:p-6 md:p-7 text-white shadow-xs" style="background-color: #9D174D;">
                 <div class="flex items-start justify-between">
-                  <span class="text-xl sm:text-3xl font-extrabold leading-none">01</span>
-                  <svg class="size-4 sm:size-5 opacity-80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <span class="text-2xl sm:text-5xl md:text-6xl font-black leading-none">01</span>
+                  <svg class="size-5 sm:size-8 opacity-85" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
                   </svg>
                 </div>
-                <p class="text-[7.5px] sm:text-[10px] font-semibold leading-snug mt-2">
+                <p class="text-[8.5px] sm:text-sm md:text-base font-semibold leading-relaxed mt-2 sm:mt-4">
                   Dossiê unificado: compras anteriores, preferências, fotos e notas privadas em tela única
                 </p>
               </div>
 
-              <!-- BLOCO 2: DIFERENCIAL 02 (DESTAQUE SUAVE) -->
-              <div class="col-span-2 rounded-lg p-2 sm:p-2.5 flex flex-col justify-center border border-slate-100" style="background-color: #FBCFE844;">
-                <b class="text-[7.5px] sm:text-[10px] font-bold" style="color: #9D174D;">02</b>
-                <p class="text-[7px] sm:text-[9.5px] text-slate-700 leading-snug line-clamp-2 mt-0.5">
+              <!-- BLOCO 2: DIFERENCIAL 02 (DESTAQUE SUAVE EXPANDIDO) -->
+              <div class="col-span-2 h-full rounded-xl p-2.5 sm:p-4 md:p-5 flex flex-col justify-center border border-slate-200/60 shadow-2xs" style="background-color: #FBCFE844;">
+                <b class="text-[8.5px] sm:text-xs md:text-sm font-bold" style="color: #9D174D;">02</b>
+                <p class="text-[8px] sm:text-xs md:text-sm text-slate-700 leading-snug line-clamp-2 mt-1">
                   Segmentação inteligente por frequência, ticket médio e última visita (RFM)
                 </p>
               </div>
 
-              <!-- BLOCO 3: DIFERENCIAL 03 (DESTAQUE SUAVE) -->
-              <div class="col-span-2 rounded-lg p-2 sm:p-2.5 flex flex-col justify-center border border-slate-100" style="background-color: #FBCFE844;">
-                <b class="text-[7.5px] sm:text-[10px] font-bold" style="color: #9D174D;">03</b>
-                <p class="text-[7px] sm:text-[9.5px] text-slate-700 leading-snug line-clamp-2 mt-0.5">
+              <!-- BLOCO 3: DIFERENCIAL 03 (DESTAQUE SUAVE EXPANDIDO) -->
+              <div class="col-span-2 h-full rounded-xl p-2.5 sm:p-4 md:p-5 flex flex-col justify-center border border-slate-200/60 shadow-2xs" style="background-color: #FBCFE844;">
+                <b class="text-[8.5px] sm:text-xs md:text-sm font-bold" style="color: #9D174D;">03</b>
+                <p class="text-[8px] sm:text-xs md:text-sm text-slate-700 leading-snug line-clamp-2 mt-1">
                   Disparo automatizado de campanhas para reativação de clientes inativos
                 </p>
               </div>
 
-              <!-- BLOCO 4: FUNCIONALIDADES (BLOCO ESCURO) -->
-              <div class="col-span-2 row-span-2 rounded-lg bg-[#0B0F17] p-2 sm:p-3 text-white flex flex-col justify-between shadow-xs">
+              <!-- BLOCO 4: FUNCIONALIDADES (BLOCO ESCURO EXPANDIDO) -->
+              <div class="col-span-2 row-span-2 h-full rounded-xl bg-[#0B0F17] p-3 sm:p-5 md:p-6 text-white flex flex-col justify-between shadow-xs">
                 <div>
-                  <div class="mb-1 text-[6.5px] sm:text-[8px] font-bold tracking-[0.2em] text-white/50 uppercase">Funcionalidades</div>
-                  <div class="space-y-0.5 sm:space-y-1">
-                    <p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #FBCFE8;">•</span>  <span class="truncate">Ficha digital completa com fotos de antes e depois</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #FBCFE8;">•</span>  <span class="truncate">Cálculo automático do Lifetime Value (LTV) por cliente</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #FBCFE8;">•</span>  <span class="truncate">Histórico de preferências, restrições e ficha de anamnese</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #FBCFE8;">•</span>  <span class="truncate">Programa de pontos e fidelidade com resgate imediato</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #FBCFE8;">•</span>  <span class="truncate">Integração nativa com campanhas de WhatsApp e Meta Ads</span></p>
+                  <div class="mb-1.5 sm:mb-3 text-[7.5px] sm:text-[10px] md:text-xs font-bold tracking-[0.2em] text-white/50 uppercase">Funcionalidades</div>
+                  <div class="space-y-1 sm:space-y-2">
+                    <p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #FBCFE8;">•</span>  <span class="line-clamp-2">Ficha digital completa com fotos de antes e depois</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #FBCFE8;">•</span>  <span class="line-clamp-2">Cálculo automático do Lifetime Value (LTV) por cliente</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #FBCFE8;">•</span>  <span class="line-clamp-2">Histórico de preferências, restrições e ficha de anamnese</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #FBCFE8;">•</span>  <span class="line-clamp-2">Programa de pontos e fidelidade com resgate imediato</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #FBCFE8;">•</span>  <span class="line-clamp-2">Integração nativa com campanhas de WhatsApp e Meta Ads</span></p>
                   </div>
                 </div>
               </div>
 
               <!-- BLOCO 5: ARQUITETURA & SEGURANÇA (4 CARTÕES TÉCNICOS COM ÍCONES) -->
-              <div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #FBCFE8; color: #831843;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Stack Principal</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">PostgreSQL com Índices Full-Text</div>  </div></div><div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #FBCFE8; color: #831843;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Segurança</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">Anonimização de Dados Sensíveis</div>  </div></div><div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #FBCFE8; color: #831843;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Sincronização</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">Instantânea com PDV e Financeiro</div>  </div></div><div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #FBCFE8; color: #831843;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Exportação</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">CSV Segmentado e Relatório RFM</div>  </div></div>
+              <div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #FBCFE8; color: #831843;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Stack Principal</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">PostgreSQL com Índices Full-Text</div>  </div></div><div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #FBCFE8; color: #831843;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Segurança</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">Anonimização de Dados Sensíveis</div>  </div></div><div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #FBCFE8; color: #831843;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Sincronização</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">Instantânea com PDV e Financeiro</div>  </div></div><div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #FBCFE8; color: #831843;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Exportação</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">CSV Segmentado e Relatório RFM</div>  </div></div>
             </div>
           </div>
 
           <!-- FOOTER (RODAPÉ) -->
-          <div class="mt-auto pt-2 flex justify-between items-center text-[7px] sm:text-[8px] tracking-[0.2em] text-slate-400 uppercase border-t border-slate-100">
+          <div class="shrink-0 mt-auto pt-2.5 sm:pt-4 flex justify-between items-center text-[8px] sm:text-[10px] tracking-[0.2em] text-slate-400 uppercase border-t border-slate-100">
             <span>15</span>
             <span class="font-bold text-slate-500">HABITAT</span>
             <span class="w-4"></span>
@@ -1241,69 +1241,69 @@
         </div>
         
 
-        <div class="page page-left mod-teal bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-3 sm:p-7 md:p-8 flex flex-col justify-between">
-          <div class="flex-1 flex flex-col">
+        <div class="page page-left mod-teal bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-4 sm:p-8 md:p-10 pb-4 sm:pb-6 flex flex-col justify-between">
+          <div class="flex-1 flex flex-col min-h-0">
             <!-- KICKER (CABEÇALHO) -->
-            <div class="flex items-center justify-between border-b border-slate-200 pb-1 sm:pb-2">
-              <span class="text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.2em]" style="color: #0D9488;">05 · FICHA TÉCNICA</span>
-              <span class="text-[7px] sm:text-[9px] text-slate-400 font-semibold uppercase tracking-widest">Recursos humanos</span>
+            <div class="shrink-0 flex items-center justify-between border-b border-slate-200 pb-1.5 sm:pb-3">
+              <span class="text-[9px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.2em]" style="color: #0D9488;">05 · FICHA TÉCNICA</span>
+              <span class="text-[8px] sm:text-[11px] text-slate-400 font-semibold uppercase tracking-widest">Recursos humanos</span>
             </div>
 
-            <!-- TÍTULO DA PÁGINA -->
-            <div class="mt-2 sm:mt-3">
-              <h2 class="text-xs sm:text-2xl font-light text-slate-900 leading-tight">
+            <!-- TÍTULO DA PÁGINA (MAIOR E COM MAIS PRESENÇA) -->
+            <div class="shrink-0 mt-2 sm:mt-4">
+              <h2 class="text-sm sm:text-3xl md:text-4xl font-light text-slate-900 leading-tight">
                 Equipe, metas <b class="font-extrabold">& comissões.</b>
               </h2>
             </div>
 
-            <!-- MOSAICO DE BLOCOS (GRID 4x4) -->
-            <div class="mt-2 sm:mt-3.5 grid flex-1 grid-cols-4 grid-rows-4 gap-1.5 sm:gap-2">
-              <!-- BLOCO 1: DIFERENCIAL 01 (DESTAQUE PRINCIPAL) -->
-              <div class="col-span-2 row-span-2 flex flex-col justify-between rounded-lg p-2.5 sm:p-3.5 text-white shadow-xs" style="background-color: #0D9488;">
+            <!-- MOSAICO DE BLOCOS EXPANDIDO (GRID 4x4 PREENCHENDO O ESPAÇO) -->
+            <div class="mt-3 sm:mt-6 flex-1 min-h-0 grid grid-cols-4 grid-rows-4 gap-2 sm:gap-3.5 w-full h-full">
+              <!-- BLOCO 1: DIFERENCIAL 01 (DESTAQUE PRINCIPAL EXPANDIDO) -->
+              <div class="col-span-2 row-span-2 h-full flex flex-col justify-between rounded-xl p-3 sm:p-6 md:p-7 text-white shadow-xs" style="background-color: #0D9488;">
                 <div class="flex items-start justify-between">
-                  <span class="text-xl sm:text-3xl font-extrabold leading-none">01</span>
-                  <svg class="size-4 sm:size-5 opacity-80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <span class="text-2xl sm:text-5xl md:text-6xl font-black leading-none">01</span>
+                  <svg class="size-5 sm:size-8 opacity-85" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
                   </svg>
                 </div>
-                <p class="text-[7.5px] sm:text-[10px] font-semibold leading-snug mt-2">
+                <p class="text-[8.5px] sm:text-sm md:text-base font-semibold leading-relaxed mt-2 sm:mt-4">
                   Cálculo de comissão por serviço, produto, escala progressiva ou valor fixo
                 </p>
               </div>
 
-              <!-- BLOCO 2: DIFERENCIAL 02 (DESTAQUE SUAVE) -->
-              <div class="col-span-2 rounded-lg p-2 sm:p-2.5 flex flex-col justify-center border border-slate-100" style="background-color: #99F6E444;">
-                <b class="text-[7.5px] sm:text-[10px] font-bold" style="color: #0D9488;">02</b>
-                <p class="text-[7px] sm:text-[9.5px] text-slate-700 leading-snug line-clamp-2 mt-0.5">
+              <!-- BLOCO 2: DIFERENCIAL 02 (DESTAQUE SUAVE EXPANDIDO) -->
+              <div class="col-span-2 h-full rounded-xl p-2.5 sm:p-4 md:p-5 flex flex-col justify-center border border-slate-200/60 shadow-2xs" style="background-color: #99F6E444;">
+                <b class="text-[8.5px] sm:text-xs md:text-sm font-bold" style="color: #0D9488;">02</b>
+                <p class="text-[8px] sm:text-xs md:text-sm text-slate-700 leading-snug line-clamp-2 mt-1">
                   Painel exclusivo do profissional para conferência em tempo real pelo celular
                 </p>
               </div>
 
-              <!-- BLOCO 3: DIFERENCIAL 03 (DESTAQUE SUAVE) -->
-              <div class="col-span-2 rounded-lg p-2 sm:p-2.5 flex flex-col justify-center border border-slate-100" style="background-color: #99F6E444;">
-                <b class="text-[7.5px] sm:text-[10px] font-bold" style="color: #0D9488;">03</b>
-                <p class="text-[7px] sm:text-[9.5px] text-slate-700 leading-snug line-clamp-2 mt-0.5">
+              <!-- BLOCO 3: DIFERENCIAL 03 (DESTAQUE SUAVE EXPANDIDO) -->
+              <div class="col-span-2 h-full rounded-xl p-2.5 sm:p-4 md:p-5 flex flex-col justify-center border border-slate-200/60 shadow-2xs" style="background-color: #99F6E444;">
+                <b class="text-[8.5px] sm:text-xs md:text-sm font-bold" style="color: #0D9488;">03</b>
+                <p class="text-[8px] sm:text-xs md:text-sm text-slate-700 leading-snug line-clamp-2 mt-1">
                   Permissões granulares: cada colaborador visualiza apenas seus dados autorizados
                 </p>
               </div>
 
-              <!-- BLOCO 4: FUNCIONALIDADES (BLOCO ESCURO) -->
-              <div class="col-span-2 row-span-2 rounded-lg bg-[#0B0F17] p-2 sm:p-3 text-white flex flex-col justify-between shadow-xs">
+              <!-- BLOCO 4: FUNCIONALIDADES (BLOCO ESCURO EXPANDIDO) -->
+              <div class="col-span-2 row-span-2 h-full rounded-xl bg-[#0B0F17] p-3 sm:p-5 md:p-6 text-white flex flex-col justify-between shadow-xs">
                 <div>
-                  <div class="mb-1 text-[6.5px] sm:text-[8px] font-bold tracking-[0.2em] text-white/50 uppercase">Funcionalidades</div>
-                  <div class="space-y-0.5 sm:space-y-1">
-                    <p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #99F6E4;">•</span>  <span class="truncate">Regras flexíveis de comissão sobre faturamento bruto ou líquido</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #99F6E4;">•</span>  <span class="truncate">Controle de ponto digital e registro de jornada</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #99F6E4;">•</span>  <span class="truncate">Fechamento de folha de repasse em 1 clique com recibo em PDF</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #99F6E4;">•</span>  <span class="truncate">Mural de comunicados internos e alinhamento de metas</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #99F6E4;">•</span>  <span class="truncate">Extrato individual de comissões com rastreio de cada comanda</span></p>
+                  <div class="mb-1.5 sm:mb-3 text-[7.5px] sm:text-[10px] md:text-xs font-bold tracking-[0.2em] text-white/50 uppercase">Funcionalidades</div>
+                  <div class="space-y-1 sm:space-y-2">
+                    <p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #99F6E4;">•</span>  <span class="line-clamp-2">Regras flexíveis de comissão sobre faturamento bruto ou líquido</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #99F6E4;">•</span>  <span class="line-clamp-2">Controle de ponto digital e registro de jornada</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #99F6E4;">•</span>  <span class="line-clamp-2">Fechamento de folha de repasse em 1 clique com recibo em PDF</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #99F6E4;">•</span>  <span class="line-clamp-2">Mural de comunicados internos e alinhamento de metas</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #99F6E4;">•</span>  <span class="line-clamp-2">Extrato individual de comissões com rastreio de cada comanda</span></p>
                   </div>
                 </div>
               </div>
 
               <!-- BLOCO 5: ARQUITETURA & SEGURANÇA (4 CARTÕES TÉCNICOS COM ÍCONES) -->
-              <div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #99F6E4; color: #134E4A;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Stack Principal</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">RBAC com Autenticação JWT</div>  </div></div><div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #99F6E4; color: #134E4A;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Segurança</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">Isolamento Estrito de Dados Financeiros</div>  </div></div><div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #99F6E4; color: #134E4A;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Sincronização</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">Cálculo no Momento do Fechamento</div>  </div></div><div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #99F6E4; color: #134E4A;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Exportação</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">Holerite de Repasse e Recibos em PDF</div>  </div></div>
+              <div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #99F6E4; color: #134E4A;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Stack Principal</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">RBAC com Autenticação JWT</div>  </div></div><div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #99F6E4; color: #134E4A;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Segurança</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">Isolamento Estrito de Dados Financeiros</div>  </div></div><div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #99F6E4; color: #134E4A;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Sincronização</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">Cálculo no Momento do Fechamento</div>  </div></div><div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #99F6E4; color: #134E4A;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Exportação</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">Holerite de Repasse e Recibos em PDF</div>  </div></div>
             </div>
           </div>
 
           <!-- FOOTER (RODAPÉ) -->
-          <div class="mt-auto pt-2 flex justify-between items-center text-[7px] sm:text-[8px] tracking-[0.2em] text-slate-400 uppercase border-t border-slate-100">
+          <div class="shrink-0 mt-auto pt-2.5 sm:pt-4 flex justify-between items-center text-[8px] sm:text-[10px] tracking-[0.2em] text-slate-400 uppercase border-t border-slate-100">
             <span>19</span>
             <span class="font-bold text-slate-500">HABITAT</span>
             <span class="w-4"></span>
@@ -1437,69 +1437,69 @@
         </div>
         
 
-        <div class="page page-left mod-mustard bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-3 sm:p-7 md:p-8 flex flex-col justify-between">
-          <div class="flex-1 flex flex-col">
+        <div class="page page-left mod-mustard bg-white text-slate-900 relative w-full h-full overflow-hidden select-none p-4 sm:p-8 md:p-10 pb-4 sm:pb-6 flex flex-col justify-between">
+          <div class="flex-1 flex flex-col min-h-0">
             <!-- KICKER (CABEÇALHO) -->
-            <div class="flex items-center justify-between border-b border-slate-200 pb-1 sm:pb-2">
-              <span class="text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.2em]" style="color: #B45309;">06 · FICHA TÉCNICA</span>
-              <span class="text-[7px] sm:text-[9px] text-slate-400 font-semibold uppercase tracking-widest">Custos & suprimentos</span>
+            <div class="shrink-0 flex items-center justify-between border-b border-slate-200 pb-1.5 sm:pb-3">
+              <span class="text-[9px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.2em]" style="color: #B45309;">06 · FICHA TÉCNICA</span>
+              <span class="text-[8px] sm:text-[11px] text-slate-400 font-semibold uppercase tracking-widest">Custos & suprimentos</span>
             </div>
 
-            <!-- TÍTULO DA PÁGINA -->
-            <div class="mt-2 sm:mt-3">
-              <h2 class="text-xs sm:text-2xl font-light text-slate-900 leading-tight">
+            <!-- TÍTULO DA PÁGINA (MAIOR E COM MAIS PRESENÇA) -->
+            <div class="shrink-0 mt-2 sm:mt-4">
+              <h2 class="text-sm sm:text-3xl md:text-4xl font-light text-slate-900 leading-tight">
                 Serviços, insumos <b class="font-extrabold">& fornecedores.</b>
               </h2>
             </div>
 
-            <!-- MOSAICO DE BLOCOS (GRID 4x4) -->
-            <div class="mt-2 sm:mt-3.5 grid flex-1 grid-cols-4 grid-rows-4 gap-1.5 sm:gap-2">
-              <!-- BLOCO 1: DIFERENCIAL 01 (DESTAQUE PRINCIPAL) -->
-              <div class="col-span-2 row-span-2 flex flex-col justify-between rounded-lg p-2.5 sm:p-3.5 text-white shadow-xs" style="background-color: #B45309;">
+            <!-- MOSAICO DE BLOCOS EXPANDIDO (GRID 4x4 PREENCHENDO O ESPAÇO) -->
+            <div class="mt-3 sm:mt-6 flex-1 min-h-0 grid grid-cols-4 grid-rows-4 gap-2 sm:gap-3.5 w-full h-full">
+              <!-- BLOCO 1: DIFERENCIAL 01 (DESTAQUE PRINCIPAL EXPANDIDO) -->
+              <div class="col-span-2 row-span-2 h-full flex flex-col justify-between rounded-xl p-3 sm:p-6 md:p-7 text-white shadow-xs" style="background-color: #B45309;">
                 <div class="flex items-start justify-between">
-                  <span class="text-xl sm:text-3xl font-extrabold leading-none">01</span>
-                  <svg class="size-4 sm:size-5 opacity-80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <span class="text-2xl sm:text-5xl md:text-6xl font-black leading-none">01</span>
+                  <svg class="size-5 sm:size-8 opacity-85" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
                   </svg>
                 </div>
-                <p class="text-[7.5px] sm:text-[10px] font-semibold leading-snug mt-2">
+                <p class="text-[8.5px] sm:text-sm md:text-base font-semibold leading-relaxed mt-2 sm:mt-4">
                   Baixa automática de insumos fracionados a cada serviço concluído no sistema
                 </p>
               </div>
 
-              <!-- BLOCO 2: DIFERENCIAL 02 (DESTAQUE SUAVE) -->
-              <div class="col-span-2 rounded-lg p-2 sm:p-2.5 flex flex-col justify-center border border-slate-100" style="background-color: #FDE68A44;">
-                <b class="text-[7.5px] sm:text-[10px] font-bold" style="color: #B45309;">02</b>
-                <p class="text-[7px] sm:text-[9.5px] text-slate-700 leading-snug line-clamp-2 mt-0.5">
+              <!-- BLOCO 2: DIFERENCIAL 02 (DESTAQUE SUAVE EXPANDIDO) -->
+              <div class="col-span-2 h-full rounded-xl p-2.5 sm:p-4 md:p-5 flex flex-col justify-center border border-slate-200/60 shadow-2xs" style="background-color: #FDE68A44;">
+                <b class="text-[8.5px] sm:text-xs md:text-sm font-bold" style="color: #B45309;">02</b>
+                <p class="text-[8px] sm:text-xs md:text-sm text-slate-700 leading-snug line-clamp-2 mt-1">
                   Ponto de reposição automático com lista de compras sugerida baseada no histórico
                 </p>
               </div>
 
-              <!-- BLOCO 3: DIFERENCIAL 03 (DESTAQUE SUAVE) -->
-              <div class="col-span-2 rounded-lg p-2 sm:p-2.5 flex flex-col justify-center border border-slate-100" style="background-color: #FDE68A44;">
-                <b class="text-[7.5px] sm:text-[10px] font-bold" style="color: #B45309;">03</b>
-                <p class="text-[7px] sm:text-[9.5px] text-slate-700 leading-snug line-clamp-2 mt-0.5">
+              <!-- BLOCO 3: DIFERENCIAL 03 (DESTAQUE SUAVE EXPANDIDO) -->
+              <div class="col-span-2 h-full rounded-xl p-2.5 sm:p-4 md:p-5 flex flex-col justify-center border border-slate-200/60 shadow-2xs" style="background-color: #FDE68A44;">
+                <b class="text-[8.5px] sm:text-xs md:text-sm font-bold" style="color: #B45309;">03</b>
+                <p class="text-[8px] sm:text-xs md:text-sm text-slate-700 leading-snug line-clamp-2 mt-1">
                   Controle rigoroso de lotes, datas de validade e alertas preventivos de vencimento
                 </p>
               </div>
 
-              <!-- BLOCO 4: FUNCIONALIDADES (BLOCO ESCURO) -->
-              <div class="col-span-2 row-span-2 rounded-lg bg-[#0B0F17] p-2 sm:p-3 text-white flex flex-col justify-between shadow-xs">
+              <!-- BLOCO 4: FUNCIONALIDADES (BLOCO ESCURO EXPANDIDO) -->
+              <div class="col-span-2 row-span-2 h-full rounded-xl bg-[#0B0F17] p-3 sm:p-5 md:p-6 text-white flex flex-col justify-between shadow-xs">
                 <div>
-                  <div class="mb-1 text-[6.5px] sm:text-[8px] font-bold tracking-[0.2em] text-white/50 uppercase">Funcionalidades</div>
-                  <div class="space-y-0.5 sm:space-y-1">
-                    <p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #FDE68A;">•</span>  <span class="truncate">Ficha técnica com custo real por procedimento</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #FDE68A;">•</span>  <span class="truncate">Entrada por nota fiscal XML com atualização automática de custos</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #FDE68A;">•</span>  <span class="truncate">Auditoria de perdas, desperdícios e consumo interno</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #FDE68A;">•</span>  <span class="truncate">Comparativo de preços e histórico de pedidos por fornecedor</span></p><p class="py-0.5 text-[7px] sm:text-[9.5px] text-white/90 leading-tight flex items-start gap-1 sm:gap-1.5">  <span class="font-bold text-[8px] sm:text-xs leading-none shrink-0" style="color: #FDE68A;">•</span>  <span class="truncate">Inventário rápido com leitura de código de barras pelo celular</span></p>
+                  <div class="mb-1.5 sm:mb-3 text-[7.5px] sm:text-[10px] md:text-xs font-bold tracking-[0.2em] text-white/50 uppercase">Funcionalidades</div>
+                  <div class="space-y-1 sm:space-y-2">
+                    <p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #FDE68A;">•</span>  <span class="line-clamp-2">Ficha técnica com custo real por procedimento</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #FDE68A;">•</span>  <span class="line-clamp-2">Entrada por nota fiscal XML com atualização automática de custos</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #FDE68A;">•</span>  <span class="line-clamp-2">Auditoria de perdas, desperdícios e consumo interno</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #FDE68A;">•</span>  <span class="line-clamp-2">Comparativo de preços e histórico de pedidos por fornecedor</span></p><p class="py-0.5 sm:py-1 text-[8px] sm:text-xs md:text-sm text-white/90 leading-snug flex items-start gap-1.5 sm:gap-2">  <span class="font-bold text-[10px] sm:text-base leading-none shrink-0" style="color: #FDE68A;">•</span>  <span class="line-clamp-2">Inventário rápido com leitura de código de barras pelo celular</span></p>
                   </div>
                 </div>
               </div>
 
               <!-- BLOCO 5: ARQUITETURA & SEGURANÇA (4 CARTÕES TÉCNICOS COM ÍCONES) -->
-              <div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #FDE68A; color: #78350F;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Stack Principal</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">PostgreSQL + Filas Assíncronas</div>  </div></div><div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #FDE68A; color: #78350F;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Segurança</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">Trilha de Auditoria por Usuário</div>  </div></div><div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #FDE68A; color: #78350F;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Sincronização</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">Baixa em Tempo Real na Comanda</div>  </div></div><div class="rounded-lg border border-slate-200/80 bg-white p-1 sm:p-2.5 flex flex-col justify-between shadow-2xs">  <div class="mb-0.5 sm:mb-1.5 grid size-4 sm:size-6 place-items-center rounded" style="background-color: #FDE68A; color: #78350F;">    <svg class="size-2.5 sm:size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>  </div>  <div>    <div class="text-[5.5px] sm:text-[7.5px] font-bold uppercase tracking-wider text-slate-400 truncate">Exportação</div>    <div class="text-[6.5px] sm:text-[9.5px] font-semibold text-slate-800 leading-tight line-clamp-2">Pedidos em PDF e Curva ABC em Excel</div>  </div></div>
+              <div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #FDE68A; color: #78350F;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Stack Principal</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">PostgreSQL + Filas Assíncronas</div>  </div></div><div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #FDE68A; color: #78350F;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Segurança</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">Trilha de Auditoria por Usuário</div>  </div></div><div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #FDE68A; color: #78350F;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Sincronização</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">Baixa em Tempo Real na Comanda</div>  </div></div><div class="h-full rounded-xl border border-slate-200/90 bg-white p-2 sm:p-4 flex flex-col justify-between shadow-2xs">  <div class="mb-1 sm:mb-2 grid size-6 sm:size-9 place-items-center rounded-lg" style="background-color: #FDE68A; color: #78350F;">    <svg class="size-3 sm:size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>  </div>  <div>    <div class="text-[6.5px] sm:text-[9.5px] md:text-[10.5px] font-bold uppercase tracking-wider text-slate-400 truncate mb-0.5">Exportação</div>    <div class="text-[7.5px] sm:text-xs md:text-sm font-bold text-slate-800 leading-tight line-clamp-2">Pedidos em PDF e Curva ABC em Excel</div>  </div></div>
             </div>
           </div>
 
           <!-- FOOTER (RODAPÉ) -->
-          <div class="mt-auto pt-2 flex justify-between items-center text-[7px] sm:text-[8px] tracking-[0.2em] text-slate-400 uppercase border-t border-slate-100">
+          <div class="shrink-0 mt-auto pt-2.5 sm:pt-4 flex justify-between items-center text-[8px] sm:text-[10px] tracking-[0.2em] text-slate-400 uppercase border-t border-slate-100">
             <span>23</span>
             <span class="font-bold text-slate-500">HABITAT</span>
             <span class="w-4"></span>

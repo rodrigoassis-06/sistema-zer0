@@ -39,6 +39,9 @@ modules = [
         "n": "01",
         "mod": "mod-blue",
         "color": "#0063B1",
+        "accent_light": "#BAE6FD",
+        "accent_dark": "#003B6D",
+        "title_formatted": 'Dashboard <span class="rounded px-1.5 py-0.5 inline-block" style="background-color: #BAE6FD; color: #003B6D;">analítico.</span>',
         "area": "Gestão estratégica",
         "badge": "VISÃO 360°",
         "title": ["Dashboard", "analítico."],
@@ -79,6 +82,9 @@ modules = [
         "n": "02",
         "mod": "mod-green",
         "color": "#16A34A",
+        "accent_light": "#BBF7D0",
+        "accent_dark": "#14532D",
+        "title_formatted": 'Gestão financeira &amp; <span class="rounded px-1.5 py-0.5 inline-block" style="background-color: #BBF7D0; color: #14532D;">DRE</span> gerencial.',
         "area": "Inteligência financeira",
         "badge": "FLUXO DE CAIXA",
         "title": ["Gestão financeira", "& DRE gerencial."],
@@ -119,6 +125,9 @@ modules = [
         "n": "03",
         "mod": "mod-terra",
         "color": "#C2410C",
+        "accent_light": "#FED7AA",
+        "accent_dark": "#7C2D12",
+        "title_formatted": 'Agenda &amp; <span class="rounded px-1.5 py-0.5 inline-block" style="background-color: #FED7AA; color: #7C2D12;">atendimentos.</span>',
         "area": "Fluxo operacional",
         "badge": "AGENDAMENTO MULTI",
         "title": ["Agenda &", "atendimentos."],
@@ -159,6 +168,9 @@ modules = [
         "n": "04",
         "mod": "mod-wine",
         "color": "#9D174D",
+        "accent_light": "#FBCFE8",
+        "accent_dark": "#831843",
+        "title_formatted": 'CRM de clientes &amp; <span class="rounded px-1.5 py-0.5 inline-block" style="background-color: #FBCFE8; color: #831843;">retenção.</span>',
         "area": "Relacionamento & vendas",
         "badge": "LTV & RETENÇÃO",
         "title": ["CRM de clientes", "& retenção."],
@@ -199,6 +211,9 @@ modules = [
         "n": "05",
         "mod": "mod-teal",
         "color": "#0D9488",
+        "accent_light": "#99F6E4",
+        "accent_dark": "#134E4A",
+        "title_formatted": 'Equipe, metas &amp; <span class="rounded px-1.5 py-0.5 inline-block" style="background-color: #99F6E4; color: #134E4A;">comissões.</span>',
         "area": "Recursos humanos",
         "badge": "GESTÃO DE REPASSES",
         "title": ["Equipe, metas", "& comissões."],
@@ -239,6 +254,9 @@ modules = [
         "n": "06",
         "mod": "mod-mustard",
         "color": "#B45309",
+        "accent_light": "#FDE68A",
+        "accent_dark": "#78350F",
+        "title_formatted": 'Serviços, insumos &amp; <span class="rounded px-1.5 py-0.5 inline-block" style="background-color: #FDE68A; color: #78350F;">fornecedores.</span>',
         "area": "Custos & suprimentos",
         "badge": "CONTROLE DE LOTES",
         "title": ["Serviços, insumos", "& fornecedores."],
@@ -637,49 +655,48 @@ def build_catalog():
         p_indic = 4 + i * 4
 
         # ---------------------------------------------------------------------
-        # PÁGINA ESQUERDA: ModuleOpening (Hero do Módulo)
+        # PÁGINA ESQUERDA: ModuleOpening (Poster Pop Layout - Estilo V7 Oficial)
         # ---------------------------------------------------------------------
         po_left = f'''
-        <div class="page page-left {m['mod']} bg-mod text-white relative w-full h-full overflow-hidden select-none p-2 sm:p-7 md:p-10 pb-3 sm:pb-8 flex flex-col justify-between">
-          <div class="flex items-center justify-between border-b border-white/20 pb-1 sm:pb-3">
-            <span class="text-[8px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white/90">{m['area']}</span>
-            <span class="text-[7px] sm:text-[10px] font-semibold uppercase tracking-wider bg-white/20 px-1.5 sm:px-2.5 py-0.5 rounded-full text-white">{m['badge']}</span>
-          </div>
-
-          <div class="my-auto space-y-1 sm:space-y-4">
-            <div class="text-3xl sm:text-7xl md:text-8xl font-bold tracking-tight text-white leading-none opacity-95">
+        <div class="page page-left {m['mod']} relative w-full h-full overflow-hidden select-none bg-[#0B0F17]">
+          <!-- COLUNA COLORIDA DA ESQUERDA (42% de largura) -->
+          <div class="absolute left-0 top-0 bottom-0 w-[42%] flex items-center justify-center overflow-hidden" style="background-color: {m['color']};">
+            <div class="select-none font-black tracking-tighter leading-none -rotate-90 origin-center text-transparent"
+                 style="-webkit-text-stroke: 2.5px rgba(0, 0, 0, 0.45); font-size: clamp(140px, 30vw, 320px);">
               {m['n']}
             </div>
-            <h2 class="text-xs sm:text-3xl md:text-4xl font-light leading-[1.1] text-white">
-              {m['title'][0]}<br />
-              <b class="font-bold">{m['title'][1]}</b>
-            </h2>
-            <p class="text-[9px] sm:text-base md:text-lg font-medium leading-tight text-white/95 pt-0.5 sm:pt-2">
-              {m['promise']}
-            </p>
-            <p class="text-[8px] sm:text-xs md:text-sm text-white/80 leading-snug line-clamp-2 sm:line-clamp-none font-light">
-              {m['summary']}
-            </p>
           </div>
 
-          <div class="pt-1 sm:pt-4 border-t border-white/20 grid grid-cols-3 gap-1 sm:gap-2 text-white">
-            <div>
-              <div class="text-[6px] sm:text-[9px] uppercase tracking-wider text-white/70">Resposta</div>
-              <div class="text-[8px] sm:text-xs font-bold text-white mt-0.5">{m['speed']}</div>
-            </div>
-            <div>
-              <div class="text-[6px] sm:text-[9px] uppercase tracking-wider text-white/70">Operação</div>
-              <div class="text-[8px] sm:text-xs font-bold text-white mt-0.5">{m['clicks']}</div>
-            </div>
-            <div>
-              <div class="text-[6px] sm:text-[9px] uppercase tracking-wider text-white/70">Arquitetura</div>
-              <div class="text-[8px] sm:text-xs font-bold text-white mt-0.5">{m['architecture']}</div>
-            </div>
-          </div>
+          <!-- PAINEL DIREITO ESCURO (58% de largura) -->
+          <div class="absolute right-0 top-0 bottom-0 w-[58%] bg-[#0B0F17] p-3 sm:p-7 md:p-8 flex flex-col justify-between">
+            <div class="flex flex-col">
+              <!-- PILL BADGE -->
+              <span class="self-start rounded-full px-2.5 sm:px-3.5 py-0.5 sm:py-1 text-[8px] sm:text-[10px] font-bold uppercase tracking-widest shadow-xs"
+                    style="background-color: {m['accent_light']}; color: {m['accent_dark']};">
+                {m['badge']}
+              </span>
 
-          <div class="absolute bottom-1.5 left-3 sm:left-5 text-[8px] sm:text-xs text-white/50 font-light">{p_hero:02d}</div>
-          <div class="absolute bottom-1 sm:bottom-2 left-1/2 -translate-x-1/2 pointer-events-none opacity-20">
-            <img src="{logo_white_uri}" alt="Habitat Media" class="h-2 sm:h-3 w-auto object-contain select-none" />
+              <!-- TÍTULO EDITORIAL -->
+              <h1 class="mt-4 sm:mt-8 text-sm sm:text-2xl md:text-3xl lg:text-[38px] font-extrabold leading-[1.08] tracking-tight text-white">
+                {m['title_formatted']}
+              </h1>
+
+              <!-- PROMESSA DE IMPACTO -->
+              <p class="mt-3 sm:mt-6 text-[9px] sm:text-sm md:text-base text-white/90 font-medium leading-snug">
+                {m['promise']}
+              </p>
+
+              <!-- RESUMO OPERACIONAL -->
+              <p class="mt-2 sm:mt-3.5 text-[8px] sm:text-xs md:text-sm text-white/60 font-light leading-relaxed">
+                {m['summary']}
+              </p>
+            </div>
+
+            <!-- RODAPÉ SUTIL -->
+            <div class="pt-2 flex justify-between items-center text-[7px] sm:text-[9px] text-white/30 tracking-widest uppercase border-t border-white/5">
+              <span>HABITAT MEDIA</span>
+              <span>{p_hero:02d}</span>
+            </div>
           </div>
         </div>
         '''

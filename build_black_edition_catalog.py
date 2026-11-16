@@ -662,7 +662,7 @@ def build_catalog():
           <!-- COLUNA COLORIDA DA ESQUERDA (42% de largura) -->
           <div class="absolute left-0 top-0 bottom-0 w-[42%] flex items-center justify-center overflow-hidden" style="background-color: {m['color']};">
             <div class="select-none font-black tracking-tighter leading-none -rotate-90 origin-center text-transparent"
-                 style="-webkit-text-stroke: 2.5px rgba(0, 0, 0, 0.45); font-size: clamp(140px, 30vw, 320px);">
+                 style="-webkit-text-stroke: 2.5px #FFFFFF; color: transparent; font-size: clamp(140px, 30vw, 320px);">
               {m['n']}
             </div>
           </div>
